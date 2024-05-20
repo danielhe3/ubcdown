@@ -8,7 +8,57 @@ output:
 
 <!-- This section is mandatory! -->
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend odio odio, et consectetur nunc commodo vitae. Donec eu finibus lacus. Integer at porta nulla. Fusce dignissim gravida lacinia. Nulla ut odio in ante imperdiet placerat. Maecenas vel imperdiet lorem. Proin ultricies, ex at bibendum fringilla, neque libero malesuada sem, in tincidunt leo mi vel mi. Phasellus scelerisque sagittis urna sed sodales. Curabitur iaculis justo velit, ultricies euismod justo convallis non. Nunc id purus et ante iaculis dignissim vel non erat. Donec dignissim urna ut lobortis congue. Nulla tempus ut ipsum non ornare. Donec ac purus nec sem cursus eleifend. Suspendisse potenti. Vestibulum ac vehicula ante.
+International respiratory societies (American Thoracic Society [ATS], European Respiratory Society [ERS], Japanese Respiraotry Society [JRS], Asociación Latinoamericana del Tórax [ALAT]) often release joint statements regarding the diagnosis of lung diseases. In the 2018 guidelines for idiopathic pulmonary fibrosis (IPF), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis [@raghu_diagnosis_2018]; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers [@raghu_idiopathic_2022]. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD. 
+
+## Interstitial Lung Disease
+
+Fibrotic ILDs are debilitating restrictive lung diseases that result from excess deposition of extracellular matrix (ECM) within the lung interstitium, resulting in decreased oxygen uptake and subsequent functional limitation. Although ILDs can arise from a variety of causes (autoimmunity, environmental exposure), the most common subtype, IPF, is of unknown etiology. The incidence of IPF is 18.7 per 100,000 people in Canada, but increases to 39.5-156.4 per 100,000 people over the age of 60 – a rate comparable to that of lung, breast, and prostate cancer (60.1, 129.9 and 120.8 per 100,000, respectively) [@hopkins_epidemiology_2016,  @canadian_cancer_statistics_advisory_committee_in_collaboration_with_the_canadian_cancer_society_statistics_canada_and_the_public_health_agency_of_canada_canadian_2023]. Patients with IPF have high morbidity, with quality of life scores in their first year of diagnosis comparable to those of patients with severe chronic obstructive pulmonary disease (COPD) [@hopkins_epidemiology_2016]. IPF patients are also at greater risk of comorbidities such as lung cancer, pulmonary hypertension, pulmonary embolisms [@raghu_comorbidities_2015]; acute exacerbations, which contribute significantly to the economic burden of the disease, can lead to respiratory failure and death [@morell_treatment_2016, @hilberg_economic_2018]. Median survival for IPF is less than 5 years following diagnosis [@ley_clinical_2011].
+
+## Diagnosis of ILD
+
+Current diagnostic guidelines for ILDs recommend a multidisciplinary discussion (MDD) between respirologists, radiologists, and pathologists. Patients with suspected ILDs frequently present with nonspecific symptoms, with a high-resolution computed tomography (HRCT) scan required to assess specific radiological patterns. A detailed history is taken with respect to exposure to mold, birds, and other exposures to identify potential causes of hypersensitivity pneumonitis (HP), and autoantibody panels are used to screen for autoimmune/connective tissue diseases. Identification of a usual interstitial pneumonia (UIP) pattern on HRCT, which is characterized by bilateral reticulation and honeycombing in the periphery and lower lobes, is sufficient to confirm a diagnosis of IPF in patients with a compatible clinical presentation; however, there is substantial variability in HRCT interpretation among non-experts [@lederer_idiopathic_2018, @raghu_diagnosis_2018].
+
+A major diagnostic challenge within the ILD field is the identification of IPF. HRCT patterns are often nonspecific and fail to distinguish between IPF and non-IPF ILDs. Non-IPF ILDs, which include HP, connective tissue disease-related ILDs (systemic sclerosis-associated ILD (SSc- ILD), rheumatoid arthritis, Sjögren’s syndrome, interstitial pneumonia with autoimmune features (IPAF)), drug-induced ILDs, and pneumoconiosis (occupational ILDs), are frequently treated with immunosuppressive medications [@lederer_idiopathic_2018]. In contrast, IPF patients require anti-fibrotic drug treatment (nintedanib, pirfenidone) and perform worse on immunosuppressives (e.g. mycophenolate, azathioprine), thus highlighting the necessity to distinguish IPF from non-IPF ILDs. Specifically, IPF patients on glucocorticoid therapy showed no slowing of disease progression compared to placebo and, in contrast, had increased hospitalization and mortality [@idiopathic_pulmonary_fibrosis_clinical_research_network_prednisone_2012]. HRCT patterns indeterminate for radiological UIP can be followed up with a surgical lung biopsy (SLB) to identify a histopathological UIP pattern (honeycombing, fibroblastic foci, patchy fibrosis, paraseptal distribution) [@lynch_diagnostic_2018]. However, SLBs are associated with significant risks of mortality that increase with age, severely reduced lung function, and the presence of comorbidities. For these reasons, many patients with ILD are unable to undergo the most definitive diagnostic test.
+
+The most challenging differential diagnosis involves distinguishing between IPF, HP, and IPAF. HP is the result of an immune response within the lung due to extended exposure to bacterial, fungal, animal, or insect proteins, which can eventually lead to fibrosis. A recent multi-centre study showed that inter-multidisciplinary teams disagreed the most when it came to diagnosing HP compared to other types of ILD, highlighting the difficulties associated with its nonspecific clinical presentation and resultant lack of established diagnostic criteria [@walsh_multicentre_2016]. IPAF is a newly proposed clinical designation that presents with features suggestive of an autoimmune condition, yet do not fulfill diagnostic criteria for any particular connective tissue disease [@graney_interstitial_2019]. When all diagnostic tools have been exhausted with no definitive diagnosis, patients are considered to have unclassifiable ILD, which occurs in approximately 15% of ILD patients [@skolnik_unclassifiable_2016]. Treatment of unclassifiable ILD patients is particularly challenging with no clearly preferred option in the majority of these patients.
+
+## Progressive pulmonary fibrosis
+
+Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that display a similar disease progression to IPF, which is defined over time by a decline in lung function, worsening respiratory symptoms, and increased fibrosis as seen on HRCT. Numerous criteria have been proposed to define PPF: 
+
+1. The 2022 ATS/ERS/JRS/ALAT IPF diagnostic guidelines [@raghu_idiopathic_2022] proposed a combination of two or more of the following over 1 year:
+* worsening respiratory symptoms;
+* physiological progression (defined by absolute decline in predicted forced vital capacity [FVC%] ≥5% and/or predicted diffusing capacity for carbon monoxide [D~LCO~%] ≥10%);
+* radiological progression (increased fibrosis on HRCT).
+
+2. The criteria for inclusion into the INBUILD trial [@flaherty_nintedanib_2019] was defined by meeting one of the following criteria for progressive disease within the past 24 months:
+* relative decline in FVC% predicted of ≥10%;
+* relative decline in FVC% predicted of 5-10% and either worsening of respiratory symptoms or increased fibrosis on HRCT;
+* worsening of respiratory symptoms and radiological progression.
+
+3. The unclassifiable ILD (uILD) trial [@maher_pirfenidone_2020] included patients on the basis of an absolute decline in FVC% of ≥5% or worsening respiratory symptoms within 6 months.
+
+4. The RELIEF trial [@behr_pirfenidone_2021] included patients if they had an absolute annual decline in FVC% of ≥5% with at least three measurements within 6-24 months.
+
+Retrospective analysis of various cohorts evaluating the above criteria have revealed that few patients meet all of the above definitions but each of them are associated with a poor prognosis [@khor_patient_2023]. Depending on the definition used for PPF, ~18-32% of non-IPF ILDs display this phenotype compared to ~60% of IPF patients [@nasser_progressive_2021,@takei_prevalence_2022,@hambly_prevalence_2022,@oldham_lung_2022-1, @rajan_progressive_2023]; nevertheless, identification is important as patients with PPF were shown to have a reduced annual rate of decline in FVC% predicted after receiving nintedanib compared to placebo [@flaherty_nintedanib_2019]. 
+
+## Effector cells of ILD
+ 
+Myofibroblasts and activated fibroblasts are the effector cells of fibrosis in ILD, producing and depositing ECM within the lung parenchyma in an uncontrolled manner. Both cell types are found in fibroblastic foci, which are key components of a UIP histological pattern and are not found in healthy lung. Myofibroblasts, which differ from fibroblasts due to their expression of a-smooth muscle actin, may arise from the differentiation of resident fibroblasts, circulating fibrocytes, or mesenchymal transition from various other cell subsets [@marconi_epithelial-mesenchymal_2021].
+
+A recurring hypothesis within the literature suggests that lung fibrosis is a result of repetitive injury to the alveoli. In the normal lung, type II alveolar cells (AEC2s) secrete pulmonary surfactant to reduce surface tension within the alveoli, but AEC2s undergo numerous changes under stressful conditions that can lead to fibrosis: 1) epithelial-mesenchymal transition (EMT) of AEC2s to myofibroblasts; 2) apoptotic AEC2s losing regulatory capacity over mesenchymal cells (fibroblasts), causing them to proliferate and produce more collagen; and 3) apoptotic AEC2s releasing chemotactic factors such as CXCL12 to attract circulating fibrocytes, which invade the lung and expand the fibroblast pool [@bagnato_cellular_2015].
+
+The most abundant immune cells in the lung (>70%) are pulmonary macrophages. Alveolar macrophages (AM) reside within the alveoli and are the chief effector cells of immune responses, while interstitial macrophages (IM) reside within the lung parenchyma and maintain immune homeostasis [@byrne_pulmonary_2015]. In IPF, monocytes are ‘alternatively activated’ towards the M2 phenotype through TH2-mediated immune responses, and produce profibrotic mediators such as TGF-b and PDGF [@zhu_m2_2017].
+
+## Objective
+
+Better tools are needed for clinical management of ILDs. Currently, up to 55% of ILD patients experience at least one misdiagnosis prior to MDD, and 43% report a delay in diagnosis of at least one year [@cosgrove_barriers_2018, @grewal_role_2019]. These delays are problematic for clinical management, particularly with respect to administering correct pharmacotherapy, and it is unsurprising that delays in diagnosing IPF are associated with an increased risk of mortality [@lamas_delayed_2011]. Previous attempts to identify biomarkers of IPF have failed in part due to difficulties in reproducing reliable concentration cut-off thresholds to diagnose disease [@drakopanagiotakis_biomarkers_2018]. Promising IPF diagnostic biomarkers such as matrix metalloprotease-7 (MMP-7) are also elevated in the serum of patients with HP and other ILDs [@morais_serum_2015], suggesting that candidate biomarkers are limited in their ability to discern disease subtype from the fibrotic process of ILD. Furthermore, patients with PPF have a poor prognosis and early adoption of anti-fibrotic therapy is shown to be beneficial, but criteria for identifying PPF has not yet been agreed upon and candidate guidelines are based on data obtained over the course of 1-2 years. 
+
+Given the inherent risks of lung biopsies in aging populations, the objective of this thesis is to investigate ILD blood for novel diagnostic and prognostic molecular biomarkers of ILD. This will be carried out by first performing a systematic review and meta-analysis of ILD transcriptomics (gene expression studies) to define currently understood molecular markers of ILD. Then, we will examine feasibility of using whole blood samples from ILD patients in a pilot study using a targeted gene assay, followed by a larger study examining whole blood ILD samples using bulk RNA-sequencing (RNA-seq). Finally, we will investigate single cell-level blood gene expression profiles. 
+
+
+
+
 
 ## This could be a sub-hedding
 
@@ -31,7 +81,7 @@ This text will render with a figure referenced (Figure \@ref(fig:figureTitle)).
 ```{r figureTitle, eval = T, echo = T, fig.width = 3, fig.height = 2, echo=FALSE, fig.cap="This is the long caption of the figure that will apear in the main text.", fig.scap = "This is the short title for the figure list", out.extra=''}
 
 # Call the image
-img <- readPNG("../Images/Professortocat.png")
+img <- readPNG(paste0(getwd(),"/Images/Professortocat.png"))
 
 # Print the image
 grid.raster(img)
@@ -55,7 +105,7 @@ Note: "TEXT-REFERENCE" can be replace with whatever, I suggest something descrip
 ```{r figureTitle, eval = T, echo = T, fig.width = 3, fig.height = 2, echo=FALSE, fig.cap="(ref:introfig1-cap)", fig.scap = "This is the short title for the figure list", out.extra=''}
 
 # Call the image
-img <- readPNG("../Images/Professortocat.png")
+img <- readPNG(paste0(getwd(),"/Images/Professortocat.png"))
 
 # Print the image
 grid.raster(img)

@@ -17,7 +17,7 @@ header-includes:
    - \usepackage{wrapfig}
    - \usepackage{pdfpages}
    - \usepackage{caption} # allows setting caption width for tables
-bibliography: ./References/reference_list.bib
+bibliography: ./References/My Library.bib
 csl: ./References/reference_format-Vancouver.csl
 link-citations: yes
 linkcolor: black
@@ -183,7 +183,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{2.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_two, child = 'insert_project_path_here/chapter_manuscript.Rmd', eval = F}
+```{r chapter_two, child = './Chapters/I_SysReview.Rmd', eval = F}
 ```
 
 \clearpage
