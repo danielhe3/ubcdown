@@ -1,0 +1,245 @@
+---
+output:
+  bookdown::pdf_book:
+    toc : no
+    keep_tex: no
+    number_sections: yes
+---
+
+<!-- This section is mandatory! -->
+
+High-performance gene expression analysis (transcriptomics) has been crucial in finding key biological processes involved in the pathogenesis of ILD, including matrix metalloproteinases, Wnt signaling, and cellular senescence [@vukmirovic_impact_2018]. Although molecules such as MMP-7 have been proposed as a diagnostic and prognostic biomarker of idiopathic pulmonary fibrosis (IPF) [@khan_systematic_2022], molecular biomarkers are not yet widely used in clinical management of ILDs [@raghu_diagnosis_2018, @white_plasma_2016, @morais_serum_2015, @spagnolo_early_2021, @johannson_treatment_2021]. A genomic classifier based on transbronchial biopsies (Envisia) has been developed to identify the histological pattern of UIP, which allows for a diagnosis of IPF in matching clinical characteristics [@pankratz_usual_2017,@choi_analytical_2017]. The clinical application of this genomic classifier is limited by its availability and its use has not been recommended in recent clinical practice guidelines [@raghu_idiopathic_2022].
+
+A majority of transcriptomics research has been performed in IPF, and many differentially expressed genes have been identified and reproduced across different studies. There are fewer investigations into other ILD subtypes, such as HP and connective tissue disease-associated ILD (CTD-ILD), and a consensus of molecular perturbations has yet to be determined for other ILDs. Furthermore, studies with adequate sample sizes are rare, also due to the cost of microarray and RNA-seq technologies. As sequencing throughput has improved and new approaches including single-cell RNA sequencing (scRNA-seq) are emerging, summarizing the findings of bulk tissue sequencing is likely valuable for comparison with future scRNA-seq findings. Hence, the objective of this systematic review and individual participant data (IPD) meta-analysis was to determine consensus gene expression signatures of patients with fibrotic ILD compared to control, and to identify and validate biomarkers for the classification of major fibrotic ILD subtypes. 
+
+## Methods
+
+### Search strategy
+
+In accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we performed a systematic review to identify transcriptomics studies focusing on fibrotic ILD samples and we registered the study with PROSPERO (CRD42018085682). Literature searches were performed in Medline and Embase on December 18th 2018, and updated on November 23rd 2023. Our search terms included variations of “interstitial lung disease”, common ILD subtypes, as well as transcriptomics-related key words ([Appendix A - Search terms](#search-terms)). Given the relative recency of transcriptomics technology, we limited our search to only include results published from the year 2000 and onwards. A similar strategy was adopted for searching the Gene Expression Omnibus (GEO). Screening of titles, abstracts, and full-text studies was performed by two independent reviewers (Daniel He and Sabina A Guler) using the online Covidence tool. We focused our search on common fibrotic ILDs in adults (IPF, HP, idiopathic nonspecific interstitial pneumonia (NSIP), and connective tissue disease-associated ILDs), as it was more likely that they would be investigated for gene expression. We included studies investigating transcriptomics of fibrotic ILDs via lung or blood sampling, and excluded those focused on isolated cell populations (i.e. fibroblasts). To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon [@dupuy_critical_2007] (see: Appendix A). 
+
+### Data Extraction
+
+We extracted participant-level data from included studies using the data repository sites GEO, ArrayExpress and the Sequence Read Archive (SRA). Raw data were processed using recommended protocols from the ‘limma’ package (v3.55.3) for microarrays (manufacturer-based) and RNA-seq (trimmed mean of M values, TMM) if author-provided normalized matrices were unavailable. Dataset quality was determined by examining distribution plots and comparing DEGs obtained from limma with reported values (data not shown), and outliers were removed if they were located more than 3 standard deviations away from the mean on the first and second principal components (Figure \@ref(fig:outlierPCA)). In order to explore sex-specific ILD signatures, we examined expression of 1 female-specific gene (\textit{XIST}) located on the X chromosome and 4 male-specific genes (\textit{RPS4Y1}, \textit{EIF1AY}, \textit{DDX3Y}, \textit{KDM5D}) located on the Y chromosome to obtain the predicted sex for each sample. The sex provided in the metadata from the original publication did not match predicted sex in 31 of 1,441 samples (2.15%); these samples were omitted from sex-specific analyses.
+
+To synthesize transcriptomics data, we used an IPD approach to our meta-analysis using the Multivariate INTegrative (MINT) method (‘mixOmics’ v6.22.0), which is an integrative classification method based on partial least squares regression (PLS). A more detailed explanation of the methodology can be found in Rohart et al. [@rohart_mint_2017, @rohart_mixomics_2017]. We benchmarked the MINT data integration by comparing it with differentially expressed gene (DEG) list integration through robust rank aggregation (RRA) [@kolde_robust_2012], which also allowed for the inclusion of studies where raw data was unavailable (i.e. older studies that may have used first-generation microarrays with limited gene coverage). 
+
+We used 24 of 32 datasets (from 31 studies) as a training set, and integrated them to develop classification models that were tuned via leave-one-group-out cross validation to have the lowest balanced error rate (BER; average error rate in each class) (Figure \@ref(fig:tuningMINT)), and validated on the remaining eight held-out test datasets by examining area under receiver operating curve (AUC) and BER (Table \@ref(tab:modelPerf)). Eight test sets were selected to cover 15-20% of the total number of samples to create an 80/20 training/test split, in addition to balancing the number of microarray and RNA-seq studies, and to covering all ILD subtypes of interest (IPF, HP, NSIP, SSc-ILD), Lung Tissue Research Consortium (LTRC) and non-LTRC studies, American and non-American cohorts, and recently published datasets [@bauer_novel_2015, @depianto_heterogeneous_2015, @schafer_cellular_2017, @yu_reduced_2017, @cecchini_comprehensive_2018, @depianto_molecular_2021, @de_sadeleer_lung_2022, @jaffar_matrix_2022]. All data processing and analysis was performed in R (v4.2.3). Additional details on our methodology are provided in Appendix A.
+
+###  Biclustering
+
+Transcriptomics datasets were concatenated and genes containing NA values were removed. ComBat (‘sva’ v3.46.0) was used to correct for study-specific batch effects, and biclusters of the batch-corrected matrix were identified using algorithms implemented in the ‘MoSBi’ package (v1.4.0) [@rose_mosbi_2022], as well as the unsupervised patient stratification (UnPaSt) algorithm, which is an unconstrained version of the Differentially ExpreSsed gene Modules iN Diseases (DESMOND) algorithm [@zolotareva_identification_2021]. Association between biclusters and clinical variables was assessed using a Chi-squared test (categorical; diagnostic class) or linear regression (continuous; predicted FVC%, DLCO%).
+
+## Results
+
+### Search results
+
+From our initial search of medical literature databases (3,844 from MEDLINE and 6,624 from EMBASE) and a genomic database (215 from GEO), we assessed 196 records for eligibility and identified 43 studies that used transcriptomics to profile ILD samples (Figure 1). Four studies investigated blood transcriptional profiles (IPF, HP, SSc-ILD) [@yang_peripheral_2012, @molyneaux_host-microbial_2017, @koth_sarcoidosis_2011, @jia_interleukin_2023], and four looked at gene expression profiles of peripheral blood mononuclear cells (PBMCs) from IPF and systemic sclerosis-associated ILD (SSc-ILD) [@huang_sphingosine-1-phosphate_2015, @herazo-maya_peripheral_2013, @cheadle_erythroid-specific_2012, @assassi_peripheral_2022]. Of the remaining 35 studies that used transcriptomics to investigate fibrotic ILD lung samples, 24 studies reported DEGs between ILD and control, 29 studies uploaded publicly available data for analysis, and 20 studies had both (Table \@ref(tab:datasets)). Eight datasets were associated with the LTRC, and duplicate LTRC samples across studies were removed where LTRC identifiers were available (11, 13, 28, 31–33, 39, 43–45). The most commonly profiled fibrotic ILD subtype was IPF, appearing in all identified datasets except one, followed by idiopathic NSIP, fibrotic HP, and SSc-ILD. Classifiers for subtypes such as desquamative interstitial pneumonia (DIP), respiratory bronchiolitis-ILD (RB-ILD), and cryptogenic organizing pneumonia (COP) were not generated as these samples were few in number; classifiers for HP and SSc-ILD blood/PBMC samples were also not created due to insufficient numbers of datasets.
+
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+(ref:prisma-cap) \textbf{Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) flowchart of study identification and screening.} MEDLINE, EMBASE, and the Gene Expression Omnibus (GEO) were examined for studies using transcriptomics to investigate samples from patients with interstitial lung disease (ILD). 
+
+```{r prisma, eval = T, echo = F, out.width='1\\linewidth', fig.cap="(ref:prisma-cap)", fig.scap = "PRISMA screening", out.extra=''}
+knitr::include_graphics("./Figures/Figure1_Prisma.pdf")
+```
+
+### Lung gene expression signatures of fibrotic ILD subtypes
+
+We created lung gene signatures for each fibrotic ILD subtype via classification models generated from our MINT-integrated datasets (Figure \@ref(fig:integration)). In IPF, we identified a 55-gene signature using 23 training datasets (n=576 control, n=721 IPF), which was then validated on eight test datasets (n=107 control, n=193 IPF) with AUC=0.99 [0.99-1.00] (Figure \@ref(fig:mintmodel)A). To confirm the validity of MINT in identifying biologically relevant and DEGs, we compared our IPF vs Control signature against an IPF vs Control aggregate DEG list generated by RRA and found that 39 of the 55 genes were shared, including \textit{COMP}, \textit{DIO2}, \textit{MMP7} (IPF upregulated), \textit{CA4}, \textit{FAM167A}, and \textit{MYRF} (IPF downregulated) (Table E3, Figure E3A). For the peripheral transcriptome, we generated a classification model of IPF vs Control for whole blood datasets, which was validated on two PBMC datasets (AUC=0.74 [0.67-0.81]); likewise, a classification model of IPF vs Control for PBMCs was validated on two whole blood datasets (AUC=0.73 [0.65-0.81]) (Figure E4).
+
+\newpage
+
+(ref:tablezuo) Zuo \textit{et al.} [@zuo_gene_2002]
+(ref:tablepardo) Pardo \textit{et al.} [@pardo_up-regulation_2005]
+(ref:tableselman) Selman \textit{et al.} [@selman_gene_2006]
+(ref:tableyang1) Yang \textit{et al.} [@yang_gene_2007]
+(ref:tablebridges) Bridges \textit{et al.} [@bridges_gene_2009]
+(ref:tablekonishi) Konishi \textit{et al.} [@konishi_gene_2009]
+(ref:tableraj) Rajkumar \textit{et al.} [@rajkumar_genomewide_2010]
+(ref:tablecho) Cho \textit{et al.} [@cho_systems_2011]
+(ref:tablehsu) Hsu \textit{et al.} [@hsu_lung_2011]
+(ref:tablemeltzer) Meltzer \textit{et al.} [@meltzer_bayesian_2011]
+(ref:tablesanders) Sanders \textit{et al.} [@sanders_altered_2012]
+(ref:tabledeng) Deng \textit{et al.} [@deng_detecting_2013]
+(ref:tableyang2) Yang \textit{et al.} [@yang_expression_2013]
+(ref:tablenance) Nance \textit{et al.} [@nance_transcriptome_2014]
+(ref:tablebauer) Bauer \textit{et al.} [@bauer_novel_2015]
+(ref:tabledepianto1) DePianto \textit{et al.} [@depianto_heterogeneous_2015]
+(ref:tablegeng) Geng \textit{et al.} [@geng_down-regulation_2015]
+(ref:tablechristmann) Christmann \textit{et al.} [@christmann_mir-155_2016]
+(ref:tablehorimasu1) Horimasu \textit{et al.} [@horimasu_clinical_2017]
+(ref:tablehorimasu2) Horimasu \textit{et al.} [@horimasu_gene_2017]
+(ref:tableschafer) Schafer \textit{et al.} [@schafer_cellular_2017]
+(ref:tablevukmirovic) Vukmirovic \textit{et al.} [@vukmirovic_identification_2017]
+(ref:tableyu) Yu \textit{et al.} [@yu_reduced_2017]
+(ref:tablececchini) Cecchini \textit{et al.} [@cecchini_comprehensive_2018]
+(ref:tableluzina) Luzina \textit{et al.} [@luzina_transcriptomic_2018]
+(ref:tablesivakumar) Sivakumar \textit{et al.} [@sivakumar_rna_2019]
+(ref:tablemcdonough) McDonough \textit{et al.} [@mcdonough_transcriptional_2019]
+(ref:tablefurusawa) Furusawa \textit{et al.} [@furusawa_chronic_2020]
+(ref:tablekonigsberg) Konigsberg \textit{et al.} [@konigsberg_molecular_2021]
+(ref:tabledepianto2) DePianto \textit{et al.} [@depianto_molecular_2021]
+(ref:tableborie) Borie \textit{et al.} [@borie_colocalization_2022]
+(ref:tablewang) Wang \textit{et al.} [@wang_canonical_2022]
+(ref:tablehuang) Huang \textit{et al.} [@huang_central_2023]
+(ref:tabledesadeleer) De Sadeleer \textit{et al.} [@de_sadeleer_lung_2022]
+(ref:tablejaffar) Jaffar \textit{et al.} [@jaffar_matrix_2022]
+
+```{r echo=FALSE, results='asis'}
+    options(knitr.kable.NA = '')
+```
+
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+(ref:datasets-cap) \textbf{Identified lung transcriptomics studies.} Up-(\uparrow) and/or down-(\downarrow) regulated DEG lists (compared to control samples) and their location within the citation in parentheses, type of sequencing platform, GEO or SRA accession number, set assignment, and number of samples per subtype. Bolded rows indicate total sample numbers for training and test sets.
+
+```{r datasets, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  readr::read_csv(here::here('Tables', 'datasets.csv')),
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lccccccc",
+  caption="(ref:datasets-cap)") %>%
+  add_header_above(c(" " = 3, "Number of Samples" = 5)) %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  kableExtra::footnote(
+    symbol = c("One sample removed as an outlier", "Reported as UIP"),
+    threeparttable = F,
+    fixed_small_size=F
+    ) %>%
+  column_spec(column = 1, width = "1.35in") %>%
+  column_spec(column = 2, width = "0.9in") %>%
+  column_spec(column = 3, width = "1.15in") %>%
+  column_spec(column = 4, width = "0.5in") %>%
+  column_spec(column = 5, width = "0.3in") %>%
+  column_spec(column = 6, width = "0.3in") %>%
+  column_spec(column = 7, width = "0.3in") %>%
+  column_spec(column = 8, width = "0.6in") %>%
+  row_spec(37:38, bold=T) %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
+```
+
+\newpage
+
+We applied similar strategies for the discrimination between controls, HP, SSc-ILD, and NSIP. The optimal HP vs. Control model trained on three datasets (n=199 control, n=104 HP) had a 235-gene signature, which had an AUC of 0.91 [0.84-0.99] on the test datasets (n=35 control, n=22 HP) (Figure \@ref(fig:mintmodel)B). For SSc-ILD, the model trained on two datasets (n=14 control, n=24 SSc-ILD) contained 52 genes, which was validated on the test dataset (n=9 control, n=6 SSc-ILD) with an AUC of 0.98 (0.93-1.00) in distinguishing SSc-ILD from control samples (Figure \@ref(fig:mintmodel)C). The best-performing NSIP vs. Control model trained on five datasets (n=157 control, n=29 NSIP) had a 378-gene signature, which was validated on four test datasets (n=45 control, n=20 NSIP) with an AUC of 0.94 [0.88-0.99] (Figure \@ref(fig:mintmodel)D). Model performance on individual datasets and cumulative performance can be found in Table \@ref(tab:modelPerf), and a list of gene signatures and model weights can be found in Table E4. 
+
+(ref:mintmodel-cap) \textbf{Classification models for ILD subtypes against controls.} Training set datasets were integrated and tuned to develop classification models, which were then validated on test set datasets. Projection of MINT-integrated training set samples into the space of the first two PLS components for IPF (A), HP (B), SSc-ILD (C), and NSIP (D) classification models.  Inset: AUC performance of each ILD classification model on held-out test datasets. Detailed performance metrics for each dataset can be found in Table \@ref(tab:modelPerf). 
+
+```{r mintmodel, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:mintmodel-cap)", fig.scap = "MINT models", out.extra=''}
+knitr::include_graphics("./Figures/Figure3_MINT.pdf")
+```
+
+The same methodology was used to perform sex-specific analyses for IPF, HP, and NSIP by inferring sex from expression of sex-specific genes. All of our sex-specific models had comparable performance between the test set of the same sex and the opposite sex, with the exception of the male NSIP classification model (male test set: AUC=0.98 [0.93-1.00]; female test set: AUC=0.79 [0.68-0.90) (Table \@ref(tab:sexModel)). Pathway analysis using genes uniquely identified in each sex-specific model revealed an overrepresentation of immune-related pathways in females and fibrosis-related pathways in males (Table E6, Table E7).
+
+### Fibrotic ILD subtypes are differentiated at the transcriptional level
+
+To examine identifying features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs other ILD model trained on seven datasets had good performance on the six test datasets (AUC=0.71 [0.63-0.79]), as did the 132-gene HP vs other ILD model trained on three datasets on the two test datasets (AUC=0.76 [0.63-0.89]) (Figure \@ref(fig:ILDvILD). Our NSIP vs other ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 [0.49-0.72]) (Figure \@ref(fig:nsipmodel)). For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples, which had an AUC of 0.76 (0.64-0.87) on three test datasets, as well as a 67-gene signature differentiating IPF from NSIP samples, which had an AUC of 0.76 (0.64-0.88) on four test datasets (Figure \@ref(fig:ildvsildspecific)A-D). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 [0.51-0.96]) (Figure \@ref(fig:ildvsildspecific)E, F). 
+
+(ref:ILDvILD-cap) \textbf{ILD subtype-specific classification models.} IPF-specific and HP-specific classification models were developed through MINT integration of lung transcriptomics datasets. MINT-PLS projection of samples for classification models of IPF vs non-IPF ILD (A) and HP vs non-HP ILD (C), with corresponding performance on held-out test datasets (B, D). Upregulated gene ontology pathways using gene signatures identified in classification models for IPF against non-IPF ILD and HP against non-HP ILD are shown in E.
+
+```{r ILDvILD, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:ILDvILD-cap)", fig.scap = "ILD vs ILD", out.extra=''}
+knitr::include_graphics("./Figures/Figure4_ILDvsILD.pdf")
+```
+
+### ILD subtypes have both common and unique disease pathways
+
+As the ILD classification models had few genes for pathway analysis, we generated “expanded” classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure E7, Table E8). Using the expanded gene signatures for Gene Ontology (GO) overrepresentation analysis of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \textit{COL17A1}, and \textit{SCG5} as shared upregulated genes across all subtypes when compared against controls (Figure \@ref(fig:ILDpathways)A, Figure E3C, Table E4). With reference to the MSigDB C8 collection and a manually curated database of single-cell RNA-seq annotations obtained from previous pulmonary fibrosis publications, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \@ref(fig:ILDpathways)C, Table E9). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure \@ref(fig:ILDpathways)B, Figure E3D). No genes in the signatures for the lung IPF vs Control model were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure E3B). 
+
+(ref:ILDpathways-cap) \textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).
+
+```{r ILDpathways, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:ILDpathways-cap)", fig.scap = "ILD pathways", out.extra=''}
+knitr::include_graphics("./Figures/Figure5_pathways.pdf")
+```
+
+When comparing IPF against other ILD subtypes, we identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells (56)), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF (Table E8). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure 4E), and these genes were also included in the models differentiating HP from IPF and NSIP samples. When compared to controls, SSc-ILD samples were uniquely characterized by expression of CDH3, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes. 
+Unsupervised analysis identifies putative molecular endotypes of ILD
+	We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters (19). We extracted all studies containing lung gene expression data, performed batch correction, and used a series of biclustering algorithms to identify 16 biclusters showing enrichment in specific lung disease groups (Figure E8, Figure E9). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table E10, Figure 6A,B). Of the samples with available predicted FVC% and DLCO% data, we identified IPF samples in the ‘M13-Proliferation’ bicluster (n=53) as having lower FVC% compared to non-cluster (n=155) IPF samples (-6.29%, FDR=0.09) (Figure 6C), which we confirmed was not due to age (-1.18 years, p=0.15). ILD samples in the ‘U4-AT1 cells’, ‘U0-Endothelium’, ‘M2-Cytoskeleton’, ‘U1-EMT’, ‘M9-Fibrosis’, and ‘M13-Proliferation’ biclusters had significantly lower DLCO% (-7.95 to -13.9%, all FDR<0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the ‘M13-Proliferation’ samples which were younger (-2.18 years, FDR=9.17×10-3). A full list of results can be found in Table E11.
+
+
+
+## This could be a sub-hedding
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend odio odio, et consectetur nunc commodo vitae. Donec eu finibus lacus. Integer at porta nulla. Fusce dignissim gravida lacinia. Nulla ut odio in ante imperdiet placerat. Maecenas vel imperdiet lorem. Proin ultricies, ex at bibendum fringilla, neque libero malesuada sem, in tincidunt leo mi vel mi. Phasellus scelerisque sagittis urna sed sodales. Curabitur iaculis justo velit, ultricies euismod justo convallis non. Nunc id purus et ante iaculis dignissim vel non erat. Donec dignissim urna ut lobortis congue. Nulla tempus ut ipsum non ornare. Donec ac purus nec sem cursus eleifend. Suspendisse potenti. Vestibulum ac vehicula ante.
+
+## In-text citations
+
+Read section [2.8](https://bookdown.org/yihui/bookdown/citations.html) of the bookdown guide for more details.
+
+To use in-text citations like this [@degoede2017], add bibliographic entries to the *References/reference_list.bib* file, then you can reference the entries using the *citation key*: `[@key]` e.g. `[@degoede2017]`.
+
+UBCdown comes with two reference styles: Harvard, and Vancouver. To change styles, just edit the YAML section of `main_script.Rmd` to reference the appropriate `.csl` file. If desired, you can also add/replace with your own citation style file `.csl`.
+
+## Referencing figures
+
+### Basics
+
+This text will render with a figure referenced (Figure \@ref(fig:figureTitle)).
+
+```{r figureTitle, eval = T, echo = T, fig.width = 3, fig.height = 2, echo=FALSE, fig.cap="This is the long caption of the figure that will apear in the main text.", fig.scap = "This is the short title for the figure list", out.extra=''}
+
+# Call the image
+img <- readPNG(paste0(getwd(),"/Images/Professortocat.png"))
+
+# Print the image
+grid.raster(img)
+```
+
+### Text-references for figure captions
+
+You may need to use citations or special characters in a figure caption, which is not possible by writing the caption directly in the code chunk `fig.cap` option. Instead, you will need to use [in-text references](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#text-references).
+
+How to use in-text references:
+
+1. in the `fig.cap` code chunk option, write `"(ref:TEXT-REFERENCE)"`
+2. outside of code chunk (in the text), start a paragraph with `(ref:TEXT-REFERENCE) ...` then write your caption
+
+Note: "TEXT-REFERENCE" can be replace with whatever, I suggest something descriptive like "figureTitle-cap"
+
+<!-- Example -->
+
+(ref:introfig1-cap) This caption was written with an in-text reference. See how I can use citations like this [@degoede2017] and **special** *characters* _!?@#, which normally would not be possible.
+
+```{r figureTitle, eval = T, echo = T, fig.width = 3, fig.height = 2, echo=FALSE, fig.cap="(ref:introfig1-cap)", fig.scap = "This is the short title for the figure list", out.extra=''}
+
+# Call the image
+img <- readPNG(paste0(getwd(),"/Images/Professortocat.png"))
+
+# Print the image
+grid.raster(img)
+```
+
+## Tables
+
+Tables are best generated by using `kable` + `kableExtra` (Table \@ref(tab:IntroTable1)). These R packages allow for a lot of customization. I suggest saving your tables as `.csv` files and then loading them into R with `readr::read_csv`.
+
+<!-- Example -->
+
+<!-- this code chunk makes NA cells in the appear as blanks -->
+
+```{r echo=FALSE, results='asis'}
+    options(knitr.kable.NA = '')
+```
+
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+<!-- This code chunk prints the table, many options for customization are available -->
+
+```{r IntroTable1, eval = T, echo = T, echo=FALSE, warning = FALSE, message=FALSE,  out.extra=''}
+kableExtra::kbl(
+  readr::read_csv(here::here('Tables', 'Introduction - Table 1.csv')),
+  booktabs = TRUE,
+  caption = 'This is the title of the table.') %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  kableExtra::footnote(
+    symbol="Can add footnotes here.", 
+    general = 'EOPET - Early Onset Preeclampsia.', # acronyms
+    general_title = '') %>%
+  
+  kableExtra::kable_styling(latex_options = "hold_position") # ensures the table isn't "floated" and pins it to the current location
+```
+
+See [2.5](https://bookdown.org/yihui/bookdown/tables.html) for details. Tables are referenced in the same way as figures, through the code chunk label. The title of the table is specified in the `caption` option under the `kableExtra::kbl` call.

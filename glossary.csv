@@ -1,3 +1,41 @@
 Abr,Meaning
-CpG,Cytosine-guanine dinucleotide
-SNP,Single nucleotide polymorphism
+IPF,idiopathic pulmonary fibrosis
+ILD,interstitial lung disease
+ECM,extracellular matrix
+COPD,chronic obstructive pulmonary disease
+AT1,type I alveolar epithelial cell
+AT2,type II alveolar epithelial cell
+EMT,epithelial-mesenchymal transition
+UIP,usual interstitial pneumonia
+MDD,multidisciplinary discussion
+HRCT,high-resolution computed tomography
+HP,hypersensitivity pneumonitis
+IPAF,interstitial pneumonia with autoimmune features
+SSc-ILD,systemic sclerosis-associated interstitial lung disease
+PPF,progressive pulmonary fibrosis
+DLCO,diffusing capacity for carbon monoxide
+FVC,forced vital capacity
+RNA-seq,RNA sequencing
+scRNA-seq,single cell RNA-sequencing
+CTD-ILD,connective tissue disease-associated interstitial lung disease
+IPD,individual participant data
+NSIP,non-specific interstitial pneumonia
+RA-ILD,rheumatoid arthritis-associated interstitial lung disease
+CPFE,combined pulmonary fibrosis and emphysema
+BER,balanced error rate
+DEG,differentially expressed gene
+GEO,Gene Expression Omnibus
+SRA,Sequence Read Archive
+TMM,trimmed mean of M values
+MINT,Multivariate INTegrative 
+RRA,robust rank aggregation
+LTRC,Lung Tissue Research Consortium
+UnPaSt,unsupervised patient stratification
+DESMOND,Differentially ExpresSsed gene Modules iN Diseases
+PBMC,peripheral blood mononuclear cells
+DIP,desquamative interstitial pneumonia
+RB-ILD,respiratory bronchiolitis-interstitial lung disease
+COP,cryptogenic organizing pneumonia
+PRISMA,Preferred Reporting Items for Systematic Reviews and Meta-Analyses
+AUC,area under receiver operating curve
+GO,Gene Ontology

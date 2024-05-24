@@ -3,7 +3,7 @@ output:
   bookdown::pdf_book: # comment when rendering to word document
   # bookdown::word_document2: # uncomment if rendering to word document
     toc: no # change me to yes if rendering to Word
-    keep_tex: no
+    keep_tex: yes
     number_sections: yes
     fig_width: 6
     fig_height: 4
@@ -16,20 +16,18 @@ header-includes:
    - \floatplacement{figure}{H} 
    - \usepackage{wrapfig}
    - \usepackage{pdfpages}
+   #- \usepackage{longtable}
    - \usepackage{caption} # allows setting caption width for tables
 bibliography: ./References/My Library.bib
-csl: ./References/reference_format-Vancouver.csl
+csl: ./References/vancouver-brackets.csl
 link-citations: yes
 linkcolor: black
 ---
 
 
 ```{r setup, include=FALSE, eval = T}
-
 knitr::opts_chunk$set(echo = TRUE)
 options(knitr.duplicate.label = 'allow')
-
-
 # These libraries are only needed for examples in the introduction 
 library("png")
 library("grid")
@@ -39,8 +37,6 @@ library("kableExtra")
 library("dplyr")
 library("tibble")
 library("readr")
-
-
 ```
 
 <!-- Title page -->
@@ -183,7 +179,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{2.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_two, child = './Chapters/I_SysReview.Rmd', eval = F}
+```{r chapter_two, child = './Chapters/I_SysReview.Rmd', eval = T}
 ```
 
 \clearpage
@@ -279,7 +275,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{A2.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r appendix_a, child = '~/GitHub/FishForVisa/Scripts/supplements.Rmd', eval = F}
+```{r appendix_a, child = './Chapters/AppendixA.Rmd', eval = T}
 ```
 
 ## Appendix B - Supplementary information for Chapter Three

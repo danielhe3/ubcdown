@@ -1,0 +1,239 @@
+---
+output:
+  bookdown::pdf_book:
+    toc : no
+    keep_tex: no
+    number_sections: yes
+---
+
+<!-- This section is mandatory! -->
+
+## Search terms {#search-terms}
+
+Results from EMBASE and Medline were retrieved on January 18th, 2018 using keywords and MeSH terms for idiopathic interstitial pneumonias (1-9), connective tissue disease-associated ILDs (10-17), hypersensitivity pneumonitis (18), and gene expression (20-21). We limited our results to human and English language studies (24-25), and restricted results to those published after the year 2000 (26) given the recency of transcriptomics as a technology. On November 23rd 2023, the search was updated with the addition of terms to omit publications relating to COVID19. Below are the search terms used for EMBASE; a similar strategy was adopted for MEDLINE.
+
+1.	interstitial lung disease/ or interstitial pneumonia/ or fibrosing alveolitis/ or lung fibrosis/
+2.	((idiopathic or interstitial) adj3 pulmonary fibrosis).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+3.	((idiopathic or interstitial) adj3 lung fibrosis).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+4.	((idiopathic or interstitial) adj3 lung disease).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+5.	interstitial pneumonia.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+6.	fibrosing alveolitis.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+7.	diffuse parenchymal lung disease.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+8.	Interstitial pneumonia with autoimmune features.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+9.	1 or 2 or 3 or 4 or 5 or 6 or 7 or 8
+10.	mixed connective tissue disease/ or connective tissue disease/ or systemic sclerosis/ or limited scleroderma/ or scleroderma/ or diffuse scleroderma/ or localized scleroderma/ or linear scleroderma/ or systemic lupus erythematosus/ or rheumatoid arthritis/ or Sjoegren syndrome/
+11.	sclero*.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+12.	rheumatoid arthritis.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+13.	lupus.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+14.	(ankylosing spondylitis or dermatomyositis or polymyositis or antisynthetase syndrome or granulomatosis).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+15.	10 or 11 or 12 or 13 or 14
+16.	lung.mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+17.	15 and 16
+18.	hypersensitivity pneumonitis.mp. or allergic pneumonitis/
+19.	9 or 17 or 18
+20.	functional genomics/ or genomics/ or gene expression assay/ or mrna expression assay/ or transcriptome/ or transcriptomics/
+21.	(microarray or array or RNAseq or RNA-seq or gen* expression).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
+22.	20 or 21
+23.	19 and 22
+24.	(exp animal/ or nonhuman/) not exp human/
+25.	23 not 24
+26. 	limit 25 to yr="2000-Current"
+
+## Eligibility criteria
+
+We included studies that performed gene expression profiling of adult patients with fibrotic ILDs such as idiopathic pulmonary fibrosis, chronic hypersensitivity pneumonitis, interstitial pneumonia with autoimmune features, idiopathic nonspecific interstitial pneumonia, and connective tissue disease-associated ILDs. We excluded studies investigating non-fibrotic ILDs and inflammatory ILDs such as vasculitis or sarcoidosis, and restricted our investigations to English-language studies performed with samples from human patients. Studies containing transcriptomics data were included if they performed whole genome expression profiling of whole lung or blood samples, did not examine isolated cell populations (i.e. fibroblasts), and contained profiling of healthy control samples. Targeted gene expression assays (e.g. qPCR, NanoString) were excluded. 
+
+## Study screening and data extraction
+
+Two reviewers (Daniel He and Sabina A Guler) independently screened study titles and abstracts using Covidence, and determined eligibility for final inclusion after full-text review. Disagreements on eligibility were resolved by a third reviewer (Scott J Tebbutt or Christopher J Ryerson). Lists of differentially expressed genes between ILD subtype and control samples were extracted from each study, along with raw or processed transcriptomics data (if available) and relevant information regarding its generation (sample/RNA extraction method, gene expression profiling technology). For each transcriptomics sample, corresponding patient-level clinical data was extracted where available (age, sex, ethnicity, diagnosis, exposure history, serology, pulmonary function tests, radiological pattern, histological pattern, treatment status). 
+
+## Quality control of identified datasets
+
+To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon [@dupuy_critical_2007]:
+
+\underline{Objective}
+
+1.	The objective of the study is stated and well-defined;
+2.	Patient selection criteria is reasonable and clear for each ILD;
+3.	Demographics of control group do not significantly differ compared to ILD group;
+4.	No risk of bias is evident in study objective, patient selection, or data acquisition and analysis;
+
+\underline{Data acquisition}
+
+5.	RNA extraction and gene expression profiling methods (microarray, RNA-seq) are described;
+6.	Datasets are publicly available;
+
+\underline{Statistical analysis}
+
+7.	All statistical methods are described;
+8.	Experimental design and selection criteria are clearly described;
+
+\underline{Outcome-related gene discovery}
+
+9.	Differentially expressed genes (DEGs) are identified with consideration for false discovery correction; criteria for DEGs is not based on only fold-change and/or p < 0.05;
+
+\underline{Data analysis}
+
+10.	Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
+
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis [@zhao_metabolic_2017,@zhu_integration_2018], one [@christmann_association_2014] was a duplicate of [@christmann_mir-155_2016], one [@ghosh_lung_2022] was a suspected duplicate of another study [@borie_colocalization_2022] due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis [@el-chemaly_immunome_2018], and two studies were omitted due to poor data quality [@zhou_integrated_2019,@jia_interleukin_2023].
+
+## Robust rank aggregation
+
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described [@vosa_comprehensive_2014]. A fourth aggregated list was generated for all ILDs using the aforementioned subtype-specific lists in addition to three lists published by Zuo, Yang, and Horimasu comparing ILD lung against control lung samples [@zuo_gene_2002, @yang_gene_2007, @horimasu_gene_2017]. 
+
+## Microarray and RNA-seq processing
+
+Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) or Sequence Read Archive (SRA). When available, author-provided normalized gene expression matrices were used for data integration. If author-provided normalized were unavailable, microarrays were normalized using ‘limma’ (v.3.55.3) under recommended manufacturer-specific protocol, and RNA-seq data were TMM (trimmed mean of M values)-normalized. For GSE52463, GSE99621, GSE199152, counts were TMM-normalized; fastq files from SRA048904 were mapped to a reference genome (GENCODE Human GRCh38.p13 Release 38) to obtain gene-level count information and then TMM-normalized. Ensembl gene IDs appearing in >80% of the total extracted datasets were used to concatenate the extracted datasets (total: 15034 genes). For datasets containing replicates of samples, the mean log2-normalized expression across replicates was used. If noted, apical and non-fibrotic lung samples were omitted from the analysis as we expected the majority of lung biopsy or explant samples to be from fibrotic regions [@jaffar_matrix_2022, @luzina_transcriptomic_2018]. Control samples consisted of histologically normal tissue from lung cancer samples [@pardo_up-regulation_2005, @cho_systems_2011, @konishi_gene_2009, @christmann_mir-155_2016, @yu_reduced_2017, @furusawa_chronic_2020], chronic obstructive pulmonary disease (COPD) [@deng_detecting_2013], pneumothorax [@geng_down-regulation_2015], or healthy lung specimens. After data processing, each dataset was examined for sample outliers (Figure \@ref(fig:outlierPCA)).
+
+(ref:outlier-cap) \textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).
+
+```{r outlierPCA, eval = T, echo = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:outlier-cap)", fig.scap = "Outlier detection", out.extra=''}
+knitr::include_graphics("./Figures/FigE1_outliers.pdf")
+```
+
+## Data integration and analysis
+
+The Multivariate INTegrative (MINT) method (‘mixOmics’ v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling [@wold_nonlinear_1973], so they may be applied despite missing probes or reads in the sequencing method of choice.
+
+Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \@ref(fig:integration)), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \@ref(fig:tuningMINT)). Final model performance was then assessed using the mixOmics ‘perf’ function against the 8 left-out test datasets, and 95% confidence intervals obtained using the bootstrap method (Table \@ref(tab:modelPerf)). Sex-specific models were also generated (Table \@ref(tab:sexModel))
+
+(ref:int-cap) \textbf{Principal component analysis (PCA) of lung transcriptomics data prior to and after MINT integration.} Author-normalized datasets were subsetted with genes shared in >80% of datasets (A) and integrated using MINT. MINT-integrated samples projected into a common latent space via multi-group PCA are shown in (B).
+
+```{r integration, eval = T, echo = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:int-cap)", fig.scap = "MINT integration", out.extra=''}
+knitr::include_graphics("./Figures/Figure2_PCA.pdf")
+```
+
+(ref:tuning-cap) \textbf{Feature selection for MINT classification models.} Tuning grids to determine the optimal number of features (indicated by red point) for each model based on the lowest balanced error rate. All models were selected based on the lowest BER with a minimum of 50 features. For each model, one PLS component (solid line) was sufficient to separate classes with the exception of IPF vs NSIP, which required a second PLS component (dotted line).
+
+```{r tuningMINT, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:tuning-cap)", fig.scap = "Model tuning", out.extra=''}
+knitr::include_graphics("./Figures/FigE2_tuning.pdf")
+```
+
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+(ref:modelperf-cap) \textbf{Summary of ILD MINT model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95% confidence intervals (95% C.I.) were determined via bootstrapping.
+
+```{r modelPerf, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  readr::read_csv(here::here('Tables', 'MINT_performance.csv')),
+  longtable = FALSE,
+  format = 'latex',
+  booktabs = TRUE, 
+  linesep = "",
+  align = "lcccc",
+  caption="(ref:modelperf-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  kableExtra::footnote(
+    general=c("* Performance on PBMC datasets", "** Performance on whole blood datasets"),
+    general_title = ""
+    ) %>%
+  column_spec(column = 1, width = "1.75in") %>%
+  column_spec(column = 2, width = "0.5in") %>%
+  column_spec(column = 3, width = "0.7in") %>%
+  column_spec(column = 4, width = "1.25in") %>%
+  column_spec(column = 5, width = "1.25in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:sexmodels-cap) \textbf{Summary of ILD sex-specific model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95% confidence intervals (95% C.I.) were determined via bootstrapping.
+
+```{r sexModel, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  readr::read_csv(here::here('Tables', 'Table E5 Sex Model Performance.csv')),
+  longtable = FALSE,
+  format = 'latex',
+  booktabs = TRUE, 
+  linesep = "",
+  align = "lccc",
+  caption="(ref:sexmodels-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:nsipmodel-cap) \textbf{NSIP-specific classification model.} PLS projection of samples using the NSIP vs non-NSIP ILD model (A) and the AUC performance on held-out test datasets (B). 
+
+```{r nsipmodel, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:nsipmodel-cap)", fig.scap = "Model tuning", out.extra=''}
+knitr::include_graphics("./Figures/FigE5_NSIP.pdf")
+```
+
+(ref:ildvsildspecific-cap) \textbf{Classification models differentiating between specific ILD subtypes.} PLS sample projections and held-out test set AUC performance for comparisons between IPF and HP (A, B), IPF and NSIP (C, D), and HP and NSIP (E, F).
+
+```{r ildvsildspecific, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:ildvsildspecific-cap)", fig.scap = "Individual ILD vs ILD", out.extra=''}
+knitr::include_graphics("./Figures/FigE6_ILDvsILD.pdf")
+```
+
+
+Pathway analyses were limited for some of our models given their relatively small number of features (e.g. 55 genes for IPF vs Control). To address this, we used the R package ‘bcp’ (version 4.0.3) to determine models with an “expanded” number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e. points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance. To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown). 
+Gene lists from expanded models were then analyzed via overrepresentation analysis using the ‘cashoes/sear’ package (https://github.com/cashoes/sear) (Table E8). 
+Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16–19).
+
+
+## Biclustering
+
+In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) [@rose_mosbi_2022]. UnPaSt is an [unconstrained version](https://github.com/ozolotareva/UnPaSt) of the method published in [@zolotareva_identification_2021]. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. 
+
+Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt. Genes in each bicluster can be found in INSERT LINK.
+
+```{r biclusterGenes, eval = F, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
+library(readxl)    
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+    sheets <- readxl::excel_sheets(filename)
+    x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+    if(!tibble) x <- lapply(x, as.data.frame)
+    names(x) <- sheets
+    x
+}
+biclusters <- read_excel_allsheets(here::here('Tables', "Table E12 Bicluster Genes.xlsx"))
+biclusters <- lapply(biclusters, function(x) x %>% arrange(hgnc_symbol) %>% pull(hgnc_symbol))
+vector_to_string <- function(vec) {
+  paste(vec, collapse = ", ")
+}
+biclusters <- data.frame(
+  name = names(biclusters),
+  vector_string = sapply(biclusters, vector_to_string),
+  stringsAsFactors = FALSE
+)
+rownames(biclusters) <- NULL
+colnames(biclusters) <- c("Bicluster", "Genes")
+kable(biclusters,
+      booktab = TRUE,
+      longtable = TRUE,
+      caption = "example") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 6, latex_options = c("hold_position", "scale_down", "repeat_header"))
+```
+
+
+
+
+
+```{r datasetQC, eval = F, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
+# Can't get this to render on one page, lol. 
+library(dplyr)
+table <- readr::read_csv(here::here('Tables', 'SysReviewQC.csv'))
+table$Decision <- ifelse(is.na(table$Reason), table$Decision,
+                         paste0(table$Decision,footnote_marker_symbol(table$Reason)))
+table <- table %>% dplyr::select(-Reason)
+kableExtra::kbl(
+  table,
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE,
+  caption = 'Quality control assessment of studies identified by systematic review screening.') %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  kableExtra::footnote(
+    symbol=c("Missing labels","Duplicate with GSE81292","Familial PF","Poor data quality", "Suspected duplicate"),
+    general = c('RRA - Robust rank aggregation (gene list integration)',
+                'IPD - Individual participant data (data integration)'), # acronyms
+    general_title = '') %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = "hold_position", font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+
+
+
+
+
