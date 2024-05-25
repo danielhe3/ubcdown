@@ -476,8 +476,8 @@ Given the inherent risks of lung biopsies in aging populations, the objective of
 
 \clearpage
 
-\hypertarget{insert-title-of-chapter-2-here}{%
-\section{Insert Title of Chapter 2 Here}\label{insert-title-of-chapter-2-here}}
+\hypertarget{a-systematic-review-and-meta-analysis-of-ild-transcriptomics}{%
+\section{A systematic review and meta-analysis of ILD transcriptomics}\label{a-systematic-review-and-meta-analysis-of-ild-transcriptomics}}
 
 \renewcommand{\thefigure}{2.\arabic{figure}}
 \setcounter{figure}{0}
@@ -518,20 +518,25 @@ Transcriptomics datasets were concatenated and genes containing NA values were r
 \hypertarget{search-results}{%
 \subsubsection{Search results}\label{search-results}}
 
-From our initial search of medical literature databases (3,844 from MEDLINE and 6,624 from EMBASE) and a genomic database (215 from GEO), we assessed 196 records for eligibility and identified 43 studies that used transcriptomics to profile ILD samples (Figure 1). Four studies investigated blood transcriptional profiles (IPF, HP, SSc-ILD) {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}, and four looked at gene expression profiles of peripheral blood mononuclear cells (PBMCs) from IPF and systemic sclerosis-associated ILD (SSc-ILD) {[}\protect\hyperlink{ref-assassi_peripheral_2022}{61}{]}. Of the remaining 35 studies that used transcriptomics to investigate fibrotic ILD lung samples, 24 studies reported DEGs between ILD and control, 29 studies uploaded publicly available data for analysis, and 20 studies had both (Table \ref{tab:datasets}). Eight datasets were associated with the LTRC, and duplicate LTRC samples across studies were removed where LTRC identifiers were available (11, 13, 28, 31--33, 39, 43--45). The most commonly profiled fibrotic ILD subtype was IPF, appearing in all identified datasets except one, followed by idiopathic NSIP, fibrotic HP, and SSc-ILD. Classifiers for subtypes such as desquamative interstitial pneumonia (DIP), respiratory bronchiolitis-ILD (RB-ILD), and cryptogenic organizing pneumonia (COP) were not generated as these samples were few in number; classifiers for HP and SSc-ILD blood/PBMC samples were also not created due to insufficient numbers of datasets.
+From our initial search of medical literature databases (3,844 from MEDLINE and 6,624 from EMBASE) and a genomic database (215 from GEO), we assessed 196 records for eligibility and identified 43 studies that used transcriptomics to profile ILD samples (Figure \ref{fig:prisma}). Four studies investigated blood transcriptional profiles (IPF, HP, SSc-ILD) {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}, and four looked at gene expression profiles of peripheral blood mononuclear cells (PBMCs) from IPF and systemic sclerosis-associated ILD (SSc-ILD) {[}\protect\hyperlink{ref-assassi_peripheral_2022}{61}{]}. Of the remaining 35 studies that used transcriptomics to investigate fibrotic ILD lung samples, 24 studies reported DEGs between ILD and control, 29 studies uploaded publicly available data for analysis, and 20 studies had both (Table \ref{tab:datasets}). Eight datasets were associated with the LTRC, and duplicate LTRC samples across studies were removed where LTRC identifiers were available (11, 13, 28, 31--33, 39, 43--45). The most commonly profiled fibrotic ILD subtype was IPF, appearing in all identified datasets except one, followed by idiopathic NSIP, fibrotic HP, and SSc-ILD. Classifiers for subtypes such as desquamative interstitial pneumonia (DIP), respiratory bronchiolitis-ILD (RB-ILD), and cryptogenic organizing pneumonia (COP) were not generated as these samples were few in number; classifiers for HP and SSc-ILD blood/PBMC samples were also not created due to insufficient numbers of datasets.
 
 \captionsetup{width=6.5in}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/Figure1_Prisma} \caption[PRISMA screening]{\textbf{Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) flowchart of study identification and screening.} MEDLINE, EMBASE, and the Gene Expression Omnibus (GEO) were examined for studies using transcriptomics to investigate samples from patients with interstitial lung disease (ILD).}\label{fig:prisma}
+
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/Figure1_Prisma} 
+
+}
+
+\caption[PRISMA screening]{\textbf{Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) flowchart of study identification and screening.} MEDLINE, EMBASE, and the Gene Expression Omnibus (GEO) were examined for studies using transcriptomics to investigate samples from patients with interstitial lung disease (ILD).}\label{fig:prisma}
 \end{figure}
 
 \hypertarget{lung-gene-expression-signatures-of-fibrotic-ild-subtypes}{%
 \subsubsection{Lung gene expression signatures of fibrotic ILD subtypes}\label{lung-gene-expression-signatures-of-fibrotic-ild-subtypes}}
 
-We created lung gene signatures for each fibrotic ILD subtype via classification models generated from our MINT-integrated datasets (Figure \ref{fig:integration}). In IPF, we identified a 55-gene signature using 23 training datasets (n=576 control, n=721 IPF), which was then validated on eight test datasets (n=107 control, n=193 IPF) with AUC=0.99 {[}0.99-1.00{]} (Figure \ref{fig:mintmodel}A). To confirm the validity of MINT in identifying biologically relevant and DEGs, we compared our IPF vs Control signature against an IPF vs Control aggregate DEG list generated by RRA and found that 39 of the 55 genes were shared, including \textit{COMP}, \textit{DIO2}, \textit{MMP7} (IPF upregulated), \textit{CA4}, \textit{FAM167A}, and \textit{MYRF} (IPF downregulated) (Table E3, Figure E3A). For the peripheral transcriptome, we generated a classification model of IPF vs Control for whole blood datasets, which was validated on two PBMC datasets (AUC=0.74 {[}0.67-0.81{]}); likewise, a classification model of IPF vs Control for PBMCs was validated on two whole blood datasets (AUC=0.73 {[}0.65-0.81{]}) (Figure E4).
+We created lung gene signatures for each fibrotic ILD subtype via classification models generated from our MINT-integrated datasets (Figure \ref{fig:integration}). In IPF, we identified a 55-gene signature using 23 training datasets (n=576 control, n=721 IPF), which was then validated on eight test datasets (n=107 control, n=193 IPF) with AUC=0.99 {[}0.99-1.00{]} (Figure \ref{fig:mintmodel}A). To confirm the validity of MINT in identifying biologically relevant and DEGs, we compared our IPF vs Control signature against an IPF vs Control aggregate DEG list generated by RRA and found that 39 of the 55 genes were shared, including \textit{COMP}, \textit{DIO2}, \textit{MMP7} (IPF upregulated), \textit{CA4}, \textit{FAM167A}, and \textit{MYRF} (IPF downregulated) (Table E3, Figure \ref{fig:modelUpset}A). For the peripheral transcriptome, we generated a classification model of IPF vs Control for whole blood datasets, which was validated on two PBMC datasets (AUC=0.74 {[}0.67-0.81{]}); likewise, a classification model of IPF vs Control for PBMCs was validated on two whole blood datasets (AUC=0.73 {[}0.65-0.81{]}) (Figure \ref{fig:bloodmodel}). We also performed sex-specific analyses for IPF, HP, and NSIP by inferring sex from sex-specific genes, showing good performance for between-sex comparisons with the exception of the male NSIP classification model (male test set: AUC=0.98 {[}0.93-1.00{]}; female test set: AUC=0.79 {[}0.68-0.90) (Table \ref{tab:sexModel}).
 
 \newpage
 
@@ -636,114 +641,79 @@ We applied similar strategies for the discrimination between controls, HP, SSc-I
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/Figure3_MINT} \caption[MINT models]{\textbf{Classification models for ILD subtypes against controls.} Training set datasets were integrated and tuned to develop classification models, which were then validated on test set datasets. Projection of MINT-integrated training set samples into the space of the first two PLS components for IPF (A), HP (B), SSc-ILD (C), and NSIP (D) classification models. Inset: AUC performance of each ILD classification model on held-out test datasets. Detailed performance metrics for each dataset can be found in Table \ref{tab:modelPerf}.}\label{fig:mintmodel}
-\end{figure}
 
-The same methodology was used to perform sex-specific analyses for IPF, HP, and NSIP by inferring sex from expression of sex-specific genes. All of our sex-specific models had comparable performance between the test set of the same sex and the opposite sex, with the exception of the male NSIP classification model (male test set: AUC=0.98 {[}0.93-1.00{]}; female test set: AUC=0.79 {[}0.68-0.90) (Table \ref{tab:sexModel}). Pathway analysis using genes uniquely identified in each sex-specific model revealed an overrepresentation of immune-related pathways in females and fibrosis-related pathways in males (Table E6, Table E7).
+{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure3_MINT} 
+
+}
+
+\caption[MINT models]{\textbf{Classification models for ILD subtypes against controls.} Training set datasets were integrated and tuned to develop classification models, which were then validated on test set datasets. Projection of MINT-integrated training set samples into the space of the first two PLS components for IPF (A), HP (B), SSc-ILD (C), and NSIP (D) classification models. Inset: AUC performance of each ILD classification model on held-out test datasets. Detailed performance metrics for each dataset can be found in Table \ref{tab:modelPerf}.}\label{fig:mintmodel}
+\end{figure}
 
 \hypertarget{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}{%
 \subsubsection{Fibrotic ILD subtypes are differentiated at the transcriptional level}\label{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}}
 
-To examine identifying features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs other ILD model trained on seven datasets had good performance on the six test datasets (AUC=0.71 {[}0.63-0.79{]}), as did the 132-gene HP vs other ILD model trained on three datasets on the two test datasets (AUC=0.76 {[}0.63-0.89{]}) (Figure \ref{fig:ILDvILD}. Our NSIP vs other ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 {[}0.49-0.72{]}) (Figure \ref{fig:nsipmodel}. For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples, which had an AUC of 0.76 (0.64-0.87) on three test datasets, as well as a 67-gene signature differentiating IPF from NSIP samples, which had an AUC of 0.76 (0.64-0.88) on four test datasets (Figure \ref{fig:ildvsildspecific}A-D). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 {[}0.51-0.96{]}) (Figure \ref{fig:ildvsildspecific}E, F).
+To examine identifying features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs other ILD model trained on seven datasets had good performance on the six test datasets (AUC=0.71 {[}0.63-0.79{]}), as did the 132-gene HP vs other ILD model trained on three datasets on the two test datasets (AUC=0.76 {[}0.63-0.89{]}) (Figure \ref{fig:ILDvILD}). Our NSIP vs other ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 {[}0.49-0.72{]}) (Figure \ref{fig:nsipmodel}). For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples, which had an AUC of 0.76 (0.64-0.87) on three test datasets, as well as a 67-gene signature differentiating IPF from NSIP samples, which had an AUC of 0.76 (0.64-0.88) on four test datasets (Figure \ref{fig:ildvsildspecific}A-D). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 {[}0.51-0.96{]}) (Figure \ref{fig:ildvsildspecific}E, F).
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/Figure4_ILDvsILD} \caption[ILD vs ILD]{\textbf{ILD subtype-specific classification models.} IPF-specific and HP-specific classification models were developed through MINT integration of lung transcriptomics datasets. MINT-PLS projection of samples for classification models of IPF vs non-IPF ILD (A) and HP vs non-HP ILD (C), with corresponding performance on held-out test datasets (B, D). Upregulated gene ontology pathways using gene signatures identified in classification models for IPF against non-IPF ILD and HP against non-HP ILD are shown in E.}\label{fig:ILDvILD}
+
+{\centering \includegraphics[width=0.95\linewidth,]{./Figures/Figure4_ILDvsILD} 
+
+}
+
+\caption[ILD vs ILD]{\textbf{ILD subtype-specific classification models.} IPF-specific and HP-specific classification models were developed through MINT integration of lung transcriptomics datasets. MINT-PLS projection of samples for classification models of IPF vs non-IPF ILD (A) and HP vs non-HP ILD (C), with corresponding performance on held-out test datasets (B, D). Upregulated gene ontology pathways using gene signatures identified in classification models for IPF against non-IPF ILD and HP against non-HP ILD are shown in E.}\label{fig:ILDvILD}
 \end{figure}
 
 \hypertarget{ild-subtypes-have-both-common-and-unique-disease-pathways}{%
 \subsubsection{ILD subtypes have both common and unique disease pathways}\label{ild-subtypes-have-both-common-and-unique-disease-pathways}}
 
-As the ILD classification models had few genes for pathway analysis, we generated ``expanded'' classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure E7, Table E8). Using the expanded gene signatures for Gene Ontology (GO) overrepresentation analysis of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \{COL17A1\}, and \{SCG5\} as shared upregulated genes across all subtypes when compared against controls (Figure \ref{fig:ILDpathways}A, Figure E3C, Table E4). With reference to the MSigDB C8 collection and a manually curated database of single-cell RNA-seq annotations obtained from previous pulmonary fibrosis publications, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \ref{fig:ILDpathways}C, Table E9). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure @ref\{fig:ILDpathways\}B, Figure E3D). No genes in the signatures for the lung IPF vs Control model were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure E3B).
+As the ILD classification models had few genes for pathway analysis, we generated ``expanded'' classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure \ref{fig:bayes}, Table E8). Using the expanded gene signatures for Gene Ontology (GO) overrepresentation analysis of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \textit{COL17A1}, and \textit{SCG5} as shared upregulated genes across all subtypes when compared against controls (Figure \ref{fig:ILDpathways}A, Figure \ref{fig:modelUpset}C, Table E4). With reference to the MSigDB C8 collection, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \ref{fig:ILDpathways}C, Table E9). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure \ref{fig:ILDpathways}B, Figure \ref{fig:modelUpset}D). No `IPF vs Control' lung gene signatures were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure \ref{fig:modelUpset}B).
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/Figure5_pathways} \caption[ILD pathways]{\textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).}\label{fig:ILDpathways}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure5_pathways} 
+
+}
+
+\caption[ILD pathways]{\textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).}\label{fig:ILDpathways}
 \end{figure}
 
-When comparing IPF against other ILD subtypes, we identified GPSM2, HSPA4L (previously shown to be involved in the differentiation of AT2 cells (56)), and ECM-related genes such as COL16A1, ITGA7, and VCAN as uniquely upregulated in IPF (Table E8). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via PSMB8, PSMB9, and TAPBP expression (Figure 4E), and these genes were also included in the models differentiating HP from IPF and NSIP samples. When compared to controls, SSc-ILD samples were uniquely characterized by expression of CDH3, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
-Unsupervised analysis identifies putative molecular endotypes of ILD
-We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters (19). We extracted all studies containing lung gene expression data, performed batch correction, and used a series of biclustering algorithms to identify 16 biclusters showing enrichment in specific lung disease groups (Figure E8, Figure E9). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table E10, Figure 6A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure 6C), which we confirmed was not due to age (-1.18 years, p=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10-3). A full list of results can be found in Table E11.
+We identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells {[}\protect\hyperlink{ref-mohamed_respiratory_2014}{89}{]}), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF compared to other ILD subtypes(Table E8). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure \ref{fig:ILDvILD}E), and these genes were also included in the models differentiating HP from IPF and NSIP samples. SSc-ILD samples were uniquely characterized by expression of \textit{CDH3}, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
 
-\hypertarget{this-could-be-a-sub-hedding}{%
-\subsection{This could be a sub-hedding}\label{this-could-be-a-sub-hedding}}
+\hypertarget{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}{%
+\subsubsection{Unsupervised analysis identifies putative molecular endotypes of ILD}\label{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend odio odio, et consectetur nunc commodo vitae. Donec eu finibus lacus. Integer at porta nulla. Fusce dignissim gravida lacinia. Nulla ut odio in ante imperdiet placerat. Maecenas vel imperdiet lorem. Proin ultricies, ex at bibendum fringilla, neque libero malesuada sem, in tincidunt leo mi vel mi. Phasellus scelerisque sagittis urna sed sodales. Curabitur iaculis justo velit, ultricies euismod justo convallis non. Nunc id purus et ante iaculis dignissim vel non erat. Donec dignissim urna ut lobortis congue. Nulla tempus ut ipsum non ornare. Donec ac purus nec sem cursus eleifend. Suspendisse potenti. Vestibulum ac vehicula ante.
-
-\hypertarget{in-text-citations}{%
-\subsection{In-text citations}\label{in-text-citations}}
-
-Read section \href{https://bookdown.org/yihui/bookdown/citations.html}{2.8} of the bookdown guide for more details.
-
-To use in-text citations like this {[}\protect\hyperlink{ref-degoede2017}{\textbf{degoede2017?}}{]}, add bibliographic entries to the \emph{References/reference\_list.bib} file, then you can reference the entries using the \emph{citation key}: \texttt{{[}@key{]}} e.g.~\texttt{{[}@degoede2017{]}}.
-
-UBCdown comes with two reference styles: Harvard, and Vancouver. To change styles, just edit the YAML section of \texttt{main\_script.Rmd} to reference the appropriate \texttt{.csl} file. If desired, you can also add/replace with your own citation style file \texttt{.csl}.
-
-\hypertarget{referencing-figures}{%
-\subsection{Referencing figures}\label{referencing-figures}}
-
-\hypertarget{basics}{%
-\subsubsection{Basics}\label{basics}}
-
-This text will render with a figure referenced (Figure \ref{fig:figureTitle}).
-
-\begin{figure}
-\includegraphics{main_script_files/figure-latex/figureTitle-1} \caption[This is the short title for the figure list]{This is the long caption of the figure that will apear in the main text.}\label{fig:figureTitle}
-\end{figure}
-
-\hypertarget{text-references-for-figure-captions}{%
-\subsubsection{Text-references for figure captions}\label{text-references-for-figure-captions}}
-
-You may need to use citations or special characters in a figure caption, which is not possible by writing the caption directly in the code chunk \texttt{fig.cap} option. Instead, you will need to use \href{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html\#text-references}{in-text references}.
-
-How to use in-text references:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  in the \texttt{fig.cap} code chunk option, write \texttt{"(ref:TEXT-REFERENCE)"}
-\item
-  outside of code chunk (in the text), start a paragraph with \texttt{(ref:TEXT-REFERENCE)\ ...} then write your caption
-\end{enumerate}
-
-Note: ``TEXT-REFERENCE'' can be replace with whatever, I suggest something descriptive like ``figureTitle-cap''
+We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. We used a series of biclustering algorithms on our batch-corrected concatenated lung gene expression data to identify 16 biclusters showing enrichment in specific lung disease groups (Figure \ref{fig:biclusterall}, Figure \ref{fig:biclusterjaccard}). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table E10, Figure \ref{fig:biclust}A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure \ref{fig:biclust}C, Table E11), which was not due to age (-1.18 years, \textit{p}=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10\textsuperscript{-3}).
 
 
 
 \begin{figure}
-\includegraphics{main_script_files/figure-latex/figureTitle-22-1} \caption[This is the short title for the figure list]{This caption was written with an in-text reference. See how I can use citations like this {[}\protect\hyperlink{ref-degoede2017}{\textbf{degoede2017?}}{]} and \textbf{special} \emph{characters} \_!?@\#, which normally would not be possible.}\label{fig:figureTitle-22}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure6_biclusters} 
+
+}
+
+\caption[ILD pathways]{\textbf{Biclusters identified by unsupervised learning.} ComBat-corrected lung transcriptomics datasets containing Control, ILD, and COPD samples were analyzed using biclustering algorithms. (A) Heatmaps of genes found in select biclusters showing differences in gene expression between bicluster and non-bicluster samples. (B) Proportion of samples within each subtype identified in each bicluster (i.e.~32.6\% of IPF samples are in the M9-Fibrosis bicluster). (C) Comparison of reported predicted forced vital capacity (FVC\%) in IPF samples within and outside of the `M13-Proliferation' bicluster. Significance was determined through linear regression analysis of bicluster membership against FVC\% (*, FDR\textless0.10).}\label{fig:biclust}
 \end{figure}
 
-\hypertarget{tables}{%
-\subsection{Tables}\label{tables}}
+\hypertarget{discussion}{%
+\subsection{Discussion}\label{discussion}}
 
-Tables are best generated by using \texttt{kable} + \texttt{kableExtra} (Table \ref{tab:IntroTable1}). These R packages allow for a lot of customization. I suggest saving your tables as \texttt{.csv} files and then loading them into R with \texttt{readr::read\_csv}.
+ILDs arise as a result of complex interactions between aging, genetics, and environmental factors, with these complex drivers of ILD reflected in their lung transcriptomics. We identified fibrotic ILD subtype-specific gene signatures in the largest meta-analysis of fibrotic ILD transcriptomics to date comprising 1,767 samples, and performed the first comprehensive transcriptomics analysis of fibrotic ILD subtypes against other ILD subtypes to identify candidate subtype-specific biomarkers and molecular endotypes of ILD. Our selected method of integration does not require batch correction of training sets with test sets or a particular normalization method prior to sample classification, thereby resulting in an inductive (not transductive) approach that is less prone to overfitting. The identified fibrotic ILD gene signatures (against all ILD subtypes and controls) were validated on three recently published datasets, suggesting that they may be applied to future ILD transcriptomics datasets.
 
-\captionsetup{width=6.5in}
+Our sex-stratified analysis suggests there are similarities between females and males in the pathogenesis of ILD, as the majority of our sex-specific models had comparable performance on sex-stratified test sets. Pathway overrepresentation analysis of genes uniquely found in our sex-specific models revealed immune-associated pathways in female classification models. In particular, both female-specific IPF and NSIP vs Control models contained \textit{CD79A}, a B cell marker, which is consistent with females generally having higher B cell numbers and associated gene expression when compared to males {[}\protect\hyperlink{ref-klein_sex_2016}{90}{]}. Previous studies have identified increases in B cells in patients with ILD {[}\protect\hyperlink{ref-schiller_deep_2017}{93}{]}, thus warranting further investigations into the role of B cells in ILDs particularly with a focus on potential sex-specific differences.
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:IntroTable1}This is the title of the table.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
-\toprule
-GEO Accession & Primary groups & African & Asian & Caucasian\\
-\midrule
-GSE98224 & EOPET & 5 & 4 & 10\\
- & Preterm Controls & 1 & 3 & 5\\
- & LOPET & 1 & 1 & 8\\
- & Term Controls & 0 & 4 & 5\\
-GSE71678 & NA* & 0 & 0 & 342\\
-\bottomrule
-\multicolumn{5}{l}{\rule{0pt}{1em}EOPET - Early Onset Preeclampsia.}\\
-\multicolumn{5}{l}{\rule{0pt}{1em}\textsuperscript{*} Can add footnotes here.}\\
-\end{tabu}
-\end{table}
+Genes used in our classification models are representative of ILD pathogenesis. Well-studied genes (e.g.~\textit{MMP7}) and disease processes were up-regulated across all ILD subtypes, which is consistent with the overlapping radiological and pathological morphology, disease progression, and treatment response {[}\protect\hyperlink{ref-flaherty_nintedanib_2019}{19}{]}. Unique genes expressed in IPF were associated with the ECM; in particular, \textit{VCAN}, \textit{SPON1}, and \textit{FBLN2} have been found to be increased in fibroblastic foci of UIP/IPF lungs {[}\protect\hyperlink{ref-herrera_uipipf_2022}{91}{]}. The presence of MHC and antigen presentation-associated genes (\textit{TAPBP}, \textit{PSMB8}, and \textit{PSMB9}) in both HP vs Control and HP vs non-HP models suggests that they may have diagnostic utility as biomarkers as they are overexpressed in HP and have HP-associated haplotypes {[}\protect\hyperlink{ref-camarena_psmb8_2010}{94}{]}. E-cadherin (\textit{CDH3}), which was uniquely identified in the SSc-ILD vs Control model but not in other ILDs, forms a key component of the adherens junction that stabilizes the airway epithelial barrier and its loss of expression has been reported as a hallmark of EMT {[}\protect\hyperlink{ref-bartis_epithelialmesenchymal_2014}{95}{]}. However, we were unable to identify a model for NSIP vs other ILD with good performance on test datasets, which was corroborated by three studies included in our systematic review {[}\protect\hyperlink{ref-horimasu_gene_2017}{79}{]}. Given that NSIP is observed in both idiopathic NSIP and many types of CTD-ILD, it is unsurprising that a consensus gene signature is difficult to identify in a heterogenous population.
 
-See \href{https://bookdown.org/yihui/bookdown/tables.html}{2.5} for details. Tables are referenced in the same way as figures, through the code chunk label. The title of the table is specified in the \texttt{caption} option under the \texttt{kableExtra::kbl} call.
+Through the use of two unsupervised biclustering algorithms, we identified 16 biclusters spanning various mechanisms of ILD including immune infiltration and fibrosis. The `M2-Cytoskeleton' bicluster contained microtubule and dynein (e.g.~\textit{DYNAH7}, \textit{DYNAH9}) genes associated with ciliated cells, which may be associated with microscopic honeycombing seen in IPF/UIP {[}\protect\hyperlink{ref-yang_expression_2013}{74}{]}. Two biclusters, `U4-AT1 cells' and `U0-Endothelium', were annotated due to downregulation of genes associated with AT1 cells (\textit{AGER}, \textit{CAV2}, \textit{EMP2}) and endothelial cells (\textit{EPAS1}, \textit{TEK}, \textit{STARD13}), and destruction of these tissues during the pathogenesis of ILD may explain the association with reduced DLCO\% in ILD samples. The 'M13-Proliferation' bicluster was associated with decreased FVC\% and DLCO\% in all ILD samples, and in IPF patients it was associated with a \textasciitilde6\% decline in FVC\%. Genes contained in this bicluster are involved in the cell cycle, and pathway analysis revealed associations with proliferating macrophages, basal cells, and NK/T cells {[}\protect\hyperlink{ref-travaglini_molecular_2020}{96}{]}; one of the genes, \textit{CCNA2}, has previously been reported as upregulated in acute exacerbations of IPF {[}\protect\hyperlink{ref-konishi_gene_2009}{67}{]}.
+
+Taken together, our supervised and unsupervised analyses suggest that current diagnostic classifications do not fully capture molecular heterogeneity within subtypes. When comparing genes from our expanded IPF vs non-IPF ILD model to the UIP Envisia classifier, only 10/190 genes (\textit{PDLIM5}, \textit{GREM1}, \textit{TUBB2B}, \textit{CHRDL2}, \textit{KIF12}, \textit{SLC4A3}, \textit{PPIC}, \textit{ZNF454}, \textit{SELE}, \textit{MYO3B}) were shared (Figure \ref{fig:envisia}), which might be explained by UIP patterns being observed in other fibrotic ILDs such as RA-ILD as well as IPF diagnoses not being limited to UIP patterns. While our classification models perform well in separating IPF or HP from other ILDs, it is evident from the unsupervised analysis that there exists molecular heterogeneity within these subtypes, and these endotypes are associated with lung function. Considering the complex drivers and heterogenous presentations of ILD subtypes, classification based on data-driven molecular endotypes may be clinically beneficial with respect to disease management as well as research and development into novel therapeutics.
+Our analysis is limited by the lack of detailed patient-level secondary data. Although patients in the LTRC are well-phenotyped, variables such as radiological pattern, age, treatment status, pulmonary function tests, disease staging, and mortality were often reported as summary tables, thereby prohibiting detailed subgroup analyses. However, using available metadata, we were able to examine age (n=852), predicted FVC\% (n=309), and predicted DLCO\% (n=259) from ILD samples in our unsupervised analysis. Future work in fibrotic ILD transcriptomics should consider the investigation of less profiled subtypes to enrich our understanding of non-IPF pulmonary fibrosis, as the overrepresentation of IPF in our analysis limits the generalizability of our findings. Finally, prediction thresholds in MINT are based upon minimum sample distance to class centroids within the PLS projection space, thus making direct comparison to existing classifiers difficult. Nevertheless, our models had good AUCs and BERs on held-out datasets, providing more confidence in their discriminatory ability and biological relevance to ILD pathobiology.
+
+In summary, by using both supervised and unsupervised approaches, our meta-analysis has identified reproducible fibrotic ILD subtype-specific gene signatures and molecular endotypes of ILD that reflect the pathogenesis of fibrotic lung disease. Using gene expression profiling, we have developed preliminary classifiers that distinguish individual fibrotic ILD subtypes from each other. Further studies are required to investigate the utility of the herein identified gene signatures and molecular endotypes in a clinical setting.
 
 \clearpage
 
@@ -1157,36 +1127,68 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{88. }%
 \CSLRightInline{Huang Y, Guzy R, Ma SF, Bonham CA, Jou J, Schulte JJ, et al. Central lung gene expression associates with myofibroblast features in idiopathic pulmonary fibrosis. BMJ Open Respiratory Research {[}Internet{]}. 2023 Feb {[}cited 2023 Apr 4{]};10(1):e001391. Available from: \url{https://bmjopenrespres.bmj.com/content/10/1/e001391}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhao_metabolic_2017}{}}%
+\leavevmode\vadjust pre{\hypertarget{ref-mohamed_respiratory_2014}{}}%
 \CSLLeftMargin{89. }%
+\CSLRightInline{Mohamed BA, Barakat AZ, Held T, Elkenani M, Mühlfeld C, Männer J, et al. Respiratory {Distress} and {Early} {Neonatal} {Lethality} in {Hspa4l}/{Hspa4} {Double}-{Mutant} {Mice}. American Journal of Respiratory Cell and Molecular Biology {[}Internet{]}. 2014 Apr {[}cited 2023 May 13{]};50(4):817--24. Available from: \url{https://www.atsjournals.org/doi/10.1165/rcmb.2013-0132OC}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-klein_sex_2016}{}}%
+\CSLLeftMargin{90. }%
+\CSLRightInline{Klein SL, Flanagan KL. Sex differences in immune responses. Nature Reviews Immunology {[}Internet{]}. 2016 Oct {[}cited 2024 Feb 29{]};16(10):626--38. Available from: \url{https://www.nature.com/articles/nri.2016.90}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-herrera_uipipf_2022}{}}%
+\CSLLeftMargin{91. }%
+\CSLRightInline{Herrera JA, Dingle L, Montero MA, Venkateswaran RV, Blaikley JF, Lawless C, et al. \href{https://doi.org/10.1172/jci.insight.156115}{The {UIP}/{IPF} fibroblastic focus is a collagen biosynthesis factory embedded in a distinct extracellular matrix}. JCI insight. 2022 Aug;7(16):e156115. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-ali_antifibrotics_2021}{}}%
+\CSLLeftMargin{92. }%
+\CSLRightInline{Ali MF, Egan AM, Shaughnessy GF, Anderson DK, Kottom TJ, Dasari H, et al. Antifibrotics {Modify} {B}-{Cell}--induced {Fibroblast} {Migration} and {Activation} in {Patients} with {Idiopathic} {Pulmonary} {Fibrosis}. American Journal of Respiratory Cell and Molecular Biology {[}Internet{]}. 2021 Jun {[}cited 2024 Feb 29{]};64(6):722--33. Available from: \url{https://www.atsjournals.org/doi/10.1165/rcmb.2020-0387OC}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-schiller_deep_2017}{}}%
+\CSLLeftMargin{93. }%
+\CSLRightInline{Schiller HB, Mayr CH, Leuschner G, Strunz M, Staab-Weijnitz C, Preisendörfer S, et al. Deep {Proteome} {Profiling} {Reveals} {Common} {Prevalence} of {MZB1}-{Positive} {Plasma} {B} {Cells} in {Human} {Lung} and {Skin} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2017 Nov {[}cited 2023 Apr 4{]};196(10):1298--310. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6913086/}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-camarena_psmb8_2010}{}}%
+\CSLLeftMargin{94. }%
+\CSLRightInline{Camarena A, Aquino-Galvez A, Falfán-Valencia R, Sánchez G, Montaño M, Ramos C, et al. \href{https://doi.org/10.1016/j.rmed.2010.01.014}{{PSMB8} ({LMP7}) but not {PSMB9} ({LMP2}) gene polymorphisms are associated to pigeon breeder's hypersensitivity pneumonitis}. Respiratory Medicine. 2010 Jun;104(6):889--94. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-bartis_epithelialmesenchymal_2014}{}}%
+\CSLLeftMargin{95. }%
+\CSLRightInline{Bartis D, Mise N, Mahida RY, Eickelberg O, Thickett DR. Epithelial--mesenchymal transition in lung development and disease: Does it exist and is it important? Thorax {[}Internet{]}. 2014 Aug {[}cited 2023 Apr 10{]};69(8):760--5. Available from: \url{https://thorax.bmj.com/content/69/8/760}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-travaglini_molecular_2020}{}}%
+\CSLLeftMargin{96. }%
+\CSLRightInline{Travaglini KJ, Nabhan AN, Penland L, Sinha R, Gillich A, Sit RV, et al. A molecular cell atlas of the human lung from single-cell {RNA} sequencing. Nature {[}Internet{]}. 2020 Nov {[}cited 2023 Mar 27{]};587(7835):619--25. Available from: \url{https://www.nature.com/articles/s41586-020-2922-4}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-zhao_metabolic_2017}{}}%
+\CSLLeftMargin{97. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-zhu_integration_2018}{}}%
-\CSLLeftMargin{90. }%
+\CSLLeftMargin{98. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-christmann_association_2014}{}}%
-\CSLLeftMargin{91. }%
+\CSLLeftMargin{99. }%
 \CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-ghosh_lung_2022}{}}%
-\CSLLeftMargin{92. }%
+\CSLLeftMargin{100. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-el-chemaly_immunome_2018}{}}%
-\CSLLeftMargin{93. }%
+\CSLLeftMargin{101. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-zhou_integrated_2019}{}}%
-\CSLLeftMargin{94. }%
+\CSLLeftMargin{102. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-vosa_comprehensive_2014}{}}%
-\CSLLeftMargin{95. }%
+\CSLLeftMargin{103. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-wold_nonlinear_1973}{}}%
-\CSLLeftMargin{96. }%
+\CSLLeftMargin{104. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1349,12 +1351,12 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\protect\hyperlink{ref-zhu_integration_2018}{90}{]}, one {[}\protect\hyperlink{ref-christmann_association_2014}{91}{]} was a duplicate of {[}\protect\hyperlink{ref-christmann_mir-155_2016}{77}{]}, one {[}\protect\hyperlink{ref-ghosh_lung_2022}{92}{]} was a suspected duplicate of another study {[}\protect\hyperlink{ref-borie_colocalization_2022}{86}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\protect\hyperlink{ref-el-chemaly_immunome_2018}{93}{]}, and two studies were omitted due to poor data quality {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\protect\hyperlink{ref-zhu_integration_2018}{98}{]}, one {[}\protect\hyperlink{ref-christmann_association_2014}{99}{]} was a duplicate of {[}\protect\hyperlink{ref-christmann_mir-155_2016}{77}{]}, one {[}\protect\hyperlink{ref-ghosh_lung_2022}{100}{]} was a suspected duplicate of another study {[}\protect\hyperlink{ref-borie_colocalization_2022}{86}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\protect\hyperlink{ref-el-chemaly_immunome_2018}{101}{]}, and two studies were omitted due to poor data quality {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}.
 
 \hypertarget{robust-rank-aggregation}{%
 \subsection{Robust rank aggregation}\label{robust-rank-aggregation}}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\protect\hyperlink{ref-vosa_comprehensive_2014}{95}{]}. A fourth aggregated list was generated for all ILDs using the aforementioned subtype-specific lists in addition to three lists published by Zuo, Yang, and Horimasu comparing ILD lung against control lung samples {[}\protect\hyperlink{ref-horimasu_gene_2017}{79}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\protect\hyperlink{ref-vosa_comprehensive_2014}{103}{]}.
 
 \hypertarget{microarray-and-rna-seq-processing}{%
 \subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}}
@@ -1364,27 +1366,70 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE1_outliers} \caption[Outlier detection]{\textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).}\label{fig:outlierPCA}
+
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/FigE1_outliers} 
+
+}
+
+\caption[Outlier detection]{\textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).}\label{fig:outlierPCA}
 \end{figure}
 
 \hypertarget{data-integration-and-analysis}{%
 \subsection{Data integration and analysis}\label{data-integration-and-analysis}}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\protect\hyperlink{ref-wold_nonlinear_1973}{96}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\protect\hyperlink{ref-wold_nonlinear_1973}{104}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 
+Pathway analyses were limited for some of our models given their relatively small number of features (e.g.~55 genes for IPF vs Control). To address this, we used the R package `bcp' (version 4.0.3) to determine models with an ``expanded'' number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e.~points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance (Figure \ref{fig:bayes}). To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown).
+Gene lists from expanded models were then analyzed via overrepresentation analysis using the `cashoes/sear' package (\url{https://github.com/cashoes/sear}) (Table E8).
+Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16--19).
+
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/Figure2_PCA} \caption[MINT integration]{\textbf{Principal component analysis (PCA) of lung transcriptomics data prior to and after MINT integration.} Author-normalized datasets were subsetted with genes shared in \textgreater80\% of datasets (A) and integrated using MINT. MINT-integrated samples projected into a common latent space via multi-group PCA are shown in (B).}\label{fig:integration}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure2_PCA} 
+
+}
+
+\caption[MINT integration]{\textbf{Principal component analysis (PCA) of lung transcriptomics data prior to and after MINT integration.} Author-normalized datasets were subsetted with genes shared in \textgreater80\% of datasets (A) and integrated using MINT. MINT-integrated samples projected into a common latent space via multi-group PCA are shown in (B).}\label{fig:integration}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE2_tuning} \caption[Model tuning]{\textbf{Feature selection for MINT classification models.} Tuning grids to determine the optimal number of features (indicated by red point) for each model based on the lowest balanced error rate. All models were selected based on the lowest BER with a minimum of 50 features. For each model, one PLS component (solid line) was sufficient to separate classes with the exception of IPF vs NSIP, which required a second PLS component (dotted line).}\label{fig:tuningMINT}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE2_tuning} 
+
+}
+
+\caption[Model tuning]{\textbf{Feature selection for MINT classification models.} Tuning grids to determine the optimal number of features (indicated by red point) for each model based on the lowest balanced error rate. All models were selected based on the lowest BER with a minimum of 50 features. For each model, one PLS component (solid line) was sufficient to separate classes with the exception of IPF vs NSIP, which required a second PLS component (dotted line).}\label{fig:tuningMINT}
 \end{figure}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE3_upset} 
+
+}
+
+\caption[Upset plot of models]{\textbf{Upset plots of ILD vs. Control gene signatures generated by MINT.} A) Comparison of the robust rank aggregation (RRA) generated up- and down-regulated genes with MINT gene signatures. Common upregulated genes include \textit{COMP}, \textit{DIO2}, \textit{FHL2}, \textit{COL17A1}, and \textit{MMP7}, and common downregulated genes include \textit{CA4}, \textit{CRTAC1}, \textit{FAM167A}, \textit{FZD5}, \textit{MYRF}, and \textit{PLLP}. For RRA, only IPF and SSc-ILD consensus gene lists were identified. B) Comparison of gene signatures of IPF vs Control in lung, blood, and PBMC samples. C,D) Comparison of up- and down-regulated genes found in each expanded ILD subtype model again controls.}\label{fig:modelUpset}
+\end{figure}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE4_blood} 
+
+}
+
+\caption[Upset plot of models]{\textbf{Classification models using IPF peripheral transcriptomics.} PLS projections of MINT classification models for IPF vs Control using whole blood (A) and PBMC (C) datasets. AUC performance of the whole blood model on the PBMC datasets (B) and PBMC model on blood datasets (D).}\label{fig:bloodmodel}
+\end{figure}
+
+\newpage
 
 \captionsetup{width=6.5in}
 
@@ -1442,28 +1487,70 @@ NSIPfemale & Male & 0.89 [0.78-0.99] & 0.18 [0.08-0.29]\\
 \end{tabu}
 \end{table}
 
+\newpage
+
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE5_NSIP} \caption[Model tuning]{\textbf{NSIP-specific classification model.} PLS projection of samples using the NSIP vs non-NSIP ILD model (A) and the AUC performance on held-out test datasets (B).}\label{fig:nsipmodel}
+
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/FigE5_NSIP} 
+
+}
+
+\caption[Model tuning]{\textbf{NSIP-specific classification model.} PLS projection of samples using the NSIP vs non-NSIP ILD model (A) and the AUC performance on held-out test datasets (B).}\label{fig:nsipmodel}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE6_ILDvsILD} \caption[Individual ILD vs ILD]{\textbf{Classification models differentiating between specific ILD subtypes.} PLS sample projections and held-out test set AUC performance for comparisons between IPF and HP (A, B), IPF and NSIP (C, D), and HP and NSIP (E, F).}\label{fig:ildvsildspecific}
+
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE6_ILDvsILD} 
+
+}
+
+\caption[Individual ILD vs ILD]{\textbf{Classification models differentiating between specific ILD subtypes.} PLS sample projections and held-out test set AUC performance for comparisons between IPF and HP (A, B), IPF and NSIP (C, D), and HP and NSIP (E, F).}\label{fig:ildvsildspecific}
 \end{figure}
 
-Pathway analyses were limited for some of our models given their relatively small number of features (e.g.~55 genes for IPF vs Control). To address this, we used the R package `bcp' (version 4.0.3) to determine models with an ``expanded'' number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e.~points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance. To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown).
-Gene lists from expanded models were then analyzed via overrepresentation analysis using the `cashoes/sear' package (\url{https://github.com/cashoes/sear}) (Table E8).
-Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16--19).
+\newpage
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE7_bayes} 
+
+}
+
+\caption[Bayesian changepoint]{\textbf{Bayesian changepoint analysis to determine models with an ‘expanded’ number of features for the purpose of pathway analysis.} As the number of features is increased, the posterior mean (i.e.~an estimate of the BER given previous data and new data) is constant for certain ranges and does not increase until a threshold of features is passed; this is likely due to the addition of correlated features, which are not useful in the optimization of a classifier but are useful in strengthening the identification of relevant biological pathways. If we consider the BERs from the tuning grids to be a data series with an unknown number of blocks containing a constant mean, we can apply a Bayesian framework to determine `change points' (points likely to precede a change in BER) within the series, which were identified using a posterior probability threshold of 50\%.}\label{fig:bayes}
+\end{figure}
 
 \hypertarget{biclustering-1}{%
 \subsection{Biclustering}\label{biclustering-1}}
 
-In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. UnPaSt is an \href{https://github.com/ozolotareva/UnPaSt}{unconstrained version} of the method published in {[}\protect\hyperlink{ref-zolotareva_identification_2021}{53}{]}. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis.
+In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. UnPaSt is an \href{https://github.com/ozolotareva/UnPaSt}{unconstrained version} of the method published in {[}\protect\hyperlink{ref-zolotareva_identification_2021}{53}{]}. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt. Genes in each bicluster can be found in INSERT LINK.
 
-Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt. Genes in each bicluster can be found in INSERT LINK.
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE8_allbiclusters} 
+
+}
+
+\caption[All biclusters]{\textbf{Biclusters identified by MoSBi (A) and UnPaSt (B) unsupervised learning algorithms.} Displayed heatmaps show bicluster genes in the rows, with the columns showing separated bicluster and non-cluster samples.}\label{fig:biclusterall}
+\end{figure}
+
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth,]{./Figures/FigE9_biclusterjaccard} \caption[Bicluster similarity]{\textbf{Bicluster similarity scores.} Jaccard coefficients were calculated for genes (A) and samples (B) between each bicluster.}\label{fig:biclusterjaccard}
+\end{figure}
+
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth,]{./Figures/FigE10_Envisia} \caption[Bicluster similarity]{\textbf{Upset plots of gene signatures featured in IPF vs non-IPF ILD and HP vs non-HP ILD expanded classifiers.} Genes from the Envisia classifier published in Choi et al.~(2017) are included as a comparison.}\label{fig:envisia}
+\end{figure}
 
 \hypertarget{appendix-b---supplementary-information-for-chapter-three}{%
 \subsection{Appendix B - Supplementary information for Chapter Three}\label{appendix-b---supplementary-information-for-chapter-three}}

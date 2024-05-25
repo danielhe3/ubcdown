@@ -1,0 +1,288 @@
+---
+title: "Tables from ILD Systematic Review and Meta-Analysis"
+author: "Daniel He"
+date: `r format(Sys.time(), "%d %B, %Y")`
+format: 
+  html:
+    toc: true
+    toc_depth: 4
+    embed-resources: true
+---
+
+```{r library}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+librarian::shelf(dplyr, tidyverse, kableExtra, knitr, readxl)
+```
+
+```{r echo=FALSE}
+# function to read in multiple sheets into a list
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+    sheets <- readxl::excel_sheets(filename)
+    x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+    if(!tibble) x <- lapply(x, as.data.frame)
+    names(x) <- sheets
+    x
+}
+```
+
+# Robust Rank Aggregation
+
+Table E3. Lists of top 25 significantly up- and down-regulated genes in ILD subtypes via differentially expressed gene lists aggregated using Robust Rank Aggregation. 
+
+```{r echo=F}
+rra <- read_excel_allsheets(here::here('Tables', "Table E3 RRA 231207.xlsx"))
+rra$IPFup %>% slice(1:25) %>% 
+  kable(caption="RRA IPF Upregulated") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+```{r echo=F}
+rra$IPFdown %>% slice(1:25) %>% 
+  kable(caption="RRA IPF Downregulated") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+# ILD Classification Model Weights
+
+```{r echo=FALSE}
+model_genes <- read_excel_allsheets(here::here('Tables', "Table E4 Gene Lists 231213.xlsx"))
+```
+
+Lists of genes and their weights in each ILD classification model. All weights correspond to the first PLS component, with exception of the IPF vs NSIP model where indicated. 
+
+## ILD vs Control
+
+### IPF vs Control
+
+```{r}
+model_genes$IPFvsControl %>%
+  kable(caption="IPF vs Control Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### IPF vs Control (Expanded)
+
+```{r}
+model_genes[["IPFvsControl(ExpandedModel)"]] %>%
+  kable(caption="IPF vs Control Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### HP vs Control
+
+```{r}
+model_genes$HPvsControl %>%
+  kable(caption="HP vs Control Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### HP vs Control (Expanded)
+
+```{r}
+model_genes$`HPvsControl(ExpandedModel)` %>%
+  kable(caption="HP vs Control Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### NSIP vs Control
+
+```{r}
+model_genes$NSIPvsControl %>%
+  kable(caption="NSIP vs Control Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### NSIP vs Control (Expanded)
+
+```{r}
+model_genes$`NSIPvsControl(ExpandedModel)` %>%
+  kable(caption="NSIP vs Control Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### SSc-ILD vs Control
+
+```{r}
+model_genes$`SSc-ILDvsControl` %>%
+  kable(caption="NSIP vs Control Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### SSc-ILD vs Control (Expanded)
+
+```{r}
+model_genes$`SSc-ILDvsControl(ExpandedModel)` %>%
+  kable(caption="SSc-ILD vs Control Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+## ILD vs ILD
+
+### IPF vs nonIPF ILD
+
+```{r}
+model_genes$IPFvsnonIPF %>%
+  kable(caption="IPF vs non-IPF ILD Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### IPF vs non-IPF ILD (Expanded)
+
+```{r}
+model_genes$`IPFvsnonIPF(ExpandedModel)` %>%
+  kable(caption="IPF vs non-IPF ILD Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+
+### HP vs nonHP ILD
+
+```{r}
+model_genes$HPvsnonHP %>%
+  kable(caption="HP vs non-HP ILD Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### HP vs non-HP ILD (Expanded)
+
+```{r}
+model_genes$`HPvsnonHP(ExpandedModel)` %>%
+  kable(caption="HP vs non-HP ILD Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### NSIP vs nonNSIP ILD
+
+```{r}
+model_genes$NSIPvsnonNSIP %>%
+  kable(caption="NSIP vs non-NSIP ILD Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### NSIP vs non-NSIP ILD (Expanded)
+
+```{r}
+model_genes$`NSIPvsnonNSIP(ExpandedModel)` %>%
+  kable(caption="NSIP vs non-NSIP ILD Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### IPF vs HP
+
+```{r}
+model_genes$IPFvsHP %>%
+  kable(caption="IPF vs HP Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### IPF vs HP (Expanded)
+
+```{r}
+model_genes$`IPFvsHP(ExpandedModel)` %>%
+  kable(caption="IPF vs HP Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### IPF vs NSIP
+
+```{r}
+model_genes$IPFvsNSIP %>%
+  kable(caption="IPF vs NSIP Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### IPF vs NSIP (Expanded)
+
+```{r}
+model_genes$`IPFvsNSIP(ExpandedModel)` %>%
+  kable(caption="IPF vs NSIP Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### HP vs NSIP
+
+```{r}
+model_genes$HPvsNSIP %>%
+  kable(caption="HP vs NSIP Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### HP vs NSIP (Expanded)
+
+```{r}
+model_genes$`HPvsNSIP(ExpandedModel)` %>%
+  kable(caption="HP vs NSIP Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+## Peripheral signatures
+
+### IPF vs Control (Blood)
+
+```{r}
+model_genes$IPFvsControlBlood %>%
+  kable(caption="IPF vs Control (Blood) Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+### IPF vs Control (PBMC)
+
+
+```{r}
+model_genes$IPFvsControlPBMC %>%
+  kable(caption="IPF vs Control (PBMC) Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+#### IPF vs Control (PBMC) (Expanded)
+
+```{r}
+model_genes$`IPFvsControlPBMC(ExpandedModel)` %>%
+  kable(caption="IPF vs Control (PBMC) Expanded Model Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 12)
+```
+
+# Pathways
+
+Table E8. List of pathways associated with ILD gene signatures as determined by overrepresentation analysis. 
+
+```{r}
+pathways <- read_excel_allsheets(here::here('Tables', "Table E8 Pathways.xlsx"))
+```
+
+
+
+# Cell Types
+
+Table E9. List of overrepresented cell types using MSigDB and scRNA-seq annotations. 
+
+
+# Bicluster Genes
+
+List of genes identified by each bicluster.
+
+```{r bicluster, echo=FALSE}
+# Biclusters
+biclusters <- read_excel_allsheets(here::here('Tables', "Table E12 Bicluster Genes.xlsx"))
+biclusters <- lapply(biclusters, function(x) x %>% arrange(hgnc_symbol) %>% pull(hgnc_symbol))
+vector_to_string <- function(vec) {
+  paste(vec, collapse = ", ")
+}
+biclusters <- data.frame(
+  name = names(biclusters),
+  vector_string = sapply(biclusters, vector_to_string),
+  stringsAsFactors = FALSE
+)
+rownames(biclusters) <- NULL
+colnames(biclusters) <- c("Bicluster", "Genes")
+kable(biclusters,
+      booktab = TRUE,
+      longtable = TRUE,
+      caption = "Bicluster Genes") %>% 
+  kableExtra::kable_styling(full_width = TRUE, font_size = 10)
+```
+
+Table E10. List of pathways associated with each bicluster as determined by overrepresentation analysis.
+
+Table E11. Association of bicluster membership with age, predicted forced vital capacity (FVC%), and predicted diffusing capacity of the lungs for carbon monoxide (DLCO%). Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
+

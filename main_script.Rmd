@@ -169,7 +169,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 <!-- From here on, include your different data chapters using normal Rmarkdown titles -->
 
 <!-- Modify me! -->
-# Insert Title of Chapter 2 Here 
+# A systematic review and meta-analysis of ILD transcriptomics
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{2.\arabic{figure}}

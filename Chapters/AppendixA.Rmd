@@ -80,7 +80,9 @@ Seven studies did not pass our quality control assessment. Two studies did not h
 
 ## Robust rank aggregation
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described [@vosa_comprehensive_2014]. A fourth aggregated list was generated for all ILDs using the aforementioned subtype-specific lists in addition to three lists published by Zuo, Yang, and Horimasu comparing ILD lung against control lung samples [@zuo_gene_2002, @yang_gene_2007, @horimasu_gene_2017]. 
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described [@vosa_comprehensive_2014]. 
+
+<!--A fourth aggregated list was generated for all ILDs using the aforementioned subtype-specific lists in addition to three lists published by Zuo, Yang, and Horimasu comparing ILD lung against control lung samples [@zuo_gene_2002, @yang_gene_2007, @horimasu_gene_2017]. -->
 
 ## Microarray and RNA-seq processing
 
@@ -88,7 +90,7 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 (ref:outlier-cap) \textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).
 
-```{r outlierPCA, eval = T, echo = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:outlier-cap)", fig.scap = "Outlier detection", out.extra=''}
+```{r outlierPCA, eval = T, echo = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:outlier-cap)", fig.scap = "Outlier detection", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/FigE1_outliers.pdf")
 ```
 
@@ -98,17 +100,35 @@ The Multivariate INTegrative (MINT) method (‘mixOmics’ v6.22.0) is based on 
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \@ref(fig:integration)), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \@ref(fig:tuningMINT)). Final model performance was then assessed using the mixOmics ‘perf’ function against the 8 left-out test datasets, and 95% confidence intervals obtained using the bootstrap method (Table \@ref(tab:modelPerf)). Sex-specific models were also generated (Table \@ref(tab:sexModel))
 
+Pathway analyses were limited for some of our models given their relatively small number of features (e.g. 55 genes for IPF vs Control). To address this, we used the R package ‘bcp’ (version 4.0.3) to determine models with an “expanded” number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e. points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance (Figure \@ref(fig:bayes)). To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown). 
+Gene lists from expanded models were then analyzed via overrepresentation analysis using the ‘cashoes/sear’ package (https://github.com/cashoes/sear) (Table E8). 
+Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16–19).
+
 (ref:int-cap) \textbf{Principal component analysis (PCA) of lung transcriptomics data prior to and after MINT integration.} Author-normalized datasets were subsetted with genes shared in >80% of datasets (A) and integrated using MINT. MINT-integrated samples projected into a common latent space via multi-group PCA are shown in (B).
 
-```{r integration, eval = T, echo = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:int-cap)", fig.scap = "MINT integration", out.extra=''}
+```{r integration, eval = T, echo = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:int-cap)", fig.scap = "MINT integration", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/Figure2_PCA.pdf")
 ```
 
 (ref:tuning-cap) \textbf{Feature selection for MINT classification models.} Tuning grids to determine the optimal number of features (indicated by red point) for each model based on the lowest balanced error rate. All models were selected based on the lowest BER with a minimum of 50 features. For each model, one PLS component (solid line) was sufficient to separate classes with the exception of IPF vs NSIP, which required a second PLS component (dotted line).
 
-```{r tuningMINT, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:tuning-cap)", fig.scap = "Model tuning", out.extra=''}
+```{r tuningMINT, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:tuning-cap)", fig.scap = "Model tuning", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/FigE2_tuning.pdf")
 ```
+
+(ref:modelupset-cap) \textbf{Upset plots of ILD vs. Control gene signatures generated by MINT.} A) Comparison of the robust rank aggregation (RRA) generated up- and down-regulated genes with MINT gene signatures. Common upregulated genes include \textit{COMP}, \textit{DIO2}, \textit{FHL2}, \textit{COL17A1}, and \textit{MMP7}, and common downregulated genes include \textit{CA4}, \textit{CRTAC1}, \textit{FAM167A}, \textit{FZD5}, \textit{MYRF}, and \textit{PLLP}. For RRA, only IPF and SSc-ILD consensus gene lists were identified. B) Comparison of gene signatures of IPF vs Control in lung, blood, and PBMC samples. C,D) Comparison of up- and down-regulated genes found in each expanded ILD subtype model again controls. 
+
+```{r modelUpset, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:modelupset-cap)", fig.scap = "Upset plot of models", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/FigE3_upset.pdf")
+```
+
+(ref:bloodmodel-cap) \textbf{Classification models using IPF peripheral transcriptomics.} PLS projections of MINT classification models for IPF vs Control using whole blood (A) and PBMC (C) datasets. AUC performance of the whole blood model on the PBMC datasets (B) and PBMC model on blood datasets (D). 
+
+```{r bloodmodel, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:bloodmodel-cap)", fig.scap = "Upset plot of models", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/FigE4_blood.pdf")
+```
+
+\newpage
 
 \captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
 
@@ -153,29 +173,50 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
 ```
 
+\newpage
+
 (ref:nsipmodel-cap) \textbf{NSIP-specific classification model.} PLS projection of samples using the NSIP vs non-NSIP ILD model (A) and the AUC performance on held-out test datasets (B). 
 
-```{r nsipmodel, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:nsipmodel-cap)", fig.scap = "Model tuning", out.extra=''}
+```{r nsipmodel, eval = T, out.width='0.9\\linewidth', echo=FALSE, fig.cap="(ref:nsipmodel-cap)", fig.scap = "Model tuning", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/FigE5_NSIP.pdf")
 ```
 
 (ref:ildvsildspecific-cap) \textbf{Classification models differentiating between specific ILD subtypes.} PLS sample projections and held-out test set AUC performance for comparisons between IPF and HP (A, B), IPF and NSIP (C, D), and HP and NSIP (E, F).
 
-```{r ildvsildspecific, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:ildvsildspecific-cap)", fig.scap = "Individual ILD vs ILD", out.extra=''}
+```{r ildvsildspecific, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:ildvsildspecific-cap)", fig.scap = "Individual ILD vs ILD", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/FigE6_ILDvsILD.pdf")
 ```
 
+\newpage
 
-Pathway analyses were limited for some of our models given their relatively small number of features (e.g. 55 genes for IPF vs Control). To address this, we used the R package ‘bcp’ (version 4.0.3) to determine models with an “expanded” number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e. points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance. To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown). 
-Gene lists from expanded models were then analyzed via overrepresentation analysis using the ‘cashoes/sear’ package (https://github.com/cashoes/sear) (Table E8). 
-Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16–19).
+(ref:bayes-cap) \textbf{Bayesian changepoint analysis to determine models with an ‘expanded’ number of features for the purpose of pathway analysis.} As the number of features is increased, the posterior mean (i.e. an estimate of the BER given previous data and new data) is constant for certain ranges and does not increase until a threshold of features is passed; this is likely due to the addition of correlated features, which are not useful in the optimization of a classifier but are useful in strengthening the identification of relevant biological pathways. If we consider the BERs from the tuning grids to be a data series with an unknown number of blocks containing a constant mean, we can apply a Bayesian framework to determine ‘change points’ (points likely to precede a change in BER) within the series, which were identified using a posterior probability threshold of 50%.
 
+```{r bayes, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:bayes-cap)", fig.scap = "Bayesian changepoint", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/FigE7_bayes.pdf")
+```
 
 ## Biclustering
 
-In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) [@rose_mosbi_2022]. UnPaSt is an [unconstrained version](https://github.com/ozolotareva/UnPaSt) of the method published in [@zolotareva_identification_2021]. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. 
+In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) [@rose_mosbi_2022]. UnPaSt is an [unconstrained version](https://github.com/ozolotareva/UnPaSt) of the method published in [@zolotareva_identification_2021]. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt. 
 
-Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt. Genes in each bicluster can be found in INSERT LINK.
+(ref:biclusterall-cap) \textbf{Biclusters identified by MoSBi (A) and UnPaSt (B) unsupervised learning algorithms.} Displayed heatmaps show bicluster genes in the rows, with the columns showing separated bicluster and non-cluster samples.
+
+```{r biclusterall, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:biclusterall-cap)", fig.scap = "All biclusters", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/FigE8_allbiclusters.png")
+```
+
+(ref:biclusterjaccard-cap) \textbf{Bicluster similarity scores.} Jaccard coefficients were calculated for genes (A) and samples (B) between each bicluster. 
+
+```{r biclusterjaccard, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:biclusterjaccard-cap)", fig.scap = "Bicluster similarity", out.extra=''}
+knitr::include_graphics("./Figures/FigE9_biclusterjaccard.pdf")
+```
+
+(ref:envisia-cap) \textbf{Upset plots of gene signatures featured in IPF vs non-IPF ILD and HP vs non-HP ILD expanded classifiers.} Genes from the Envisia classifier published in Choi et al. (2017) are included as a comparison. 
+
+```{r envisia, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:envisia-cap)", fig.scap = "Envisia comparison", out.extra=''}
+knitr::include_graphics("./Figures/FigE10_Envisia.pdf")
+```
+
 
 ```{r biclusterGenes, eval = F, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 library(readxl)    
@@ -204,10 +245,6 @@ kable(biclusters,
       caption = "example") %>% 
   kableExtra::kable_styling(full_width = TRUE, font_size = 6, latex_options = c("hold_position", "scale_down", "repeat_header"))
 ```
-
-
-
-
 
 ```{r datasetQC, eval = F, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 # Can't get this to render on one page, lol. 
