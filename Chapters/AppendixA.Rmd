@@ -173,6 +173,202 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
 ```
 
+\pagebreak
+
+```{r echo=F}
+# function to read in multiple sheets into a list
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+    sheets <- readxl::excel_sheets(filename)
+    x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+    if(!tibble) x <- lapply(x, as.data.frame)
+    names(x) <- sheets
+    x
+}
+model_genes <- read_excel_allsheets(here::here('Tables', "Table E4 Gene Lists 231213.xlsx"))
+```
+
+\begin{singlespace}
+
+(ref:ipfgenes-cap) \textbf{Gene weights for IPF vs Control (Lung) classification model.}
+
+```{r ipfgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsControl %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ipfgenesblood-cap) \textbf{Gene weights for IPF vs Control (Blood) classification model.}
+
+```{r ipfgenesblood, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsControlBlood %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfgenesblood-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ipfgenespbmc-cap) \textbf{Gene weights for IPF vs Control (PBMC) classification model.}
+
+```{r ipfgenespbmc, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsControlPBMC %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfgenespbmc-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:hpgenes-cap) \textbf{Gene weights for HP vs Control classification model.}
+
+```{r hpgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$HPvsControl %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:hpgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:sscgenes-cap) \textbf{Gene weights for SSc-ILD vs Control classification model.}
+
+```{r sscgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$`SSc-ILDvsControl` %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:sscgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:nsipgenes-cap) \textbf{Gene weights for NSIP vs Control (Lung) classification model.}
+
+```{r nsipgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$NSIPvsControl %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:nsipgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ipfnongenes-cap) \textbf{Gene weights for IPF vs non-IPF ILD (Lung) classification model.}
+
+```{r ipfnongenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsnonIPF %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfnongenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:hpnongenes-cap) \textbf{Gene weights for HP vs non-HP ILD (Lung) classification model.}
+
+```{r hpnongenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$HPvsnonHP %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:hpnongenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ipfhpgenes-cap) \textbf{Gene weights for IPF vs HP (Lung) classification model.}
+
+```{r ipfhpgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsHP %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfhpgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ipfnsipgenes-cap) \textbf{Gene weights for IPF vs NSIP (Lung) classification model.}
+
+```{r ipfnsipgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$IPFvsNSIP %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:ipfnsipgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:hpnsipgenes-cap) \textbf{Gene weights for HP vs NSIP (Lung) classification model.}
+
+```{r hpnsipgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
+kableExtra::kbl(
+  model_genes$HPvsNSIP %>% mutate(Weight=round(Weight, 4)),
+  longtable = TRUE,
+  format = 'latex',
+  booktabs = TRUE, 
+  #linesep = "",
+  align = "lccc",
+  caption="(ref:hpnsipgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+\end{singlespace}
+
+\pagebreak
+
 \newpage
 
 (ref:nsipmodel-cap) \textbf{NSIP-specific classification model.} PLS projection of samples using the NSIP vs non-NSIP ILD model (A) and the AUC performance on held-out test datasets (B). 
