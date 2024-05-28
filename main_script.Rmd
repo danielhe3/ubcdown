@@ -185,7 +185,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 
 <!-- Modify me! -->
-# Insert Title of Chapter 3 Here
+# Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{3.\arabic{figure}}
@@ -195,7 +195,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{3.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_three, child = 'insert_project_path_here/chapter_manuscript.Rmd', eval = F}
+```{r chapter_three, child = './Chapters/II_BloodPilot.Rmd', eval = T}
 ```
 
 \clearpage
@@ -265,7 +265,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \addcontentsline{toc}{section}{Appendices} 
 \setcounter{secnumdepth}{0} <!-- remove numbering for appendices -->
 
-## Appendix A - Supplementary information for Chapter Two
+## Appendix A - Supplementary information for ILD Systematic Review and Meta-Analysis
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A2.\arabic{figure}}

@@ -1,0 +1,5 @@
+Comparison,sPLSDA,Elastic Net,Random Forest
+IPF vs non-IPF ILD,0.62+0.01,0.70+0.02,0.65+0.02
+IPF vs SSc-ILD,0.74+0.01,0.80+0.02,0.65+0.02
+IPF vs HP,0.62+0.01,0.62+0.02,0.57+0.02
+HP vs SSc-ILD,0.60+0.01,0.68+0.02,0.64+0.02

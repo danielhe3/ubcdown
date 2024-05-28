@@ -496,16 +496,16 @@ A majority of transcriptomics research has been performed in IPF, and many diffe
 \hypertarget{search-strategy}{%
 \subsubsection{Search strategy}\label{search-strategy}}
 
-In accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we performed a systematic review to identify transcriptomics studies focusing on fibrotic ILD samples and we registered the study with PROSPERO (CRD42018085682). Literature searches were performed in Medline and Embase on December 18th 2018, and updated on November 23rd 2023. Our search terms included variations of ``interstitial lung disease'', common ILD subtypes, as well as transcriptomics-related key words (\protect\hyperlink{search-terms}{Appendix A - Search terms}). Given the relative recency of transcriptomics technology, we limited our search to only include results published from the year 2000 and onwards. A similar strategy was adopted for searching the Gene Expression Omnibus (GEO). Screening of titles, abstracts, and full-text studies was performed by two independent reviewers (Daniel He and Sabina A Guler) using the online Covidence tool. We focused our search on common fibrotic ILDs in adults (IPF, HP, idiopathic nonspecific interstitial pneumonia (NSIP), and connective tissue disease-associated ILDs), as it was more likely that they would be investigated for gene expression. We included studies investigating transcriptomics of fibrotic ILDs via lung or blood sampling, and excluded those focused on isolated cell populations (i.e.~fibroblasts). To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\protect\hyperlink{ref-dupuy_critical_2007}{40}{]} (see: Appendix A).
+In accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we performed a systematic review to identify transcriptomics studies focusing on fibrotic ILD samples and we registered the study with PROSPERO (CRD42018085682). Literature searches were performed in Medline and Embase on December 18th 2018, and updated on November 23rd 2023. Our search terms included variations of ``interstitial lung disease'', common ILD subtypes, as well as transcriptomics-related key words (\protect\hyperlink{search-terms}{Appendix A - Search terms}). Given the relative recency of transcriptomics technology, we limited our search to only include results published from the year 2000 and onwards. A similar strategy was adopted for searching the Gene Expression Omnibus (GEO). Screening of titles, abstracts, and full-text studies was performed by two independent reviewers (Daniel He and Sabina A Guler) using the online Covidence tool. We focused our search on common fibrotic ILDs in adults (IPF, HP, idiopathic nonspecific interstitial pneumonia (NSIP), and connective tissue disease-associated ILDs), as it was more likely that they would be investigated for gene expression. We included studies investigating transcriptomics of fibrotic ILDs via lung or blood sampling, and excluded those focused on isolated cell populations (i.e.~fibroblasts). To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\protect\hyperlink{ref-dupuy_critical_2007}{40}{]} (see: \protect\hyperlink{qc}{Appendix A - Search terms}).
 
-\hypertarget{data-extraction}{%
-\subsubsection{Data Extraction}\label{data-extraction}}
+\hypertarget{data-extraction-integration-and-analysis}{%
+\subsubsection{Data extraction, integration, and analysis}\label{data-extraction-integration-and-analysis}}
 
 We extracted participant-level data from included studies using the data repository sites GEO, ArrayExpress and the Sequence Read Archive (SRA). Raw data were processed using recommended protocols from the `limma' package (v3.55.3) for microarrays (manufacturer-based) and RNA-seq (trimmed mean of M values, TMM) if author-provided normalized matrices were unavailable. Dataset quality was determined by examining distribution plots and comparing DEGs obtained from limma with reported values (data not shown), and outliers were removed if they were located more than 3 standard deviations away from the mean on the first and second principal components (Figure \ref{fig:outlierPCA}). In order to explore sex-specific ILD signatures, we examined expression of 1 female-specific gene (\textit{XIST}) located on the X chromosome and 4 male-specific genes (\textit{RPS4Y1}, \textit{EIF1AY}, \textit{DDX3Y}, \textit{KDM5D}) located on the Y chromosome to obtain the predicted sex for each sample. The sex provided in the metadata from the original publication did not match predicted sex in 31 of 1,441 samples (2.15\%); these samples were omitted from sex-specific analyses.
 
 To synthesize transcriptomics data, we used an IPD approach to our meta-analysis using the Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0), which is an integrative classification method based on partial least squares regression (PLS). A more detailed explanation of the methodology can be found in Rohart et al. {[}\protect\hyperlink{ref-rohart_mixomics_2017}{42}{]}. We benchmarked the MINT data integration by comparing it with differentially expressed gene (DEG) list integration through robust rank aggregation (RRA) {[}\protect\hyperlink{ref-kolde_robust_2012}{43}{]}, which also allowed for the inclusion of studies where raw data was unavailable (i.e.~older studies that may have used first-generation microarrays with limited gene coverage).
 
-We used 24 of 32 datasets (from 31 studies) as a training set, and integrated them to develop classification models that were tuned via leave-one-group-out cross validation to have the lowest balanced error rate (BER; average error rate in each class) (Figure \ref{fig:tuningMINT}), and validated on the remaining eight held-out test datasets by examining area under receiver operating curve (AUC) and BER (Table \ref{tab:modelPerf}). Eight test sets were selected to cover 15-20\% of the total number of samples to create an 80/20 training/test split, in addition to balancing the number of microarray and RNA-seq studies, and to covering all ILD subtypes of interest (IPF, HP, NSIP, SSc-ILD), Lung Tissue Research Consortium (LTRC) and non-LTRC studies, American and non-American cohorts, and recently published datasets {[}\protect\hyperlink{ref-jaffar_matrix_2022}{51}{]}. All data processing and analysis was performed in R (v4.2.3). Additional details on our methodology are provided in Appendix A.
+We used 24 of 32 datasets (from 31 studies) as a training set, and integrated them to develop classification models that were tuned via leave-one-group-out cross validation to have the lowest balanced error rate (BER; average error rate in each class) (Figure \ref{fig:tuningMINT}), and validated on the remaining eight held-out test datasets by examining area under receiver operating curve (AUC) and BER (Table \ref{tab:modelPerf}). Eight test sets were selected to cover 15-20\% of the total number of samples to create an 80/20 training/test split, in addition to balancing the number of microarray and RNA-seq studies, and to covering all ILD subtypes of interest (IPF, HP, NSIP, SSc-ILD), Lung Tissue Research Consortium (LTRC) and non-LTRC studies, American and non-American cohorts, and recently published datasets {[}\protect\hyperlink{ref-jaffar_matrix_2022}{51}{]}. All data processing and analysis was performed in R (v4.2.3). Additional details on our methodology are provided in \protect\hyperlink{data}{Appendix A - Data integration and analysis}.
 
 \hypertarget{biclustering}{%
 \subsubsection{Biclustering}\label{biclustering}}
@@ -526,7 +526,7 @@ From our initial search of medical literature databases (3,844 from MEDLINE and 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.9\linewidth,]{./Figures/Figure1_Prisma} 
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/SysReview/Figure1_Prisma} 
 
 }
 
@@ -642,7 +642,7 @@ We applied similar strategies for the discrimination between controls, HP, SSc-I
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure3_MINT} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/Figure3_MINT} 
 
 }
 
@@ -652,13 +652,13 @@ We applied similar strategies for the discrimination between controls, HP, SSc-I
 \hypertarget{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}{%
 \subsubsection{Fibrotic ILD subtypes are differentiated at the transcriptional level}\label{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}}
 
-To examine identifying features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs other ILD model trained on seven datasets had good performance on the six test datasets (AUC=0.71 {[}0.63-0.79{]}), as did the 132-gene HP vs other ILD model trained on three datasets on the two test datasets (AUC=0.76 {[}0.63-0.89{]}) (Figure \ref{fig:ILDvILD}, Table \ref{tab:ipfnongenes}, Table \ref{tab:hpnongenes}). The NSIP vs other ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 {[}0.49-0.72{]}) (Figure \ref{fig:nsipmodel}). For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples (AUC=0.76 {[}0.64-0.87{]} on three test datasets), as well as a 67-gene signature differentiating IPF from NSIP samples (AUC=0.76 {[}0.64-0.88{]} on four test datasets) (Figure \ref{fig:ildvsildspecific}A-D, Table \ref{tab:ipfhpgenes}, Table \ref{tab:ipfnsipgenes}). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 {[}0.51-0.96{]}) (Figure \ref{fig:ildvsildspecific}E-F, Table \ref{tab:hpnsipgenes}).
+To examine unique features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs ILD model trained on seven datasets had good performance on six test datasets (AUC=0.71 {[}0.63-0.79{]}), as did the 132-gene HP vs ILD model trained on three datasets on two test datasets (AUC=0.76 {[}0.63-0.89{]}) (Figure \ref{fig:ILDvILD}, Table \ref{tab:ipfnongenes}, Table \ref{tab:hpnongenes}). The NSIP vs ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 {[}0.49-0.72{]}) (Figure \ref{fig:nsipmodel}). For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples (AUC=0.76 {[}0.64-0.87{]} on three test datasets), as well as a 67-gene signature differentiating IPF from NSIP samples (AUC=0.76 {[}0.64-0.88{]} on four test datasets) (Figure \ref{fig:ildvsildspecific}A-D, Table \ref{tab:ipfhpgenes}, Table \ref{tab:ipfnsipgenes}). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 {[}0.51-0.96{]}) (Figure \ref{fig:ildvsildspecific}E-F, Table \ref{tab:hpnsipgenes}).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.95\linewidth,]{./Figures/Figure4_ILDvsILD} 
+{\centering \includegraphics[width=0.95\linewidth,]{./Figures/SysReview/Figure4_ILDvsILD} 
 
 }
 
@@ -668,31 +668,31 @@ To examine identifying features of fibrotic ILD subtypes at the transcriptional 
 \hypertarget{ild-subtypes-have-both-common-and-unique-disease-pathways}{%
 \subsubsection{ILD subtypes have both common and unique disease pathways}\label{ild-subtypes-have-both-common-and-unique-disease-pathways}}
 
-As the ILD classification models had few genes for pathway analysis, we generated ``expanded'' classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure \ref{fig:bayes}, Table E8). Using the expanded gene signatures for Gene Ontology (GO) overrepresentation analysis of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \textit{COL17A1}, and \textit{SCG5} as shared upregulated genes across all subtypes when compared against controls (Figure \ref{fig:ILDpathways}A, Figure \ref{fig:modelUpset}C, Table E4). With reference to the MSigDB C8 collection, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \ref{fig:ILDpathways}C, Table E9). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure \ref{fig:ILDpathways}B, Figure \ref{fig:modelUpset}D). No `IPF vs Control' lung gene signatures were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure \ref{fig:modelUpset}B).
+As the ILD classification models had few genes for pathway analysis, we generated ``expanded'' classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure \ref{fig:bayes}, Tables \ref{tab:uppathways}-\ref{tab:downpathways}). Using the expanded gene signatures of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \textit{COL17A1}, and \textit{SCG5} as shared upregulated genes across all subtypes when compared against controls (Figure \ref{fig:ILDpathways}A, Figure \ref{fig:modelUpset}C). With reference to the MSigDB C8 collection, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \ref{fig:ILDpathways}C, Table \ref{tab:upcell}). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure \ref{fig:ILDpathways}B, Figure \ref{fig:modelUpset}D, Table \ref{tab:downcell}). No `IPF vs Control' lung gene signatures were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure \ref{fig:modelUpset}B).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure5_pathways} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/Figure5_pathways} 
 
 }
 
 \caption[ILD pathways]{\textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).}\label{fig:ILDpathways}
 \end{figure}
 
-We identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells {[}\protect\hyperlink{ref-mohamed_respiratory_2014}{89}{]}), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF compared to other ILD subtypes(Table E8). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure \ref{fig:ILDvILD}E), and these genes were also included in the models differentiating HP from IPF and NSIP samples. SSc-ILD samples were uniquely characterized by expression of \textit{CDH3}, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
+We identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells {[}\protect\hyperlink{ref-mohamed_respiratory_2014}{89}{]}), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF compared to other ILD subtypes (Table \ref{tab:ipfvsildpathways}). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure \ref{fig:ILDvILD}E, Table \ref{tab:hpvsildpathways}), and these genes were also included in the models differentiating HP from IPF and NSIP samples. SSc-ILD samples were uniquely characterized by expression of \textit{CDH3}, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
 
 \hypertarget{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}{%
 \subsubsection{Unsupervised analysis identifies putative molecular endotypes of ILD}\label{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}}
 
-We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. We used a series of biclustering algorithms on our batch-corrected concatenated lung gene expression data to identify 16 biclusters showing enrichment in specific lung disease groups (Figure \ref{fig:biclusterall}, Figure \ref{fig:biclusterjaccard}). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table E10, Figure \ref{fig:biclust}A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure \ref{fig:biclust}C, Table E11), which was not due to age (-1.18 years, \textit{p}=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10\textsuperscript{-3}).
+We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. We used a series of biclustering algorithms on our batch-corrected concatenated lung gene expression data to identify 16 biclusters showing enrichment in specific lung disease groups (Figure \ref{fig:biclusterall}, Figure \ref{fig:biclusterjaccard}, Table \ref{tab:biclusterGenes}). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table \ref{tab:biclusterPathways}, Figure \ref{fig:biclust}A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure \ref{fig:biclust}C, Table \ref{tab:biclusterIPF}), which was not due to age (-1.18 years, \textit{p}=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10\textsuperscript{-3}) (Table \ref{tab:biclusterILD}).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure6_biclusters} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/Figure6_biclusters} 
 
 }
 
@@ -717,8 +717,8 @@ In summary, by using both supervised and unsupervised approaches, our meta-analy
 
 \clearpage
 
-\hypertarget{insert-title-of-chapter-3-here}{%
-\section{Insert Title of Chapter 3 Here}\label{insert-title-of-chapter-3-here}}
+\hypertarget{diagnostic-potential-of-genomic-blood-biomarkers-of-pulmonary-fibrosis-a-pilot-study}{%
+\section{Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study}\label{diagnostic-potential-of-genomic-blood-biomarkers-of-pulmonary-fibrosis-a-pilot-study}}
 
 \renewcommand{\thefigure}{3.\arabic{figure}}
 \setcounter{figure}{0}
@@ -726,6 +726,160 @@ In summary, by using both supervised and unsupervised approaches, our meta-analy
 \setcounter{table}{0}
 \renewcommand{\theequation}{3.\arabic{equation}}
 \setcounter{equation}{0}
+
+Given the scarcity of disease biomarkers in ILD, investigations into molecular biomarkers of ILD (particularly circulating biomarkers) are an ongoing area of interest {[}\protect\hyperlink{ref-bowman_proteomic_2022}{99}{]}. A 52-gene signature derived from PBMC transcriptomic profiling has been shown to be predictive of transplant-free survival in patients with IPF {[}\protect\hyperlink{ref-herazo-maya_validating_2017}{100}{]}, and transcriptomic profiling has also identified genes associated with decline in lung function in the ILD subtypes IPF and HP {[}\protect\hyperlink{ref-fernandez_perez_prognostic_2022}{102}{]}.
+
+While it is evident that the peripheral transcriptome is associated with prognosis in ILD, no investigations have been performed regarding its diagnostic potential. The objective of this study was to evaluate the ability of the whole blood transcriptome in discriminating between ILD subtypes. In this pilot study, we profiled whole blood RNA obtained from patients with ILD (n=59) using a previously published NanoString assay designed to discriminate between the early- and late-phase asthmatic response {[}\protect\hyperlink{ref-singh_novel_2018}{103}{]}. Given that fibrosis is a TH2-driven process like asthma {[}\protect\hyperlink{ref-spagnolo_role_2022}{104}{]}, we reasoned that the transcripts profiled in the assay might also differentiate between other TH2-like disease subtypes.
+
+\hypertarget{methods-1}{%
+\subsection{Methods}\label{methods-1}}
+
+\hypertarget{study-population-and-sample-processing}{%
+\subsubsection{Study population and sample processing}\label{study-population-and-sample-processing}}
+
+Patients were diagnosed with fibrotic ILD (IPF, n=22; HP, n=14; SSc-ILD, n=20; IPAF, n=3) in accordance with diagnostic guidelines and prospectively recruited with written informed consent (ethics protocol H09-00748) between 2012 and 2018 at St.~Paul's Hospital (Vancouver, BC, Canada). At time of sampling, patients were either undergoing anti-fibrotic (pirfenidone, nintedanib), anti-inflammatory (prednisone, mycophenolate, N-acetylcysteine), or no pharmacotherapy. Whole blood samples were collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada) and extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland). RNA quality was confirmed by the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) via RNA integrity numbers obtained from Bioanalyzer analysis. Blood transcript expression was profiled using 100 ng of purified RNA with a custom NanoString nCounter Elements assay (NanoString Technologies, Seattle, WA, USA) that measured 166 transcripts {[}\protect\hyperlink{ref-singh_novel_2018}{103}{]}. Samples were randomized across six NanoString cartridges (12 samples per cartridge), with remaining assay slots used for sample replicates to assess data reproducibility.
+
+\hypertarget{in-situ-hybridization}{%
+\subsubsection{In situ hybridization}\label{in-situ-hybridization}}
+
+Custom RNAscope™ probes for KLRF1 (276-375 of NM\_016523.1), LTK (2419-2518 of NM\_001135685.1), and VCAN (transcript variant 3; 1356-1455 of uc003kij.3) were developed by Advanced Cell Diagnostics (ACD, Newark, California). Tissue microarray (TMA) sections (4\(\mu\)m-thick) were obtained from a formalin-fixed and paraffin-embedded TMA block containing cores from donor lungs of patients with IPF, HP, and SSc-ILD collected at McMaster University. In situ hybridization (ISH) was performed using a Leica BOND RX autostainer with associated Leica reagent kits (Concord, Ontario, Canada) on TMA sections. Slides were scanned at 40X magnification with an Olympus VS120-L100 Virtual Slide System for image capture and a Leica Aperio ScanScope AT2 for quantification. Image analysis was performed using QuPath (v0.4.3), and probe quantification was determined using H-scores as indicated by manufacturer protocols.
+
+\hypertarget{data-analysis}{%
+\subsubsection{Data analysis}\label{data-analysis}}
+
+NanoString data underwent quality assessment by examining field of view (FOV) ratio (number of FOV images successfully captured), binding density (image saturation), linearity of positive controls, and limit of detection via negative controls. Data were filtered for lowly abundant features, then normalized using normalization factors derived from the geometric mean of 10 housekeeping transcripts. Differential expression analysis of transcripts was performed using the linear models for microarray (limma) R package (v3.54.2), while biomarker panels were developed using sparse partial least squares discriminant analysis (sPLSDA), elastic net, and random forest algorithms from the `mixOmics' (v6.22.0) and `tidymodels' (v1.0.0) R packages. Image analysis was performed using QuPath (v0.4.3) by automatically identifying individual cells and setting probe-specific thresholds based on signal strength. Cells without a visible nucleus were excluded from analysis. H-scores were determined by grouping cells into 5 bins based on the numbers of dots per cell (0, 1-3, 4-9, 10-15, \textgreater15) and multiplying the total percentage of cells in each bin by 0 to 4. To test for statistical significance of H-scores, a linear mixed-effects model (`lme4' v1.1-32) was fitted with the formula H-Score \textasciitilde{} Diagnosis + (1\textbar Patient) and pairwise comparisons between diagnoses to determine statistical significance with Tukey's post-hoc adjustment were performed using the `emmeans' (v1.8.5) R package. Fisher's exact test was used to test for differences in demographic count variables between diagnoses, while the F-test was used to test for differences in demographic continuous variables between diagnoses. All analysis was performed in the R (version 4.2.3) statistical computing environment.
+
+\hypertarget{results-1}{%
+\subsection{Results}\label{results-1}}
+
+We profiled the expression of 166 RNA transcripts in a cohort of patients with IPF, systemic sclerosis-associated ILD (SSc-ILD), HP, or interstitial pneumonia with autoimmune features (IPAF) (Table \ref{tab:bloodpx}). No significant differences were identified between subtypes for race, percent predicted forced vital capacity (FVC\%) or diffusing capacity of the lung for carbon monoxide (DLCO\%), smoking status, or treatment status, but patients with SSc-ILD and IPAF were younger at time of sampling and patients with IPF were predominantly male which is in line with previously reported cohorts {[}\protect\hyperlink{ref-zaman_differences_2020}{105}{]}.
+
+\captionsetup{width=6.5in}
+
+
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:bloodpx}\textbf{Summary table of clinical demographics of patients probed for whole blood RNA expression.}}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\centering\arraybackslash}p{0.9in}>{\centering\arraybackslash}p{1.0in}>{\centering\arraybackslash}p{0.9in}>{\centering\arraybackslash}p{0.9in}>{\raggedright\arraybackslash}p{0.75in}}
+\toprule
+ & IPF (n=22) & SSc-ILD (n=20) & HP (n=14) & IPAF (n=3) & \textit{p}-value\\
+\midrule
+Male sex, n (\%) & 17 (77) & 2 (10) & 5 (36) & 1 (33) & \textit{p} < 0.0001\\
+Age, mean ± SD & 69.91 ± 7.31 & 60.85 ± 9.12 & 66.21 ± 7.26 & 56.00 ± 7.81 & \textit{p} = 0.0014\\
+FVC\% mean ± SD & 74.18 ± 15.29 & 83.10 ± 18.07 & 70.21 ± 16.30 & 72.67 ± 20.50 & \textit{p} = 0.1435\\
+DLCO\%, mean ± SD & 42.41 ± 11.79 & 54.70 ± 19.46 & 45.00 ± 13.21 & 52.00 ± 5.20 & \textit{p} = 0.0624\\
+Ever smoked, n (\%) & 16 (80) & 12 (60) & 7 (50) & 2 (67) & \textit{p} = 0.2780\\
+\midrule
+Race, n (\%) &  &  &  &  & \textit{p} = 0.6358\\
+Asian & 2 (9) & 4 (20) & 1 (7) & 1 (33) & \\
+American Indian & 1 (5) & 0 (0) & 0 (0) & 0 (0) & \\
+Pacific Islander & 1 (5) & 0 (0) & 1 (7) & 0 (0) & \\
+White & 18 (82) & 16 (80) & 12 (86) & 2 (67) & \\
+\midrule
+Treatment, n (\%) &  &  &  &  & \textit{p} = 0.6981\\
+Anti-Fibrotic & 9 (41) & 0 (0) & 0 (0) & 0 (0) & \\
+Anti-Inflammatory & 0 (0) & 11 (55) & 9 (64) & 2 (67) & \\
+Anti-Fibrotic and Anti-Inflammatory & 1 (5) & 0 (0) & 0 (0) & 0 (0) & \\
+None & 12 (55) & 9 (45) & 5 (36) & 1 (33) & \\
+\bottomrule
+\end{tabu}
+\end{table}
+
+To identify variables that might affect RNA expression, we performed a principal component (PC) analysis and correlated the PCs with demographic variables (Supplemental Figure 1). After adjusting for race and treatment status, we identified 1 differentially expressed transcript at an FDR of 0.05 when comparing IPF to SSc-ILD (\textit{KLRF1}, FDR = 0.03) (Table \ref{tab:pilotdiffexp}, Figure \ref{fig:pilotexpr}D). While no transcripts were significantly associated with FVC\%, we identified 13 transcripts that were significantly associated with DLCO\% (Table S1). Next, we examined the utility of RNA profiling in developing biomarker panels to differentiate between ILD subtypes through the use of three learning algorithms (sparse partial least squares discriminant analysis (sPLSDA), elastic net, and random forest). The best-performing models using 5-fold cross-validation repeated ten times were IPF vs SSc-ILD (sPLSDA) and IPF vs SSc-ILD (elastic net), which yielded respective accuracies of 0.74 ± 0.01 and 0.80 ± 0.02 (Table \ref{tab:biomarkermodel}).
+
+\newpage
+\begin{singlespace}
+
+
+
+
+
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:pilotdiffexp}\textbf{List of transcripts analyzed for differential expression between ILD subtypes.} }
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}}
+\toprule
+Transcript & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\textbf{IPF vs non-IPF} &  &  & \\
+VCAN\_isoform & 0.38 & 0.01 & 0.93\\
+KLRF1 & 0.27 & 0.02 & 0.93\\
+LTK & -0.22 & 0.02 & 0.93\\
+CFD & 0.52 & 0.02 & 0.93\\
+C3AR1 & 0.20 & 0.07 & 1.00\\
+\textbf{IPF vs SSc-ILD} &  &  & \\
+KLRF1 & 0.46 & 0.00 & 0.03\\
+GNLY & 0.76 & 0.01 & 0.56\\
+CMC1 & 0.28 & 0.02 & 0.85\\
+LMBRD1 & -0.19 & 0.04 & 0.99\\
+LTK & -0.22 & 0.04 & 0.99\\
+\textbf{IPF vs HP} &  &  & \\
+CFD & 0.73 & 0.01 & 0.99\\
+LTK & -0.25 & 0.04 & 0.99\\
+STAT6 & 0.18 & 0.06 & 0.99\\
+VCAN\_isoform & 0.36 & 0.06 & 0.99\\
+PLXNC1\_isoform & 0.29 & 0.07 & 0.99\\
+\textbf{HP vs SSc-ILD} &  &  & \\
+KLRF1 & 0.45 & 0.00 & 0.16\\
+RORC & -0.50 & 0.00 & 0.16\\
+GNLY & 0.79 & 0.01 & 0.48\\
+FCGR3A & -0.52 & 0.01 & 0.48\\
+CMC1 & 0.29 & 0.03 & 0.81\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\end{singlespace}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:biomarkermodel}\textbf{Classification model performance on cross-validation for selected learning algorithms.} Data are reported as mean accuracy ± standard error.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}}
+\toprule
+Comparison & sPLSDA & Elastic Net & Random Forest\\
+\midrule
+IPF vs non-IPF ILD & 0.62±0.01 & 0.70±0.02 & 0.65±0.02\\
+IPF vs SSc-ILD & 0.74±0.01 & 0.80±0.02 & 0.65±0.02\\
+IPF vs HP & 0.62±0.01 & 0.62±0.02 & 0.57±0.02\\
+HP vs SSc-ILD & 0.60±0.01 & 0.68±0.02 & 0.64±0.02\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+To investigate the lung expression of the three most highly weighted genes (\textit{KLRF1}, \textit{LTK}, \textit{VCAN}) identified by our biomarker panels when comparing IPF vs non-IPF ILD (Table S3), we used ISH on TMA sections consisting of twelve cores from five patients with IPF, ten cores from three patients with HP, and four cores from two patients with SSc-ILD (Figure \ref{fig:pilotexpr}A-C), all of which showed no significant between-group differences in demographic or clinical variables (Table 2). Transcript abundance was determined semi-quantitatively by calculating H-scores for each marker per core, which is a weighted total of the percentage of cells expressing the probe at varying levels. Using a linear mixed-effects analysis, the H-score of \textit{KLRF1} was higher in SSc-ILD compared to IPF (p=0.02) and HP (p=0.01), while \textit{LTK} was lower in IPF compared to SSc-ILD (p=0.03) (Figure 1).
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodPilot/ILD_biomarkers_combined_thesis_v1} 
+
+}
+
+\caption[Blood and Lung expression of LTK, KLRF1, VCAN]{\textbf{Expression of \textit{KLRF1}, \textit{LTK}, \textit{VCAN} in whole blood (log2 RNA expression) or lung tissue microarray sections (H-Score) containing samples from patients with ILD subtypes.} Tissue microarray sections of lung samples from patients with (A) idiopathic pulmonary fibrosis (IPF), (B) hypersensitivity pneumonitis (HP), and (C) systemic sclerosis-associated interstitial lung disease (SSc-ILD).(D) Whole blood (log2 RNA expression) and lung (H-Score) expression of \textit{KLRF1}, \textit{LTK}, and \textit{VCAN}. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.05 (***). Tukey's post-hoc adjustment was used to determine statistical significance of H-scores (* denotes \textit{p}\textless0.05).}\label{fig:pilotexpr}
+\end{figure}
+
+\hypertarget{discussion-1}{%
+\subsection{Discussion}\label{discussion-1}}
+
+The 2018 ATS/ERS/JRS/ALAT diagnostic guidelines for IPF made a recommendation to investigate novel molecular biomarkers that could be integrated into clinical diagnosis {[}\protect\hyperlink{ref-raghu_diagnosis_2018}{1}{]}; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers {[}\protect\hyperlink{ref-raghu_idiopathic_2022}{2}{]}. Although previous studies have investigated the peripheral transcriptome in relation to prognosis {[}\protect\hyperlink{ref-fernandez_perez_prognostic_2022}{102}{]}, no study has looked at its diagnostic potential. In this pilot study, we demonstrate that the peripheral blood RNA can differentiate between ILD subtypes, in particular IPF and SSc-ILD, through differential expression and learning algorithms utilizing gene expression data obtained from a custom NanoString assay. The blood gene expression data show association with DLCO\% predicted but not FVC\% predicted, which was previously noted when examining differential expression of the peripheral transcriptome in mild and severe IPF {[}8{]}. Furthermore, we identify KLRF1 expression as a significant in the differentiation of IPF and SSc-ILD in both whole blood and lung, and down-regulation of LTK as being associated with IPF.
+
+Killer cell lectin like receptor F1 (KLRF1, also known as NKp80) is expressed in T cells, monocytes, and CD56bright natural killer (NK cells), and is a marker of NK cell maturity {[}\protect\hyperlink{ref-mukherjee_klrf1_2023}{108}{]}, inducing cytotoxic activity and calcium mobilization {[}\protect\hyperlink{ref-vitale_identification_2001}{109}{]}. The dysfunction of NK cells in systemic sclerosis and autoimmunity has been well-documented {[}\protect\hyperlink{ref-liu_nk_2021}{112}{]}, and differences in their abundance have been observed between ILD subtypes {[}\protect\hyperlink{ref-bergantini_prognostic_2021}{114}{]}. We found that KLRF1 expression was associated with lower DLCO\%, and its expression was lower in the peripheral blood of patients with SSc-ILD compared to IPF and HP yet the opposite effect was observed when probing lung expression. Previous reports have identified a reduction in abundance and function of NK cells in IPF lungs concurrent with an increase in abundance in blood compared to healthy controls {[}\protect\hyperlink{ref-cruz_reduced_2021}{115}{]}. Single-cell RNA-sequencing data available via the IPF Cell Atlas {[}\protect\hyperlink{ref-neumark_idiopathic_2020}{116}{]} suggests higher KLRF1 expression in SSc-ILD T/NK subsets compared to other ILDs. Given the disparity between single-cell and bulk RNA data, further investigations are required to delineate the mechanisms surrounding NK cell recruitment to the ILD lung and its role in ILD pathogenesis.
+
+LTK and VCAN were differentially expressed at a nominal p-value of 0.05 between IPF and non-IPF ILDs (but not at FDR\textless0.05), and were two highly weighted coefficients in our elastic net and sPLSDA biomarker panels. LTK is highly expressed in plasmacytoid dendritic cells (pDCs) (Human Protein Atlas, IPF Cell Atlas), and decreased circulating pDCs have been reported in IPF patients {[}\protect\hyperlink{ref-galati_circulating_2020}{117}{]}, which is consistent with the decreased LTK expression observed in this study in blood and lung. VCAN encodes for versican, an ECM proteoglycan that is localized to fibroblastic foci in the lung, myofibroblasts, and monocytes {[}\protect\hyperlink{ref-bensadoun_proteoglycan_1996}{118}{]}. We were unable to identify a statistically significant increase in VCAN expression in IPF compared to HP or SSc-ILD lung and blood samples; however, given its detectable expression in both lung and peripheral blood, and prior studies showing circulating levels of versican degradation products are associated with increased mortality in idiopathic ILDs {[}\protect\hyperlink{ref-sand_serological_2018}{119}{]}, further studies into its gene expression as a prognostic biomarker may be warranted.
+
+In this pilot study, we report the first between-subtype comparison of the peripheral ILD transcriptome using a discrete set of genes, which validates performing more extensive genome-wide analysis of peripheral ILD subtype-specific profiles and correlations of identified biomarkers in lung tissue. In particular, molecules detected in the blood that are associated with immunity and fibrosis are detectable in the lung, thereby suggesting a test based on peripheral transcriptomics is feasible for diagnostic biomarkers with biological relevance, similar to prognostic markers in Herazo-Maya et al. {[}@ \protect\hyperlink{ref-herazo-maya_validating_2017}{100}{]}. Given the heterogeneity within ILD subtypes, future analysis of the peripheral transcriptome should also consider radiological pattern, progressive phenotype, and other related clinical factors {[}\protect\hyperlink{ref-ryerson_lumpers_2019}{120}{]}.
 
 \clearpage
 
@@ -1159,36 +1313,132 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{96. }%
 \CSLRightInline{Travaglini KJ, Nabhan AN, Penland L, Sinha R, Gillich A, Sit RV, et al. A molecular cell atlas of the human lung from single-cell {RNA} sequencing. Nature {[}Internet{]}. 2020 Nov {[}cited 2023 Mar 27{]};587(7835):619--25. Available from: \url{https://www.nature.com/articles/s41586-020-2922-4}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhao_metabolic_2017}{}}%
+\leavevmode\vadjust pre{\hypertarget{ref-clynick_biomarker_2022}{}}%
 \CSLLeftMargin{97. }%
+\CSLRightInline{Clynick B, Corte TJ, Jo HE, Stewart I, Glaspole IN, Grainge C, et al. \href{https://doi.org/10.1183/13993003.01181-2021}{Biomarker signatures for progressive idiopathic pulmonary fibrosis}. The European Respiratory Journal. 2022 Mar;59(3):2101181. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-axelsson_proteomic_2022}{}}%
+\CSLLeftMargin{98. }%
+\CSLRightInline{Axelsson GT, Gudmundsson G, Pratte KA, Aspelund T, Putman RK, Sanders JL, et al. \href{https://doi.org/10.1164/rccm.202110-2296OC}{The {Proteomic} {Profile} of {Interstitial} {Lung} {Abnormalities}}. American Journal of Respiratory and Critical Care Medicine. 2022 Aug;206(3):337--46. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-bowman_proteomic_2022}{}}%
+\CSLLeftMargin{99. }%
+\CSLRightInline{Bowman WS, Newton CA, Linderholm AL, Neely ML, Pugashetti JV, Kaul B, et al. \href{https://doi.org/10.1016/S2213-2600(21)00503-8}{Proteomic biomarkers of progressive fibrosing interstitial lung disease: A multicentre cohort analysis}. The Lancet Respiratory Medicine. 2022 Jun;10(6):593--602. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-herazo-maya_validating_2017}{}}%
+\CSLLeftMargin{100. }%
+\CSLRightInline{Herazo-Maya JD, Sun J, Molyneaux PL, Li Q, Villalba JA, Tzouvelekis A, et al. Validating a 52-gene risk profile for outcome prediction in {Idiopathic} {Pulmonary} {Fibrosis}: An international multicentre cohort study. The Lancet Respiratory medicine {[}Internet{]}. 2017 Nov {[}cited 2023 Dec 5{]};5(11):857--68. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5677538/}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-huang_blood_2021}{}}%
+\CSLLeftMargin{101. }%
+\CSLRightInline{Huang Y, Oldham JM, Ma SF, Unterman A, Liao SY, Barros AJ, et al. \href{https://doi.org/10.1164/rccm.202008-3093OC}{Blood {Transcriptomics} {Predicts} {Progression} of {Pulmonary} {Fibrosis} and {Associated} {Natural} {Killer} {Cells}}. American Journal of Respiratory and Critical Care Medicine. 2021 Jul;204(2):197--208. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-fernandez_perez_prognostic_2022}{}}%
+\CSLLeftMargin{102. }%
+\CSLRightInline{Fernández Pérez ER, Harmacek LD, O'Connor BP, Danhorn T, Vestal B, Maier LA, et al. \href{https://doi.org/10.1136/thoraxjnl-2020-214790}{Prognostic accuracy of a peripheral blood transcriptome signature in chronic hypersensitivity pneumonitis}. Thorax. 2022 Jan;77(1):86--90. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-singh_novel_2018}{}}%
+\CSLLeftMargin{103. }%
+\CSLRightInline{Singh A, Shannon CP, Kim YW, Yang CX, Balshaw R, Cohen Freue GV, et al. Novel {Blood}-based {Transcriptional} {Biomarker} {Panels} {Predict} the {Late}-{Phase} {Asthmatic} {Response}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2018 Feb {[}cited 2024 Jan 18{]};197(4):450--62. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.201701-0110OC}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-spagnolo_role_2022}{}}%
+\CSLLeftMargin{104. }%
+\CSLRightInline{Spagnolo P, Tonelli R, Samarelli AV, Castelli G, Cocconcelli E, Petrarulo S, et al. \href{https://doi.org/10.1080/14728222.2022.2114897}{The role of immune response in the pathogenesis of idiopathic pulmonary fibrosis: Far beyond the {Th1}/{Th2} imbalance}. Expert Opinion on Therapeutic Targets. 2022 Jul;26(7):617--31. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-zaman_differences_2020}{}}%
+\CSLLeftMargin{105. }%
+\CSLRightInline{Zaman T, Moua T, Vittinghoff E, Ryu JH, Collard HR, Lee JS. \href{https://doi.org/10.1016/j.chest.2020.02.009}{Differences in {Clinical} {Characteristics} and {Outcomes} {Between} {Men} and {Women} {With} {Idiopathic} {Pulmonary} {Fibrosis}: {A} {Multicenter} {Retrospective} {Cohort} {Study}}. Chest. 2020 Jul;158(1):245--51. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-roda-navarro_human_2000}{}}%
+\CSLLeftMargin{106. }%
+\CSLRightInline{Roda-Navarro P, Arce I, Renedo M, Montgomery K, Kucherlapati R, Fernández-Ruiz E. \href{https://doi.org/10.1002/1521-4141(200002)30:2\%3C568::AID-IMMU568\%3E3.0.CO;2-Y}{Human {KLRF1}, a novel member of the killer cell lectin-like receptor gene family: Molecular characterization, genomic structure, physical mapping to the {NK} gene complex and expression analysis}. European Journal of Immunology. 2000 Feb;30(2):568--76. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-freud_nkp80_2016}{}}%
+\CSLLeftMargin{107. }%
+\CSLRightInline{Freud AG, Keller KA, Scoville SD, Mundy-Bosse BL, Cheng S, Youssef Y, et al. \href{https://doi.org/10.1016/j.celrep.2016.05.095}{{NKp80} {Defines} a {Critical} {Step} during {Human} {Natural} {Killer} {Cell} {Development}}. Cell Reports. 2016 Jul;16(2):379--91. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-mukherjee_klrf1_2023}{}}%
+\CSLLeftMargin{108. }%
+\CSLRightInline{Mukherjee N, Ji N, Tan X, Chen CL, Noel ODV, Rodriguez-Padron M, et al. {KLRF1}, a novel marker of {CD56bright} {NK} cells, predicts improved survival for patients with locally advanced bladder cancer. Cancer Medicine {[}Internet{]}. 2023 {[}cited 2024 Jan 18{]};12(7):8970--80. Available from: \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/cam4.5579}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-vitale_identification_2001}{}}%
+\CSLLeftMargin{109. }%
+\CSLRightInline{Vitale M, Falco M, Castriconi R, Parolini S, Zambello R, Semenzato G, et al. \href{https://doi.org/10.1002/1521-4141(200101)31:1\%3C233::AID-IMMU233\%3E3.0.CO;2-4}{Identification of {NKp80}, a novel triggering molecule expressed by human {NK} cells}. European Journal of Immunology. 2001 Jan;31(1):233--42. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-horikawa_abnormal_2005}{}}%
+\CSLLeftMargin{110. }%
+\CSLRightInline{Horikawa M, Hasegawa M, Komura K, Hayakawa I, Yanaba K, Matsushita T, et al. \href{https://doi.org/10.1111/j.0022-202X.2005.23767.x}{Abnormal natural killer cell function in systemic sclerosis: Altered cytokine production and defective killing activity}. The Journal of Investigative Dermatology. 2005 Oct;125(4):731--7. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-benyamine_natural_2018}{}}%
+\CSLLeftMargin{111. }%
+\CSLRightInline{Benyamine A, Magalon J, Sabatier F, Lyonnet L, Robert S, Dumoulin C, et al. Natural {Killer} {Cells} {Exhibit} a {Peculiar} {Phenotypic} {Profile} in {Systemic} {Sclerosis} and {Are} {Potent} {Inducers} of {Endothelial} {Microparticles} {Release}. Frontiers in Immunology {[}Internet{]}. 2018 Jul {[}cited 2024 Jan 18{]};9:1665. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6058015/}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-liu_nk_2021}{}}%
+\CSLLeftMargin{112. }%
+\CSLRightInline{Liu M, Liang S, Zhang C. {NK} {Cells} in {Autoimmune} {Diseases}: {Protective} or {Pathogenic}? Frontiers in Immunology {[}Internet{]}. 2021 {[}cited 2024 Jan 18{]};12. Available from: \url{https://www.frontiersin.org/articles/10.3389/fimmu.2021.624687}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-esposito_natural_2005}{}}%
+\CSLLeftMargin{113. }%
+\CSLRightInline{Esposito I, Perna F, Ponticiello A, Perrella M, Gilli M, Sanduzzi A. \href{https://doi.org/10.1177/039463200501800314}{Natural killer cells in {Bal} and peripheral blood of patients with idiopathic pulmonary fibrosis ({IPF})}. International Journal of Immunopathology and Pharmacology. 2005;18(3):541--5. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-bergantini_prognostic_2021}{}}%
+\CSLLeftMargin{114. }%
+\CSLRightInline{Bergantini L, d'Alessandro M, Cameli P, Otranto A, Finco T, Curatola G, et al. Prognostic role of {NK} cell percentages in bronchoalveolar lavage from patients with different fibrotic interstitial lung diseases. Clinical Immunology {[}Internet{]}. 2021 Sep {[}cited 2023 Jan 6{]};230:108827. Available from: \url{https://www.sciencedirect.com/science/article/pii/S1521661621001649}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-cruz_reduced_2021}{}}%
+\CSLLeftMargin{115. }%
+\CSLRightInline{Cruz T, Jia M, Sembrat J, Tabib T, Agostino N, Bruno TC, et al. Reduced {Proportion} and {Activity} of {Natural} {Killer} {Cells} in the {Lung} of {Patients} with {Idiopathic} {Pulmonary} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2021 Sep {[}cited 2023 Jan 4{]};204(5):608--10. Available from: \url{https://www.atsjournals.org/doi/full/10.1164/rccm.202012-4418LE}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-neumark_idiopathic_2020}{}}%
+\CSLLeftMargin{116. }%
+\CSLRightInline{Neumark N, Cosme C, Rose KA, Kaminski N. The {Idiopathic} {Pulmonary} {Fibrosis} {Cell} {Atlas}. American Journal of Physiology-Lung Cellular and Molecular Physiology {[}Internet{]}. 2020 Dec {[}cited 2023 May 1{]};319(6):L887--92. Available from: \url{https://journals.physiology.org/doi/full/10.1152/ajplung.00451.2020}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-galati_circulating_2020}{}}%
+\CSLLeftMargin{117. }%
+\CSLRightInline{Galati D, Zanotta S, Polistina GE, Coppola A, Capitelli L, Bocchino M. \href{https://doi.org/10.1016/j.clim.2020.108454}{Circulating dendritic cells are severely decreased in idiopathic pulmonary fibrosis with a potential value for prognosis prediction}. Clinical Immunology (Orlando, Fla). 2020 Jun;215:108454. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-bensadoun_proteoglycan_1996}{}}%
+\CSLLeftMargin{118. }%
+\CSLRightInline{Bensadoun ES, Burke AK, Hogg JC, Roberts CR. \href{https://doi.org/10.1164/ajrccm.154.6.8970376}{Proteoglycan deposition in pulmonary fibrosis}. American Journal of Respiratory and Critical Care Medicine. 1996 Dec;154(6 Pt 1):1819--28. }
+
+\leavevmode\vadjust pre{\hypertarget{ref-sand_serological_2018}{}}%
+\CSLLeftMargin{119. }%
+\CSLRightInline{Sand JMB, Tanino Y, Karsdal MA, Nikaido T, Misa K, Sato Y, et al. A {Serological} {Biomarker} of {Versican} {Degradation} is {Associated} with {Mortality} {Following} {Acute} {Exacerbations} of {Idiopathic} {Interstitial} {Pneumonia}. Respiratory Research {[}Internet{]}. 2018 May {[}cited 2024 Jan 18{]};19(1):82. Available from: \url{https://doi.org/10.1186/s12931-018-0779-y}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-ryerson_lumpers_2019}{}}%
+\CSLLeftMargin{120. }%
+\CSLRightInline{Ryerson CJ. Lumpers versus splitters: {What} to do with suspected idiopathic pulmonary fibrosis? Respirology {[}Internet{]}. 2019 {[}cited 2024 Feb 9{]};24(4):300--1. Available from: \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/resp.13442}}
+
+\leavevmode\vadjust pre{\hypertarget{ref-zhao_metabolic_2017}{}}%
+\CSLLeftMargin{121. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-zhu_integration_2018}{}}%
-\CSLLeftMargin{98. }%
+\CSLLeftMargin{122. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-christmann_association_2014}{}}%
-\CSLLeftMargin{99. }%
+\CSLLeftMargin{123. }%
 \CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-ghosh_lung_2022}{}}%
-\CSLLeftMargin{100. }%
+\CSLLeftMargin{124. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-el-chemaly_immunome_2018}{}}%
-\CSLLeftMargin{101. }%
+\CSLLeftMargin{125. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
 \leavevmode\vadjust pre{\hypertarget{ref-zhou_integrated_2019}{}}%
-\CSLLeftMargin{102. }%
+\CSLLeftMargin{126. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-vosa_comprehensive_2014}{}}%
-\CSLLeftMargin{103. }%
+\CSLLeftMargin{127. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
 \leavevmode\vadjust pre{\hypertarget{ref-wold_nonlinear_1973}{}}%
-\CSLLeftMargin{104. }%
+\CSLLeftMargin{128. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1204,8 +1454,8 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 
 \setcounter{secnumdepth}{0}
 
-\hypertarget{appendix-a---supplementary-information-for-chapter-two}{%
-\subsection{Appendix A - Supplementary information for Chapter Two}\label{appendix-a---supplementary-information-for-chapter-two}}
+\hypertarget{appendix-a---supplementary-information-for-ild-systematic-review-and-meta-analysis}{%
+\subsection{Appendix A - Supplementary information for ILD Systematic Review and Meta-Analysis}\label{appendix-a---supplementary-information-for-ild-systematic-review-and-meta-analysis}}
 
 \renewcommand{\thefigure}{A2.\arabic{figure}}
 \setcounter{figure}{0}
@@ -1287,8 +1537,8 @@ We included studies that performed gene expression profiling of adult patients w
 
 Two reviewers (Daniel He and Sabina A Guler) independently screened study titles and abstracts using Covidence, and determined eligibility for final inclusion after full-text review. Disagreements on eligibility were resolved by a third reviewer (Scott J Tebbutt or Christopher J Ryerson). Lists of differentially expressed genes between ILD subtype and control samples were extracted from each study, along with raw or processed transcriptomics data (if available) and relevant information regarding its generation (sample/RNA extraction method, gene expression profiling technology). For each transcriptomics sample, corresponding patient-level clinical data was extracted where available (age, sex, ethnicity, diagnosis, exposure history, serology, pulmonary function tests, radiological pattern, histological pattern, treatment status).
 
-\hypertarget{quality-control-of-identified-datasets}{%
-\subsection{Quality control of identified datasets}\label{quality-control-of-identified-datasets}}
+\hypertarget{qc}{%
+\subsection{Quality control of identified datasets}\label{qc}}
 
 To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\protect\hyperlink{ref-dupuy_critical_2007}{40}{]}:
 
@@ -1351,12 +1601,12 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\protect\hyperlink{ref-zhu_integration_2018}{98}{]}, one {[}\protect\hyperlink{ref-christmann_association_2014}{99}{]} was a duplicate of {[}\protect\hyperlink{ref-christmann_mir-155_2016}{77}{]}, one {[}\protect\hyperlink{ref-ghosh_lung_2022}{100}{]} was a suspected duplicate of another study {[}\protect\hyperlink{ref-borie_colocalization_2022}{86}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\protect\hyperlink{ref-el-chemaly_immunome_2018}{101}{]}, and two studies were omitted due to poor data quality {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\protect\hyperlink{ref-zhu_integration_2018}{122}{]}, one {[}\protect\hyperlink{ref-christmann_association_2014}{123}{]} was a duplicate of {[}\protect\hyperlink{ref-christmann_mir-155_2016}{77}{]}, one {[}\protect\hyperlink{ref-ghosh_lung_2022}{124}{]} was a suspected duplicate of another study {[}\protect\hyperlink{ref-borie_colocalization_2022}{86}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\protect\hyperlink{ref-el-chemaly_immunome_2018}{125}{]}, and two studies were omitted due to poor data quality {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}.
 
 \hypertarget{robust-rank-aggregation}{%
 \subsection{Robust rank aggregation}\label{robust-rank-aggregation}}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\protect\hyperlink{ref-vosa_comprehensive_2014}{103}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\protect\hyperlink{ref-vosa_comprehensive_2014}{127}{]}.
 
 \hypertarget{microarray-and-rna-seq-processing}{%
 \subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}}
@@ -1367,17 +1617,17 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.9\linewidth,]{./Figures/FigE1_outliers} 
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/SysReview/FigE1_outliers} 
 
 }
 
 \caption[Outlier detection]{\textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).}\label{fig:outlierPCA}
 \end{figure}
 
-\hypertarget{data-integration-and-analysis}{%
-\subsection{Data integration and analysis}\label{data-integration-and-analysis}}
+\hypertarget{data}{%
+\subsection{Data integration and analysis}\label{data}}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\protect\hyperlink{ref-wold_nonlinear_1973}{104}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\protect\hyperlink{ref-wold_nonlinear_1973}{128}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 
@@ -1389,7 +1639,7 @@ Custom cell pathway annotations were used for Table E9 based upon single-cell RN
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/Figure2_PCA} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/Figure2_PCA} 
 
 }
 
@@ -1400,7 +1650,7 @@ Custom cell pathway annotations were used for Table E9 based upon single-cell RN
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE2_tuning} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/FigE2_tuning} 
 
 }
 
@@ -1411,7 +1661,7 @@ Custom cell pathway annotations were used for Table E9 based upon single-cell RN
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE3_upset} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/FigE3_upset} 
 
 }
 
@@ -1422,7 +1672,7 @@ Custom cell pathway annotations were used for Table E9 based upon single-cell RN
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth,]{./Figures/FigE4_blood} 
+{\centering \includegraphics[width=1\linewidth,]{./Figures/SysReview/FigE4_blood} 
 
 }
 
@@ -4028,7 +4278,7 @@ ENSG00000140479 & PCSK6 & -0.0003 & NSIP Upregulated (vs HP)\\*
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.9\linewidth,]{./Figures/FigE5_NSIP} 
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/SysReview/FigE5_NSIP} 
 
 }
 
@@ -4039,7 +4289,7 @@ ENSG00000140479 & PCSK6 & -0.0003 & NSIP Upregulated (vs HP)\\*
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE6_ILDvsILD} 
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/SysReview/FigE6_ILDvsILD} 
 
 }
 
@@ -4052,12 +4302,463 @@ ENSG00000140479 & PCSK6 & -0.0003 & NSIP Upregulated (vs HP)\\*
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE7_bayes} 
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/SysReview/FigE7_bayes} 
 
 }
 
 \caption[Bayesian changepoint]{\textbf{Bayesian changepoint analysis to determine models with an ‘expanded’ number of features for the purpose of pathway analysis.} As the number of features is increased, the posterior mean (i.e.~an estimate of the BER given previous data and new data) is constant for certain ranges and does not increase until a threshold of features is passed; this is likely due to the addition of correlated features, which are not useful in the optimization of a classifier but are useful in strengthening the identification of relevant biological pathways. If we consider the BERs from the tuning grids to be a data series with an unknown number of blocks containing a constant mean, we can apply a Bayesian framework to determine `change points' (points likely to precede a change in BER) within the series, which were identified using a posterior probability threshold of 50\%.}\label{fig:bayes}
 \end{figure}
+
+\begin{singlespace}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:uppathways}\textbf{Top 10 up-regulated pathways in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:uppathways}\textbf{Top 10 up-regulated pathways in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.} \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF Up & REACTOME EXTRACELLULAR MATRIX ORGANIZATION & 1.81e-17\\
+IPF Up & GOBP EXTERNAL ENCAPSULATING STRUCTURE ORGANIZATION & 1.16e-14\\
+IPF Up & GOBP CELL ADHESION & 1.20e-14\\
+IPF Up & REACTOME COLLAGEN DEGRADATION & 6.93e-13\\
+IPF Up & REACTOME DEGRADATION OF THE EXTRACELLULAR MATRIX & 1.23e-12\\
+\addlinespace
+IPF Up & GOBP TISSUE MORPHOGENESIS & 1.38e-11\\
+IPF Up & GOBP OSSIFICATION & 1.75e-10\\
+IPF Up & GOBP ANIMAL ORGAN MORPHOGENESIS & 3.85e-10\\
+IPF Up & GOBP GENERATION OF NEURONS & 4.57e-10\\
+IPF Up & GOBP MESENCHYME DEVELOPMENT & 1.09e-09\\
+\addlinespace
+HP Up & GOBP POSITIVE REGULATION OF IMMUNE SYSTEM PROCESS & 1.43e-04\\
+HP Up & REACTOME COLLAGEN DEGRADATION & 2.22e-04\\
+HP Up & HALLMARK COAGULATION & 3.90e-04\\
+HP Up & GOBP EXTERNAL ENCAPSULATING STRUCTURE ORGANIZATION & 2.05e-03\\
+HP Up & GOBP TAXIS & 2.11e-03\\
+\addlinespace
+HP Up & GOBP MONONUCLEAR CELL DIFFERENTIATION & 2.65e-03\\
+HP Up & GOBP IMMUNE EFFECTOR PROCESS & 2.66e-03\\
+HP Up & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 3.26e-03\\
+HP Up & REACTOME ASSEMBLY OF COLLAGEN FIBRILS AND OTHER MULTIMERIC STRUCTURES & 3.26e-03\\
+HP Up & GOBP EXTRACELLULAR MATRIX DISASSEMBLY & 3.86e-03\\
+\addlinespace
+NSIP Up & GOBP EXTERNAL ENCAPSULATING STRUCTURE ORGANIZATION & 9.27e-15\\
+NSIP Up & REACTOME COLLAGEN DEGRADATION & 1.19e-11\\
+NSIP Up & REACTOME EXTRACELLULAR MATRIX ORGANIZATION & 1.40e-10\\
+NSIP Up & REACTOME ASSEMBLY OF COLLAGEN FIBRILS AND OTHER MULTIMERIC STRUCTURES & 2.90e-10\\
+NSIP Up & REACTOME COLLAGEN FORMATION & 3.21e-10\\
+\addlinespace
+NSIP Up & GOBP COLLAGEN FIBRIL ORGANIZATION & 4.52e-10\\
+NSIP Up & REACTOME COLLAGEN BIOSYNTHESIS AND MODIFYING ENZYMES & 6.81e-10\\
+NSIP Up & REACTOME COLLAGEN CHAIN TRIMERIZATION & 8.12e-10\\
+NSIP Up & GOBP CELL DIVISION & 9.74e-10\\
+NSIP Up & REACTOME DEGRADATION OF THE EXTRACELLULAR MATRIX & 1.13e-09\\
+\addlinespace
+SSc-ILD Up & GOBP EXTERNAL ENCAPSULATING STRUCTURE ORGANIZATION & 6.93e-11\\
+SSc-ILD Up & HALLMARK EPITHELIAL MESENCHYMAL TRANSITION & 2.27e-08\\
+SSc-ILD Up & REACTOME COLLAGEN DEGRADATION & 3.12e-08\\
+SSc-ILD Up & REACTOME DEGRADATION OF THE EXTRACELLULAR MATRIX & 7.27e-08\\
+SSc-ILD Up & REACTOME EXTRACELLULAR MATRIX ORGANIZATION & 3.59e-07\\
+\addlinespace
+SSc-ILD Up & REACTOME ASSEMBLY OF COLLAGEN FIBRILS AND OTHER MULTIMERIC STRUCTURES & 1.42e-06\\
+SSc-ILD Up & GOBP EPITHELIUM DEVELOPMENT & 2.18e-06\\
+SSc-ILD Up & GOBP CELL ADHESION & 2.45e-06\\
+SSc-ILD Up & KEGG ECM RECEPTOR INTERACTION & 6.34e-06\\
+SSc-ILD Up & GOBP CELL CELL SIGNALING & 6.34e-06\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:downpathways}\textbf{Top 10 down-regulated pathways in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:downpathways}\textbf{Top 10 down-regulated pathways in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.} \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF Down & GOBP TUBE MORPHOGENESIS & 2.19e-26\\
+IPF Down & GOBP TUBE DEVELOPMENT & 1.25e-25\\
+IPF Down & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 4.30e-25\\
+IPF Down & GOBP BLOOD VESSEL MORPHOGENESIS & 5.06e-23\\
+IPF Down & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 5.82e-22\\
+\addlinespace
+IPF Down & GOBP VASCULATURE DEVELOPMENT & 8.67e-22\\
+IPF Down & GOBP REGULATION OF CELL POPULATION PROLIFERATION & 1.01e-17\\
+IPF Down & GOBP REGULATION OF LOCOMOTION & 1.28e-17\\
+IPF Down & GOBP CELL MOTILITY & 6.52e-17\\
+IPF Down & GOBP LOCOMOTION & 8.05e-15\\
+\addlinespace
+HP Down & GOBP TUBE MORPHOGENESIS & 2.60e-29\\
+HP Down & GOBP TUBE DEVELOPMENT & 2.05e-28\\
+HP Down & GOBP BLOOD VESSEL MORPHOGENESIS & 3.66e-26\\
+HP Down & GOBP VASCULATURE DEVELOPMENT & 9.63e-25\\
+HP Down & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 4.43e-24\\
+\addlinespace
+HP Down & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 7.51e-22\\
+HP Down & GOBP CELL MOTILITY & 1.31e-21\\
+HP Down & GOBP REGULATION OF LOCOMOTION & 1.75e-18\\
+HP Down & GOBP LOCOMOTION & 3.48e-17\\
+HP Down & GOBP RESPONSE TO ENDOGENOUS STIMULUS & 5.28e-17\\
+\addlinespace
+NSIP Down & GOBP TUBE DEVELOPMENT & 1.08e-32\\
+NSIP Down & GOBP TUBE MORPHOGENESIS & 1.06e-31\\
+NSIP Down & GOBP BLOOD VESSEL MORPHOGENESIS & 9.59e-31\\
+NSIP Down & GOBP VASCULATURE DEVELOPMENT & 3.12e-30\\
+NSIP Down & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 1.24e-29\\
+\addlinespace
+NSIP Down & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 4.54e-28\\
+NSIP Down & GOBP REGULATION OF CELL POPULATION PROLIFERATION & 2.29e-20\\
+NSIP Down & GOBP REGULATION OF MULTICELLULAR ORGANISMAL DEVELOPMENT & 1.28e-19\\
+NSIP Down & GOBP CELL MOTILITY & 1.69e-19\\
+NSIP Down & GOBP REGULATION OF LOCOMOTION & 4.61e-17\\
+\addlinespace
+SSc-ILD Down & GOBP TUBE DEVELOPMENT & 5.59e-18\\
+SSc-ILD Down & GOBP VASCULATURE DEVELOPMENT & 9.46e-16\\
+SSc-ILD Down & GOBP BLOOD VESSEL MORPHOGENESIS & 9.46e-16\\
+SSc-ILD Down & GOBP RESPONSE TO ENDOGENOUS STIMULUS & 3.15e-15\\
+SSc-ILD Down & GOBP CELL MOTILITY & 1.86e-14\\
+\addlinespace
+SSc-ILD Down & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 4.92e-14\\
+SSc-ILD Down & GOBP TUBE MORPHOGENESIS & 5.13e-14\\
+SSc-ILD Down & GOBP LOCOMOTION & 7.41e-14\\
+SSc-ILD Down & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 1.14e-13\\
+SSc-ILD Down & GOBP POSITIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 2.26e-13\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:ipfbloodpathways}\textbf{Top 10 up- and down-regulated pathways in IPF blood and PBMC using genes from the expanded classification models.}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:ipfbloodpathways}\textbf{Top 10 up- and down-regulated pathways in IPF blood and PBMC using genes from the expanded classification models.} \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF Blood Up & REACTOME NEUTROPHIL DEGRANULATION & 6.87e-39\\
+IPF Blood Up & REACTOME INNATE IMMUNE SYSTEM & 3.65e-34\\
+IPF Blood Up & GOBP DEFENSE RESPONSE & 3.84e-19\\
+IPF Blood Up & GOBP IMMUNE RESPONSE & 1.91e-14\\
+IPF Blood Up & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 2.59e-13\\
+\addlinespace
+IPF Blood Up & GOBP INFLAMMATORY RESPONSE & 5.12e-13\\
+IPF Blood Up & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 8.43e-13\\
+IPF Blood Up & GOBP REGULATION OF RESPONSE TO EXTERNAL STIMULUS & 1.10e-12\\
+IPF Blood Up & GOBP INNATE IMMUNE RESPONSE & 3.03e-12\\
+IPF Blood Up & GOBP POSITIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 4.56e-11\\
+\addlinespace
+IPF PBMC Up & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 2.05e-07\\
+IPF PBMC Up & REACTOME NEUTROPHIL DEGRANULATION & 4.37e-07\\
+IPF PBMC Up & GOBP DEFENSE RESPONSE & 1.89e-06\\
+IPF PBMC Up & REACTOME INNATE IMMUNE SYSTEM & 1.10e-05\\
+IPF PBMC Up & GOBP BONE RESORPTION & 1.89e-05\\
+\addlinespace
+IPF PBMC Up & GOBP REGULATION OF TRANSPORT & 2.99e-05\\
+IPF PBMC Up & GOBP RESPONSE TO BACTERIUM & 3.56e-05\\
+IPF PBMC Up & GOBP NEGATIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 3.95e-05\\
+IPF PBMC Up & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 7.56e-05\\
+IPF PBMC Up & GOBP INNATE IMMUNE RESPONSE & 8.82e-05\\
+\addlinespace
+IPF Blood Down & GOBP T CELL DIFFERENTIATION & 4.02e-09\\
+IPF Blood Down & GOBP RNA PROCESSING & 1.94e-08\\
+IPF Blood Down & GOBP T CELL ACTIVATION & 7.68e-08\\
+IPF Blood Down & GOBP MONONUCLEAR CELL DIFFERENTIATION & 2.57e-07\\
+IPF Blood Down & GOBP LYMPHOCYTE ACTIVATION & 5.41e-07\\
+\addlinespace
+IPF Blood Down & GOBP ALPHA BETA T CELL ACTIVATION & 6.08e-07\\
+IPF Blood Down & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 2.56e-06\\
+IPF Blood Down & GOBP LEUKOCYTE DIFFERENTIATION & 6.59e-06\\
+IPF Blood Down & REACTOME TRANSPORT OF MATURE MRNAS DERIVED FROM INTRONLESS TRANSCRIPTS & 1.17e-05\\
+IPF Blood Down & GOBP ANTIGEN RECEPTOR MEDIATED SIGNALING PATHWAY & 1.62e-05\\
+\addlinespace
+IPF PBMC Down & REACTOME RNA POLYMERASE II TRANSCRIPTION & 6.53e-15\\
+IPF PBMC Down & GOBP NEGATIVE REGULATION OF NUCLEOBASE CONTAINING COMPOUND METABOLIC PROCESS & 4.73e-07\\
+IPF PBMC Down & GOBP NEGATIVE REGULATION OF RNA BIOSYNTHETIC PROCESS & 2.65e-06\\
+IPF PBMC Down & GOBP NEGATIVE REGULATION OF BIOSYNTHETIC PROCESS & 3.90e-06\\
+IPF PBMC Down & GOBP NCRNA METABOLIC PROCESS & 6.82e-06\\
+\addlinespace
+IPF PBMC Down & GOBP NCRNA PROCESSING & 1.32e-05\\
+IPF PBMC Down & GOBP AMIDE BIOSYNTHETIC PROCESS & 1.25e-04\\
+IPF PBMC Down & WP EXTRAFOLLICULAR AND FOLLICULAR B CELL ACTIVATION BY SARSCOV2 & 1.71e-04\\
+IPF PBMC Down & GOBP ORGANONITROGEN COMPOUND BIOSYNTHETIC PROCESS & 2.81e-04\\
+IPF PBMC Down & GOBP REGULATION OF CELLULAR MACROMOLECULE BIOSYNTHETIC PROCESS & 3.42e-04\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:ipfvsildpathways}\textbf{Top 25 up-regulated pathways using genes from the expanded IPF vs non-IPF ILD classification model.}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:ipfvsildpathways}\textbf{Top 25 up-regulated pathways using genes from the expanded IPF vs non-IPF ILD classification model.} \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF vs ILD Up & GOBP CELL ADHESION & 2.28e-20\\
+IPF vs ILD Up & REACTOME EXTRACELLULAR MATRIX ORGANIZATION & 2.65e-13\\
+IPF vs ILD Up & HALLMARK EPITHELIAL MESENCHYMAL TRANSITION & 7.09e-13\\
+IPF vs ILD Up & REACTOME COLLAGEN FORMATION & 2.95e-11\\
+IPF vs ILD Up & GOBP EXTERNAL ENCAPSULATING STRUCTURE ORGANIZATION & 8.72e-11\\
+\addlinespace
+IPF vs ILD Up & GOBP CELL MOTILITY & 8.72e-11\\
+IPF vs ILD Up & GOBP RESPONSE TO ENDOGENOUS STIMULUS & 2.92e-10\\
+IPF vs ILD Up & REACTOME COLLAGEN BIOSYNTHESIS AND MODIFYING ENZYMES & 7.29e-10\\
+IPF vs ILD Up & GOBP CELL CELL ADHESION & 5.89e-09\\
+IPF vs ILD Up & REACTOME ASSEMBLY OF COLLAGEN FIBRILS AND OTHER MULTIMERIC STRUCTURES & 7.50e-09\\
+\addlinespace
+IPF vs ILD Up & GOBP COLLAGEN FIBRIL ORGANIZATION & 1.16e-08\\
+IPF vs ILD Up & REACTOME COLLAGEN CHAIN TRIMERIZATION & 1.47e-08\\
+IPF vs ILD Up & GOBP OSTEOBLAST DIFFERENTIATION & 2.05e-08\\
+IPF vs ILD Up & GOBP ENZYME LINKED RECEPTOR PROTEIN SIGNALING PATHWAY & 2.05e-08\\
+IPF vs ILD Up & GOBP OSSIFICATION & 4.63e-08\\
+\addlinespace
+IPF vs ILD Up & GOBP HOMEOSTATIC PROCESS & 6.20e-08\\
+IPF vs ILD Up & GOBP TISSUE MORPHOGENESIS & 8.23e-08\\
+IPF vs ILD Up & GOBP ANIMAL ORGAN MORPHOGENESIS & 1.40e-07\\
+IPF vs ILD Up & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 1.64e-07\\
+IPF vs ILD Up & GOBP HEART DEVELOPMENT & 2.24e-07\\
+\addlinespace
+IPF vs ILD Up & REACTOME COLLAGEN DEGRADATION & 2.32e-07\\
+IPF vs ILD Up & GOBP MUSCLE TISSUE DEVELOPMENT & 2.95e-07\\
+IPF vs ILD Up & GOBP NEGATIVE REGULATION OF TRANSMEMBRANE RECEPTOR PROTEIN SERINE THREONINE KINASE SIGNALING PATHWAY & 2.99e-07\\
+IPF vs ILD Up & GOBP LOCOMOTION & 4.04e-07\\
+IPF vs ILD Up & GOBP MESENCHYME DEVELOPMENT & 4.08e-07\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:hpvsildpathways}\textbf{Top 25 up-regulated pathways using genes from the expanded HP vs non-HP ILD classification model.}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:hpvsildpathways}\textbf{Top 25 up-regulated pathways using genes from the expanded HP vs non-HP ILD classification model.} \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+HP vs ILD Up & HALLMARK INTERFERON GAMMA RESPONSE & 1.38e-36\\
+HP vs ILD Up & HALLMARK INTERFERON ALPHA RESPONSE & 1.15e-22\\
+HP vs ILD Up & GOBP DEFENSE RESPONSE & 1.15e-22\\
+HP vs ILD Up & HALLMARK ALLOGRAFT REJECTION & 4.50e-22\\
+HP vs ILD Up & REACTOME CYTOKINE SIGNALING IN IMMUNE SYSTEM & 3.55e-19\\
+\addlinespace
+HP vs ILD Up & GOBP IMMUNE RESPONSE & 5.59e-18\\
+HP vs ILD Up & GOBP REGULATION OF T CELL ACTIVATION & 1.33e-15\\
+HP vs ILD Up & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 1.65e-15\\
+HP vs ILD Up & GOBP LEUKOCYTE CELL CELL ADHESION & 7.31e-15\\
+HP vs ILD Up & GOBP POSITIVE REGULATION OF IMMUNE SYSTEM PROCESS & 1.16e-14\\
+\addlinespace
+HP vs ILD Up & GOBP REGULATION OF LYMPHOCYTE ACTIVATION & 1.32e-14\\
+HP vs ILD Up & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 2.08e-14\\
+HP vs ILD Up & GOBP CELL ACTIVATION & 4.62e-14\\
+HP vs ILD Up & GOBP POSITIVE REGULATION OF CELL ACTIVATION & 4.70e-14\\
+HP vs ILD Up & GOBP T CELL ACTIVATION & 7.82e-14\\
+\addlinespace
+HP vs ILD Up & GOBP REGULATION OF CELL ACTIVATION & 1.32e-13\\
+HP vs ILD Up & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 2.95e-13\\
+HP vs ILD Up & GOBP LYMPHOCYTE ACTIVATION & 3.42e-13\\
+HP vs ILD Up & GOBP POSITIVE REGULATION OF LYMPHOCYTE ACTIVATION & 6.79e-13\\
+HP vs ILD Up & GOBP INNATE IMMUNE RESPONSE & 7.96e-13\\
+\addlinespace
+HP vs ILD Up & GOBP POSITIVE REGULATION OF LEUKOCYTE CELL CELL ADHESION & 9.34e-13\\
+HP vs ILD Up & REACTOME ADAPTIVE IMMUNE SYSTEM & 1.01e-12\\
+HP vs ILD Up & GOBP REGULATION OF CELL CELL ADHESION & 1.71e-12\\
+HP vs ILD Up & GOBP INFLAMMATORY RESPONSE & 1.78e-12\\
+HP vs ILD Up & REACTOME ANTIGEN PROCESSING CROSS PRESENTATION & 3.84e-12\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:upcell}\textbf{Top 10 up-regulated cell annotations in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.}}\\
+\toprule
+Direction & Cell & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:upcell}\textbf{Top 10 up-regulated cell annotations in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.} \textit{(continued)}}\\
+\toprule
+Direction & Cell & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF Up & Basal Cells & 8.30e-32\\
+IPF Up & Basal cells & 1.18e-20\\
+IPF Up & HAY BONE MARROW STROMAL & 1.18e-20\\
+IPF Up & AdvF (PI16+) & 8.46e-20\\
+IPF Up & Myofibroblasts & 8.46e-20\\
+\addlinespace
+IPF Up & HE LIM SUN FETAL LUNG C1 SMG BASAL CELL & 2.28e-19\\
+IPF Up & Fibroblasts & 2.40e-19\\
+IPF Up & AdvF (SFRP2+) & 7.05e-19\\
+IPF Up & Inflammatory fibroblast 3 & 7.05e-19\\
+IPF Up & Inflammatory fibroblast 1 & 7.55e-18\\
+\addlinespace
+HP Up & Plasma cells & 4.54e-11\\
+HP Up & Plasma & 8.02e-11\\
+HP Up & Plasma Cells & 1.16e-08\\
+HP Up & AIZARANI LIVER C38 RESIDENT B CELLS 3 & 3.47e-08\\
+HP Up & AIZARANI LIVER C22 RESIDENT B CELLS 2 & 2.25e-07\\
+\addlinespace
+HP Up & AIZARANI LIVER C8 RESIDENT B CELLS 1 & 2.74e-07\\
+HP Up & GAO LARGE INTESTINE ADULT CI MESENCHYMAL CELLS & 4.36e-07\\
+HP Up & HAY BONE MARROW PLASMA CELL & 6.16e-07\\
+HP Up & Melanocytes & 1.03e-06\\
+HP Up & DURANTE ADULT OLFACTORY NEUROEPITHELIUM PLASMA CELLS & 1.14e-06\\
+\addlinespace
+NSIP Up & Plasma cells & 1.33e-25\\
+NSIP Up & FAN EMBRYONIC CTX MICROGLIA 1 & 2.81e-23\\
+NSIP Up & HE LIM SUN FETAL LUNG C2 PROMONOCYTE LIKE CELL & 5.51e-22\\
+NSIP Up & ZHONG PFC C1 OPC & 4.32e-21\\
+NSIP Up & MANNO MIDBRAIN NEUROTYPES HPROGFPM & 4.50e-20\\
+\addlinespace
+NSIP Up & MANNO MIDBRAIN NEUROTYPES HPROGFPL & 1.12e-19\\
+NSIP Up & HE LIM SUN FETAL LUNG C5 PRO B CELL & 1.66e-19\\
+NSIP Up & HE LIM SUN FETAL LUNG C4 CYCLING NK CELL & 8.34e-18\\
+NSIP Up & FAN EMBRYONIC CTX NSC 2 & 3.45e-17\\
+NSIP Up & HE LIM SUN FETAL LUNG C3 CYCLING DEFINITIVE ERYTHROBLAST & 1.41e-16\\
+\addlinespace
+SSc-ILD Up & Basal Cells & 3.07e-24\\
+SSc-ILD Up & Basal cells & 1.40e-12\\
+SSc-ILD Up & Myofibroblasts & 1.40e-12\\
+SSc-ILD Up & Basal & 8.44e-12\\
+SSc-ILD Up & TRAVAGLINI LUNG BASAL CELL & 2.25e-11\\
+\addlinespace
+SSc-ILD Up & Aberrant basaloid cells & 3.66e-11\\
+SSc-ILD Up & TRAVAGLINI LUNG PROLIFERATING BASAL CELL & 4.71e-11\\
+SSc-ILD Up & Proliferating Basal & 4.71e-11\\
+SSc-ILD Up & Basal keratinocytes & 1.04e-09\\
+SSc-ILD Up & Differentiating Basal & 1.47e-09\\*
+\end{longtable}
+\endgroup{}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:downcell}\textbf{Top 10 down-regulated cell annotations in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.}}\\
+\toprule
+Direction & Cell & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:downcell}\textbf{Top 10 down-regulated cell annotations in lung using genes from the expanded classification models for IPF, HP, NSIP, and SSc-ILD against Control.} \textit{(continued)}}\\
+\toprule
+Direction & Cell & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+IPF Down & Cap-B EC & 1.09e-58\\
+IPF Down & Alveolar Epithelial Type 1 & 6.21e-54\\
+IPF Down & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 1 CELL & 2.13e-53\\
+IPF Down & Cap-A EC & 7.09e-44\\
+IPF Down & AT1 Cells & 1.56e-42\\
+\addlinespace
+IPF Down & VE Capillary B & 1.93e-41\\
+IPF Down & Alveolar cells type 1 & 2.90e-40\\
+IPF Down & Art EC & 2.26e-38\\
+IPF Down & MANNO MIDBRAIN NEUROTYPES HENDO & 2.40e-37\\
+IPF Down & AT1 & 3.79e-37\\
+\addlinespace
+HP Down & Cap-B EC & 3.72e-60\\
+HP Down & Cap-A EC & 6.01e-48\\
+HP Down & MANNO MIDBRAIN NEUROTYPES HENDO & 8.09e-43\\
+HP Down & VE Capillary A & 1.92e-41\\
+HP Down & Ito cells & 8.16e-40\\
+\addlinespace
+HP Down & VE Capillary B & 1.34e-38\\
+HP Down & Endothelial/Lymphatic Cells & 7.23e-38\\
+HP Down & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 1 CELL & 2.81e-37\\
+HP Down & Art EC & 4.02e-34\\
+HP Down & Alveolar Epithelial Type 1 & 1.81e-32\\
+\addlinespace
+NSIP Down & Cap-B EC & 3.99e-75\\
+NSIP Down & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 1 CELL & 5.22e-71\\
+NSIP Down & Cap-A EC & 7.03e-64\\
+NSIP Down & Alveolar Epithelial Type 1 & 2.49e-61\\
+NSIP Down & Art EC & 6.05e-53\\
+\addlinespace
+NSIP Down & MANNO MIDBRAIN NEUROTYPES HENDO & 4.43e-52\\
+NSIP Down & Endothelial/Lymphatic Cells & 8.04e-44\\
+NSIP Down & Capillary Intermediate 1 & 9.40e-43\\
+NSIP Down & Capillary & 8.06e-42\\
+NSIP Down & AT1 Cells & 1.29e-39\\
+\addlinespace
+SSc-ILD Down & Cap-B EC & 8.98e-62\\
+SSc-ILD Down & Cap-A EC & 1.13e-55\\
+SSc-ILD Down & Capillary Intermediate 1 & 1.10e-43\\
+SSc-ILD Down & Art EC & 2.13e-39\\
+SSc-ILD Down & Endothelial/Lymphatic Cells & 2.87e-36\\
+\addlinespace
+SSc-ILD Down & Capillary & 1.82e-35\\
+SSc-ILD Down & VE Capillary B & 2.24e-33\\
+SSc-ILD Down & TRAVAGLINI LUNG CAPILLARY INTERMEDIATE 1 CELL & 1.64e-28\\
+SSc-ILD Down & AIZARANI LIVER C10 MVECS 1 & 1.12e-27\\
+SSc-ILD Down & VE Capillary A & 8.26e-27\\*
+\end{longtable}
+\endgroup{}
+
+\end{singlespace}
 
 \hypertarget{biclustering-1}{%
 \subsection{Biclustering}\label{biclustering-1}}
@@ -4068,7 +4769,7 @@ In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax,
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth,]{./Figures/FigE8_allbiclusters} 
+{\centering \includegraphics[width=0.8\linewidth,]{./Figures/SysReview/FigE8_allbiclusters} 
 
 }
 
@@ -4078,13 +4779,610 @@ In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax,
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE9_biclusterjaccard} \caption[Bicluster similarity]{\textbf{Bicluster similarity scores.} Jaccard coefficients were calculated for genes (A) and samples (B) between each bicluster.}\label{fig:biclusterjaccard}
+\includegraphics[width=1\linewidth,]{./Figures/SysReview/FigE9_biclusterjaccard} \caption[Bicluster similarity]{\textbf{Bicluster similarity scores.} Jaccard coefficients were calculated for genes (A) and samples (B) between each bicluster.}\label{fig:biclusterjaccard}
 \end{figure}
+
+\begin{singlespace}
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1in}>{\raggedright\arraybackslash}p{5in}}
+\caption{\label{tab:biclusterGenes}\textbf{List of genes included in each bicluster.}}\\
+\toprule
+Bicluster & Genes\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:biclusterGenes}\textbf{List of genes included in each bicluster.} \textit{(continued)}}\\
+\toprule
+Bicluster & Genes\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+M2-Cytoskeleton & ABCC5, ABCD2, ABITRAM, ADORA2B, AHSA1, ALDH1A1, ALDH1L1, ALDH3A1, ALDH3B1, ALMS1, AMPD3, AP1M2, ARHGAP32, ATP12A, ATP2A2, ATP7B, ATP9A, B3GNT3, B4GALT4, B9D1, BAIAP3, BBS4, BBS9, BCAS1, BCAS3, BMPR1B, BPHL, C17orf75, C6, CCDC181, CCNO, CCP110, CDC14A, CDC14B, CDS1, CELSR1, CELSR2, CEP83, CERS6, CFAP20, CIB1, CLGN, CLMN, CLUAP1, CNTRL, CORO2B, CXCL6, CYP24A1, CYP2J2, DAPP1, DLEC1, DNAAF11, DNAH3, DNAH7, DNAH9, DNAI1, DNAJC10, DOC2A, DSP, DYNC2H1, DYNC2I1, DYNC2LI1, DYNLL1, DYNLT1, DZANK1, DZIP3, EFCAB2, EFHC1, EFNB3, EPB41L4B, EPHX2, ERBB2, ERBB4, FABP6, FAIM, FAM149A, FAM172A, FBXL2, FHOD3, FOXA1, FZD3, GALNS, GALNT3, GCLC, GET1, GNA14, GRAMD1C, GSTP1, H2BC5, HOOK1, HSP90AA1, HYDIN, IFT122, IFT140, IFT22, IFT56, IFT88, IGFBP2, IK, IL20RA, IL7, KATNIP, KCNN3, KIAA0319, KLF5, LGR4, LPAR3, LRBA, LRIG1, LRRC23, LTF, LZTFL1, MAK, MAP1A, MAPRE3, MATCAP2, MDM1, MIPEP, MOK, MORN1, MYB, NBEA, NEK1, NEK11, NEK2, NELL2, NET1, NME7, NUCB2, OSBPL3, P4HTM, PACRG, PASK, PCNX4, PHTF1, PIAS3, PIGR, PITPNM1, PLAAT2, PLAC8, PLPP2, PLS1, PRSS12, PSD3, PTPRF, PTPRN2, PTPRZ1, PZP, RARB, RCAN3, REEP1, RFX2, RFX3, RIPK4, RUVBL1, RUVBL2, SCPEP1, SIDT1, SLC22A4, SLC27A2, SLC2A1, SLC4A4, SLC4A8, SLC6A16, SMPD2, SNCAIP, SORBS2, SPA17, SPACA9, SPAG1, SPAG6, SPEF1, SPTBN2, SRGAP3, SRI, SSBP2, ST14, STAG3, STEAP3, STYK1, TASP1, TAX1BP1, TEKT2, TP53BP1, TP63, TP73, TPPP3, TRIM2, TRIM29, TRIM68, TRPV4, TSPAN1, TSPAN8, TSPYL4, TUBB4B, UFC1, USP2, USP21, VILL, WRAP53, XPNPEP3, ZDHHC13, ZMYND10, ZNF214\\
+M3-AT1 Cells & AASS, AATK, ABCA3, ABCC8, ABHD6, ABLIM1, ACAT1, ACVRL1, ADARB1, ADGRL2, ADH1A, AGER, AGTPBP1, AGTR1, AJAP1, AKT3, ALDH1L1, ALDH6A1, AMOTL2, ANGPT1, ANKRA2, ANKS1A, ANXA3, AOC3, APC, APH1A, APLNR, APOL3, AQP4, ARHGAP44, ARHGEF12, ARHGEF17, ARPP19, ARRB1, ASAP2, ATP1A1, B3GALNT1, B3GNT2, BCAT2, BFAR, BMP6, BTN3A1, C1orf21, C21orf91, CA2, CA4, CACNA1D, CACNA2D2, CACNA2D3, CACNG4, CALCOCO1, CALCOCO2, CAMK2N1, CARMIL1, CAT, CAV2, CAVIN2, CCDC68, CCN5, CCNB1IP1, CCND3, CD247, CD36, CD55, CD93, CDC42BPA, CDH19, CDO1, CERS2, CETP, CFLAR, CHPT1, CHST1, CITED2, CLEC4M, CLIC5, CMKLR1, CNNM4, CNOT8, COLGALT2, COX7A1, CPT1A, CRIM1, CRMP1, CRTAC1, CRYAB, CST6, CTH, CTNNAL1, CTNNBIP1, CX3CR1, CXADR, CYP26B1, CYP3A5, CYP4B1, DAPK2, DCHS1, DDX60, DENND3, DHCR24, DLC1, DMPK, DNM2, DNM3, DNPEP, DOCK4, DOCK9, DPEP2, DST, DUOX1, DUSP7, EDIL3, EDN1, EDNRA, EDNRB, EFNA1, EGFL7, EGFR, ELMO1, ELOA, EML1, EMP2, ENG, ENTREP1, EPAS1, EPB41L2, EPB41L5, EPHB4, ERG, ERMP1, ETV1, ETV5, EXPH5, EZH1, F10, FADS3, FANCC, FAXDC2, FBLN5, FBXL4, FCHSD2, FEZ1, FGFR4, FHOD1, FLI1, FMO5, FOXO3, FRAS1, FRMD4A, FRY, FYN, FZD4, FZD5, GAB1, GAB2, GAL3ST1, GARRE1, GAS6, GCNT2, GFOD1, GHR, GIMAP4, GJA4, GLO1, GNLY, GPD1L, GPM6A, GRIA1, GSE1, GSTA4, GUCY1A2, GYPE, HEY1, HHEX, HIP1, HLX, HMGCS1, HOPX, HPCAL1, HPGD, HPS5, HSD11B2, HSD17B6, HSPA2, HYAL2, IFIT1, IL18R1, IL33, INPP5A, ITPKB, ITPRID2, JUP, KAT6B, KCNA4, KCNJ8, KCNS3, KDR, KLF11, KLF13, KLF2, KLRD1, LAMA3, LAMA5, LANCL1, LGR5, LHFPL6, LIFR, LLGL2, LMAN2L, LPIN2, LRCH1, LRRC1, LRRC32, LRRC36, LRRN3, MAL, MAPRE2, MATN3, MBIP, MCCC1, MFAP4, MFNG, MGLL, MINDY2, MKNK2, MME, MMUT, MOCS1, MPP3, MTSS1, MVB12B, MXD4, MYCT1, MYO5C, MYO9A, MYRF, NCALD, NCOA3, NDRG1, NDRG4, NEBL, NEDD4, NEDD4L, NEDD9, NEK7, NETO2, NHERF2, NINJ2, NOS1, NOTCH4, NPR1, NPR3, NR3C2, NRGN, NRN1, NRP1, OLFML2A, OSGIN2, P3H2, PAFAH1B1, PAPSS2, PARD3, PATJ, PCDH1, PCDH12, PCTP, PDCL, PDE1C, PDE8B, PDGFB, PDGFRA, PDK2, PDK4, PDZD2, PGAP2, PGC, PGM1, PGR, PHACTR2, PHLDB1, PIK3C2B, PIK3IP1, PIK3R1, PIP5K1B, PKIA, PKN1, PLA1A, PLA2G4C, PLAAT3, PLAG1, PLCE1, PLEKHA1, PLLP, PLXNA2, PLXND1, PMM1, PNMT, PON2, PPFIBP1, PPL, PPP2R5A, PRDX6, PRKAR2B, PRKCZ, PRKD1, PRX, PTGDR, PTH1R, PTPN12, PTPRB, PXMP4, QKI, RAB17, RALA, RAMP2, RAMP3, RAPGEF4, RASSF8, RBMS2, RBMS3, RECK, RFC1, RGS9, RIDA, RIN2, RMND5A, RNF144A, ROBO4, ROR1, RRAS, RUNX1T1, RUSC2, RXRG, S1PR1, SACM1L, SASH1, SCNN1A, SECISBP2L, SEMA3B, SEMA3E, SEMA3G, SENP7, SEPTIN4, SGCG, SLC12A4, SLC1A1, SLC35A1, SLC39A8, SLCO2A1, SLCO4A1, SLIT2, SMPD1, SOX13, SPRED2, SPRY2, SPRYD7, SPTBN1, SREBF2, ST7, STARD13, STX12, STX3, STXBP6, SVEP1, SYNE1, SYT17, TACC1, TACC2, TAL1, TBC1D4, TBX2, TBX3, TBX5, TCF21, TEAD1, TEK, TGFBR3, THBD, TIE1, TIMP4, TJP2, TLE1, TMEM100, TMEM109, TMEM140, TMEM41B, TMEM50B, TMEM74B, TMEM87A, TMEM97, TMOD1, TMOD2, TMT1A, TNFSF10, TNNC1, TNS1, TNS2, TOR1AIP2, TPST2, TRAK2, TRIB2, TRIM24, TRIP10, TSPAN12, TSPAN13, TSPAN15, TSPAN9, TTN, TUFT1, UBA7, UNC13B, USP13, UXS1, VAMP5, VEGFA, VEGFC, VGLL3, VIPR1, VWF, WASF3, WFDC1, WFS1, WWC1, YES1, ZBTB16, ZFYVE9, ZHX3, ZKSCAN3, ZNF106, ZNF135, ZNF22, ZSCAN31, ZXDC\\
+M4-Immune Cells & ABCC3, ABCG1, ACAA1, ACAP1, ACO1, ACOT13, ACOT7, ACP2, ACP5, ADA, ADAM17, ADAP2, ADCY7, ADGRE2, ADSL, ADTRP, AGA, AGPS, AIM2, AKR1A1, AKR1B1, ALAS1, ALOX5, ALOX5AP, ANPEP, AOAH, APBB1IP, APH1A, APMAP, APOL1, APOL2, APOL3, AQP9, ARAP1, ARHGAP25, ARHGDIB, ARHGEF1, ARL6IP5, ARRB2, ASF1B, ASPM, ATG3, ATG7, ATIC, ATP2C1, ATP6V0B, ATP6V0D1, ATP6V1B2, ATP6V1C1, ATP6V1E1, ATP6V1F, AURKA, AVPI1, BAX, BCL11B, BCL2A1, BHLHE41, BIN2, BLM, BLNK, BLVRA, BMP2K, BST1, BTN2A2, BTN3A1, BUB1, C1QB, C3AR1, CASP1, CASP4, CASP5, CAT, CCDC88A, CCL19, CCNA2, CCR1, CCRL2, CD163, CD247, CD300A, CD3E, CD4, CD47, CD48, CD52, CD6, CD83, CD84, CD8A, CEP55, CHST11, CIITA, CLCN7, CLEC2D, CLEC7A, CLIP4, CMKLR1, COMMD9, CORO1A, CORO1B, CORO1C, CPVL, CR1, CRLF3, CSF1R, CTSC, CTSL, CTSS, CXCL10, CXCL9, CYRIA, CYRIB, CYTH4, DAPP1, DCK, DCSTAMP, DENND5A, DIAPH1, DLGAP5, DNASE2, DOK2, DPEP2, DRAP1, DUSP10, ECHDC1, EDEM2, EIF4E2, ELOVL1, EML4, EPB41L3, ERO1A, ETHE1, EVI2B, FAR2, FBP1, FCER1G, FIG4, FLOT2, FMNL1, FUCA1, FUT7, FXYD5, GAA, GALE, GALNT12, GCHFR, GGA2, GLB1, GLRX, GLUL, GM2A, GMIP, GNA15, GNG5, GNPDA1, GPA33, GPNMB, GPR132, GPR137B, GPR171, GPR18, GPR65, GPSM3, GSAP, GSTO1, GUSB, GYG1, HERC5, HEXB, HK3, HLA-DMB, HLA-G, HMGCL, HMOX1, HNMT, HPS5, HSD17B14, HSD17B4, HTATIP2, IDH2, IFFO1, IFI35, IFI6, IL12RB1, IL17RA, IL18, IL21R, IL2RB, IL32, INPP5B, INPP5D, IRAK4, IRF1, ITGAE, ITGAL, ITGAM, ITGB2, ITGB7, ITPK1, JAK3, JPT1, KCNAB2, KIF11, KIFC1, KYNU, LACTB2, LAP3, LAPTM5, LASP1, LAT2, LCP1, LGALS3, LGALS3BP, LGALS9, LGMN, LHFPL2, LILRB2, LILRB5, LIMK1, LIPA, LPCAT1, LRP1, LSM6, LTA4H, LY6E, LY9, LY96, MAFB, MAN2B1, MANBA, MAP4K1, MAPK13, MAPK14, MAPKAPK3, MARCO, MCM5, MDH1, ME2, MEFV, MELK, MFNG, MGAT1, MGAT4A, MICAL1, MICB, MITF, MKI67, MLX, MMD, MR1, MREG, MRPS15, MS4A4A, MSR1, MTMR14, MX1, MYD88, MYO5A, NAAA, NAGA, NAPA, NCF2, NCKAP1L, NEU1, NFE2L3, NFYC, NOP10, NPC1, NPC2, NUP210, OAS1, OAS2, OASL, OSTF1, PADI2, PARP12, PCK2, PCMT1, PCOLCE2, PDCD1LG2, PDE1B, PEPD, PFKFB4, PGD, PIK3CD, PLA2G7, PLAAT4, PLCL2, PLD3, PLEKHB2, PLIN2, PLK1, PLOD3, PLXNC1, PNPLA6, POP4, PPARG, PPT1, PRIM1, PRKAG1, PRKCD, PRSS21, PSD4, PSMA4, PSMA5, PSMB8, PSTPIP2, PTAFR, PTGER2, PTGER4, PTPN22, PTPN6, PTPRC, PTPRO, PXMP4, PYCARD, PYGL, RAB20, RAB32, RAD51AP1, RBP4, RFX5, RMC1, RMDN3, RNFT1, RNH1, RPS6KA1, RRAGC, RRAGD, RRM2, SCCPDH, SCP2, SCPEP1, SDHB, SECTM1, SELPLG, SEMA4A, SEMA4D, SERPINA1, SHTN1, SIGLEC7, SIRPG, SKAP1, SLA, SLAMF7, SLAMF8, SLC16A3, SLC16A6, SLC25A20, SLC31A2, SLC47A1, SLC50A1, SLC7A7, SLC9A1, SLCO2B1, SNX10, SP110, SP140, SP140L, ST3GAL6, STAC, STAT1, SYK, TAPBP, TBC1D31, TBXAS1, TGFBI, THEMIS2, TKT, TLR1, TLR4, TMEM104, TMEM140, TNF, TNFAIP2, TNFRSF1B, TPK1, TPP1, TPX2, TRAF1, TREM1, TREM2, TRIM14, TRIM21, TRPM2, TRPV2, UBA7, UTP18, VAMP8, VASH1, VASP, VAT1, VAV1, VPS26C, VPS37C, VPS8, WARS1, WIPF1, XRCC4, ZCCHC2, ZNF589\\
+M5-Immune Cells & ABCE1, ABCF2, ADA, ADAM17, ADAM19, ADAM8, ADAMTS1, ADAMTS3, ADGRE2, ADGRE3, ADGRG1, ADM, AKAP12, AMD1, AMPD2, ANK2, ANXA1, AP1AR, APOBEC3B, AQP9, ARC, ARFGAP3, ARG2, ARHGDIA, ARID5B, ARPC5L, ATF3, ATG101, ATP1B3, B4GALT5, BACH1, BAHD1, BAZ1A, BCL2A1, BCL2L1, BHLHE40, BIRC3, BTG3, BYSL, BZW2, CASP4, CASP5, CBLB, CCDC59, CCNH, CCNL1, CCR1, CCT2, CCT5, CD83, CD93, CDA, CDC37L1, CDC42EP4, CEACAM1, CEBPB, CFLAR, CH25H, CHD1, CHD7, CHIC2, CHSY1, CRY1, CSF3, CSRP2, CST7, CX3CL1, CXCL1, CXCL2, CXCL8, CYRIA, DACT1, DENND5A, DEPP1, DGKD, DIAPH1, DLC1, DNAJB1, DNAJB5, DPH2, DSE, DUSP2, DUSP4, DUSP5, DUSP7, DYRK3, E2F3, EIF1B, EIF2S2, EIF3B, EML4, EPHA2, ETF1, FAM135A, FAS, FES, FFAR2, FGA, FJX1, FKBP1A, FLOT1, FNDC4, FOSB, FST, FURIN, GABPB1, GADD45A, GARS1, GATA6, GCA, GEM, GJA1, GNA15, GNL2, GPR132, GPR183, HAL, HAT1, HIVEP1, HIVEP2, HMOX1, HSPA9, HSPB8, IER3, IL10, IL18R1, IL18RAP, IL1R1, IL1R2, IL1RAP, IL4R, IL6, IL6ST, IRAK3, IRF1, ITGA2, ITGA5, ITPKC, IVNS1ABP, JMJD1C, JOSD1, KCNK1, KDM6B, KLHL2, KPNA2, KPNA4, KRAS, LAMC2, LDLR, LIF, LILRB2, LIMK2, LRRC32, LRRC59, MAFF, MAFG, MAK16, MAP3K8, MAPK1IP1L, MAT2A, MGAM, MMP19, MPHOSPH6, MTMR6, MX2, MYC, NAB1, NAT10, NDRG1, NDUFAF4, NDUFS2, NFATC1, NFIL3, NFKB1, NNMT, NOL11, NOLC1, NOP2, NOP56, NPC1, NRIP1, NXT1, ODC1, OSGIN2, OSMR, OTUD4, PADI4, PAFAH1B1, PAK1IP1, PDE4B, PER2, PEX5, PFKFB3, PGM3, PHC2, PHLDA1, PHLDA2, PI3, PIM1, PISD, PLIN2, PLPP3, PLSCR1, POP1, PPIF, PPP1R10, PPRC1, PRDM1, PSME3, PSME4, PTGER2, PTGS2, PTPN12, PUM3, PUS7, PVR, RAB27A, RAPGEF4, RBM28, RCAN1, RELB, RGS16, RHOH, RIPK2, RIPOR2, RND1, RND3, RRAD, RRAGC, RRP12, RRP9, RRS1, RUNX1, S100A12, S100A8, S1PR1, SAMD4A, SAMSN1, SEC24A, SELE, SEMA4A, SEMA7A, SERPINB1, SERPINB8, SERPINB9, SERPINE1, SERTAD2, SGK1, SKIL, SLC16A3, SLC16A6, SLC19A2, SLC25A32, SLC25A44, SLC39A14, SLC3A2, SLC7A1, SLCO4A1, SOCS1, SOCS2, SOCS3, SOX17, SPRY2, SPSB1, SRF, SRSF7, SSH1, ST3GAL1, STAT4, STRAP, STX12, SYNJ2, TANK, TBK1, TEAD4, TES, TEX30, TFPI2, THBD, TIMM17A, TIPARP, TJP2, TLR4, TNFAIP2, TNFAIP3, TNFAIP6, TNFRSF10B, TNFRSF10C, TNFRSF11B, TNFRSF12A, TNFRSF1B, TNIP2, TOP1, TP53BP2, TRIB1, TRIP10, TUBB2A, UAP1, UGCG, USP10, USP15, UTP11, UTP18, UTP20, UTP3, VASP, VCPKMT, VDR, VEGFC, VNN2, WDR74, YBX3, YES1, YRDC, ZFAND5, ZFC3H1, ZNF267\\
+M8-Immune Cells\_Fibrosis & AARS1, ABCD2, ACAP1, ADA, ADAM12, ADAM19, ADAM23, ADAM8, ADAMTS1, ADRA2A, AGA, AIM2, AKAP12, ALDH1A3, ALDH1B1, ALG6, ALG8, AMPD3, ANK2, ANKRD49, AOC1, ARC, ARFGAP3, ARG2, ARHGAP25, ARHGDIB, ARID5B, ARPC5L, ASCC3, ASPM, ATF7IP, ATG101, ATP1B2, ATP1B3, ATP2A3, AURKA, B4GALT5, BACE2, BCL11A, BCL11B, BHLHE41, BIRC3, BLM, BLNK, BMP2K, BRCA2, BTN2A2, BTN3A1, BUB1, BYSL, C11orf24, C15orf39, C1S, C3, C7, CADPS, CARD8, CASP3, CBLB, CCDC69, CCL19, CCL7, CCL8, CCNA2, CCNB1, CCND2, CCNH, CD19, CD247, CD27, CD3E, CD48, CD6, CD69, CD79A, CD79B, CD84, CD8A, CDC20, CDK14, CDKN2A, CDKN3, CENPF, CEP55, CH25H, CHD1, CHD7, CHL1, CHST15, CHSY1, CKAP2, CLEC2D, CLSTN3, CLU, CNTRL, COCH, COL15A1, COL18A1, CORO1A, CR1, CRLF3, CSF3, CSGALNACT1, CST7, CSTF2T, CTSK, CXCL1, CXCL12, CXCL13, CXCL6, CXCR4, CYP24A1, CYRIA, CYTH4, CYTIP, CYTL1, DAPP1, DCLK1, DENND1B, DGKA, DIO2, DKK1, DLGAP5, DNAJB5, DNAJC10, DOK5, DUSP2, DUSP4, DUSP5, DYRK3, E2F3, E2F5, EAF2, EDEM1, EHMT1, ELK3, ESR2, EVI2B, EXO1, FAM98A, FAN1, FBL, FBLN1, FBLN2, FBXW7, FHL2, FICD, FILIP1L, FJX1, FMNL1, FMO1, FNDC4, FOSB, FOXM1, FRZB, FST, FUT7, FUT8, FXYD5, FZD10, FZD3, GADD45A, GARS1, GEM, GMDS, GMIP, GNAO1, GP1BA, GPR132, GPR171, GPR18, GPR183, GPSM3, GPX7, GRAMD4, H1-10, H2BC5, HAAO, HDAC9, HERPUD1, HIVEP1, HIVEP2, HYOU1, IARS1, ICAM3, IDE, IDH2, IER3, IGF1, IGFBP5, IL10, IL12RB1, IL21R, IL2RA, IL2RB, IL6, INPP5D, IPCEF1, IRAK4, IRF4, ITGA6, ITGA7, ITGAL, ITGB7, ITPKC, JAK3, JMJD1C, JOSD1, KCND3, KCNN3, KDM6B, KIF11, KIF20A, KIF20B, KIFC1, KLF12, KNTC1, KPNA2, LAMP5, LAX1, LEF1, LIF, LIMK1, LOXL2, LTBP1, LTF, LY9, LY96, MAFF, MAK16, MANF, MAP4K1, MAPK1IP1L, MAT2A, MATN2, MCM5, MCM6, MDM1, MEF2C, MELK, MEOX1, METTL18, MIEF1, MKI67, MLEC, MMP10, MMP11, MMP19, MMP7, MMP9, MX2, MYC, MYO5A, MYRIP, MZB1, NAP1L4, NCOA3, NEK2, NFATC1, NFE2L3, NFIL3, NFKB1, NNMT, NOL8, NOLC1, NOP2, NOP56, NPAT, NR4A3, NRIP1, NT5E, NUCB2, NUP210, NXT1, OSBPL3, OSMR, OXCT1, P2RX1, PACS1, PAICS, PASK, PCNX2, PCSK1, PDE1A, PDE2A, PDE4B, PDGFRL, PDIA4, PDIA6, PDK1, PDLIM3, PFKFB3, PHLDA1, PHTF2, PI3, PIK3CD, PIM1, PLA2G2A, PLAU, PLCG2, PLCL2, PLK1, PLPP3, PLVAP, PLXDC1, PLXNC1, PMEPA1, PNOC, PPAT, PPIF, PPRC1, PRDM1, PRKACB, PRKD2, PSD4, PTGDR, PTP4A3, PTPN22, PTPRC, PYGM, RAD17, RANBP6, RARRES1, RASGRP3, RASSF2, RCAN1, RELB, RELN, RFX5, RGS1, RHOH, ROBO1, RPL3, RPL36, RPL5, RPS6, RRM2, RRP12, RRS1, SACS, SAMSN1, SCARA3, SCG5, SDC1, SDF2L1, SDK2, SEC24A, SEC24D, SEC61B, SEL1L, SEL1L3, SELE, SEMA4D, SEMA7A, SERPINA5, SERPINB9, SERPINE1, SERPINI1, SERTAD2, SFRP1, SHMT2, SIDT1, SIRPG, SKAP1, SLAMF7, SLC1A4, SLC25A12, SLC25A32, SLC25A44, SLC26A4, SLC2A1, SLC35B1, SLC38A1, SLC39A14, SLC50A1, SLC7A1, SLN, SMO, SND1, SOCS1, SOCS3, SOS1, SP110, SP140, SP140L, SPP1, SPRY1, SPSB1, SPTBN2, SRF, SRM, SRPRB, SSPN, SSR3, ST3GAL1, ST6GAL1, ST8SIA1, STAB2, STAG3, STAT4, STIL, SULF1, SV2B, SYK, SYNJ2, TATDN2, TCN1, TDO2, TF, THEMIS2, TMEM176A, TMEM208, TNFAIP6, TNFRSF10B, TNFRSF17, TNFRSF1B, TNN, TOP2A, TP63, TPX2, TRAF1, TRAF3, TRAF5, TRAM2, TRIB1, TRPM2, TTC3, TTK, TUBB2A, TUT4, TWIST1, TYMS, UAP1, UGCG, UGT8, UTP3, VAV1, VILL, VPS13C, WDR74, WIPF1, YRDC, ZBTB24, ZNF107, ZNF580, ZNF671\\
+\addlinespace
+M9-Fibrosis & AARS1, ABCA8, ABLIM3, ACOX2, ACTN1, ADA, ADAM12, ADAM19, ADAM23, ADAMTS1, ADAMTS12, ADAMTS2, ADAMTS3, ADCY2, ADCY3, ADD2, ADGRL3, ADRA2A, ADRA2C, ALDH1A2, ALDH1A3, ALDH1B1, ANK2, ANTXR1, ANXA6, AOPEP, APLNR, AQP7, ARID5B, ARL1, ASPN, ATP1A2, ATP1B2, ATP2A2, BACE2, BAX, BCHE, BCL9, BMP1, BMP4, BNC1, BNC2, C11orf24, C1R, C1S, C3, C7, CA11, CA3, CADPS, CALB2, CASQ2, CCN3, CCN5, CCND2, CD19, CD27, CD34, CD4, CD79A, CD79B, CDH2, CDH6, CDK4, CDKN2A, CDON, CEMIP, CEP68, CFI, CHRNB1, CHST15, CKMT2, CLDN1, CLDN15, CLSTN3, CLTCL1, CLU, CNTFR, COCH, COL15A1, COL18A1, COL4A2, COL5A2, COMP, COX7A1, CREB3L1, CRYAB, CSGALNACT1, CSPG4, CSRP1, CSRP2, CST5, CTSF, CTSK, CUL7, CXCL12, CXCL13, CYP1B1, CYP24A1, CYP26B1, CYTL1, DAAM2, DACT1, DCBLD2, DCHS1, DCLK1, DCN, DDB2, DDR2, DGKA, DIO2, DKK3, DMPK, DNAJB5, DOCK3, DOK5, DPT, DPYSL3, DST, DTNA, DZIP1, ECM1, ECM2, EDIL3, EIF5A2, ELN, ENAH, ENPP2, EPHA3, ESR1, ESR2, EXTL2, F10, F13A1, FADS2, FAM98A, FAP, FAT1, FBLN1, FBLN2, FBN2, FBXW7, FEZ1, FHL2, FILIP1L, FJX1, FKBP14, FMO1, FNDC4, FOLR2, FRZB, FST, FUT8, FZD10, FZD7, GADD45A, GALNT1, GARS1, GAS1, GAS6, GEM, GHR, GLT8D2, GMDS, GNAO1, GPI, GPSM2, GPX7, GREB1, GSN, GUCY1A1, GUCY1B1, HAAO, HDAC9, HEY2, HSPA12A, HSPB7, HTR2B, IGF1, IGFBP2, IGFBP3, IGFBP5, IL1R1, IRF4, ISLR, ITGA6, ITGA7, ITGAV, ITGBL1, ITIH5, JAG1, JPH2, KALRN, KAT2A, KCNA5, KCND3, KCNMA1, KCNN3, KDELR3, KLF12, KLHL3, LAMP5, LAX1, LEF1, LHX6, LILRB5, LIMA1, LIMK1, LOXL2, LRP1, LRRC17, LTBP1, MACROH2A2, MAF, MAN1C1, MANF, MAP1A, MAP4K4, MATN2, MCAM, MCM6, MEF2C, MEGF8, MEOX1, MEST, MFAP2, MFAP4, MLXIP, MMD, MMP10, MMP11, MMP14, MMP7, MOXD1, MSX2, MYLK, MYO1D, MYRIP, MZB1, NAV3, NDRG3, NET1, NFIB, NIBAN1, NID2, NLGN1, NMNAT2, NNMT, NOVA1, NOX4, NR2F2, NR5A2, NT5DC3, NT5E, NTRK3, NUAK1, OAT, OLFM1, OMD, OXCT1, P4HA2, PACS1, PALLD, PAMR1, PBX1, PCNX2, PCSK1, PDE10A, PDE1A, PDE1C, PDE2A, PDGFC, PDGFD, PDGFRL, PDIA4, PDIA6, PDK1, PDLIM3, PDLIM5, PDLIM7, PDZRN3, PDZRN4, PGR, PIGK, PKD2, PLA2G2A, PLA2R1, PLAU, PLIN1, PLIN3, PLN, PLOD1, PLOD3, PLPP1, PLPPR4, PLVAP, PLXDC1, PMEPA1, PNOC, PPFIA2, PPIC, PPP1R12B, PRCP, PRKAA2, PRKAB2, PRKAR2B, PRKG1, PRSS23, PTBP2, PTGIS, PTGS1, PTK7, PTP4A3, PYGM, RABGAP1, RAPGEF3, RARRES1, RASL12, RBMS3, REEP1, RELN, REM1, REXO2, RNF121, ROBO1, ROR2, RPL3, RPP40, RUNX1, RUNX1T1, RUSC2, RWDD2B, SACS, SBSPON, SCARA3, SCG5, SCN2B, SDC1, SDK2, SEC24D, SELP, SEMA3C, SEMA4C, SEMA7A, SERPINA5, SERPING1, SERPINI1, SEZ6L2, SFRP1, SHMT2, SLAMF7, SLC16A7, SLC1A4, SLC24A3, SLC25A12, SLC39A14, SLC6A1, SLITRK3, SLN, SMO, SMPD1, SMPDL3A, SNAI2, SNCAIP, SND1, SOBP, SORBS1, SORBS2, SOX12, SOX9, SPOCK1, SPON2, SPRY1, SPSB1, SRM, SRPRB, SSBP2, SSPN, ST3GAL2, ST6GAL1, STAB2, STK38L, SULF1, SV2B, SVIL, SYNM, SYT11, SYTL2, TAGLN, TCF4, TDO2, TF, TFPI2, THBS3, TIMP4, TLE1, TMED3, TMEM147, TMEM14A, TMEM176A, TMEM208, TMOD1, TNFAIP6, TNFRSF11B, TNFRSF17, TNN, TPST1, TRAF5, TRAM2, TRPC1, TRPS1, TSPAN2, TTC3, TUBB2A, TWIST1, TWSG1, TYMS, UCHL1, UFSP2, UGGT2, VCAN, VCL, VIPR2, VLDLR, WFDC1, XYLT1, YIF1A, YKT6, ZFP37, ZHX3, ZNF135, ZNF423, ZNHIT6\\
+M10-AT1 Cells & AASS, AATK, ABCA1, ABCA8, ABCB8, ABCC5, ABLIM1, ACOX2, ADARB1, ADCY7, ADGRL2, ADNP, AGER, AGPAT4, AGTPBP1, AHCYL2, AJAP1, ALOX5, ANK3, ANKRA2, ANKRD11, ANKRD49, ANKS1A, ANXA3, APBB3, APC, APOL3, AQP4, ARHGAP44, ARHGEF1, ARHGEF12, ARHGEF17, ARHGEF2, ARPP19, ARRB1, ASAP2, B3GALNT1, B3GNT2, BMP1, BRWD1, BTN2A2, BTN3A1, C1GALT1, C4BPB, CA2, CA4, CACNA1D, CACNA2D2, CACNA2D3, CACNB1, CACNG4, CALCOCO1, CALCOCO2, CARD8, CARMIL1, CAV2, CAVIN2, CCDC186, CCDC68, CCNL1, CCNL2, CD247, CD36, CD47, CD55, CDADC1, CDC42BPA, CENPC, CEP192, CEP57, CETP, CFLAR, CHKA, CIITA, CITED2, CLCN6, CLCN7, CLDN15, CLEC2D, CLEC4M, CLEC7A, CLIC5, CLIP4, CLK1, CLK4, CLN8, CLTCL1, CNNM4, CNOT8, COX11, CRTAC1, CTNNBIP1, CX3CR1, CXADR, CYP3A5, CYP4B1, DAPK2, DCSTAMP, DCUN1D4, DDB2, DDX60, DENND3, DET1, DGKD, DLC1, DMPK, DMTF1, DNAJB14, DNM3, DOCK4, DOCK9, DPEP2, DROSHA, DST, DUOX1, ECHDC2, EDN1, EDNRB, EFNA1, EGFL7, EGFR, EIF2AK2, EML1, EMP2, ENPP4, ENTREP1, EPAS1, EPB41L2, EPB41L5, ERG, ERMP1, ETAA1, ETFDH, ETV1, ETV5, EXPH5, EZH1, FADS3, FAM111A, FAN1, FANCC, FAXDC2, FBXL4, FER, FHOD1, FKTN, FMO5, FNBP4, FRAS1, FRMD4A, FRY, FZD4, FZD5, GAB1, GABBR1, GARRE1, GCNT2, GFOD1, GGA2, GLS, GMFB, GNLY, GNPTAB, GP1BA, GPA33, GPD1L, GPM6A, GRAMD1C, GRB14, GRB7, GRIA1, GSAP, GSE1, GSTA4, GYPE, HERC4, HEY1, HIP1, HMGCS1, HNRNPH3, HOOK2, HPCAL1, HPGD, HPN, HPS5, HSD17B6, IFFO1, IFI44, IFI44L, IGSF3, IL18, IL18R1, IL20RA, INPP5B, INSIG2, INTS3, IRAK3, IRAK4, ITGAL, ITIH4, ITPR3, ITPRID2, ITSN2, KAT2A, KAT6B, KCNA4, KCNJ15, KCNS3, KHDC4, KLF13, KLHL3, KLRD1, LAMA3, LAMA5, LANCL1, LGR5, LIAS, LIFR, LLGL2, LPIN2, LRCH1, LRP2BP, LRRC1, LRRC36, LRRN3, LTA4H, LUC7L, MAN2C1, MATN3, MBIP, MGAT4A, MICAL1, MINDY2, MKNK2, MME, MORC3, MPP3, MRE11, MTMR4, MTMR9, MTRF1, MTSS1, MVB12B, MXD4, MYO5C, MYO9A, MYRF, N4BP2L2, NAALAD2, NBN, NCOA3, NDRG4, NEBL, NEDD4, NEDD4L, NEDD9, NEK7, NEMP1, NFE2L3, NHERF2, NINJ2, NLRP1, NMRK1, NOS1, NOTCH4, NPAT, NPR3, NPRL2, NR3C2, NRG1, NSD3, NUP107, OLFML2A, ORC4, OSGIN2, P3H2, PAFAH1B1, PAPSS2, PARP12, PATJ, PAXBP1, PCDH12, PDE1B, PDE1C, PDE8B, PDPR, PDZD2, PER2, PGAP2, PGM1, PHACTR2, PHLDB1, PIAS3, PIP5K1B, PKIA, PLA2G4C, PLAG1, PLCE1, PLEKHA1, PLLP, PLPPR1, PMM1, PNISR, PNMT, PNPLA6, PPARGC1A, PPFIBP1, PPIP5K2, PPP2R5A, PREPL, PRKAB2, PRKCZ, PRKD1, PRKD3, PRX, PTBP2, PTGDR, PTPN13, PTPRB, PTPRO, PXMP4, QKI, QRICH1, RAB17, RABGAP1, RAMP2, RAMP3, RAPGEF3, RAPGEF4, RAPGEFL1, RASSF8, RBM26, RBM28, RBM6, RBMS2, RBMS3, RCBTB1, REEP1, RFC1, RGS9, RIN2, RNF144A, RNFT1, RNMT, ROBO4, ROR1, RPS6KA5, RUNX1T1, RUSC2, RXRG, SACM1L, SASH1, SCTR, SECISBP2L, SEMA3B, SEMA3E, SEMA3G, SEMA4G, SENP7, SEPTIN4, SGCG, SHANK2, SHC3, SHTN1, SLC12A4, SLC1A1, SLC25A36, SLC35A1, SLC39A8, SLC47A1, SLC5A1, SLC6A1, SLC6A16, SLF2, SLIT2, SLTM, SOS1, SOX13, SP140L, SPG7, SPRED2, SPRYD7, SPTBN1, SRSF7, ST3GAL6, STAG3, STARD13, STX2, STX3, STXBP6, SUN1, SYCP2, SYNE1, SYT17, TAL1, TARBP1, TBC1D4, TBX2, TEAD1, TEK, TES, TFCP2L1, TGM1, THBS3, TIE1, TMEM100, TMEM41B, TMEM50B, TMEM74B, TMEM87A, TMOD2, TNFAIP2, TNFSF10, TNNC1, TNS1, TNS2, TOR1AIP2, TRAF1, TRAK2, TRIM13, TRIM23, TRIM24, TRMT13, TRPC1, TSPAN12, TSPAN13, TTN, TUBD1, TUFT1, TUT4, UBA7, UNC13B, USP13, USP21, USP4, UXS1, VASH1, VCPKMT, VEGFA, VIPR1, VPS13A, VPS8, WASF3, WBP4, WFS1, WIF1, WNT2B, WRN, XAF1, ZBED5, ZBTB16, ZBTB24, ZC2HC1A, ZFC3H1, ZFYVE9, ZKSCAN3, ZMYND8, ZNF106, ZNF135, ZNF14, ZNF189, ZNF195, ZNF211, ZNF248, ZNF280D, ZNF302, ZNF334, ZNF45, ZNF510, ZNF580, ZNF589, ZNF671, ZSCAN31, ZXDC\\
+M11-Immune Cells & ACAP1, ADA, ADAM8, ADAP2, ADGRE2, ADM, AGTPBP1, ALOX5, ALOX5AP, AMPD2, ANPEP, AOAH, APBB1IP, AQP9, ARHGAP25, ARHGDIB, ARRB2, ATG3, ATP6V1B2, BACH1, BCL2A1, BIN2, BPI, BST1, C15orf39, C3AR1, CASP4, CASP5, CCR1, CCRL2, CD163, CD177, CD300A, CDA, CEACAM1, CEBPB, CHI3L2, CHST15, CLEC7A, CNN2, CORO1A, CPD, CR1, CRLF3, CST7, CXCL8, CYC1, CYRIA, CYRIB, CYTH4, DENND3, DNM2, DPYD, E2F3, EIF1B, ELOVL6, EVI2B, FCER1G, FES, FFAR2, FLOT1, FLOT2, FMNL1, FURIN, FUT7, GAB2, GCA, GLUL, GMIP, GPR132, GPR65, GPSM3, GYG1, HAL, HK3, HMOX1, ICAM3, IL17RA, IL18R1, IL18RAP, IL1R2, IL4R, INKA2, INPP5D, IRAK3, ITGAM, ITGB2, JAK3, KLHL2, LAT2, LCP1, LILRB2, LIMK2, LRP10, LRRC32, MAFB, MAP3K8, MAPK14, MEFV, MGAM, MMP8, MMP9, MPO, MX2, MYD88, NCF2, NFE2, NIBAN1, OLFM4, OSTF1, P2RX1, PADI2, PADI4, PFKFB3, PFKFB4, PGD, PHC2, PI3, PIK3CD, PISD, PKN1, PLCG2, PLEKHM1, PLSCR1, PLXNC1, PRKCD, PSTPIP2, PTAFR, PTGER2, PTPN6, PTPRC, PYGL, QPCT, RAB32, RASSF2, RIPOR2, RPS6KA1, S100A12, S100A8, SAMSN1, SECTM1, SELPLG, SEMA4A, SEMA4D, SERPINB1, SIGLEC7, SLA, SLC16A3, SLC16A6, SLCO4A1, SORL1, STX3, SYK, TBXAS1, THEMIS2, TLN1, TLR1, TLR4, TNFRSF10C, TNFRSF1B, TPK1, TRPM2, USP15, USP4, VASP, VAV1, VNN2, WIPF1, ZNF267\\
+M12-Guanylate Cyclase & ACVRL1, ADGRL2, ANGPT1, ANO3, ANTXR1, APLNR, ARHGEF17, BMP6, CDH6, CLEC4M, COL4A2, CRMP1, DCHS1, DPT, ECM2, EDNRA, ENG, EPB41L2, ESM1, F2R, FRAS1, FRMD4A, GUCY1A1, GUCY1A2, GUCY1B1, HPGD, IL21R, ITGBL1, KCNN2, LHFPL6, MAPRE2, NETO2, NRCAM, OAS2, PCDH12, PDCL, PDE8B, PDGFB, PGR, PKD2, PLA2G4C, PRKG1, RALA, RAMP3, RFTN1, RGS9, ROBO4, SEMA3G, SEPTIN4, SLC12A2, SYT11, TBX2, TBX3, TBX5, TMEM140, TRIB2, TSPAN12, WARS1, ZEB2\\
+M13-Proliferation & AARS1, ABCA3, ABCB8, ABCF2, ACAA1, ACOT13, ACOT7, ACP2, ACSM3, ADAMTS2, ADAP2, ADK, ADSL, AIP, AKR1A1, AKR1B1, ALDH6A1, ALG3, ALG8, ALOX15B, ALPL, AMPD2, ANP32B, AP1M2, APMAP, APOBEC3B, APOL2, ARAP1, ARHGDIA, ARPC5L, ASF1B, ASPM, ATG101, ATIC, ATP1A1, ATP5F1A, ATP5F1B, ATP6V0B, ATP6V0D1, ATP6V1E1, ATP6V1F, AURKA, BAG1, BANF1, BAX, BCAT2, BCL2L1, BFAR, BLM, BLVRA, BMP1, BOLA1, BRCA1, BRCA2, BUB1, BYSL, BZW2, C11orf24, C1QBP, C1R, CACNB1, CASP6, CCDC85B, CCNA2, CCNB1, CCND3, CCT5, CD163, CDC20, CDK1, CDK4, CDKN3, CENPF, CENPN, CEP15, CEP55, CERS2, CHCHD3, CHD1L, CHP1, CIAO2B, CKAP2, CKS2, CLCN7, CLPP, CNIH4, COL5A2, COMMD9, CORO1B, COX7A1, CREB3L1, CRTAC1, CSPG5, CTH, CYC1, DCLRE1A, DHCR24, DLGAP5, DNAJC8, DNM2, DOK4, DRAP1, DTL, DTNB, DUOX1, ECHDC1, ECM1, EDEM2, EGF, EIF2S2, EIF3B, EIF4E2, EIF5B, ELOA, ELOVL1, ELOVL6, ENO1, ESRRA, ETHE1, ETV5, EXO1, FADS1, FADS2, FAH, FAM98A, FBL, FES, FIS1, FKBP1A, FKBP4, FLOT1, FLOT2, FOXM1, FURIN, FXYD5, FZD5, GALE, GARS1, GCHFR, GFUS, GLO1, GNA15, GNG5, GNPDA1, GOT1, GPI, GPSM2, GSTA4, GSTO1, GSTP1, GTF2IRD1, H1-10, HDDC2, HDHD3, HLX, HMGCL, HMGCS1, HMOX1, HOPX, HPCAL1, HPN, HSD17B14, HSD17B4, HTATIP2, HYOU1, IARS1, IARS2, IDH2, IDI1, IFI35, IMP3, IMPA2, INTS7, INTS9, ITPK1, ITPR3, JPT1, KCNQ3, KDELR3, KIF11, KIF20A, KIF20B, KIF23, KIFC1, KPNA2, LACTB2, LAMTOR5, LASP1, LGALS9, LIMK1, LLGL2, LMO3, LPCAT1, LRP10, LRRC59, LY6E, LYPLA2, MANF, MAPK13, MAPKAPK3, MCCC1, MCM4, MCM5, MCM6, ME1, ME2, MEGF9, MELK, MGAT1, MKI67, MLX, MMP14, MMUT, MPDU1, MRPL18, MRPL49, MRPL58, MRPS15, MRPS18B, MRPS35, MSMO1, MVD, NAPA, NAT10, NDC1, NDUFAB1, NDUFB2, NDUFC1, NDUFS2, NDUFS5, NEK2, NEU1, NOP10, NPC2, NPRL2, NQO1, NR1H2, NRGN, NUP37, OXCT1, P3H2, PAICS, PCK2, PDIA4, PDIA6, PECR, PEG10, PEPD, PEX5, PFDN5, PGD, PHLDA2, PIP5K1B, PKN1, PLA2G10, PLAAT4, PLD3, PLIN3, PLK1, PLK4, PLLP, PLOD1, PLOD3, PMM1, POP1, POP4, PPL, PRDX6, PRKAG1, PRKCZ, PRMT5, PRR16, PSMA3, PSMA4, PSMA5, PSMB8, PSMC5, PSMD14, PSMD5, PSME3, PTK7, PXMP4, PYCARD, QSOX1, RAB17, RAB20, RAB27B, RAB32, RAD51AP1, RANBP1, RARS1, RCC1, RIDA, RNF121, RNH1, RPL11, RPL3, RPL36, RPL5, RPS6, RPS6KA1, RRAS, RRM1, RRM2, RRP9, RUVBL2, RWDD2B, S100A13, S100A14, SCNN1A, SCTR, SDF2L1, SDHB, SEC61B, SEC61G, SERPINA1, SERPINF2, SEZ6L2, SHMT2, SLC35B1, SLC35C1, SLC3A2, SLC50A1, SLC5A6, SLC7A8, SLC9A1, SMPD1, SMPDL3A, SND1, SNRPD2, SOCS1, SOX12, SPON2, SPRYD7, SQLE, SREBF1, SREBF2, SRM, SRPRB, SSNA1, SSR2, SSR3, SSRP1, ST7, STIL, STIP1, STOML2, STX8, TACC2, TAPBP, TATDN2, TBRG4, TBXAS1, TFCP2L1, THOC5, TIMM10, TIMM17A, TIMM44, TIMM9, TIMP4, TK1, TKT, TM7SF2, TMED3, TMEM104, TMEM147, TMEM208, TMEM41B, TMEM87A, TMEM97, TNIP2, TOM1L1, TOP2A, TP53I3, TPX2, TRPM2, TTK, TUSC2, TYMS, UCHL1, UQCR10, UQCRC1, USP5, VAMP5, VAMP8, VAT1, VDR, VPS26C, WDR74, WSB2, YARS1, YIF1A, YKT6, ZNF32, ZNF580\\
+\addlinespace
+M15-Interferon & APOL1, APOL2, CASP1, CHMP5, CXCL10, DDX60, EIF2AK2, HERC5, IFI35, IFI44, IFI44L, IFI6, IFIT1, IFIT5, LAP3, LGALS3BP, LGALS9, LY6E, MX1, MX2, OAS1, OAS2, OASL, PARP12, PLSCR1, PML, PSMB8, SP110, STAT1, TRIM14, TRIM21, TRIM5, WARS1, XAF1, ZCCHC2\\
+M19-AT2 Cells & ADH1A, ALDH6A1, BCAT2, BFAR, C1orf21, CRTAC1, CTNNBIP1, DHCR24, DUOX1, ELOA, EPB41L5, EPHX1, FADS1, FHOD1, FMO5, FZD5, GPD1L, GSTA4, GYPE, HMGCS1, HSD17B6, IRX5, LRRC36, MCCC1, MTUS1, P3H2, PID1, PIP5K1B, PLLP, PLPPR1, PMM1, PNMT, PPP2R5A, PRKD1, RAB17, RIDA, RPL11, SCIN, ST7, TACC2, TM7SF2, TMEM41B, TMEM87A, TMEM97, TTN, UNC13B, UXS1\\
+U0-Endothelium & ACVRL1, ADGRL2, CA4, DLC1, EPAS1, GRIA1, HPCAL1, HPGD, MATN3, NPR1, PAPSS2, PCDH12, PRX, PTPRB, ROBO4, RRAS, SEMA3G, STARD13, STXBP6, TAL1, TEK, TMEM100, VIPR1\\
+U1-EMT & B3GNT3, BMPR1B, CYP24A1, FOXA1, IGFBP2, MAP1A, MMP10, PLPP2, RUVBL2, TSPAN1\\
+U4-AT1 cells & AATK, AGER, ARRB1, CA2, CAV2, CLIC5, EMP2, LAMA3, MYRF, P3H2, PLLP, SLC39A8\\
+\addlinespace
+U5-Cytoskeleton & CCNO, CYP2J2, DLEC1, DNAH7, DNAH9, DNAI1, HYDIN, SLC27A2, SPAG6\\*
+\end{longtable}
+\endgroup{}
+
+\newpage
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.4in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:biclusterPathways}\textbf{List of pathways associated with each bicluster as determined by overrepresentation analysis.}}\\
+\toprule
+Bicluster & Pathway & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:biclusterPathways}\textbf{List of pathways associated with each bicluster as determined by overrepresentation analysis.} \textit{(continued)}}\\
+\toprule
+Bicluster & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+M2-Cytoskeleton & TRAVAGLINI LUNG CILIATED CELL & 5.16e-138\\
+M2-Cytoskeleton & TRAVAGLINI LUNG PROXIMAL CILIATED CELL & 2.00e-133\\
+M2-Cytoskeleton & DESCARTES MAIN FETAL CILIATED EPITHELIAL CELLS & 1.41e-69\\
+M2-Cytoskeleton & GAO ESOPHAGUS 25W C1 CILIATED EPITHELIAL CELLS & 1.10e-44\\
+M2-Cytoskeleton & DESCARTES FETAL LUNG CILIATED EPITHELIAL CELLS & 1.01e-30\\
+\addlinespace
+M2-Cytoskeleton & GOBP MICROTUBULE BASED PROCESS & 8.59e-28\\
+M2-Cytoskeleton & GOBP CELL PROJECTION ASSEMBLY & 3.44e-26\\
+M2-Cytoskeleton & GOBP CILIUM ORGANIZATION & 1.95e-25\\
+M2-Cytoskeleton & GOBP CELL PROJECTION ORGANIZATION & 8.82e-25\\
+M2-Cytoskeleton & GOBP ORGANELLE ASSEMBLY & 2.50e-24\\
+\addlinespace
+M2-Cytoskeleton & DURANTE ADULT OLFACTORY NEUROEPITHELIUM RESPIRATORY CILIATED CELLS & 5.23e-24\\
+M2-Cytoskeleton & GOBP MICROTUBULE BASED MOVEMENT & 6.24e-22\\
+M2-Cytoskeleton & DESCARTES FETAL STOMACH CILIATED EPITHELIAL CELLS & 1.02e-19\\
+M2-Cytoskeleton & REACTOME CILIUM ASSEMBLY & 1.95e-17\\
+M2-Cytoskeleton & GOBP MICROTUBULE BASED TRANSPORT & 1.78e-14\\
+\addlinespace
+M2-Cytoskeleton & GOBP MICROTUBULE CYTOSKELETON ORGANIZATION & 1.78e-14\\
+M2-Cytoskeleton & REACTOME ORGANELLE BIOGENESIS AND MAINTENANCE & 1.90e-14\\
+M2-Cytoskeleton & GOBP CYTOSKELETON ORGANIZATION & 1.76e-13\\
+M2-Cytoskeleton & GOBP CILIUM MOVEMENT & 1.24e-12\\
+M2-Cytoskeleton & MANNO MIDBRAIN NEUROTYPES HRGL3 & 7.32e-12\\
+\addlinespace
+M2-Cytoskeleton & GOBP INTRACILIARY TRANSPORT & 1.43e-11\\
+M2-Cytoskeleton & REACTOME INTRAFLAGELLAR TRANSPORT & 5.04e-11\\
+M2-Cytoskeleton & BUSSLINGER GASTRIC ISTHMUS CELLS & 8.89e-10\\
+M2-Cytoskeleton & HE LIM SUN FETAL LUNG C2 HSC CELL & 9.15e-10\\
+M2-Cytoskeleton & MANNO MIDBRAIN NEUROTYPES HRGL2A & 9.56e-10\\
+\addlinespace
+M3-AT1 Cells & MANNO MIDBRAIN NEUROTYPES HENDO & 5.28e-71\\
+M3-AT1 Cells & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 1 CELL & 4.18e-70\\
+M3-AT1 Cells & FAN EMBRYONIC CTX BRAIN ENDOTHELIAL 1 & 8.52e-53\\
+M3-AT1 Cells & FAN EMBRYONIC CTX BIG GROUPS BRAIN ENDOTHELIAL & 7.59e-49\\
+M3-AT1 Cells & AIZARANI LIVER C10 MVECS 1 & 6.89e-47\\
+\addlinespace
+M3-AT1 Cells & TRAVAGLINI LUNG CAPILLARY INTERMEDIATE 1 CELL & 5.74e-42\\
+M3-AT1 Cells & AIZARANI LIVER C13 LSECS 2 & 2.18e-40\\
+M3-AT1 Cells & MURARO PANCREAS ENDOTHELIAL CELL & 5.05e-39\\
+M3-AT1 Cells & GOBP TUBE DEVELOPMENT & 9.66e-39\\
+M3-AT1 Cells & GAO LARGE INTESTINE ADULT CJ IMMUNE CELLS & 1.22e-38\\
+\addlinespace
+M3-AT1 Cells & GOBP TUBE MORPHOGENESIS & 1.65e-37\\
+M3-AT1 Cells & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 1.00e-36\\
+M3-AT1 Cells & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 4.72e-35\\
+M3-AT1 Cells & GOBP VASCULATURE DEVELOPMENT & 5.40e-35\\
+M3-AT1 Cells & AIZARANI LIVER C29 MVECS 2 & 2.30e-33\\
+\addlinespace
+M3-AT1 Cells & GOBP BLOOD VESSEL MORPHOGENESIS & 7.72e-33\\
+M3-AT1 Cells & GOBP CELL MOTILITY & 1.76e-32\\
+M3-AT1 Cells & DESCARTES FETAL CEREBELLUM VASCULAR ENDOTHELIAL CELLS & 5.15e-32\\
+M3-AT1 Cells & GOBP REGULATION OF MULTICELLULAR ORGANISMAL DEVELOPMENT & 5.24e-32\\
+M3-AT1 Cells & GOBP RESPONSE TO ENDOGENOUS STIMULUS & 6.54e-32\\
+\addlinespace
+M3-AT1 Cells & AIZARANI LIVER C9 LSECS 1 & 1.64e-31\\
+M3-AT1 Cells & GOBP CELL ADHESION & 1.50e-29\\
+M3-AT1 Cells & GOBP LOCOMOTION & 2.65e-29\\
+M3-AT1 Cells & HAY BONE MARROW STROMAL & 3.74e-29\\
+M3-AT1 Cells & FAN EMBRYONIC CTX OLIG & 1.28e-28\\
+\addlinespace
+M4-Immune Cells & TRAVAGLINI LUNG TREM2 DENDRITIC CELL & 1.93e-121\\
+M4-Immune Cells & TRAVAGLINI LUNG PROLIFERATING MACROPHAGE CELL & 5.55e-118\\
+M4-Immune Cells & MANNO MIDBRAIN NEUROTYPES HMGL & 8.79e-87\\
+M4-Immune Cells & GAO LARGE INTESTINE 24W C11 PANETH LIKE CELL & 5.68e-86\\
+M4-Immune Cells & Monocyte CD14+ & 1.96e-83\\
+\addlinespace
+M4-Immune Cells & DESCARTES FETAL CEREBELLUM MICROGLIA & 2.37e-76\\
+M4-Immune Cells & DC Immature & 4.09e-73\\
+M4-Immune Cells & FAN EMBRYONIC CTX BIG GROUPS MICROGLIA & 6.75e-72\\
+M4-Immune Cells & Macrophage & 1.47e-71\\
+M4-Immune Cells & CUI DEVELOPING HEART C8 MACROPHAGE & 5.63e-71\\
+\addlinespace
+M4-Immune Cells & ZHONG PFC MAJOR TYPES MICROGLIA & 1.04e-70\\
+M4-Immune Cells & AIZARANI LIVER C6 KUPFFER CELLS 2 & 4.43e-67\\
+M4-Immune Cells & GOBP IMMUNE RESPONSE & 9.39e-67\\
+M4-Immune Cells & TRAVAGLINI LUNG MACROPHAGE CELL & 4.41e-64\\
+M4-Immune Cells & HU FETAL RETINA MICROGLIA & 7.18e-64\\
+\addlinespace
+M4-Immune Cells & Myeloid CD33+ & 6.72e-60\\
+M4-Immune Cells & BUSSLINGER GASTRIC IMMUNE CELLS & 8.74e-60\\
+M4-Immune Cells & FAN OVARY CL13 MONOCYTE MACROPHAGE & 1.05e-59\\
+M4-Immune Cells & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 4.89e-59\\
+M4-Immune Cells & GOBP DEFENSE RESPONSE & 5.03e-59\\
+\addlinespace
+M4-Immune Cells & DC LPS 48h & 2.32e-58\\
+M4-Immune Cells & REACTOME INNATE IMMUNE SYSTEM & 2.95e-56\\
+M4-Immune Cells & GOBP POSITIVE REGULATION OF IMMUNE SYSTEM PROCESS & 5.12e-55\\
+M4-Immune Cells & DESCARTES FETAL CEREBRUM MICROGLIA & 6.48e-55\\
+M4-Immune Cells & GOBP CELL ACTIVATION & 6.20e-54\\
+\addlinespace
+M5-Immune Cells & TRAVAGLINI LUNG OLR1 CLASSICAL MONOCYTE CELL & 2.91e-102\\
+M5-Immune Cells & HALLMARK TNFA SIGNALING VIA NFKB & 3.74e-74\\
+M5-Immune Cells & TRAVAGLINI LUNG EREG DENDRITIC CELL & 3.58e-66\\
+M5-Immune Cells & MURARO PANCREAS DUCTAL CELL & 1.81e-41\\
+M5-Immune Cells & TRAVAGLINI LUNG BRONCHIAL VESSEL 2 CELL & 1.81e-41\\
+\addlinespace
+M5-Immune Cells & AIZARANI LIVER C20 LSECS 3 & 2.04e-41\\
+M5-Immune Cells & GOBP NEGATIVE REGULATION OF RESPONSE TO STIMULUS & 3.16e-35\\
+M5-Immune Cells & GOBP RESPONSE TO CYTOKINE & 3.16e-35\\
+M5-Immune Cells & GOBP DEFENSE RESPONSE & 6.69e-35\\
+M5-Immune Cells & MANNO MIDBRAIN NEUROTYPES HENDO & 8.28e-35\\
+\addlinespace
+M5-Immune Cells & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 3.49e-33\\
+M5-Immune Cells & REACTOME CYTOKINE SIGNALING IN IMMUNE SYSTEM & 1.04e-32\\
+M5-Immune Cells & GOBP NEGATIVE REGULATION OF SIGNALING & 1.57e-32\\
+M5-Immune Cells & AIZARANI LIVER C29 MVECS 2 & 3.18e-32\\
+M5-Immune Cells & MURARO PANCREAS MESENCHYMAL STROMAL CELL & 3.18e-32\\
+\addlinespace
+M5-Immune Cells & HALLMARK INFLAMMATORY RESPONSE & 1.54e-31\\
+M5-Immune Cells & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 1.81e-31\\
+M5-Immune Cells & TRAVAGLINI LUNG LIPOFIBROBLAST CELL & 7.25e-31\\
+M5-Immune Cells & GOBP REGULATION OF RESPONSE TO EXTERNAL STIMULUS & 3.60e-30\\
+M5-Immune Cells & GOBP IMMUNE RESPONSE & 3.95e-30\\
+\addlinespace
+M5-Immune Cells & Neutrophils & 1.25e-29\\
+M5-Immune Cells & REACTOME SIGNALING BY INTERLEUKINS & 3.35e-29\\
+M5-Immune Cells & FAN OVARY CL1 GPRC5A TNFRS12A HIGH SELECTABLE FOLLICLE STROMAL CELL & 3.70e-29\\
+M5-Immune Cells & GOBP INFLAMMATORY RESPONSE & 9.88e-29\\
+M5-Immune Cells & GOBP POSITIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 9.88e-29\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & GAO LARGE INTESTINE ADULT CI MESENCHYMAL CELLS & 3.72e-64\\
+M8-Immune Cells\_Fibrosis & BUSSLINGER GASTRIC IMMUNE CELLS & 6.44e-62\\
+M8-Immune Cells\_Fibrosis & Th1 & 3.61e-55\\
+M8-Immune Cells\_Fibrosis & Tonsils CD4+ T cells & 4.25e-51\\
+M8-Immune Cells\_Fibrosis & T cells CD57+ & 4.25e-51\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & Th2 & 4.25e-51\\
+M8-Immune Cells\_Fibrosis & B cells CD19+ & 2.73e-45\\
+M8-Immune Cells\_Fibrosis & T cells central memory & 2.73e-45\\
+M8-Immune Cells\_Fibrosis & Treg & 2.73e-45\\
+M8-Immune Cells\_Fibrosis & Peripheral naive CD4+ T cells & 5.76e-44\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & Peripheral CD8+ T cells & 5.76e-44\\
+M8-Immune Cells\_Fibrosis & Thymic CD4+CD8+CD3+ & 5.76e-44\\
+M8-Immune Cells\_Fibrosis & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 1.81e-42\\
+M8-Immune Cells\_Fibrosis & BUSSLINGER DUODENAL IMMUNE CELLS & 1.35e-41\\
+M8-Immune Cells\_Fibrosis & B cells immature & 3.98e-41\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & T cells effector memory & 3.98e-41\\
+M8-Immune Cells\_Fibrosis & Thymic CD34+CD38+ CD1A- & 2.68e-38\\
+M8-Immune Cells\_Fibrosis & GOBP CELL ACTIVATION & 8.82e-38\\
+M8-Immune Cells\_Fibrosis & GOBP POSITIVE REGULATION OF IMMUNE SYSTEM PROCESS & 8.82e-38\\
+M8-Immune Cells\_Fibrosis & GOBP LYMPHOCYTE ACTIVATION & 4.98e-37\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & GOBP IMMUNE RESPONSE & 9.27e-37\\
+M8-Immune Cells\_Fibrosis & GOBP HEMOPOIESIS & 2.69e-36\\
+M8-Immune Cells\_Fibrosis & Thymic SP CD8+ T cells & 1.48e-35\\
+M8-Immune Cells\_Fibrosis & T cells gammadelta & 1.48e-35\\
+M8-Immune Cells\_Fibrosis & GOBP POSITIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 4.57e-35\\
+\addlinespace
+M9-Fibrosis & HAY BONE MARROW STROMAL & 3.23e-86\\
+M9-Fibrosis & MURARO PANCREAS MESENCHYMAL STROMAL CELL & 6.29e-66\\
+M9-Fibrosis & GAO LARGE INTESTINE ADULT CJ IMMUNE CELLS & 4.11e-60\\
+M9-Fibrosis & MANNO MIDBRAIN NEUROTYPES HPERIC & 1.95e-52\\
+M9-Fibrosis & HALLMARK EPITHELIAL MESENCHYMAL TRANSITION & 1.05e-46\\
+\addlinespace
+M9-Fibrosis & GOBP CELL ADHESION & 1.03e-44\\
+M9-Fibrosis & TRAVAGLINI LUNG ADVENTITIAL FIBROBLAST CELL & 7.45e-42\\
+M9-Fibrosis & GOBP CELL MOTILITY & 8.15e-41\\
+M9-Fibrosis & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 9.07e-35\\
+M9-Fibrosis & GOBP ANIMAL ORGAN MORPHOGENESIS & 5.57e-34\\
+\addlinespace
+M9-Fibrosis & FAN EMBRYONIC CTX BRAIN ENDOTHELIAL 2 & 1.14e-33\\
+M9-Fibrosis & HE LIM SUN FETAL LUNG C3 OMD POS ENDOTHELIAL CELL & 3.76e-33\\
+M9-Fibrosis & AIZARANI LIVER C21 STELLATE CELLS 1 & 4.58e-31\\
+M9-Fibrosis & HU FETAL RETINA FIBROBLAST & 1.55e-30\\
+M9-Fibrosis & MANNO MIDBRAIN NEUROTYPES HRGL2A & 2.32e-30\\
+\addlinespace
+M9-Fibrosis & CUI DEVELOPING HEART C5 VALVAR CELL & 2.50e-30\\
+M9-Fibrosis & GOBP TUBE DEVELOPMENT & 3.06e-30\\
+M9-Fibrosis & REACTOME EXTRACELLULAR MATRIX ORGANIZATION & 4.61e-29\\
+M9-Fibrosis & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 4.90e-29\\
+M9-Fibrosis & GOBP RESPONSE TO ENDOGENOUS STIMULUS & 1.46e-28\\
+\addlinespace
+M9-Fibrosis & CUI DEVELOPING HEART C3 FIBROBLAST LIKE CELL & 1.55e-28\\
+M9-Fibrosis & GOBP LOCOMOTION & 2.81e-28\\
+M9-Fibrosis & GOBP REGULATION OF LOCOMOTION & 2.81e-28\\
+M9-Fibrosis & TRAVAGLINI LUNG AIRWAY SMOOTH MUSCLE CELL & 4.15e-28\\
+M9-Fibrosis & FAN OVARY CL6 PUTATIVE EARLY ATRETIC FOLLICLE THECAL CELL 2 & 4.28e-28\\
+\addlinespace
+M10-AT1 Cells & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 1 CELL & 2.18e-58\\
+M10-AT1 Cells & MANNO MIDBRAIN NEUROTYPES HENDO & 2.03e-37\\
+M10-AT1 Cells & FAN EMBRYONIC CTX BRAIN ENDOTHELIAL 1 & 3.91e-29\\
+M10-AT1 Cells & BUSSLINGER GASTRIC IMMUNE CELLS & 3.40e-24\\
+M10-AT1 Cells & MANNO MIDBRAIN NEUROTYPES HGABA & 3.40e-24\\
+\addlinespace
+M10-AT1 Cells & HE LIM SUN FETAL LUNG C0 MID MESOTHELIAL CELL & 2.85e-21\\
+M10-AT1 Cells & MURARO PANCREAS ENDOTHELIAL CELL & 2.85e-21\\
+M10-AT1 Cells & TRAVAGLINI LUNG CAPILLARY INTERMEDIATE 1 CELL & 8.41e-21\\
+M10-AT1 Cells & GOBP PHOSPHORYLATION & 2.03e-19\\
+M10-AT1 Cells & FAN EMBRYONIC CTX BIG GROUPS BRAIN ENDOTHELIAL & 3.11e-19\\
+\addlinespace
+M10-AT1 Cells & AIZARANI LIVER C10 MVECS 1 & 4.33e-18\\
+M10-AT1 Cells & GOBP REGULATION OF MULTICELLULAR ORGANISMAL DEVELOPMENT & 8.78e-18\\
+M10-AT1 Cells & GOBP TUBE MORPHOGENESIS & 8.78e-18\\
+M10-AT1 Cells & GOBP REGULATION OF INTRACELLULAR SIGNAL TRANSDUCTION & 1.41e-17\\
+M10-AT1 Cells & AIZARANI LIVER C13 LSECS 2 & 1.49e-17\\
+\addlinespace
+M10-AT1 Cells & HE LIM SUN FETAL LUNG C0 LATE MESOTHELIAL CELL & 1.49e-17\\
+M10-AT1 Cells & GOBP POSITIVE REGULATION OF MOLECULAR FUNCTION & 1.84e-17\\
+M10-AT1 Cells & AIZARANI LIVER C9 LSECS 1 & 9.75e-17\\
+M10-AT1 Cells & GOBP TUBE DEVELOPMENT & 1.95e-16\\
+M10-AT1 Cells & GOBP NEUROGENESIS & 4.38e-16\\
+\addlinespace
+M10-AT1 Cells & GOBP REGULATION OF CELL POPULATION PROLIFERATION & 2.45e-15\\
+M10-AT1 Cells & GOBP REGULATION OF PROTEIN MODIFICATION PROCESS & 4.89e-15\\
+M10-AT1 Cells & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 4.91e-15\\
+M10-AT1 Cells & GOBP POSITIVE REGULATION OF MULTICELLULAR ORGANISMAL PROCESS & 4.91e-15\\
+M10-AT1 Cells & GOBP RESPONSE TO OXYGEN CONTAINING COMPOUND & 5.34e-15\\
+\addlinespace
+M11-Immune Cells & Blood & 3.36e-73\\
+M11-Immune Cells & Neutrophils & 3.36e-73\\
+M11-Immune Cells & Monocyte CD14+ & 2.75e-69\\
+M11-Immune Cells & TRAVAGLINI LUNG OLR1 CLASSICAL MONOCYTE CELL & 6.28e-64\\
+M11-Immune Cells & Myeloid CD33+ & 2.14e-63\\
+\addlinespace
+M11-Immune Cells & TRAVAGLINI LUNG NEUTROPHIL CELL & 6.71e-60\\
+M11-Immune Cells & CUI DEVELOPING HEART C8 MACROPHAGE & 2.33e-59\\
+M11-Immune Cells & GAO LARGE INTESTINE 24W C11 PANETH LIKE CELL & 2.33e-59\\
+M11-Immune Cells & MANNO MIDBRAIN NEUROTYPES HMGL & 3.59e-53\\
+M11-Immune Cells & DESCARTES FETAL CEREBELLUM MICROGLIA & 5.86e-52\\
+\addlinespace
+M11-Immune Cells & HU FETAL RETINA MICROGLIA & 2.42e-49\\
+M11-Immune Cells & GOBP CELL ACTIVATION & 4.21e-49\\
+M11-Immune Cells & GOBP IMMUNE RESPONSE & 4.21e-49\\
+M11-Immune Cells & REACTOME INNATE IMMUNE SYSTEM & 7.02e-49\\
+M11-Immune Cells & GOBP REGULATION OF IMMUNE SYSTEM PROCESS & 7.26e-49\\
+\addlinespace
+M11-Immune Cells & enriched in monocytes (II) (M11.0) & 9.37e-48\\
+M11-Immune Cells & GOBP DEFENSE RESPONSE & 1.83e-47\\
+M11-Immune Cells & TRAVAGLINI LUNG EREG DENDRITIC CELL & 8.91e-46\\
+M11-Immune Cells & AIZARANI LIVER C23 KUPFFER CELLS 3 & 6.67e-44\\
+M11-Immune Cells & GOBP POSITIVE REGULATION OF IMMUNE SYSTEM PROCESS & 2.06e-40\\
+\addlinespace
+M11-Immune Cells & GOBP INFLAMMATORY RESPONSE & 2.25e-39\\
+M11-Immune Cells & GOBP REGULATION OF IMMUNE RESPONSE & 3.77e-39\\
+M11-Immune Cells & REACTOME NEUTROPHIL DEGRANULATION & 4.84e-38\\
+M11-Immune Cells & ZHONG PFC MAJOR TYPES MICROGLIA & 1.32e-37\\
+M11-Immune Cells & TRAVAGLINI LUNG CLASSICAL MONOCYTE CELL & 1.84e-37\\
+\addlinespace
+M12-Guanylate Cyclase & FAN EMBRYONIC CTX BRAIN ENDOTHELIAL 2 & 5.36e-22\\
+M12-Guanylate Cyclase & GAO LARGE INTESTINE ADULT CJ IMMUNE CELLS & 2.70e-18\\
+M12-Guanylate Cyclase & MANNO MIDBRAIN NEUROTYPES HPERIC & 7.86e-18\\
+M12-Guanylate Cyclase & TRAVAGLINI LUNG PERICYTE CELL & 1.60e-15\\
+M12-Guanylate Cyclase & GOBP TUBE MORPHOGENESIS & 4.93e-15\\
+\addlinespace
+M12-Guanylate Cyclase & GOBP VASCULATURE DEVELOPMENT & 4.93e-15\\
+M12-Guanylate Cyclase & GOBP TUBE DEVELOPMENT & 1.03e-13\\
+M12-Guanylate Cyclase & GOBP CIRCULATORY SYSTEM DEVELOPMENT & 2.01e-13\\
+M12-Guanylate Cyclase & FAN EMBRYONIC CTX BIG GROUPS BRAIN ENDOTHELIAL & 5.08e-13\\
+M12-Guanylate Cyclase & HAY BONE MARROW STROMAL & 7.69e-13\\
+\addlinespace
+M12-Guanylate Cyclase & GOBP BLOOD VESSEL MORPHOGENESIS & 2.19e-12\\
+M12-Guanylate Cyclase & GOBP CIRCULATORY SYSTEM PROCESS & 1.06e-10\\
+M12-Guanylate Cyclase & MURARO PANCREAS ENDOTHELIAL CELL & 3.29e-10\\
+M12-Guanylate Cyclase & DESCARTES FETAL CEREBELLUM VASCULAR ENDOTHELIAL CELLS & 4.23e-10\\
+M12-Guanylate Cyclase & MURARO PANCREAS MESENCHYMAL STROMAL CELL & 7.53e-10\\
+\addlinespace
+M12-Guanylate Cyclase & AIZARANI LIVER C33 STELLATE CELLS 2 & 7.56e-10\\
+M12-Guanylate Cyclase & GOBP ANATOMICAL STRUCTURE FORMATION INVOLVED IN MORPHOGENESIS & 7.62e-10\\
+M12-Guanylate Cyclase & GOBP ENDOCARDIAL CUSHION DEVELOPMENT & 1.10e-09\\
+M12-Guanylate Cyclase & TRAVAGLINI LUNG CAPILLARY INTERMEDIATE 1 CELL & 4.26e-09\\
+M12-Guanylate Cyclase & GOBP MORPHOGENESIS OF AN EPITHELIUM & 5.76e-09\\
+\addlinespace
+M12-Guanylate Cyclase & LAKE ADULT KIDNEY C26 MESANGIAL CELLS & 9.67e-09\\
+M12-Guanylate Cyclase & GOBP MESENCHYME DEVELOPMENT & 1.80e-08\\
+M12-Guanylate Cyclase & GOBP EMBRYO DEVELOPMENT & 1.94e-08\\
+M12-Guanylate Cyclase & GOBP ENDOCARDIAL CUSHION MORPHOGENESIS & 2.19e-08\\
+M12-Guanylate Cyclase & GOBP EPITHELIAL TUBE MORPHOGENESIS & 2.19e-08\\
+\addlinespace
+M13-Proliferation & TRAVAGLINI LUNG PROLIFERATING MACROPHAGE CELL & 4.91e-69\\
+M13-Proliferation & TRAVAGLINI LUNG PROLIFERATING BASAL CELL & 1.37e-59\\
+M13-Proliferation & HAY BONE MARROW ERYTHROBLAST & 2.59e-58\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C5 LARGE PRE B CELL & 1.45e-52\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C2 CYCLING DC CELL & 3.62e-45\\
+\addlinespace
+M13-Proliferation & HE LIM SUN FETAL LUNG C3 CYCLING DEFINITIVE ERYTHROBLAST & 5.94e-41\\
+M13-Proliferation & cell cycle (I) (M4.1) & 6.14e-40\\
+M13-Proliferation & cell cycle and transcription (M4.0) & 7.78e-40\\
+M13-Proliferation & GOBP SMALL MOLECULE METABOLIC PROCESS & 4.70e-39\\
+M13-Proliferation & Th1 & 3.41e-38\\
+\addlinespace
+M13-Proliferation & Th2 & 3.41e-38\\
+M13-Proliferation & BUSSLINGER GASTRIC ISTHMUS CELLS & 3.44e-38\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C4 CYCLING NK CELL & 1.61e-37\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C4 CYCLING T CELL & 5.92e-37\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C3 EARLY CAP CELL & 2.92e-35\\
+\addlinespace
+M13-Proliferation & HE LIM SUN FETAL LUNG C2 PROMONOCYTE LIKE CELL & 6.56e-34\\
+M13-Proliferation & FAN EMBRYONIC CTX MICROGLIA 1 & 2.70e-33\\
+M13-Proliferation & FAN EMBRYONIC CTX NSC 2 & 1.73e-32\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C5 PRO B CELL & 8.73e-32\\
+M13-Proliferation & ZHONG PFC C1 OPC & 7.25e-31\\
+\addlinespace
+M13-Proliferation & HE LIM SUN FETAL LUNG C1 EARLY STALK CELL & 1.49e-29\\
+M13-Proliferation & TRAVAGLINI LUNG TREM2 DENDRITIC CELL & 2.09e-29\\
+M13-Proliferation & HE LIM SUN FETAL LUNG C7 PROLIFERATING SCHWANN CELL & 1.01e-28\\
+M13-Proliferation & MANNO MIDBRAIN NEUROTYPES HPROGBP & 1.58e-28\\
+M13-Proliferation & ZHONG PFC C1 MICROGLIA & 3.20e-27\\
+\addlinespace
+M15-Interferon & HALLMARK INTERFERON GAMMA RESPONSE & 1.14e-49\\
+M15-Interferon & HALLMARK INTERFERON ALPHA RESPONSE & 1.75e-46\\
+M15-Interferon & GOBP RESPONSE TO VIRUS & 4.01e-30\\
+M15-Interferon & REACTOME INTERFERON SIGNALING & 5.66e-30\\
+M15-Interferon & GOBP DEFENSE RESPONSE TO SYMBIONT & 1.40e-28\\
+\addlinespace
+M15-Interferon & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 4.05e-26\\
+M15-Interferon & REACTOME CYTOKINE SIGNALING IN IMMUNE SYSTEM & 1.05e-25\\
+M15-Interferon & GOBP INNATE IMMUNE RESPONSE & 3.78e-25\\
+M15-Interferon & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 9.20e-25\\
+M15-Interferon & GOBP DEFENSE RESPONSE & 5.51e-24\\
+\addlinespace
+M15-Interferon & GOBP NEGATIVE REGULATION OF VIRAL PROCESS & 1.06e-23\\
+M15-Interferon & REACTOME INTERFERON ALPHA BETA SIGNALING & 1.10e-22\\
+M15-Interferon & GOBP REGULATION OF VIRAL PROCESS & 2.03e-22\\
+M15-Interferon & GOBP IMMUNE RESPONSE & 7.69e-22\\
+M15-Interferon & GOBP VIRAL PROCESS & 1.52e-18\\
+\addlinespace
+M15-Interferon & HE LIM SUN FETAL LUNG C2 CXCL9 POS MACROPHAGE CELL & 3.15e-17\\
+M15-Interferon & GOBP VIRAL LIFE CYCLE & 1.77e-16\\
+M15-Interferon & REACTOME ANTIVIRAL MECHANISM BY IFN STIMULATED GENES & 6.44e-15\\
+M15-Interferon & HE LIM SUN FETAL LUNG C2 APOE POS M2 MACROPHAGE CELL & 1.75e-14\\
+M15-Interferon & DC LPS 48h & 5.00e-14\\
+\addlinespace
+M15-Interferon & GOBP NEGATIVE REGULATION OF VIRAL GENOME REPLICATION & 7.80e-14\\
+M15-Interferon & GOBP RESPONSE TO CYTOKINE & 1.45e-13\\
+M15-Interferon & GOBP REGULATION OF VIRAL GENOME REPLICATION & 2.46e-12\\
+M15-Interferon & GOBP INTERLEUKIN 27 MEDIATED SIGNALING PATHWAY & 3.01e-12\\
+M15-Interferon & REACTOME INTERFERON GAMMA SIGNALING & 3.06e-12\\
+\addlinespace
+M19-AT2 Cells & TRAVAGLINI LUNG ALVEOLAR EPITHELIAL TYPE 2 CELL & 1.03e-09\\
+M19-AT2 Cells & TRAVAGLINI LUNG SIGNALING ALVEOLAR EPITHELIAL TYPE 2 CELL & 1.03e-09\\
+M19-AT2 Cells & DESCARTES FETAL PLACENTA AFP ALB POSITIVE CELLS & 4.77e-09\\
+M19-AT2 Cells & DESCARTES FETAL SPLEEN AFP ALB POSITIVE CELLS & 3.27e-07\\
+M19-AT2 Cells & GOBP SMALL MOLECULE METABOLIC PROCESS & 4.13e-07\\
+\addlinespace
+M19-AT2 Cells & GOBP LIPID METABOLIC PROCESS & 7.54e-07\\
+M19-AT2 Cells & Adrenal gland & 6.62e-06\\
+M19-AT2 Cells & KEGG VALINE LEUCINE AND ISOLEUCINE DEGRADATION & 3.17e-05\\
+M19-AT2 Cells & HALLMARK ANDROGEN RESPONSE & 1.23e-04\\
+M19-AT2 Cells & HALLMARK MTORC1 SIGNALING & 1.23e-04\\
+\addlinespace
+M19-AT2 Cells & AIZARANI LIVER C11 HEPATOCYTES 1 & 1.56e-04\\
+M19-AT2 Cells & DESCARTES FETAL LIVER HEPATOBLASTS & 1.56e-04\\
+M19-AT2 Cells & MURARO PANCREAS ACINAR CELL & 1.56e-04\\
+M19-AT2 Cells & REACTOME METABOLISM OF AMINO ACIDS AND DERIVATIVES & 2.92e-04\\
+M19-AT2 Cells & GOBP ORGANIC HYDROXY COMPOUND METABOLIC PROCESS & 3.88e-04\\
+\addlinespace
+M19-AT2 Cells & AIZARANI LIVER C14 HEPATOCYTES 2 & 5.33e-04\\
+M19-AT2 Cells & GAUTAM EYE IRIS CILIARY BODY PIGMENTED CILIARY BODY CELLS & 1.19e-03\\
+M19-AT2 Cells & HALLMARK CHOLESTEROL HOMEOSTASIS & 1.29e-03\\
+M19-AT2 Cells & REACTOME BRANCHED CHAIN AMINO ACID CATABOLISM & 1.36e-03\\
+M19-AT2 Cells & FAN EMBRYONIC CTX OLIG & 1.49e-03\\
+\addlinespace
+M19-AT2 Cells & REACTOME CHOLESTEROL BIOSYNTHESIS & 1.99e-03\\
+M19-AT2 Cells & HE LIM SUN FETAL LUNG C2 DC1 CELL & 2.33e-03\\
+M19-AT2 Cells & GOBP BRANCHED CHAIN AMINO ACID CATABOLIC PROCESS & 3.20e-03\\
+M19-AT2 Cells & HALLMARK BILE ACID METABOLISM & 3.29e-03\\
+M19-AT2 Cells & MANNO MIDBRAIN NEUROTYPES HOPC & 3.59e-03\\*
+\end{longtable}
+\endgroup{}
+
+\newpage
+
+
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.5in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.5in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.5in}>{\centering\arraybackslash}p{0.5in}}
+\caption{\label{tab:biclusterIPF}\textbf{Association of bicluster IPF sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.}\\
+\toprule
+Cluster & Non-Cluster & Bicluster & Outcome & Estimate & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:biclusterIPF}\textbf{Association of bicluster IPF sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison. \textit{(continued)}}\\
+\toprule
+Cluster & Non-Cluster & Bicluster & Outcome & Estimate & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+U4-AT1 cells & 67 & 114 & DLCO & -10.73 & 5.61e-03\\
+M19-AT2 Cells & 177 & 4 & DLCO & 30.81 & 1.49e-02\\
+M5-Immune Cells & 196 & 12 & FVC & -14.27 & 3.50e-02\\
+M12-Guanylate Cyclase & 174 & 34 & FVC & 9.04 & 3.50e-02\\
+U4-AT1 cells & 79 & 129 & FVC & -7.14 & 3.50e-02\\
+\addlinespace
+U1-EMT & 278 & 373 & age & 1.84 & 5.40e-02\\
+M11-Immune Cells & 204 & 4 & FVC & -19.78 & 8.62e-02\\
+M13-Proliferation & 155 & 53 & FVC & -6.29 & 8.62e-02\\
+M5-Immune Cells & 572 & 79 & age & -2.24 & 9.82e-02\\
+U5-Cytoskeleton & 512 & 139 & age & -1.87 & 9.82e-02\\
+\addlinespace
+U4-AT1 cells & 266 & 385 & age & 1.42 & 9.87e-02\\
+M2-Cytoskeleton & 143 & 38 & DLCO & -8.42 & 1.03e-01\\
+M19-AT2 Cells & 638 & 13 & age & -4.68 & 1.13e-01\\
+M11-Immune Cells & 632 & 19 & age & -3.59 & 1.37e-01\\
+M3-AT1 Cells & 174 & 7 & DLCO & 14.61 & 1.84e-01\\
+\addlinespace
+U0-Endothelium & 45 & 136 & DLCO & -6.45 & 1.84e-01\\
+M3-AT1 Cells & 638 & 13 & age & 3.41 & 2.60e-01\\
+M13-Proliferation & 535 & 116 & age & -1.18 & 2.60e-01\\
+M13-Proliferation & 130 & 51 & DLCO & -5.41 & 2.60e-01\\
+M15-Interferon & 592 & 59 & age & -1.51 & 2.60e-01\\
+\addlinespace
+U0-Endothelium & 182 & 469 & age & 0.97 & 2.60e-01\\
+M9-Fibrosis & 414 & 237 & age & 0.82 & 2.74e-01\\
+M10-AT1 Cells & 522 & 129 & age & 1.01 & 2.74e-01\\
+M3-AT1 Cells & 199 & 9 & FVC & 9.84 & 2.77e-01\\
+M2-Cytoskeleton & 161 & 47 & FVC & -4.49 & 2.91e-01\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & 159 & 49 & FVC & -4.20 & 2.96e-01\\
+M2-Cytoskeleton & 501 & 150 & age & 0.86 & 3.03e-01\\
+M8-Immune Cells\_Fibrosis & 516 & 135 & age & 0.85 & 3.08e-01\\
+M10-AT1 Cells & 172 & 36 & FVC & 4.38 & 3.19e-01\\
+M12-Guanylate Cyclase & 549 & 102 & age & 0.84 & 3.45e-01\\
+\addlinespace
+M5-Immune Cells & 172 & 9 & DLCO & -8.75 & 3.74e-01\\
+M12-Guanylate Cyclase & 152 & 29 & DLCO & 5.03 & 3.74e-01\\
+M15-Interferon & 169 & 12 & DLCO & 8.08 & 3.74e-01\\
+M9-Fibrosis & 115 & 93 & FVC & 2.88 & 3.93e-01\\
+M11-Immune Cells & 177 & 4 & DLCO & -10.86 & 4.45e-01\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & 139 & 42 & DLCO & -3.32 & 4.80e-01\\
+M9-Fibrosis & 96 & 85 & DLCO & -2.38 & 4.80e-01\\
+U1-EMT & 70 & 111 & DLCO & -2.45 & 4.80e-01\\
+U5-Cytoskeleton & 150 & 31 & DLCO & 3.57 & 4.80e-01\\
+U0-Endothelium & 53 & 155 & FVC & -2.50 & 5.50e-01\\
+\addlinespace
+M10-AT1 Cells & 151 & 30 & DLCO & 2.03 & 6.49e-01\\
+U5-Cytoskeleton & 171 & 37 & FVC & 2.13 & 6.81e-01\\
+M4-Immune Cells & 197 & 11 & FVC & -2.92 & 6.82e-01\\
+M15-Interferon & 194 & 14 & FVC & -2.69 & 6.82e-01\\
+M19-AT2 Cells & 204 & 4 & FVC & 3.92 & 7.07e-01\\
+\addlinespace
+M4-Immune Cells & 170 & 11 & DLCO & 0.82 & 8.94e-01\\
+U1-EMT & 82 & 126 & FVC & 0.30 & 9.07e-01\\
+M4-Immune Cells & 595 & 56 & age & 0.06 & 9.55e-01\\*
+\end{longtable}
+\endgroup{}
+
+\newpage
+
+
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.5in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.5in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.5in}>{\centering\arraybackslash}p{0.5in}}
+\caption{\label{tab:biclusterILD}\textbf{Association of bicluster ILD sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.}\\
+\toprule
+Cluster & Non-Cluster & Bicluster & Outcome & Estimate & FDR\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:biclusterILD}\textbf{Association of bicluster ILD sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison. \textit{(continued)}}\\
+\toprule
+Cluster & Non-Cluster & Bicluster & Outcome & Estimate & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+U4-AT1 cells & 119 & 140 & DLCO & -13.90 & 1.95e-06\\
+U1-EMT & 398 & 454 & age & 2.90 & 2.68e-05\\
+U4-AT1 cells & 398 & 454 & age & 2.92 & 2.68e-05\\
+M19-AT2 Cells & 241 & 18 & DLCO & 22.41 & 8.66e-05\\
+U0-Endothelium & 80 & 179 & DLCO & -12.40 & 8.66e-05\\
+\addlinespace
+M19-AT2 Cells & 816 & 36 & age & -6.42 & 1.77e-04\\
+U5-Cytoskeleton & 647 & 205 & age & -2.83 & 4.01e-04\\
+U0-Endothelium & 272 & 580 & age & 2.40 & 1.06e-03\\
+M3-AT1 Cells & 246 & 13 & DLCO & 22.02 & 1.19e-03\\
+M2-Cytoskeleton & 676 & 176 & age & 2.68 & 1.35e-03\\
+\addlinespace
+M2-Cytoskeleton & 211 & 48 & DLCO & -11.70 & 1.70e-03\\
+U1-EMT & 123 & 136 & DLCO & -9.17 & 1.70e-03\\
+M4-Immune Cells & 733 & 119 & age & -2.97 & 2.17e-03\\
+M15-Interferon & 748 & 104 & age & -3.06 & 2.63e-03\\
+M9-Fibrosis & 163 & 96 & DLCO & -8.65 & 3.93e-03\\
+\addlinespace
+M9-Fibrosis & 582 & 270 & age & 2.03 & 4.35e-03\\
+M13-Proliferation & 686 & 166 & age & -2.18 & 9.17e-03\\
+M10-AT1 Cells & 704 & 148 & age & 2.23 & 9.85e-03\\
+M4-Immune Cells & 222 & 37 & DLCO & 10.40 & 1.15e-02\\
+M15-Interferon & 226 & 33 & DLCO & 11.04 & 1.15e-02\\
+\addlinespace
+M13-Proliferation & 194 & 65 & DLCO & -7.95 & 1.59e-02\\
+M5-Immune Cells & 288 & 21 & FVC & -13.06 & 1.61e-02\\
+M13-Proliferation & 234 & 75 & FVC & -7.82 & 1.61e-02\\
+U4-AT1 cells & 144 & 165 & FVC & -6.43 & 1.61e-02\\
+M3-AT1 Cells & 294 & 15 & FVC & 13.35 & 3.21e-02\\
+\addlinespace
+M5-Immune Cells & 244 & 15 & DLCO & -12.75 & 3.80e-02\\
+M11-Immune Cells & 826 & 26 & age & -3.77 & 5.03e-02\\
+M2-Cytoskeleton & 250 & 59 & FVC & -6.46 & 6.10e-02\\
+M12-Guanylate Cyclase & 212 & 47 & DLCO & 6.87 & 6.44e-02\\
+U0-Endothelium & 96 & 213 & FVC & -5.15 & 7.44e-02\\
+\addlinespace
+U1-EMT & 147 & 162 & FVC & -4.44 & 9.38e-02\\
+M5-Immune Cells & 755 & 97 & age & -1.72 & 9.41e-02\\
+M8-Immune Cells\_Fibrosis & 692 & 160 & age & 1.39 & 9.41e-02\\
+M12-Guanylate Cyclase & 253 & 56 & FVC & 5.31 & 1.19e-01\\
+U5-Cytoskeleton & 197 & 62 & DLCO & 5.18 & 1.23e-01\\
+\addlinespace
+M8-Immune Cells\_Fibrosis & 246 & 63 & FVC & -4.25 & 2.05e-01\\
+M8-Immune Cells\_Fibrosis & 206 & 53 & DLCO & -4.46 & 2.06e-01\\
+M4-Immune Cells & 267 & 42 & FVC & 3.66 & 2.85e-01\\
+M10-AT1 Cells & 263 & 46 & FVC & 3.85 & 2.85e-01\\
+M11-Immune Cells & 302 & 7 & FVC & -9.60 & 2.85e-01\\
+\addlinespace
+M19-AT2 Cells & 287 & 22 & FVC & 4.99 & 2.85e-01\\
+U5-Cytoskeleton & 234 & 75 & FVC & 3.15 & 2.85e-01\\
+M11-Immune Cells & 253 & 6 & DLCO & -9.54 & 3.05e-01\\
+M15-Interferon & 271 & 38 & FVC & 3.52 & 3.08e-01\\
+M10-AT1 Cells & 221 & 38 & DLCO & -1.48 & 6.97e-01\\
+\addlinespace
+M12-Guanylate Cyclase & 723 & 129 & age & 0.13 & 9.39e-01\\
+M3-AT1 Cells & 833 & 19 & age & 0.13 & 9.52e-01\\
+M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
+\end{longtable}
+\endgroup{}
+
+\end{singlespace}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth,]{./Figures/FigE10_Envisia} \caption[Envisia comparison]{\textbf{Upset plots of gene signatures featured in IPF vs non-IPF ILD and HP vs non-HP ILD expanded classifiers.} Genes from the Envisia classifier published in Choi et al.~(2017) are included as a comparison.}\label{fig:envisia}
+
+{\centering \includegraphics[width=0.6\linewidth,]{./Figures/SysReview/FigE10_Envisia} 
+
+}
+
+\caption[Envisia comparison]{\textbf{Upset plots of gene signatures featured in IPF vs non-IPF ILD and HP vs non-HP ILD expanded classifiers.} Genes from the Envisia classifier published in Choi et al.~(2017) are included as a comparison.}\label{fig:envisia}
 \end{figure}
 
 \hypertarget{appendix-b---supplementary-information-for-chapter-three}{%
