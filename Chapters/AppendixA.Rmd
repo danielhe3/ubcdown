@@ -385,7 +385,7 @@ knitr::include_graphics("./Figures/SysReview/FigE6_ILDvsILD.pdf")
 
 \newpage
 
-(ref:bayes-cap) \textbf{Bayesian changepoint analysis to determine models with an ‘expanded’ number of features for the purpose of pathway analysis.} As the number of features is increased, the posterior mean (i.e. an estimate of the BER given previous data and new data) is constant for certain ranges and does not increase until a threshold of features is passed; this is likely due to the addition of correlated features, which are not useful in the optimization of a classifier but are useful in strengthening the identification of relevant biological pathways. If we consider the BERs from the tuning grids to be a data series with an unknown number of blocks containing a constant mean, we can apply a Bayesian framework to determine ‘change points’ (points likely to precede a change in BER) within the series, which were identified using a posterior probability threshold of 50%.
+(ref:bayes-cap) \textbf{Bayesian changepoint analysis to determine models with an ‘expanded’ number of features for the purpose of pathway analysis.} As the number of features is increased, the posterior mean (i.e. an estimate of the BER given previous data and new data) is constant for certain ranges and does not increase until a threshold of features is passed; this is likely due to the addition of correlated features, which are not useful in the optimization of a classifier but are useful in strengthening the identification of relevant biological pathways. If we consider the BERs from the tuning grids to be a data series with an unknown number of blocks containing a constant mean, we can apply a Bayesian framework to determine ‘change points’ (points likely to precede a change in BER) within the series, which were identified using a posterior probability threshold of 50\%.
 
 ```{r bayes, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:bayes-cap)", fig.scap = "Bayesian changepoint", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/FigE7_bayes.pdf")
@@ -680,7 +680,7 @@ kableExtra::kbl(
 bicluster_associations <- read_excel_allsheets(here::here('Tables', 'SysReview', "Table E11 Bicluster Associations.xlsx"))
 ```
 
-(ref:biclusterIPF-cap) \textbf{Association of bicluster IPF sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
+(ref:biclusterIPF-cap) \textbf{Association of bicluster IPF sample membership with predicted FVC\%, DLCO\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
 
 ```{r biclusterIPF, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 kable(
@@ -706,7 +706,7 @@ kable(
 
 \newpage
 
-(ref:biclusterILD-cap) \textbf{Association of bicluster ILD sample membership with predicted FVC, DLCO, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
+(ref:biclusterILD-cap) \textbf{Association of bicluster ILD sample membership with predicted FVC\%, DLCO\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
 
 ```{r biclusterILD, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 kable(

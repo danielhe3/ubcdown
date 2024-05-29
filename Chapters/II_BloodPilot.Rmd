@@ -45,7 +45,7 @@ kableExtra::kbl(
   format = 'latex',
   booktabs = T, 
   linesep = "",
-  align = "lccccl",
+  align = "lccccc",
   caption="(ref:bloodpx-cap)") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
@@ -60,9 +60,10 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 9) # ensures the table isn't "floated" and pins it to the current location
 ```
 
-To identify variables that might affect RNA expression, we performed a principal component (PC) analysis and correlated the PCs with demographic variables (Supplemental Figure 1). After adjusting for race and treatment status, we identified 1 differentially expressed transcript at an FDR of 0.05 when comparing IPF to SSc-ILD (\textit{KLRF1}, FDR = 0.03) (Table \@ref(tab:pilotdiffexp), Figure \@ref(fig:pilotexpr)D). While no transcripts were significantly associated with FVC%, we identified 13 transcripts that were significantly associated with DLCO% (Table S1). Next, we examined the utility of RNA profiling in developing biomarker panels to differentiate between ILD subtypes through the use of three learning algorithms (sparse partial least squares discriminant analysis (sPLSDA), elastic net, and random forest). The best-performing models using 5-fold cross-validation repeated ten times were IPF vs SSc-ILD (sPLSDA) and IPF vs SSc-ILD (elastic net), which yielded respective accuracies of 0.74 ± 0.01 and 0.80 ± 0.02 (Table \@ref(tab:biomarkermodel)). 
+To identify variables that might affect RNA expression, we performed a principal component (PC) analysis and correlated the PCs with demographic variables (\@ref(fig:pilotPCA)). After adjusting for race and treatment status, we identified 1 differentially expressed transcript at an FDR of 0.05 when comparing IPF to SSc-ILD (\textit{KLRF1}, FDR = 0.03) (Table \@ref(tab:pilotdiffexp), Figure \@ref(fig:pilotexpr)D). While no transcripts were significantly associated with FVC%, we identified 13 transcripts that were significantly associated with DLCO% (Table \@ref(tab:pilotpftdeg)). Next, we examined the utility of RNA profiling in developing biomarker panels to differentiate between ILD subtypes through the use of three learning algorithms (sparse partial least squares discriminant analysis (sPLSDA), elastic net, and random forest). The best-performing models using 5-fold cross-validation repeated ten times were IPF vs SSc-ILD (sPLSDA) and IPF vs SSc-ILD (elastic net), which yielded respective accuracies of 0.74 ± 0.01 and 0.80 ± 0.02 (Table \@ref(tab:biomarkermodel)). 
 
 \newpage
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
 \begin{singlespace}
 (ref:ipfnonipf) \textbf{IPF vs non-IPF}
 (ref:ipfvshp) \textbf{IPF vs HP}
@@ -70,7 +71,7 @@ To identify variables that might affect RNA expression, we performed a principal
 (ref:hpvsssc) \textbf{HP vs SSc-ILD}
 (ref:logfc) log\textsubscript{2}FC
 
-(ref:pilotdiffexp-cap) \textbf{List of transcripts analyzed for differential expression between ILD subtypes.} 
+(ref:pilotdiffexp-cap) \textbf{List of transcripts analyzed for differential expression between ILD subtypes.} Results shown are adjusted for using treatment status and race. 
 
 ```{r pilotdiffexp, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot DEGs', fig.align='center'}
 deg_table <- readr::read_csv(here::here('Tables', 'BloodPilot', 'diffexp.csv'))
@@ -97,56 +98,47 @@ kableExtra::kbl(
 
 \end{singlespace}
 
-(ref:biomarkermodel-cap) \textbf{Classification model performance on cross-validation for selected learning algorithms.} Data are reported as mean accuracy ± standard error. 
+To investigate the lung expression of the three most highly weighted genes (\textit{KLRF1}, \textit{LTK}, \textit{VCAN}) identified by our blood biomarker panels when comparing IPF vs non-IPF ILD (Table \@ref(tab:biomarkerweight)), we used ISH on TMA sections consisting of twelve cores from five patients with IPF, ten cores from three patients with HP, and four cores from two patients with SSc-ILD (Figure \@ref(fig:pilotexpr)A-C), all of which showed no between-group differences in demographic or clinical variables (Table \@ref(tab:lungpx)). Transcript abundance was determined semi-quantitatively for each marker per core by calculating H-scores, which is a weighted total of cells expressing the probe. Using a linear mixed-effects analysis, the H-score of \textit{KLRF1} was higher in SSc-ILD compared to IPF (\textit{p}=0.02) and HP (\textit{p}=0.01), while \textit{LTK} was lower in IPF compared to SSc-ILD (\textit{p}=0.03) (Figure \@ref(fig:pilotexpr)). 
 
-```{r biomarkermodel, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot DEGs', fig.align='center'}
-biomarker_spec <- readr::read_csv(here::here('Tables', 'BloodPilot', 'Table biomarker model.csv'))
-biomarker_spec <- biomarker_spec %>% 
-  mutate(sPLSDA = gsub("\\+","±",sPLSDA)) %>% 
-  mutate(`Elastic Net`=gsub("\\+","±",`Elastic Net`)) %>%
-  mutate(`Random Forest`=gsub("\\+","±",`Random Forest`))
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+(ref:lungpx-cap) \textbf{Summary table of clinical demographics of patients probed for \textit{LTK}, \textit{KLRF1}, and \textit{VCAN} expression using in situ hybrdization in lung tissue microarray sections.} 
+
+```{r lungpx, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot study cohort - lung', fig.align='center'}
+lungpx <- readr::read_csv(here::here('Tables', 'BloodPilot', 'Table 2 Lung Px.csv'))
+colnames(lungpx)[1] <- ""
 
 kableExtra::kbl(
-  biomarker_spec,
+  lungpx,
   longtable = F,
   format = 'latex',
   booktabs = T, 
   linesep = "",
   align = "lccc",
-  caption="(ref:biomarkermodel-cap)") %>%
+  caption="(ref:lungpx-cap)") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
-  column_spec(2, width="0.7in") %>%
-  column_spec(3, width="0.7in") %>%
-  column_spec(4, width="0.7in") %>%
+  column_spec(2, width="1.0in") %>%
+  column_spec(3, width="1.0in") %>%
+  column_spec(4, width="1.0in") %>%
+  column_spec(5, width="1.0in") %>%
   #row_spec(37:38, bold=T) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
   kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 9) # ensures the table isn't "floated" and pins it to the current location
 ```
 
-To investigate the lung expression of the three most highly weighted genes (\textit{KLRF1}, \textit{LTK}, \textit{VCAN}) identified by our biomarker panels when comparing IPF vs non-IPF ILD (Table S3), we used ISH on TMA sections consisting of twelve cores from five patients with IPF, ten cores from three patients with HP, and four cores from two patients with SSc-ILD (Figure \@ref(fig:pilotexpr)A-C), all of which showed no significant between-group differences in demographic or clinical variables (Table 2). Transcript abundance was determined semi-quantitatively by calculating H-scores for each marker per core, which is a weighted total of the percentage of cells expressing the probe at varying levels. Using a linear mixed-effects analysis, the H-score of \textit{KLRF1} was higher in SSc-ILD compared to IPF (p=0.02) and HP (p=0.01), while \textit{LTK} was lower in IPF compared to SSc-ILD (p=0.03) (Figure \@ref(fig:pilotexpr)). 
-
-(ref:pilotexpr-cap) \textbf{Expression of \textit{KLRF1}, \textit{LTK}, \textit{VCAN} in whole blood (log2 RNA expression) or lung tissue microarray sections (H-Score) containing samples from patients with ILD subtypes.} Tissue microarray sections of lung samples from patients with (A) idiopathic pulmonary fibrosis (IPF), (B) hypersensitivity pneumonitis (HP), and (C) systemic sclerosis-associated interstitial lung disease (SSc-ILD).(D) Whole blood (log2 RNA expression) and lung (H-Score) expression of \textit{KLRF1}, \textit{LTK}, and \textit{VCAN}. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.05 (\*\*\*). Tukey’s post-hoc adjustment was used to determine statistical significance of H-scores (\* denotes \textit{p}<0.05). 
+(ref:pilotexpr-cap) \textbf{Expression of \textit{KLRF1}, \textit{LTK}, \textit{VCAN} in whole blood (log2 RNA expression) or lung tissue microarray sections (H-Score) containing samples from patients with ILD subtypes.} Tissue microarray sections of lung samples from patients with (A) idiopathic pulmonary fibrosis (IPF), (B) hypersensitivity pneumonitis (HP), and (C) systemic sclerosis-associated interstitial lung disease (SSc-ILD). (D) Whole blood (log2 RNA expression) and lung (H-Score) expression of \textit{KLRF1}, \textit{LTK}, and \textit{VCAN}. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.05 (\*\*\*). Tukey’s post-hoc adjustment was used to determine statistical significance of H-scores (\* denotes \textit{p}<0.05). 
 
 ```{r pilotexpr, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:pilotexpr-cap)", fig.scap = "Blood and Lung expression of LTK, KLRF1, VCAN", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodPilot/ILD_biomarkers_combined_thesis_v1.png")
 ```
 
-\newpage
-
-(ref:ishpx-cap)
-
-```{r ishpx, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:pilotexpr-cap)", fig.scap = "Blood and Lung expression of LTK, KLRF1, VCAN", out.extra='', fig.align='center'}
-knitr::include_graphics("./Figures/BloodPilot/ILD_biomarkers_combined_thesis_v1.png")
-```
-
-
 ## Discussion
 
-The 2018 ATS/ERS/JRS/ALAT diagnostic guidelines for IPF made a recommendation to investigate novel molecular biomarkers that could be integrated into clinical diagnosis [@raghu_diagnosis_2018]; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers [@raghu_idiopathic_2022]. Although previous studies have investigated the peripheral transcriptome in relation to prognosis [@herazo-maya_peripheral_2013,@yang_peripheral_2012,@fernandez_perez_prognostic_2022], no study has looked at its diagnostic potential. In this pilot study, we demonstrate that the peripheral blood RNA can differentiate between ILD subtypes, in particular IPF and SSc-ILD, through differential expression and learning algorithms utilizing gene expression data obtained from a custom NanoString assay. The blood gene expression data show association with DLCO% predicted but not FVC% predicted, which was previously noted when examining differential expression of the peripheral transcriptome in mild and severe IPF [8]. Furthermore, we identify KLRF1 expression as a significant in the differentiation of IPF and SSc-ILD in both whole blood and lung, and down-regulation of LTK as being associated with IPF.
+Although previous studies have investigated the peripheral transcriptome in relation to prognosis [@herazo-maya_peripheral_2013,@yang_peripheral_2012,@fernandez_perez_prognostic_2022], no study has looked at its diagnostic potential. In this pilot study, we demonstrate that the peripheral blood RNA can differentiate between ILD subtypes, in particular IPF and SSc-ILD, through differential expression and learning algorithms utilizing gene expression data obtained from a custom NanoString assay. The blood gene expression data show association with DLCO% predicted but not FVC% predicted, which was previously noted when examining differential expression of the peripheral transcriptome in mild and severe IPF [@yang_peripheral_2012]. Furthermore, we identify \textit{KLRF1} expression as a significant in the differentiation of IPF and SSc-ILD in both whole blood and lung, and down-regulation of \textit{LTK} as being associated with IPF.
 
-Killer cell lectin like receptor F1 (KLRF1, also known as NKp80) is expressed in T cells, monocytes, and CD56bright natural killer (NK cells), and is a marker of NK cell maturity [@roda-navarro_human_2000, @freud_nkp80_2016, @mukherjee_klrf1_2023], inducing cytotoxic activity and calcium mobilization [@vitale_identification_2001]. The dysfunction of NK cells in systemic sclerosis and autoimmunity has been well-documented [@horikawa_abnormal_2005, @benyamine_natural_2018, @liu_nk_2021], and differences in their abundance have been observed between ILD subtypes [@esposito_natural_2005,@bergantini_prognostic_2021]. We found that KLRF1 expression was associated with lower DLCO%, and its expression was lower in the peripheral blood of patients with SSc-ILD compared to IPF and HP yet the opposite effect was observed when probing lung expression. Previous reports have identified a reduction in abundance and function of NK cells in IPF lungs concurrent with an increase in abundance in blood compared to healthy controls [@cruz_reduced_2021]. Single-cell RNA-sequencing data available via the IPF Cell Atlas [@neumark_idiopathic_2020] suggests higher KLRF1 expression in SSc-ILD T/NK subsets compared to other ILDs. Given the disparity between single-cell and bulk RNA data, further investigations are required to delineate the mechanisms surrounding NK cell recruitment to the ILD lung and its role in ILD pathogenesis. 
+Killer cell lectin like receptor F1 (KLRF1, also known as NKp80) is expressed in T cells, monocytes, and CD56bright natural killer (NK cells), and is a marker of NK cell maturity [@roda-navarro_human_2000, @freud_nkp80_2016, @mukherjee_klrf1_2023], inducing cytotoxic activity and calcium mobilization [@vitale_identification_2001]. The dysfunction of NK cells in systemic sclerosis and autoimmunity has been well-documented [@horikawa_abnormal_2005, @benyamine_natural_2018, @liu_nk_2021], and differences in their abundance have been observed between ILD subtypes [@esposito_natural_2005,@bergantini_prognostic_2021]. We found that \textit{KLRF1} expression was associated with lower DLCO%, and its expression was lower in the peripheral blood of patients with SSc-ILD compared to IPF and HP yet the opposite effect was observed when probing lung expression. Previous reports have identified a reduction in abundance and function of NK cells in IPF lungs concurrent with an increase in abundance in blood compared to healthy controls [@cruz_reduced_2021]. Single-cell RNA-sequencing data available via the IPF Cell Atlas [@neumark_idiopathic_2020] suggests higher \textit{KLRF1} expression in SSc-ILD T/NK subsets compared to other ILDs. Given the disparity between single-cell and bulk RNA data, further investigations are required to delineate the mechanisms surrounding NK cell recruitment to the ILD lung and its role in ILD pathogenesis. 
 
-LTK and VCAN were differentially expressed at a nominal p-value of 0.05 between IPF and non-IPF ILDs (but not at FDR<0.05), and were two highly weighted coefficients in our elastic net and sPLSDA biomarker panels. LTK is highly expressed in plasmacytoid dendritic cells (pDCs) (Human Protein Atlas, IPF Cell Atlas), and decreased circulating pDCs have been reported in IPF patients [@galati_circulating_2020], which is consistent with the decreased LTK expression observed in this study in blood and lung. VCAN encodes for versican, an ECM proteoglycan that is localized to fibroblastic foci in the lung, myofibroblasts, and monocytes [@neumark_idiopathic_2020,@bensadoun_proteoglycan_1996]. We were unable to identify a statistically significant increase in VCAN expression in IPF compared to HP or SSc-ILD lung and blood samples; however, given its detectable expression in both lung and peripheral blood, and prior studies showing circulating levels of versican degradation products are associated with increased mortality in idiopathic ILDs [@sand_serological_2018], further studies into its gene expression as a prognostic biomarker may be warranted.
+\textit{LTK} and \textit{VCAN} were differentially expressed at a nominal p-value of 0.05 between IPF and non-IPF ILDs (but not at FDR<0.05), and were two highly weighted coefficients in our elastic net and sPLSDA biomarker panels. \textit{LTK} is highly expressed in plasmacytoid dendritic cells (pDCs) (Human Protein Atlas, IPF Cell Atlas), and decreased circulating pDCs have been reported in IPF patients [@galati_circulating_2020], which is consistent with the decreased \textit{LTK} expression observed in this study in blood and lung. \textit{VCAN} encodes for versican, an ECM proteoglycan that is localized to fibroblastic foci in the lung, myofibroblasts, and monocytes [@neumark_idiopathic_2020,@bensadoun_proteoglycan_1996]. We were unable to identify a statistically significant increase in \textit{VCAN} expression in IPF compared to HP or SSc-ILD lung and blood samples; however, given its detectable expression in both lung and peripheral blood, and prior studies showing circulating levels of versican degradation products are associated with increased mortality in idiopathic ILDs [@sand_serological_2018], further studies into its gene expression as a prognostic biomarker may be warranted.
 
-In this pilot study, we report the first between-subtype comparison of the peripheral ILD transcriptome using a discrete set of genes, which validates performing more extensive genome-wide analysis of peripheral ILD subtype-specific profiles and correlations of identified biomarkers in lung tissue. In particular, molecules detected in the blood that are associated with immunity and fibrosis are detectable in the lung, thereby suggesting a test based on peripheral transcriptomics is feasible for diagnostic biomarkers with biological relevance, similar to prognostic markers in Herazo-Maya et al. [@@herazo-maya_validating_2017]. Given the heterogeneity within ILD subtypes, future analysis of the peripheral transcriptome should also consider radiological pattern, progressive phenotype, and other related clinical factors [@ryerson_lumpers_2019].
+In this pilot study, we report the first between-subtype comparison of the peripheral ILD transcriptome using a discrete set of genes, which validates performing more extensive genome-wide analysis of peripheral ILD subtype-specific profiles and correlations of identified biomarkers in lung tissue. In particular, molecules detected in the blood that are associated with immunity and fibrosis are detectable in the lung, thereby suggesting a test based on peripheral transcriptomics is feasible for diagnostic biomarkers with biological relevance, similar to prognostic markers in Herazo-Maya et al. [@herazo-maya_validating_2017]. Using the data from this preliminary pilot study, we were able to secure funding for two grants (BC Lung, Genome BC) that created the basis for the following two chapters.

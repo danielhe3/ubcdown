@@ -1,0 +1,16 @@
+---
+output:
+  bookdown::pdf_book:
+    toc : no
+    keep_tex: no
+    number_sections: yes
+---
+
+<!-- This section is mandatory! -->
+
+
+
+Given the heterogeneity within ILD subtypes, future analysis of the peripheral transcriptome should also consider radiological pattern, progressive phenotype, and other related clinical factors [@ryerson_lumpers_2019].
+
+
+

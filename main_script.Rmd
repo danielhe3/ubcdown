@@ -201,7 +201,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 
 <!-- Modify me! -->
-# Insert Title of Chapter 4 Here
+# Genomic blood biomarkers in ILD
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{4.\arabic{figure}}
@@ -211,7 +211,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{4.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_four, child = 'insert_project_path_here/chapter_manuscript.Rmd', eval = F}
+```{r chapter_four, child = './Chapters/III_BloodRNAseq.Rmd', eval = F}
 ```
 
 \clearpage
@@ -278,7 +278,9 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 ```{r appendix_a, child = './Chapters/AppendixA.Rmd', eval = T}
 ```
 
-## Appendix B - Supplementary information for Chapter Three
+\clearpage
+
+## Appendix B - Supplementary information for Blood Biomarkers Pilot Study
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A3.\arabic{figure}}
@@ -288,8 +290,10 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{A3.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r appendix_b, child = '~/GitHub/TransEmergence/Scripts/Supplements.Rmd', eval = F}
+```{r appendix_b, child = './Chapters/AppendixB.Rmd', eval = T}
 ```
+
+\clearpage
 
 ## Appendix C - Supplementary information for Chapter Four
 
