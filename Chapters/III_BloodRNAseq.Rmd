@@ -8,9 +8,19 @@ output:
 
 <!-- This section is mandatory! -->
 
+The results from the previous two chapters highlight the link between transcriptomic profiles, mechanisms of ILD, and clinical variables. Given the heterogeneity within ILD subtypes, analysis of the peripheral transcriptome should consider radiological pattern, progressive phenotype, and other related clinical factors [@ryerson_lumpers_2019]. In this chapter, we will explore the peripheral transcriptome using RNA-seq data from whole blood samples of patients with ILD. 
+
+## Methods
+
+## Results
+
+## Discussion
 
 
-Given the heterogeneity within ILD subtypes, future analysis of the peripheral transcriptome should also consider radiological pattern, progressive phenotype, and other related clinical factors [@ryerson_lumpers_2019].
+
+
+
+
 
 
 
