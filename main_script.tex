@@ -887,11 +887,11 @@ The results from the previous two chapters highlight the link between transcript
 
 \subsection{Methods}\label{methods-2}
 
-\subsubsection{Study population, and sample processing}\label{study-population-and-sample-processing-1}
+\subsubsection{Study population and sample processing}\label{study-population-and-sample-processing-1}
 
-As part of the Canadian Registry for Pulmonary Fibrosis (CARE-PF), patients with ILD were prospectively recruited with written informed consent between 2012 and 2019 at the Pacific Lung Health Centre located at St.~Paul's Hospital (Vancouver, BC, Canada). Demographic (age, race, sex) and clinical data (FVC\%, D\textsubscript{LCO}\% predicted) was collected at time of sampling. ILD diagnoses were determined by consensus agreement by a MDD panel consisting of at least one pulmonologist, radiologist, and pathologist, and independently re-evaluated to confirm diagnoses and other clinical features (including HRCT patterns) between January 2021 and March 2022 {[}marinescu2023{]}. Patients were defined as having PPF on the basis of the INBUILD criteria (see: \hyperref[ppf]{Introduction - Progressive pulmonary fibrosis}).
+As part of the Canadian Registry for Pulmonary Fibrosis (CARE-PF), patients with ILD were prospectively recruited with written informed consent between 2012 and 2019 at the Pacific Lung Health Centre located at St.~Paul's Hospital (Vancouver, BC, Canada). Demographic (age, race, sex) and clinical data (FVC\%, D\textsubscript{LCO}\% predicted) were collected at time of sampling (Table \ref{tab:bloodpxrnaseq}. ILD diagnoses were determined by consensus agreement by a MDD panel consisting of at least one pulmonologist, radiologist, and pathologist, and independently re-evaluated to confirm diagnoses and other clinical features (including HRCT patterns) between January 2021 and March 2022 {[}\citeproc{ref-marinescu_integration_2023}{121}{]}. Patients were defined as having PPF on the basis of the INBUILD criteria (see: \hyperref[ppf]{Introduction - Progressive pulmonary fibrosis}).
 
-
+At time of recruitment, patient whole blood samples were collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada). We selected samples to examine differences between patients with ILD that experience PPF (n=39) and those that did not (n=57) with a balanced representation of ILD subtypes, and included samples if patients were not undergoing active pharmalogical treatment at time of blood sampling. PAXgene-preserved whole blood samples were extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland), and quality control was performed using the Agilent 2100 Bioanalyzer (Agilent, Santa Clara, California, USA). Sample library preparation was performed using the Illumina Stranded mRNA Prep kit (Illumina, San Diego, California, USA), then sequenced on the Illumina NextSeq 2000 sequencing system with paired end 59bp x 59bp reads. Due to hemoglobin-associated genes comprising a majority of reads in whole blood transcriptome sequencing {[}\citeproc{ref-shin_variation_2014}{122}{]}, each sample was sequenced to a depth a 50 million reads. Sequencing data quality check was performed using fastqc (v0.11.9), and sequence alignment to the human reference genome (GENCODE v41) was performed using STAR (v2.7.10a). Transcript abundance was estimated using featureCounts (v2.0.3). Hemoglobin genes (\textit{HBA1}, \textit{HBA2}, \textit{HBB}) were removed from the final count matrix due to their overrepresentation.
 
 \begin{landscape}
 
@@ -899,9 +899,11 @@ As part of the Canadian Registry for Pulmonary Fibrosis (CARE-PF), patients with
 
 
 
+
+
 \begin{table}[!h]
 \centering\centering
-\caption{\label{tab:bloodpxrnaseq}\textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses unless otherwise indicated).}
+\caption{\label{tab:bloodpxrnaseq}\textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses unless otherwise indicated). \textit{P}-values were determined using one-way analysis of variance (ANOVA) for continuous variables and Fisher's exact text for categorical variables. Variables relating to progression were determined within a 2-year period. }
 \centering
 \begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.5in}>{\centering\arraybackslash}p{1.05in}>{\centering\arraybackslash}p{1.05in}>{\centering\arraybackslash}p{0.97in}>{\centering\arraybackslash}p{0.97in}>{\centering\arraybackslash}p{0.95in}>{\centering\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{0.7in}}
 \toprule
@@ -921,7 +923,7 @@ White & 21 (72\%) & 20 (74\%) & 6 (86\%) & 4 (67\%) & 3 (75\%) & 14 (82\%) & \\
 FVC\% predicted & 34; 83.50 ± 18.42 & 76.22 ± 14.55 & 74.14 ± 25.18 & 97.17 ± 18.90 & 80.00 ± 25.86 & 85.94 ± 17.15 & \textit{p} = 0.1051\\
 DLCO\% predicted & 26; 56.81 ± 17.41 & 13; 50.77 ± 12.42 & 6; 56.33 ± 11.20 & 5; 59.00 ± 21.69 & 3; 59.33 ± 2.31 & 13; 63.15 ± 17.40 & \textit{p} = 0.5555\\
 \midrule
-\textbf{PPF, n (\%)} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+\textbf{Progression, n (\%)} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
 PPF & 9 (26\%) & 15 (56\%) & 3 (43\%) & 4 (67\%) & 3 (75\%) & 5 (29\%) & \textit{p} = 0.0581\\
 FVC Rel. Decl. >10\% & 5 (14\%) & 12 (44\%) & 1 (14\%) & 4 (67\%) & 2 (50\%) & 3 (19\%) & \textit{p} = 0.0148\\
 FVC Rel. Decl. >5\% & 11 (31\%) & 17 (63\%) & 2 (29\%) & 4 (67\%) & 3 (75\%) & 5 (31\%) & \textit{p} = 0.0527\\
@@ -933,17 +935,40 @@ Clinical Progression & 7 (20\%) & 16 (59\%) & 3 (43\%) & 2 (33\%) & 0 (0\%) & 2 
 
 \end{landscape}
 
-Whole blood samples collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada) were extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland), then analyzed using the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) to confirm RNA quality via Bioanalyzer analysis. RNA was sequenced using the Illumina xxx.
+\subsubsection{Data analysis}\label{data-analysis-1}
 
-\subsubsection{Differential Expression Analysis}\label{differential-expression-analysis}
+Differential expression analysis was performed using the `edgeR' (v4.0.16) and `limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (\ref{fig:rnaseqPCA}).
 
-\subsubsection{Survival Analysis}\label{survival-analysis}
+Survival analysis was performed using the elastic net implementation of Cox proportional hazards (Cox-PH) models in the `glmnet' package (v4.1-8). Repeated 10-fold cross-validation was performed on all (100x repeat) or stratifications (50x repeat) of the centred and scaled TMM-normalized RNA-seq data. Using the C-index as a performance metric, the repeat with the C-index closest to the mean C-index of all repeats was selected as the final model. Validation datasets GSE28042 {[}\citeproc{ref-herazo-maya_peripheral_2013}{59}{]} and GSE93606 {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]} were downloaded from GEO. As there were genes from the whole blood RNA-seq matrix missing from the validation datasets and vice versa, sparse matrices of each validation dataset were created for compatibility with the glmnet `predict' function to account for missing variables.
 
 \subsection{Results}\label{results-2}
 
-\subsubsection{}\label{section}
+\subsubsection{The SSc-ILD peripheral transcriptome is distinct from other ILD subtypes}\label{the-ssc-ild-peripheral-transcriptome-is-distinct-from-other-ild-subtypes}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodRNAseq/Fig1_Differential_Expression_v1} 
+
+}
+
+\caption[SSc-ILD transcriptome]{\textbf{SSc-ILD is transcriptionally distinct.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***) and FDR\textless0.05 (**). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF.}\label{fig:degild}
+\end{figure}
+
+\subsubsection{Peripheral gene signatures are associated with transplant-free survival}\label{peripheral-gene-signatures-are-associated-with-transplant-free-survival}
+
+Cox-PH models associate covariates with time that passes before a pre-defined event; in this analysis, we wanted to identify multivariate gene signatures associated with transplant-free survival.
 
 \subsection{Discussion}\label{discussion-2}
+
+\begin{itemize}
+\tightlist
+\item
+  limitations regarding survival: 15/27 IPF patients censored, which is 15/25 of the total censored
+\item
+  ssc-ild vs other ild is not difficult diagnostically
+\end{itemize}
 
 \clearpage
 
@@ -1459,36 +1484,44 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{120. }%
 \CSLRightInline{Ryerson CJ. Lumpers versus splitters: {What} to do with suspected idiopathic pulmonary fibrosis? Respirology {[}Internet{]}. 2019 {[}cited 2024 Feb 9{]};24(4):300--1. Available from: \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/resp.13442}}
 
-\bibitem[\citeproctext]{ref-zhao_metabolic_2017}
+\bibitem[\citeproctext]{ref-marinescu_integration_2023}
 \CSLLeftMargin{121. }%
+\CSLRightInline{Marinescu DC, Hague CJ, Muller NL, Murphy D, Churg A, Wright JL, et al. \href{https://doi.org/10.1016/j.chest.2023.07.068}{Integration and {Application} of {Radiologic} {Patterns} {From} {Clinical} {Practice} {Guidelines} on {Idiopathic} {Pulmonary} {Fibrosis} and {Fibrotic} {Hypersensitivity} {Pneumonitis}}. Chest. 2023 Dec;164(6):1466--75. }
+
+\bibitem[\citeproctext]{ref-shin_variation_2014}
+\CSLLeftMargin{122. }%
+\CSLRightInline{Shin H, Shannon CP, Fishbane N, Ruan J, Zhou M, Balshaw R, et al. Variation in {RNA}-{Seq} {Transcriptome} {Profiles} of {Peripheral} {Whole} {Blood} from {Healthy} {Individuals} with and without {Globin} {Depletion}. PLOS ONE {[}Internet{]}. 2014 Mar {[}cited 2024 Jun 14{]};9(3):e91041. Available from: \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091041}}
+
+\bibitem[\citeproctext]{ref-zhao_metabolic_2017}
+\CSLLeftMargin{123. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
 \bibitem[\citeproctext]{ref-zhu_integration_2018}
-\CSLLeftMargin{122. }%
+\CSLLeftMargin{124. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
 \bibitem[\citeproctext]{ref-christmann_association_2014}
-\CSLLeftMargin{123. }%
+\CSLLeftMargin{125. }%
 \CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
 
 \bibitem[\citeproctext]{ref-ghosh_lung_2022}
-\CSLLeftMargin{124. }%
+\CSLLeftMargin{126. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
 \bibitem[\citeproctext]{ref-el-chemaly_immunome_2018}
-\CSLLeftMargin{125. }%
+\CSLLeftMargin{127. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
 \bibitem[\citeproctext]{ref-zhou_integrated_2019}
-\CSLLeftMargin{126. }%
+\CSLLeftMargin{128. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
 \bibitem[\citeproctext]{ref-vosa_comprehensive_2014}
-\CSLLeftMargin{127. }%
+\CSLLeftMargin{129. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
 \bibitem[\citeproctext]{ref-wold_nonlinear_1973}
-\CSLLeftMargin{128. }%
+\CSLLeftMargin{130. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1646,11 +1679,11 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{121},\citeproc{ref-zhu_integration_2018}{122}{]}, one {[}\citeproc{ref-christmann_association_2014}{123}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{124}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{125}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{126}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{123},\citeproc{ref-zhu_integration_2018}{124}{]}, one {[}\citeproc{ref-christmann_association_2014}{125}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{126}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{127}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{128}{]}.
 
 \subsection{Robust rank aggregation}\label{robust-rank-aggregation}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{127}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{129}{]}.
 
 \subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}
 
@@ -1669,7 +1702,7 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 \subsection{Data integration and analysis}\label{data}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{128}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{130}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 

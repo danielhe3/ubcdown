@@ -1,0 +1,54 @@
+---
+output:
+  bookdown::pdf_book:
+    toc : no
+    keep_tex: no
+    number_sections: yes
+---
+
+<!-- This section is mandatory! -->
+\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
+
+## Differential expression
+
+(ref:rnaseqPCA-cap) \textbf{Principal component analysis (PCA) of blood RNA-seq cohort.} (A) PCA plot of blood RNA-seq samples. (B) Correlation of PCA components (PCs) with demographic and clinical metadata. Values shown are Pearson correlation coefficients. 
+
+```{r rnaseqPCA, eval = T, out.width='0.7\\linewidth',echo=FALSE, fig.cap="(ref:rnaseqPCA-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/BloodPilot/bloodRNAseq_pca_v2.pdf")
+```
+
+(ref:pilotpftdeg-cap) \textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for using treatment status and race. 
+
+```{r pilotpftdeg, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot PFT DEGs', fig.align='center'}
+deg_pft_table <- readr::read_csv(here::here('Tables', 'BloodPilot', 'diffexppft.csv'))
+
+# function for sig figs
+round_to_sigfigs <- function(x, sigfigs) {
+  if (!is.numeric(x)) return(x)  
+  round(x, digits = sigfigs)
+}
+deg_pft_table <- deg_pft_table %>%
+  mutate_if(is.numeric, round_to_sigfigs, sigfigs = 3)
+
+colnames(deg_pft_table) <- rep(c("Transcript","(ref:logfc)", "(ref:p-it)-value", "FDR"), 2)
+
+kableExtra::kbl(
+  deg_pft_table,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lrcclrcc",
+  caption="(ref:pilotpftdeg-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(c(1,5), width="0.8in") %>%
+  column_spec(c(2,6), width="0.6in") %>%
+  column_spec(c(3,7), width="0.6in") %>%
+  column_spec(c(4,8), width="0.6in") %>%
+  add_header_above(header = c("FVC%" = 4, "DLCO%" = 4)) %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 9) # ensures the table isn't "floated" and pins it to the current location
+```
+
+
+
