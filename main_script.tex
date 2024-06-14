@@ -65,28 +65,38 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
   \fi
   % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \usepackage{ragged2e}
 \usepackage{setspace}
@@ -113,7 +123,7 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -379,8 +389,7 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 
 \clearpage
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}
 
 \pagenumbering{arabic}
 
@@ -391,33 +400,29 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \renewcommand{\theequation}{1.\arabic{equation}}
 \setcounter{equation}{0}
 
-In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society {[}ATS{]}, European Respiratory Society {[}ERS{]}, Japanese Respiraotry Society {[}JRS{]}, Asociación Latinoamericana del Tórax {[}ALAT{]}), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis {[}\protect\hyperlink{ref-raghu_diagnosis_2018}{1}{]}; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers {[}\protect\hyperlink{ref-raghu_idiopathic_2022}{2}{]}. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD.
+In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society {[}ATS{]}, European Respiratory Society {[}ERS{]}, Japanese Respiraotry Society {[}JRS{]}, Asociación Latinoamericana del Tórax {[}ALAT{]}), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis {[}\citeproc{ref-raghu_diagnosis_2018}{1}{]}; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]}. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD.
 
-\hypertarget{interstitial-lung-disease}{%
-\subsection{Interstitial Lung Disease}\label{interstitial-lung-disease}}
+\subsection{Interstitial Lung Disease}\label{interstitial-lung-disease}
 
-Fibrotic ILDs are debilitating restrictive lung diseases that result from excess deposition of extracellular matrix (ECM) within the lung interstitium, resulting in decreased oxygen uptake and subsequent functional limitation. Although ILDs can arise from a variety of causes (autoimmunity, environmental exposure), the most common subtype, IPF, is of unknown etiology. The incidence of IPF is 18.7 per 100,000 people in Canada, but increases to 39.5-156.4 per 100,000 people over the age of 60 -- a rate comparable to that of lung, breast, and prostate cancer (60.1, 129.9 and 120.8 per 100,000, respectively) {[}\protect\hyperlink{ref-canadian_cancer_statistics_advisory_committee_in_collaboration_with_the_canadian_cancer_society_statistics_canada_and_the_public_health_agency_of_canada_canadian_2023}{4}{]}. Patients with IPF have high morbidity, with quality of life scores in their first year of diagnosis comparable to those of patients with severe chronic obstructive pulmonary disease (COPD) {[}\protect\hyperlink{ref-hopkins_epidemiology_2016}{3}{]}. IPF patients are also at greater risk of comorbidities such as lung cancer, pulmonary hypertension, pulmonary embolisms {[}\protect\hyperlink{ref-raghu_comorbidities_2015}{5}{]}; acute exacerbations, which contribute significantly to the economic burden of the disease, can lead to respiratory failure and death {[}\protect\hyperlink{ref-hilberg_economic_2018}{7}{]}. Median survival for IPF is less than 5 years following diagnosis {[}\protect\hyperlink{ref-ley_clinical_2011}{8}{]}.
+Fibrotic ILDs are debilitating restrictive lung diseases that result from excess deposition of extracellular matrix (ECM) within the lung interstitium, resulting in decreased oxygen uptake and subsequent functional limitation. Although ILDs can arise from a variety of causes (autoimmunity, environmental exposure), the most common subtype, IPF, is of unknown etiology. The incidence of IPF is 18.7 per 100,000 people in Canada, but increases to 39.5-156.4 per 100,000 people over the age of 60 -- a rate comparable to that of lung, breast, and prostate cancer (60.1, 129.9 and 120.8 per 100,000, respectively) {[}\citeproc{ref-canadian_cancer_statistics_advisory_committee_in_collaboration_with_the_canadian_cancer_society_statistics_canada_and_the_public_health_agency_of_canada_canadian_2023}{4}{]}. Patients with IPF have high morbidity, with quality of life scores in their first year of diagnosis comparable to those of patients with severe chronic obstructive pulmonary disease (COPD) {[}\citeproc{ref-hopkins_epidemiology_2016}{3}{]}. IPF patients are also at greater risk of comorbidities such as lung cancer, pulmonary hypertension, pulmonary embolisms {[}\citeproc{ref-raghu_comorbidities_2015}{5}{]}; acute exacerbations, which contribute significantly to the economic burden of the disease, can lead to respiratory failure and death {[}\citeproc{ref-hilberg_economic_2018}{7}{]}. Median survival for IPF is less than 5 years following diagnosis {[}\citeproc{ref-ley_clinical_2011}{8}{]}.
 
-\hypertarget{mechanisms-of-ild}{%
-\subsection{Mechanisms of ILD}\label{mechanisms-of-ild}}
+\subsection{Mechanisms of ILD}\label{mechanisms-of-ild}
 
-A recurring hypothesis within the literature suggests that lung fibrosis is a result of repetitive injury to the alveoli, particularly type I alveolar epithelial cells (AT1s) which line the alveolar surface and are responsible for gas exchange. In the normal alveolus, type II alveolar epithelial cells (AT2s) secrete pulmonary surfactant to reduce surface tension within the alveoli, but AT2s undergo hyperplastic proliferation during stressful conditions such as injury. In addition to hyperplastic AT2s differentiating into AT1s via the TGF-β1 pathway, AT2s contribute to fibrosis via: 1) epithelial-mesenchymal transition (EMT) of AT2s to myofibroblasts; 2) apoptotic AT2s losing regulatory capacity over mesenchymal cells (fibroblasts), causing them to proliferate and produce more collagen; and 3) apoptotic AT2s releasing chemotactic factors such as CXCL12 to attract circulating fibrocytes, which invade the lung and expand the fibroblast pool {[}\protect\hyperlink{ref-bagnato_cellular_2015}{9}{]}.
+A recurring hypothesis within the literature suggests that lung fibrosis is a result of repetitive injury to the alveoli, particularly type I alveolar epithelial cells (AT1s) which line the alveolar surface and are responsible for gas exchange. In the normal alveolus, type II alveolar epithelial cells (AT2s) secrete pulmonary surfactant to reduce surface tension within the alveoli, but AT2s undergo hyperplastic proliferation during stressful conditions such as injury. In addition to hyperplastic AT2s differentiating into AT1s via the TGF-β1 pathway, AT2s contribute to fibrosis via: 1) epithelial-mesenchymal transition (EMT) of AT2s to myofibroblasts; 2) apoptotic AT2s losing regulatory capacity over mesenchymal cells (fibroblasts), causing them to proliferate and produce more collagen; and 3) apoptotic AT2s releasing chemotactic factors such as CXCL12 to attract circulating fibrocytes, which invade the lung and expand the fibroblast pool {[}\citeproc{ref-bagnato_cellular_2015}{9}{]}.
 
-Myofibroblasts and activated fibroblasts are the effector cells of fibrosis in ILD, producing and depositing ECM within the lung parenchyma in an uncontrolled manner. Both cell types are found in fibroblastic foci, which are key components of a usual interstitial pneumonia (UIP) histological pattern and are not found in healthy lung. Myofibroblasts, which differ from fibroblasts due to their expression of a-smooth muscle actin, may arise from the differentiation of resident fibroblasts, circulating fibrocytes, or mesenchymal transition from various other cell subsets {[}\protect\hyperlink{ref-marconi_epithelial-mesenchymal_2021}{10}{]}.
+Myofibroblasts and activated fibroblasts are the effector cells of fibrosis in ILD, producing and depositing ECM within the lung parenchyma in an uncontrolled manner. Both cell types are found in fibroblastic foci, which are key components of a usual interstitial pneumonia (UIP) histological pattern and are not found in healthy lung. Myofibroblasts, which differ from fibroblasts due to their expression of a-smooth muscle actin, may arise from the differentiation of resident fibroblasts, circulating fibrocytes, or mesenchymal transition from various other cell subsets {[}\citeproc{ref-marconi_epithelial-mesenchymal_2021}{10}{]}.
 
-The most abundant immune cells in the lung (\textgreater70\%) are pulmonary macrophages. Alveolar macrophages (AM) reside within the alveoli and are the chief effector cells of immune responses, while interstitial macrophages (IM) reside within the lung parenchyma and maintain immune homeostasis {[}\protect\hyperlink{ref-byrne_pulmonary_2015}{11}{]}. In IPF, monocytes are `alternatively activated' towards the M2 phenotype through TH2-mediated immune responses, and produce profibrotic mediators such as TGF-b and PDGF {[}\protect\hyperlink{ref-zhu_m2_2017}{12}{]}.
+The most abundant immune cells in the lung (\textgreater70\%) are pulmonary macrophages. Alveolar macrophages (AM) reside within the alveoli and are the chief effector cells of immune responses, while interstitial macrophages (IM) reside within the lung parenchyma and maintain immune homeostasis {[}\citeproc{ref-byrne_pulmonary_2015}{11}{]}. In IPF, monocytes are `alternatively activated' towards the M2 phenotype through TH2-mediated immune responses, and produce profibrotic mediators such as TGF-b and PDGF {[}\citeproc{ref-zhu_m2_2017}{12}{]}.
 
-\hypertarget{diagnosis-of-ild}{%
-\subsection{Diagnosis of ILD}\label{diagnosis-of-ild}}
+\subsection{Diagnosis of ILD}\label{diagnosis-of-ild}
 
-Current diagnostic guidelines for ILDs recommend a multidisciplinary discussion (MDD) between respirologists, radiologists, and pathologists. Patients with suspected ILDs frequently present with nonspecific symptoms, with a high-resolution computed tomography (HRCT) scan required to assess specific radiological patterns. A detailed history is taken with respect to exposure to mold, birds, and other exposures to identify potential causes of hypersensitivity pneumonitis (HP), and autoantibody panels are used to screen for autoimmune/connective tissue diseases. Identification of a UIP pattern on HRCT, which is characterized by bilateral reticulation and honeycombing in the periphery and lower lobes, is sufficient to confirm a diagnosis of IPF in patients with a compatible clinical presentation; however, there is substantial variability in HRCT interpretation among non-experts {[}\protect\hyperlink{ref-raghu_diagnosis_2018}{1}{]}.
+Current diagnostic guidelines for ILDs recommend a multidisciplinary discussion (MDD) between respirologists, radiologists, and pathologists. Patients with suspected ILDs frequently present with nonspecific symptoms, with a high-resolution computed tomography (HRCT) scan required to assess specific radiological patterns. A detailed history is taken with respect to exposure to mold, birds, and other exposures to identify potential causes of hypersensitivity pneumonitis (HP), and autoantibody panels are used to screen for autoimmune/connective tissue diseases. Identification of a UIP pattern on HRCT, which is characterized by bilateral reticulation and honeycombing in the periphery and lower lobes, is sufficient to confirm a diagnosis of IPF in patients with a compatible clinical presentation; however, there is substantial variability in HRCT interpretation among non-experts {[}\citeproc{ref-raghu_diagnosis_2018}{1}{]}.
 
-A major diagnostic challenge within the ILD field is the identification of IPF. HRCT patterns are often nonspecific and fail to distinguish between IPF and non-IPF ILDs. Non-IPF ILDs, which include HP, connective tissue disease-related ILDs (systemic sclerosis-associated ILD (SSc- ILD), rheumatoid arthritis, Sjögren's syndrome, interstitial pneumonia with autoimmune features (IPAF)), drug-induced ILDs, and pneumoconiosis (occupational ILDs), are frequently treated with immunosuppressive medications {[}\protect\hyperlink{ref-lederer_idiopathic_2018}{13}{]}. In contrast, IPF patients require anti-fibrotic drug treatment (nintedanib, pirfenidone) and perform worse on immunosuppressives (e.g.~mycophenolate, azathioprine), thus highlighting the necessity to distinguish IPF from non-IPF ILDs. Specifically, IPF patients on glucocorticoid therapy showed no slowing of disease progression compared to placebo and, in contrast, had increased hospitalization and mortality {[}\protect\hyperlink{ref-idiopathic_pulmonary_fibrosis_clinical_research_network_prednisone_2012}{14}{]}. HRCT patterns indeterminate for radiological UIP can be followed up with a surgical lung biopsy (SLB) to identify a histopathological UIP pattern (honeycombing, fibroblastic foci, patchy fibrosis, paraseptal distribution) {[}\protect\hyperlink{ref-lynch_diagnostic_2018}{15}{]}. However, SLBs are associated with significant risks of mortality that increase with age, severely reduced lung function, and the presence of comorbidities. For these reasons, many patients with ILD are unable to undergo the most definitive diagnostic test.
+A major diagnostic challenge within the ILD field is the identification of IPF. HRCT patterns are often nonspecific and fail to distinguish between IPF and non-IPF ILDs. Non-IPF ILDs, which include HP, connective tissue disease-related ILDs (systemic sclerosis-associated ILD (SSc- ILD), rheumatoid arthritis, Sjögren's syndrome, interstitial pneumonia with autoimmune features (IPAF)), drug-induced ILDs, and pneumoconiosis (occupational ILDs), are frequently treated with immunosuppressive medications {[}\citeproc{ref-lederer_idiopathic_2018}{13}{]}. In contrast, IPF patients require anti-fibrotic drug treatment (nintedanib, pirfenidone) and perform worse on immunosuppressives (e.g.~mycophenolate, azathioprine), thus highlighting the necessity to distinguish IPF from non-IPF ILDs. Specifically, IPF patients on glucocorticoid therapy showed no slowing of disease progression compared to placebo and, in contrast, had increased hospitalization and mortality {[}\citeproc{ref-idiopathic_pulmonary_fibrosis_clinical_research_network_prednisone_2012}{14}{]}. HRCT patterns indeterminate for radiological UIP can be followed up with a surgical lung biopsy (SLB) to identify a histopathological UIP pattern (honeycombing, fibroblastic foci, patchy fibrosis, paraseptal distribution) {[}\citeproc{ref-lynch_diagnostic_2018}{15}{]}. However, SLBs are associated with significant risks of mortality that increase with age, severely reduced lung function, and the presence of comorbidities. For these reasons, many patients with ILD are unable to undergo the most definitive diagnostic test.
 
-The most challenging differential diagnosis involves distinguishing between IPF, HP, and IPAF. HP is the result of an immune response within the lung due to extended exposure to bacterial, fungal, animal, or insect proteins, which can eventually lead to fibrosis. A recent multi-centre study showed that inter-multidisciplinary teams disagreed the most when it came to diagnosing HP compared to other types of ILD, highlighting the difficulties associated with its nonspecific clinical presentation and resultant lack of established diagnostic criteria {[}\protect\hyperlink{ref-walsh_multicentre_2016}{16}{]}. IPAF is a newly proposed clinical designation that presents with features suggestive of an autoimmune condition, yet do not fulfill diagnostic criteria for any particular connective tissue disease {[}\protect\hyperlink{ref-graney_interstitial_2019}{17}{]}. When all diagnostic tools have been exhausted with no definitive diagnosis, patients are considered to have unclassifiable ILD, which occurs in approximately 15\% of ILD patients {[}\protect\hyperlink{ref-skolnik_unclassifiable_2016}{18}{]}. Treatment of unclassifiable ILD patients is particularly challenging with no clearly preferred option in the majority of these patients.
+The most challenging differential diagnosis involves distinguishing between IPF, HP, and IPAF. HP is the result of an immune response within the lung due to extended exposure to bacterial, fungal, animal, or insect proteins, which can eventually lead to fibrosis. A recent multi-centre study showed that inter-multidisciplinary teams disagreed the most when it came to diagnosing HP compared to other types of ILD, highlighting the difficulties associated with its nonspecific clinical presentation and resultant lack of established diagnostic criteria {[}\citeproc{ref-walsh_multicentre_2016}{16}{]}. IPAF is a newly proposed clinical designation that presents with features suggestive of an autoimmune condition, yet do not fulfill diagnostic criteria for any particular connective tissue disease {[}\citeproc{ref-graney_interstitial_2019}{17}{]}. When all diagnostic tools have been exhausted with no definitive diagnosis, patients are considered to have unclassifiable ILD, which occurs in approximately 15\% of ILD patients {[}\citeproc{ref-skolnik_unclassifiable_2016}{18}{]}. Treatment of unclassifiable ILD patients is particularly challenging with no clearly preferred option in the majority of these patients.
 
-\hypertarget{progressive-pulmonary-fibrosis}{%
-\subsection{Progressive pulmonary fibrosis}\label{progressive-pulmonary-fibrosis}}
+\subsection{Progressive pulmonary fibrosis}\label{ppf}
 
 Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that display a similar disease progression to IPF, which is defined over time by a decline in lung function, worsening respiratory symptoms, and increased fibrosis as seen on HRCT. Numerous criteria have been proposed to define PPF:
 
@@ -425,7 +430,7 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  The 2022 ATS/ERS/JRS/ALAT IPF diagnostic guidelines {[}\protect\hyperlink{ref-raghu_idiopathic_2022}{2}{]} proposed a combination of two or more of the following over 1 year:
+  The 2022 ATS/ERS/JRS/ALAT IPF diagnostic guidelines {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]} proposed a combination of two or more of the following over 1 year:
 \end{enumerate}
 
 \begin{itemize}
@@ -443,7 +448,7 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 \setcounter{enumi}{1}
 \tightlist
 \item
-  The criteria for inclusion into the INBUILD trial {[}\protect\hyperlink{ref-flaherty_nintedanib_2019}{19}{]} was defined by meeting one of the following criteria for progressive disease within the past 24 months:
+  The criteria for inclusion into the INBUILD trial {[}\citeproc{ref-flaherty_nintedanib_2019}{19}{]} was defined by meeting one of the following criteria for progressive disease within the past 24 months:
 \end{enumerate}
 
 \begin{itemize}
@@ -460,24 +465,22 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
 \item
-  The unclassifiable ILD (uILD) trial {[}\protect\hyperlink{ref-maher_pirfenidone_2020}{20}{]} included patients on the basis of an absolute decline in FVC\% of \underline{>}5\% or worsening respiratory symptoms within 6 months.
+  The unclassifiable ILD (uILD) trial {[}\citeproc{ref-maher_pirfenidone_2020}{20}{]} included patients on the basis of an absolute decline in FVC\% of \underline{>}5\% or worsening respiratory symptoms within 6 months.
 \item
-  The RELIEF trial {[}\protect\hyperlink{ref-behr_pirfenidone_2021}{21}{]} included patients if they had an absolute annual decline in FVC\% of \underline{>}5\% with at least three measurements within 6-24 months.
+  The RELIEF trial {[}\citeproc{ref-behr_pirfenidone_2021}{21}{]} included patients if they had an absolute annual decline in FVC\% of \underline{>}5\% with at least three measurements within 6-24 months.
 \end{enumerate}
 
-Retrospective analysis of various cohorts evaluating the above criteria have revealed that few patients meet all of the above definitions but each of them are associated with a poor prognosis {[}\protect\hyperlink{ref-khor_patient_2023}{22}{]}. Depending on the definition used for PPF, \textasciitilde18-32\% of non-IPF ILDs display this phenotype compared to \textasciitilde60\% of IPF patients {[}\protect\hyperlink{ref-rajan_progressive_2023}{27}{]}; nevertheless, identification is important as patients with PPF were shown to have a reduced annual rate of decline in FVC\% predicted after receiving nintedanib compared to placebo {[}\protect\hyperlink{ref-flaherty_nintedanib_2019}{19}{]}.
+Retrospective analysis of various cohorts evaluating the above criteria have revealed that few patients meet all of the above definitions but each of them are associated with a poor prognosis {[}\citeproc{ref-khor_patient_2023}{22}{]}. Depending on the definition used for PPF, \textasciitilde18-32\% of non-IPF ILDs display this phenotype compared to \textasciitilde60\% of IPF patients {[}\citeproc{ref-rajan_progressive_2023}{27}{]}; nevertheless, identification is important as patients with PPF were shown to have a reduced annual rate of decline in FVC\% predicted after receiving nintedanib compared to placebo {[}\citeproc{ref-flaherty_nintedanib_2019}{19}{]}.
 
-\hypertarget{objective}{%
-\subsection{Objective}\label{objective}}
+\subsection{Objective}\label{objective}
 
-Better tools are needed for clinical management of ILDs. Currently, up to 55\% of ILD patients experience at least one misdiagnosis prior to MDD, and 43\% report a delay in diagnosis of at least one year {[}\protect\hyperlink{ref-grewal_role_2019}{29}{]}. These delays are problematic for clinical management, particularly with respect to administering correct pharmacotherapy, and it is unsurprising that delays in diagnosing IPF are associated with an increased risk of mortality {[}\protect\hyperlink{ref-lamas_delayed_2011}{30}{]}. Previous attempts to identify biomarkers of IPF have failed in part due to difficulties in reproducing reliable concentration cut-off thresholds to diagnose disease {[}\protect\hyperlink{ref-drakopanagiotakis_biomarkers_2018}{31}{]}. Promising IPF diagnostic biomarkers such as matrix metalloprotease-7 (MMP-7) are also elevated in the serum of patients with HP and other ILDs {[}\protect\hyperlink{ref-morais_serum_2015}{32}{]}, suggesting that candidate biomarkers are limited in their ability to discern disease subtype from the fibrotic process of ILD. Furthermore, patients with PPF have a poor prognosis and early adoption of anti-fibrotic therapy is shown to be beneficial, but criteria for identifying PPF has not yet been agreed upon and candidate guidelines are based on data obtained over the course of 1-2 years.
+Better tools are needed for clinical management of ILDs. Currently, up to 55\% of ILD patients experience at least one misdiagnosis prior to MDD, and 43\% report a delay in diagnosis of at least one year {[}\citeproc{ref-grewal_role_2019}{29}{]}. These delays are problematic for clinical management, particularly with respect to administering correct pharmacotherapy, and it is unsurprising that delays in diagnosing IPF are associated with an increased risk of mortality {[}\citeproc{ref-lamas_delayed_2011}{30}{]}. Previous attempts to identify biomarkers of IPF have failed in part due to difficulties in reproducing reliable concentration cut-off thresholds to diagnose disease {[}\citeproc{ref-drakopanagiotakis_biomarkers_2018}{31}{]}. Promising IPF diagnostic biomarkers such as matrix metalloprotease-7 (MMP-7) are also elevated in the serum of patients with HP and other ILDs {[}\citeproc{ref-morais_serum_2015}{32}{]}, suggesting that candidate biomarkers are limited in their ability to discern disease subtype from the fibrotic process of ILD. Furthermore, patients with PPF have a poor prognosis and early adoption of anti-fibrotic therapy is shown to be beneficial, but criteria for identifying PPF has not yet been agreed upon and candidate guidelines are based on data obtained over the course of 1-2 years.
 
 Given the inherent risks of lung biopsies in aging populations, the objective of this thesis is to investigate ILD blood for novel diagnostic and prognostic molecular biomarkers of ILD. This will be carried out by first performing a systematic review and meta-analysis of ILD transcriptomics (gene expression studies) to define currently understood molecular markers of ILD. Then, we will examine feasibility of using whole blood samples from ILD patients in a pilot study using a targeted gene assay, followed by a larger study examining whole blood ILD samples using bulk RNA-sequencing (RNA-seq). Finally, we will investigate single cell-level blood gene expression profiles.
 
 \clearpage
 
-\hypertarget{a-systematic-review-and-meta-analysis-of-ild-transcriptomics}{%
-\section{A systematic review and meta-analysis of ILD transcriptomics}\label{a-systematic-review-and-meta-analysis-of-ild-transcriptomics}}
+\section{A systematic review and meta-analysis of ILD transcriptomics}\label{a-systematic-review-and-meta-analysis-of-ild-transcriptomics}
 
 \renewcommand{\thefigure}{2.\arabic{figure}}
 \setcounter{figure}{0}
@@ -486,39 +489,33 @@ Given the inherent risks of lung biopsies in aging populations, the objective of
 \renewcommand{\theequation}{2.\arabic{equation}}
 \setcounter{equation}{0}
 
-High-performance gene expression analysis (transcriptomics) has been crucial in finding key biological processes involved in the pathogenesis of ILD, including matrix metalloproteinases, Wnt signaling, and cellular senescence {[}\protect\hyperlink{ref-vukmirovic_impact_2018}{33}{]}. Although molecules such as MMP-7 have been proposed as a diagnostic and prognostic biomarker of idiopathic pulmonary fibrosis (IPF) {[}\protect\hyperlink{ref-khan_systematic_2022}{34}{]}, molecular biomarkers are not yet widely used in clinical management of ILDs {[}\protect\hyperlink{ref-raghu_diagnosis_2018}{1},\protect\hyperlink{ref-morais_serum_2015}{32},\protect\hyperlink{ref-white_plasma_2016}{35}--\protect\hyperlink{ref-johannson_treatment_2021}{37}{]}. A genomic classifier based on transbronchial biopsies (Envisia) has been developed to identify the histological pattern of UIP, which allows for a diagnosis of IPF in matching clinical characteristics {[}\protect\hyperlink{ref-pankratz_usual_2017}{38},\protect\hyperlink{ref-choi_analytical_2017}{39}{]}. The clinical application of this genomic classifier is limited by its availability and its use has not been recommended in recent clinical practice guidelines {[}\protect\hyperlink{ref-raghu_idiopathic_2022}{2}{]}.
+High-performance gene expression analysis (transcriptomics) has been crucial in finding key biological processes involved in the pathogenesis of ILD, including matrix metalloproteinases, Wnt signaling, and cellular senescence {[}\citeproc{ref-vukmirovic_impact_2018}{33}{]}. Although molecules such as MMP-7 have been proposed as a diagnostic and prognostic biomarker of idiopathic pulmonary fibrosis (IPF) {[}\citeproc{ref-khan_systematic_2022}{34}{]}, molecular biomarkers are not yet widely used in clinical management of ILDs {[}\citeproc{ref-raghu_diagnosis_2018}{1},\citeproc{ref-morais_serum_2015}{32},\citeproc{ref-white_plasma_2016}{35}--\citeproc{ref-johannson_treatment_2021}{37}{]}. A genomic classifier based on transbronchial biopsies (Envisia) has been developed to identify the histological pattern of UIP, which allows for a diagnosis of IPF in matching clinical characteristics {[}\citeproc{ref-pankratz_usual_2017}{38},\citeproc{ref-choi_analytical_2017}{39}{]}. The clinical application of this genomic classifier is limited by its availability and its use has not been recommended in recent clinical practice guidelines {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]}.
 
 A majority of transcriptomics research has been performed in IPF, and many differentially expressed genes have been identified and reproduced across different studies. There are fewer investigations into other ILD subtypes, such as HP and connective tissue disease-associated ILD (CTD-ILD), and a consensus of molecular perturbations has yet to be determined for other ILDs. Furthermore, studies with adequate sample sizes are rare, also due to the cost of microarray and RNA-seq technologies. As sequencing throughput has improved and new approaches including single-cell RNA sequencing (scRNA-seq) are emerging, summarizing the findings of bulk tissue sequencing is likely valuable for comparison with future scRNA-seq findings. Hence, the objective of this systematic review and individual participant data (IPD) meta-analysis was to determine consensus gene expression signatures of patients with fibrotic ILD compared to control, and to identify and validate biomarkers for the classification of major fibrotic ILD subtypes.
 
-\hypertarget{methods}{%
-\subsection{Methods}\label{methods}}
+\subsection{Methods}\label{methods}
 
-\hypertarget{search-strategy}{%
-\subsubsection{Search strategy}\label{search-strategy}}
+\subsubsection{Search strategy}\label{search-strategy}
 
-In accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we performed a systematic review to identify transcriptomics studies focusing on fibrotic ILD samples and we registered the study with PROSPERO (CRD42018085682). Literature searches were performed in Medline and Embase on December 18th 2018, and updated on November 23rd 2023. Our search terms included variations of ``interstitial lung disease'', common ILD subtypes, as well as transcriptomics-related key words (\protect\hyperlink{search-terms}{Appendix A - Search terms}). Given the relative recency of transcriptomics technology, we limited our search to only include results published from the year 2000 and onwards. A similar strategy was adopted for searching the Gene Expression Omnibus (GEO). Screening of titles, abstracts, and full-text studies was performed by two independent reviewers (Daniel He and Sabina A Guler) using the online Covidence tool. We focused our search on common fibrotic ILDs in adults (IPF, HP, idiopathic nonspecific interstitial pneumonia (NSIP), and connective tissue disease-associated ILDs), as it was more likely that they would be investigated for gene expression. We included studies investigating transcriptomics of fibrotic ILDs via lung or blood sampling, and excluded those focused on isolated cell populations (i.e.~fibroblasts). To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\protect\hyperlink{ref-dupuy_critical_2007}{40}{]} (see: \protect\hyperlink{qc}{Appendix A - Search terms}).
+In accordance with Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines, we performed a systematic review to identify transcriptomics studies focusing on fibrotic ILD samples and we registered the study with PROSPERO (CRD42018085682). Literature searches were performed in Medline and Embase on December 18th 2018, and updated on November 23rd 2023. Our search terms included variations of ``interstitial lung disease'', common ILD subtypes, as well as transcriptomics-related key words (\hyperref[search-terms]{Appendix A - Search terms}). Given the relative recency of transcriptomics technology, we limited our search to only include results published from the year 2000 and onwards. A similar strategy was adopted for searching the Gene Expression Omnibus (GEO). Screening of titles, abstracts, and full-text studies was performed by two independent reviewers (Daniel He and Sabina A Guler) using the online Covidence tool. We focused our search on common fibrotic ILDs in adults (IPF, HP, idiopathic nonspecific interstitial pneumonia (NSIP), and connective tissue disease-associated ILDs), as it was more likely that they would be investigated for gene expression. We included studies investigating transcriptomics of fibrotic ILDs via lung or blood sampling, and excluded those focused on isolated cell populations (i.e.~fibroblasts). To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\citeproc{ref-dupuy_critical_2007}{40}{]} (see: \hyperref[qc]{Appendix A - Search terms}).
 
-\hypertarget{data-extraction-integration-and-analysis}{%
-\subsubsection{Data extraction, integration, and analysis}\label{data-extraction-integration-and-analysis}}
+\subsubsection{Data extraction, integration, and analysis}\label{data-extraction-integration-and-analysis}
 
 We extracted participant-level data from included studies using the data repository sites GEO, ArrayExpress and the Sequence Read Archive (SRA). Raw data were processed using recommended protocols from the `limma' package (v3.55.3) for microarrays (manufacturer-based) and RNA-seq (trimmed mean of M values, TMM) if author-provided normalized matrices were unavailable. Dataset quality was determined by examining distribution plots and comparing DEGs obtained from limma with reported values (data not shown), and outliers were removed if they were located more than 3 standard deviations away from the mean on the first and second principal components (Figure \ref{fig:outlierPCA}). In order to explore sex-specific ILD signatures, we examined expression of 1 female-specific gene (\textit{XIST}) located on the X chromosome and 4 male-specific genes (\textit{RPS4Y1}, \textit{EIF1AY}, \textit{DDX3Y}, \textit{KDM5D}) located on the Y chromosome to obtain the predicted sex for each sample. The sex provided in the metadata from the original publication did not match predicted sex in 31 of 1,441 samples (2.15\%); these samples were omitted from sex-specific analyses.
 
-To synthesize transcriptomics data, we used an IPD approach to our meta-analysis using the Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0), which is an integrative classification method based on partial least squares regression (PLS). A more detailed explanation of the methodology can be found in Rohart et al. {[}\protect\hyperlink{ref-rohart_mint_2017}{41},\protect\hyperlink{ref-rohart_mixomics_2017}{42}{]}. We benchmarked the MINT data integration by comparing it with differentially expressed gene (DEG) list integration through robust rank aggregation (RRA) {[}\protect\hyperlink{ref-kolde_robust_2012}{43}{]}, which also allowed for the inclusion of studies where raw data was unavailable (i.e.~older studies that may have used first-generation microarrays with limited gene coverage).
+To synthesize transcriptomics data, we used an IPD approach to our meta-analysis using the Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0), which is an integrative classification method based on partial least squares regression (PLS). A more detailed explanation of the methodology can be found in Rohart et al. {[}\citeproc{ref-rohart_mint_2017}{41},\citeproc{ref-rohart_mixomics_2017}{42}{]}. We benchmarked the MINT data integration by comparing it with differentially expressed gene (DEG) list integration through robust rank aggregation (RRA) {[}\citeproc{ref-kolde_robust_2012}{43}{]}, which also allowed for the inclusion of studies where raw data was unavailable (i.e.~older studies that may have used first-generation microarrays with limited gene coverage).
 
-We used 24 of 32 datasets (from 31 studies) as a training set, and integrated them to develop classification models that were tuned via leave-one-group-out cross validation to have the lowest balanced error rate (BER; average error rate in each class) (Figure \ref{fig:tuningMINT}), and validated on the remaining eight held-out test datasets by examining area under receiver operating curve (AUC) and BER (Table \ref{tab:modelPerf}). Eight test sets were selected to cover 15-20\% of the total number of samples to create an 80/20 training/test split, in addition to balancing the number of microarray and RNA-seq studies, and to covering all ILD subtypes of interest (IPF, HP, NSIP, SSc-ILD), Lung Tissue Research Consortium (LTRC) and non-LTRC studies, American and non-American cohorts, and recently published datasets {[}\protect\hyperlink{ref-bauer_novel_2015}{44}--\protect\hyperlink{ref-jaffar_matrix_2022}{51}{]}. All data processing and analysis was performed in R (v4.2.3). Additional details on our methodology are provided in \protect\hyperlink{data}{Appendix A - Data integration and analysis}.
+We used 24 of 32 datasets (from 31 studies) as a training set, and integrated them to develop classification models that were tuned via leave-one-group-out cross validation to have the lowest balanced error rate (BER; average error rate in each class) (Figure \ref{fig:tuningMINT}), and validated on the remaining eight held-out test datasets by examining area under receiver operating curve (AUC) and BER (Table \ref{tab:modelPerf}). Eight test sets were selected to cover 15-20\% of the total number of samples to create an 80/20 training/test split, in addition to balancing the number of microarray and RNA-seq studies, and to covering all ILD subtypes of interest (IPF, HP, NSIP, SSc-ILD), Lung Tissue Research Consortium (LTRC) and non-LTRC studies, American and non-American cohorts, and recently published datasets {[}\citeproc{ref-bauer_novel_2015}{44}--\citeproc{ref-jaffar_matrix_2022}{51}{]}. All data processing and analysis was performed in R (v4.2.3). Additional details on our methodology are provided in \hyperref[data]{Appendix A - Data integration and analysis}.
 
-\hypertarget{biclustering}{%
-\subsubsection{Biclustering}\label{biclustering}}
+\subsubsection{Biclustering}\label{biclustering}
 
-Transcriptomics datasets were concatenated and genes containing NA values were removed. ComBat (`sva' v3.46.0) was used to correct for study-specific batch effects, and biclusters of the batch-corrected matrix were identified using algorithms implemented in the `MoSBi' package (v1.4.0) {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}, as well as the unsupervised patient stratification (UnPaSt) algorithm, which is an unconstrained version of the Differentially ExpreSsed gene Modules iN Diseases (DESMOND) algorithm {[}\protect\hyperlink{ref-zolotareva_identification_2021}{53}{]}. Association between biclusters and clinical variables was assessed using a Chi-squared test (categorical; diagnostic class) or linear regression (continuous; predicted FVC\%, DLCO\%).
+Transcriptomics datasets were concatenated and genes containing NA values were removed. ComBat (`sva' v3.46.0) was used to correct for study-specific batch effects, and biclusters of the batch-corrected matrix were identified using algorithms implemented in the `MoSBi' package (v1.4.0) {[}\citeproc{ref-rose_mosbi_2022}{52}{]}, as well as the unsupervised patient stratification (UnPaSt) algorithm, which is an unconstrained version of the Differentially ExpreSsed gene Modules iN Diseases (DESMOND) algorithm {[}\citeproc{ref-zolotareva_identification_2021}{53}{]}. Association between biclusters and clinical variables was assessed using a Chi-squared test (categorical; diagnostic class) or linear regression (continuous; predicted FVC\%, DLCO\%).
 
-\hypertarget{results}{%
-\subsection{Results}\label{results}}
+\subsection{Results}\label{results}
 
-\hypertarget{search-results}{%
-\subsubsection{Search results}\label{search-results}}
+\subsubsection{Search results}\label{search-results}
 
-From our initial search of medical literature databases (3,844 from MEDLINE and 6,624 from EMBASE) and a genomic database (215 from GEO), we assessed 196 records for eligibility and identified 43 studies that used transcriptomics to profile ILD samples (Figure \ref{fig:prisma}). Four studies investigated blood transcriptional profiles (IPF, HP, SSc-ILD) {[}\protect\hyperlink{ref-yang_peripheral_2012}{54}--\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}, and four looked at gene expression profiles of peripheral blood mononuclear cells (PBMCs) from IPF and systemic sclerosis-associated ILD (SSc-ILD) {[}\protect\hyperlink{ref-huang_sphingosine-1-phosphate_2015}{58}--\protect\hyperlink{ref-assassi_peripheral_2022}{61}{]}. Of the remaining 35 studies that used transcriptomics to investigate fibrotic ILD lung samples, 24 studies reported DEGs between ILD and control, 29 studies uploaded publicly available data for analysis, and 20 studies had both (Table \ref{tab:datasets}). Eight datasets were associated with the LTRC, and duplicate LTRC samples across studies were removed where LTRC identifiers were available {[}\protect\hyperlink{ref-bauer_novel_2015}{44},\protect\hyperlink{ref-schafer_cellular_2017}{46},\protect\hyperlink{ref-cho_systems_2011}{62}--\protect\hyperlink{ref-borie_colocalization_2022}{69}{]}. The most commonly profiled fibrotic ILD subtype was IPF, appearing in all identified datasets except one, followed by idiopathic NSIP, fibrotic HP, and SSc-ILD. Classifiers for subtypes such as desquamative interstitial pneumonia (DIP), respiratory bronchiolitis-ILD (RB-ILD), and cryptogenic organizing pneumonia (COP) were not generated as these samples were few in number; classifiers for HP and SSc-ILD blood/PBMC samples were also not created due to insufficient numbers of datasets.
+From our initial search of medical literature databases (3,844 from MEDLINE and 6,624 from EMBASE) and a genomic database (215 from GEO), we assessed 196 records for eligibility and identified 43 studies that used transcriptomics to profile ILD samples (Figure \ref{fig:prisma}). Four studies investigated blood transcriptional profiles (IPF, HP, SSc-ILD) {[}\citeproc{ref-yang_peripheral_2012}{54}--\citeproc{ref-jia_interleukin_2023}{57}{]}, and four looked at gene expression profiles of peripheral blood mononuclear cells (PBMCs) from IPF and systemic sclerosis-associated ILD (SSc-ILD) {[}\citeproc{ref-huang_sphingosine-1-phosphate_2015}{58}--\citeproc{ref-assassi_peripheral_2022}{61}{]}. Of the remaining 35 studies that used transcriptomics to investigate fibrotic ILD lung samples, 24 studies reported DEGs between ILD and control, 29 studies uploaded publicly available data for analysis, and 20 studies had both (Table \ref{tab:datasets}). Eight datasets were associated with the LTRC, and duplicate LTRC samples across studies were removed where LTRC identifiers were available {[}\citeproc{ref-bauer_novel_2015}{44},\citeproc{ref-schafer_cellular_2017}{46},\citeproc{ref-cho_systems_2011}{62}--\citeproc{ref-borie_colocalization_2022}{69}{]}. The most commonly profiled fibrotic ILD subtype was IPF, appearing in all identified datasets except one, followed by idiopathic NSIP, fibrotic HP, and SSc-ILD. Classifiers for subtypes such as desquamative interstitial pneumonia (DIP), respiratory bronchiolitis-ILD (RB-ILD), and cryptogenic organizing pneumonia (COP) were not generated as these samples were few in number; classifiers for HP and SSc-ILD blood/PBMC samples were also not created due to insufficient numbers of datasets.
 
 \captionsetup{width=6.5in}
 
@@ -533,8 +530,7 @@ From our initial search of medical literature databases (3,844 from MEDLINE and 
 \caption[PRISMA screening]{\textbf{Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) flowchart of study identification and screening.} MEDLINE, EMBASE, and the Gene Expression Omnibus (GEO) were examined for studies using transcriptomics to investigate samples from patients with interstitial lung disease (ILD).}\label{fig:prisma}
 \end{figure}
 
-\hypertarget{lung-gene-expression-signatures-of-fibrotic-ild-subtypes}{%
-\subsubsection{Lung gene expression signatures of fibrotic ILD subtypes}\label{lung-gene-expression-signatures-of-fibrotic-ild-subtypes}}
+\subsubsection{Lung gene expression signatures of fibrotic ILD subtypes}\label{lung-gene-expression-signatures-of-fibrotic-ild-subtypes}
 
 We created lung gene signatures for each fibrotic ILD subtype via classification models generated from our integrated datasets (Figure \ref{fig:integration}). In IPF, we identified a 55-gene signature using 23 training datasets (n=576 control, n=721 IPF), which was then validated on eight test datasets (n=107 control, n=193 IPF) with AUC=0.99 {[}0.99-1.00{]} (Figure \ref{fig:mintmodel}A, Table \ref{tab:ipfgenes}). To confirm the validity of MINT in identifying relevant DEGs, we compared our IPF vs Control signature against an IPF vs Control aggregate DEG list generated by RRA and found that 39 of the 55 genes were shared, including \textit{COMP}, \textit{DIO2}, \textit{MMP7} (IPF upregulated), \textit{CA4}, \textit{FAM167A}, and \textit{MYRF} (IPF downregulated) (Figure \ref{fig:modelUpset}A). For the peripheral transcriptome, we generated a classification model of IPF vs Control for whole blood datasets, which was validated on two PBMC datasets (AUC=0.74 {[}0.67-0.81{]}); likewise, a classification model of IPF vs Control for PBMCs was validated on two whole blood datasets (AUC=0.73 {[}0.65-0.81{]}) (Figure \ref{fig:bloodmodel}, Table \ref{tab:ipfgenesblood}, Table \ref{tab:ipfgenespbmc}). We also performed sex-specific analyses for IPF, HP, and NSIP by inferring sex from sex-specific genes, showing good performance for between-sex comparisons with the exception of the male NSIP classification model (male test set: AUC=0.98 {[}0.93-1.00{]}; female test set: AUC=0.79 {[}0.68-0.90) (Table \ref{tab:sexModel}).
 
@@ -590,42 +586,42 @@ We created lung gene signatures for each fibrotic ILD subtype via classification
 \cmidrule(l{3pt}r{3pt}){4-8}
 Study & Accession & Set & Control & IPF & HP & NSIP & SSc-ILD\\
 \midrule
-Zuo \textit{et al.} {[}\protect\hyperlink{ref-zuo_gene_2002}{70}{]} & - & - & 4 & 3† & - & - & -\\
-Pardo \textit{et al.} {[}\protect\hyperlink{ref-pardo_up-regulation_2005}{71}{]} & GSE2052 & Training & 11 & 12* & - & - & -\\
-Selman \textit{et al.} {[}\protect\hyperlink{ref-selman_gene_2006}{72}{]} & - & - & 4 & 15 & 12 & 8 & -\\
-Yang \textit{et al.} {[}\protect\hyperlink{ref-yang_gene_2007}{73}{]} & GSE5774 & Training & 8 & 14 & - & 2 & -\\
-Bridges \textit{et al.} {[}\protect\hyperlink{ref-bridges_gene_2009}{74}{]} & - & - & 7 & 10 & - & - & -\\
-Konishi \textit{et al.} {[}\protect\hyperlink{ref-konishi_gene_2009}{75}{]} & GSE10667 & Training & 15 & 23 & - & - & -\\
-Rajkumar \textit{et al.} {[}\protect\hyperlink{ref-rajkumar_genomewide_2010}{76}{]} & GSE15197 & Training & 13 & 8 & - & - & -\\
-Cho \textit{et al.} {[}\protect\hyperlink{ref-cho_systems_2011}{62}{]} & GSE21369 & Training & 5* & 10* & 2 & 4* & -\\
-Hsu \textit{et al.} {[}\protect\hyperlink{ref-hsu_lung_2011}{77}{]} & GSE48149 & Training & 9 & 13 & - & - & 13\\
-Meltzer \textit{et al.} {[}\protect\hyperlink{ref-meltzer_bayesian_2011}{78}{]} & GSE24206 & Training & 6 & 11 & - & - & -\\
-Sanders \textit{et al.} {[}\protect\hyperlink{ref-sanders_altered_2012}{63}{]} & GSE35145 & Training & 4 & 4 & - & - & -\\
-Deng \textit{et al.} {[}\protect\hyperlink{ref-deng_detecting_2013}{64}{]} & SRA048904 & Training & 3 & 3 & - & - & -\\
-Yang \textit{et al.} {[}\protect\hyperlink{ref-yang_expression_2013}{65}{]} & GSE32537 & Training & 50 & 34 & - & 4 & -\\
-Nance \textit{et al.} {[}\protect\hyperlink{ref-nance_transcriptome_2014}{79}{]} & GSE52463 & Training & 7 & 8 & - & - & -\\
-Bauer \textit{et al.} {[}\protect\hyperlink{ref-bauer_novel_2015}{44}{]} & GSE47460-GPL14550 & Training & 91 & 122 & 21 & 14 & -\\
+Zuo \textit{et al.} {[}\citeproc{ref-zuo_gene_2002}{70}{]} & - & - & 4 & 3† & - & - & -\\
+Pardo \textit{et al.} {[}\citeproc{ref-pardo_up-regulation_2005}{71}{]} & GSE2052 & Training & 11 & 12* & - & - & -\\
+Selman \textit{et al.} {[}\citeproc{ref-selman_gene_2006}{72}{]} & - & - & 4 & 15 & 12 & 8 & -\\
+Yang \textit{et al.} {[}\citeproc{ref-yang_gene_2007}{73}{]} & GSE5774 & Training & 8 & 14 & - & 2 & -\\
+Bridges \textit{et al.} {[}\citeproc{ref-bridges_gene_2009}{74}{]} & - & - & 7 & 10 & - & - & -\\
+Konishi \textit{et al.} {[}\citeproc{ref-konishi_gene_2009}{75}{]} & GSE10667 & Training & 15 & 23 & - & - & -\\
+Rajkumar \textit{et al.} {[}\citeproc{ref-rajkumar_genomewide_2010}{76}{]} & GSE15197 & Training & 13 & 8 & - & - & -\\
+Cho \textit{et al.} {[}\citeproc{ref-cho_systems_2011}{62}{]} & GSE21369 & Training & 5* & 10* & 2 & 4* & -\\
+Hsu \textit{et al.} {[}\citeproc{ref-hsu_lung_2011}{77}{]} & GSE48149 & Training & 9 & 13 & - & - & 13\\
+Meltzer \textit{et al.} {[}\citeproc{ref-meltzer_bayesian_2011}{78}{]} & GSE24206 & Training & 6 & 11 & - & - & -\\
+Sanders \textit{et al.} {[}\citeproc{ref-sanders_altered_2012}{63}{]} & GSE35145 & Training & 4 & 4 & - & - & -\\
+Deng \textit{et al.} {[}\citeproc{ref-deng_detecting_2013}{64}{]} & SRA048904 & Training & 3 & 3 & - & - & -\\
+Yang \textit{et al.} {[}\citeproc{ref-yang_expression_2013}{65}{]} & GSE32537 & Training & 50 & 34 & - & 4 & -\\
+Nance \textit{et al.} {[}\citeproc{ref-nance_transcriptome_2014}{79}{]} & GSE52463 & Training & 7 & 8 & - & - & -\\
+Bauer \textit{et al.} {[}\citeproc{ref-bauer_novel_2015}{44}{]} & GSE47460-GPL14550 & Training & 91 & 122 & 21 & 14 & -\\
  & GSE47460-GPL6480 & Test & 17 & 38 & 9 & 3 & -\\
-DePianto \textit{et al.} {[}\protect\hyperlink{ref-depianto_heterogeneous_2015}{45}{]} & GSE53845 & Test & 8 & 39 & - & - & -\\
-Geng \textit{et al.} {[}\protect\hyperlink{ref-geng_down-regulation_2015}{80}{]} & GSE72073 & Training & 3 & 5 & - & - & -\\
-Christmann \textit{et al.} {[}\protect\hyperlink{ref-christmann_mir-155_2016}{81}{]} & GSE81292 & Training & 5 & - & - & - & 11\\
-Horimasu \textit{et al.} {[}\protect\hyperlink{ref-horimasu_clinical_2017}{82}{]} & - & - & 3 & - & 9 & - & -\\
-Horimasu \textit{et al.} {[}\protect\hyperlink{ref-horimasu_gene_2017}{83}{]} & GSE101286 & Training & 3 & 7 & - & 5 & -\\
-Schafer \textit{et al.} {[}\protect\hyperlink{ref-schafer_cellular_2017}{46}{]} & GSE92592 & Test & 19 & 20 & - & - & -\\
-Vukmirovic \textit{et al.} {[}\protect\hyperlink{ref-vukmirovic_identification_2017}{66}{]} & GSE83717 & Training & 5 & 6 & - & - & -\\
-Yu \textit{et al.} {[}\protect\hyperlink{ref-yu_reduced_2017}{47}{]} & GSE73189 & Test & 5 & 4 & - & 3 & -\\
-Cecchini \textit{et al.} {[}\protect\hyperlink{ref-cecchini_comprehensive_2018}{48}{]} & GSE110147 & Test & 11 & 22 & - & 10 & -\\
-Luzina \textit{et al.} {[}\protect\hyperlink{ref-luzina_transcriptomic_2018}{84}{]} & GSE99621 & Training & 3 & 3 & - & - & -\\
-Sivakumar \textit{et al.} {[}\protect\hyperlink{ref-sivakumar_rna_2019}{85}{]} & GSE134692 & Training & 17 & 36 & - & - & -\\
-McDonough \textit{et al.} {[}\protect\hyperlink{ref-mcdonough_transcriptional_2019}{86}{]} & GSE124685 & Training & 6 & 10 & - & - & -\\
-Furusawa \textit{et al.} {[}\protect\hyperlink{ref-furusawa_chronic_2020}{67}{]} & GSE150910 & Training & 103 & 102* & 81* & - & -\\
-Konigsberg \textit{et al.} {[}\protect\hyperlink{ref-konigsberg_molecular_2021}{68}{]} & GSE173355 & Training & 14 & 23 & - & - & -\\
-DePianto \textit{et al.} {[}\protect\hyperlink{ref-depianto_molecular_2021}{49}{]} & GSE166036 & Test & 9 & 20 & - & - & 6\\
-Borie \textit{et al.} {[}\protect\hyperlink{ref-borie_colocalization_2022}{69}{]} & GSE175457 & Training & 188 & 234 & - & - & -\\
-Wang \textit{et al.} {[}\protect\hyperlink{ref-wang_canonical_2022}{87}{]} & GSE199152 & Training & 4 & 20 & - & - & -\\
-Huang \textit{et al.} {[}\protect\hyperlink{ref-huang_central_2023}{88}{]} & GSE199949 & Training & 8 & 13 & - & - & -\\
-De Sadeleer \textit{et al.} {[}\protect\hyperlink{ref-de_sadeleer_lung_2022}{50}{]} & GSE184316 & Test & 6 & 10 & 9 & - & -\\
-Jaffar \textit{et al.} {[}\protect\hyperlink{ref-jaffar_matrix_2022}{51}{]} & GSE213001 & Test & 12 & 19 & 4 & 4 & -\\
+DePianto \textit{et al.} {[}\citeproc{ref-depianto_heterogeneous_2015}{45}{]} & GSE53845 & Test & 8 & 39 & - & - & -\\
+Geng \textit{et al.} {[}\citeproc{ref-geng_down-regulation_2015}{80}{]} & GSE72073 & Training & 3 & 5 & - & - & -\\
+Christmann \textit{et al.} {[}\citeproc{ref-christmann_mir-155_2016}{81}{]} & GSE81292 & Training & 5 & - & - & - & 11\\
+Horimasu \textit{et al.} {[}\citeproc{ref-horimasu_clinical_2017}{82}{]} & - & - & 3 & - & 9 & - & -\\
+Horimasu \textit{et al.} {[}\citeproc{ref-horimasu_gene_2017}{83}{]} & GSE101286 & Training & 3 & 7 & - & 5 & -\\
+Schafer \textit{et al.} {[}\citeproc{ref-schafer_cellular_2017}{46}{]} & GSE92592 & Test & 19 & 20 & - & - & -\\
+Vukmirovic \textit{et al.} {[}\citeproc{ref-vukmirovic_identification_2017}{66}{]} & GSE83717 & Training & 5 & 6 & - & - & -\\
+Yu \textit{et al.} {[}\citeproc{ref-yu_reduced_2017}{47}{]} & GSE73189 & Test & 5 & 4 & - & 3 & -\\
+Cecchini \textit{et al.} {[}\citeproc{ref-cecchini_comprehensive_2018}{48}{]} & GSE110147 & Test & 11 & 22 & - & 10 & -\\
+Luzina \textit{et al.} {[}\citeproc{ref-luzina_transcriptomic_2018}{84}{]} & GSE99621 & Training & 3 & 3 & - & - & -\\
+Sivakumar \textit{et al.} {[}\citeproc{ref-sivakumar_rna_2019}{85}{]} & GSE134692 & Training & 17 & 36 & - & - & -\\
+McDonough \textit{et al.} {[}\citeproc{ref-mcdonough_transcriptional_2019}{86}{]} & GSE124685 & Training & 6 & 10 & - & - & -\\
+Furusawa \textit{et al.} {[}\citeproc{ref-furusawa_chronic_2020}{67}{]} & GSE150910 & Training & 103 & 102* & 81* & - & -\\
+Konigsberg \textit{et al.} {[}\citeproc{ref-konigsberg_molecular_2021}{68}{]} & GSE173355 & Training & 14 & 23 & - & - & -\\
+DePianto \textit{et al.} {[}\citeproc{ref-depianto_molecular_2021}{49}{]} & GSE166036 & Test & 9 & 20 & - & - & 6\\
+Borie \textit{et al.} {[}\citeproc{ref-borie_colocalization_2022}{69}{]} & GSE175457 & Training & 188 & 234 & - & - & -\\
+Wang \textit{et al.} {[}\citeproc{ref-wang_canonical_2022}{87}{]} & GSE199152 & Training & 4 & 20 & - & - & -\\
+Huang \textit{et al.} {[}\citeproc{ref-huang_central_2023}{88}{]} & GSE199949 & Training & 8 & 13 & - & - & -\\
+De Sadeleer \textit{et al.} {[}\citeproc{ref-de_sadeleer_lung_2022}{50}{]} & GSE184316 & Test & 6 & 10 & 9 & - & -\\
+Jaffar \textit{et al.} {[}\citeproc{ref-jaffar_matrix_2022}{51}{]} & GSE213001 & Test & 12 & 19 & 4 & 4 & -\\
 \textbf{} & \textbf{} & \textbf{Training} & \textbf{581} & \textbf{721} & \textbf{104} & \textbf{29} & \textbf{24}\\
 \textbf{} & \textbf{} & \textbf{Test} & \textbf{87} & \textbf{173} & \textbf{22} & \textbf{20} & \textbf{6}\\
 \bottomrule
@@ -649,8 +645,7 @@ We applied similar strategies for the discrimination between controls, HP, SSc-I
 \caption[MINT models]{\textbf{Classification models for ILD subtypes against controls.} Training set datasets were integrated and tuned to develop classification models, which were then validated on test set datasets. Projection of MINT-integrated training set samples into the space of the first two PLS components for IPF (A), HP (B), SSc-ILD (C), and NSIP (D) classification models. Inset: AUC performance of each ILD classification model on held-out test datasets. Detailed performance metrics for each dataset can be found in Table \ref{tab:modelPerf}.}\label{fig:mintmodel}
 \end{figure}
 
-\hypertarget{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}{%
-\subsubsection{Fibrotic ILD subtypes are differentiated at the transcriptional level}\label{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}}
+\subsubsection{Fibrotic ILD subtypes are differentiated at the transcriptional level}\label{fibrotic-ild-subtypes-are-differentiated-at-the-transcriptional-level}
 
 To examine unique features of fibrotic ILD subtypes at the transcriptional level, we generated classification models for IPF, HP, and NSIP against all other ILD subtypes. Our training set consisted of 721 IPF, 104 HP, 29 NSIP, 24 SSc-ILD, 14 RB-ILD, 14 unknown fibrosis, six COP, four DIP, three rheumatoid arthritis-ILD (RA-ILD), and one CTD-ILD samples, while our test set consisted of 193 IPF, 22 HP, 20 NSIP, six SSc-ILD, five mixed IPF-NSIP, three unknown fibrosis, two RB-ILD, two DIP, two CTD-ILD, one COP, and one combined pulmonary fibrosis and emphysema (CPFE) samples. The 57-gene IPF vs ILD model trained on seven datasets had good performance on six test datasets (AUC=0.71 {[}0.63-0.79{]}), as did the 132-gene HP vs ILD model trained on three datasets on two test datasets (AUC=0.76 {[}0.63-0.89{]}) (Figure \ref{fig:ILDvILD}, Table \ref{tab:ipfnongenes}, Table \ref{tab:hpnongenes}). The NSIP vs ILD model trained on five datasets did not have a good performance on four test datasets (AUC=0.60 {[}0.49-0.72{]}) (Figure \ref{fig:nsipmodel}). For between-subtype comparisons, we identified a 95-gene signature differentiating IPF from HP samples (AUC=0.76 {[}0.64-0.87{]} on three test datasets), as well as a 67-gene signature differentiating IPF from NSIP samples (AUC=0.76 {[}0.64-0.88{]} on four test datasets) (Figure \ref{fig:ildvsildspecific}A-D, Table \ref{tab:ipfhpgenes}, Table \ref{tab:ipfnsipgenes}). A classifier differentiating HP from NSIP had variable performance on 2 test datasets (AUC=0.74 {[}0.51-0.96{]}) (Figure \ref{fig:ildvsildspecific}E-F, Table \ref{tab:hpnsipgenes}).
 
@@ -665,8 +660,7 @@ To examine unique features of fibrotic ILD subtypes at the transcriptional level
 \caption[ILD vs ILD]{\textbf{ILD subtype-specific classification models.} IPF-specific and HP-specific classification models were developed through MINT integration of lung transcriptomics datasets. MINT-PLS projection of samples for classification models of IPF vs non-IPF ILD (A) and HP vs non-HP ILD (C), with corresponding performance on held-out test datasets (B, D). Upregulated pathways using gene signatures identified in classification models for IPF against non-IPF ILD and HP against non-HP ILD are shown in (E).}\label{fig:ILDvILD}
 \end{figure}
 
-\hypertarget{ild-subtypes-have-both-common-and-unique-disease-pathways}{%
-\subsubsection{ILD subtypes have both common and unique disease pathways}\label{ild-subtypes-have-both-common-and-unique-disease-pathways}}
+\subsubsection{ILD subtypes have both common and unique disease pathways}\label{ild-subtypes-have-both-common-and-unique-disease-pathways}
 
 As the ILD classification models had few genes for pathway analysis, we generated ``expanded'' classification models with an increased number of genes using Bayesian changepoint analysis and verified their discrimination ability using the same test sets (Figure \ref{fig:bayes}, Tables \ref{tab:uppathways}-\ref{tab:downpathways}). Using the expanded gene signatures of ILD subtypes against controls, we identified \textit{MMP7}, \textit{COMP}, \textit{DIO2}, \textit{THBS4}, \textit{IL13RA2}, \textit{MEOX1}, \textit{COL17A1}, and \textit{SCG5} as shared upregulated genes across all subtypes when compared against controls (Figure \ref{fig:ILDpathways}A, Figure \ref{fig:modelUpset}C). With reference to the MSigDB C8 collection, these genes are primarily expressed by aberrant basaloid and basal cells (Figure \ref{fig:ILDpathways}C, Table \ref{tab:upcell}). Shared downregulated genes suggested a decrease in AT1 (\textit{MYRF}, \textit{AGER}) and endothelial (\textit{CA4}, \textit{PRX}, \textit{VIPR1}) cells (Figure \ref{fig:ILDpathways}B, Figure \ref{fig:modelUpset}D, Table \ref{tab:downcell}). No `IPF vs Control' lung gene signatures were shared with peripheral signatures; however, blood and PBMC gene signatures shared 21 genes (Figure \ref{fig:modelUpset}B).
 
@@ -681,12 +675,11 @@ As the ILD classification models had few genes for pathway analysis, we generate
 \caption[ILD pathways]{\textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).}\label{fig:ILDpathways}
 \end{figure}
 
-We identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells {[}\protect\hyperlink{ref-mohamed_respiratory_2014}{89}{]}), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF compared to other ILD subtypes (Table \ref{tab:ipfvsildpathways}). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure \ref{fig:ILDvILD}E, Table \ref{tab:hpvsildpathways}), and these genes were also included in the models differentiating HP from IPF and NSIP samples. SSc-ILD samples were uniquely characterized by expression of \textit{CDH3}, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
+We identified \textit{GPSM2}, \textit{HSPA4L} (previously shown to be involved in the differentiation of AT2 cells {[}\citeproc{ref-mohamed_respiratory_2014}{89}{]}), and ECM-related genes such as \textit{COL16A1}, \textit{ITGA7}, and \textit{VCAN} as uniquely upregulated in IPF compared to other ILD subtypes (Table \ref{tab:ipfvsildpathways}). In HP, we identified antigen presentation and major histocompatibility complex (MHC) binding as enriched pathways via \textit{PSMB8}, \textit{PSMB9}, and \textit{TAPBP} expression (Figure \ref{fig:ILDvILD}E, Table \ref{tab:hpvsildpathways}), and these genes were also included in the models differentiating HP from IPF and NSIP samples. SSc-ILD samples were uniquely characterized by expression of \textit{CDH3}, which encodes E-cadherin and was not found to be upregulated in signatures of other fibrotic ILD subtypes.
 
-\hypertarget{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}{%
-\subsubsection{Unsupervised analysis identifies putative molecular endotypes of ILD}\label{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}}
+\subsubsection{Unsupervised analysis identifies putative molecular endotypes of ILD}\label{unsupervised-analysis-identifies-putative-molecular-endotypes-of-ild}
 
-We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. We used a series of biclustering algorithms on our batch-corrected concatenated lung gene expression data to identify 16 biclusters showing enrichment in specific lung disease groups (Figure \ref{fig:biclusterall}, Figure \ref{fig:biclusterjaccard}, Table \ref{tab:biclusterGenes}). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table \ref{tab:biclusterPathways}, Figure \ref{fig:biclust}A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure \ref{fig:biclust}C, Table \ref{tab:biclusterIPF}), which was not due to age (-1.18 years, \textit{p}=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10\textsuperscript{-3}) (Table \ref{tab:biclusterILD}).
+We next used biclustering, an unsupervised learning method, to examine transcriptomic lung samples for specific molecular endotypes. Biclustering algorithms perform simultaneous clustering of rows (genes) and columns (samples) of a data matrix to identify subsets known as biclusters {[}\citeproc{ref-rose_mosbi_2022}{52}{]}. We used a series of biclustering algorithms on our batch-corrected concatenated lung gene expression data to identify 16 biclusters showing enrichment in specific lung disease groups (Figure \ref{fig:biclusterall}, Figure \ref{fig:biclusterjaccard}, Table \ref{tab:biclusterGenes}). Pathway analysis of bicluster genes revealed associations with lung cell types and fibrosis, and top results were used to annotate each bicluster (Table \ref{tab:biclusterPathways}, Figure \ref{fig:biclust}A,B). Of the samples with available predicted FVC\% and DLCO\% data, we identified IPF samples in the `M13-Proliferation' bicluster (n=53) as having lower FVC\% compared to non-cluster (n=155) IPF samples (-6.29\%, FDR=0.09) (Figure \ref{fig:biclust}C, Table \ref{tab:biclusterIPF}), which was not due to age (-1.18 years, \textit{p}=0.15). ILD samples in the `U4-AT1 cells', `U0-Endothelium', `M2-Cytoskeleton', `U1-EMT', `M9-Fibrosis', and `M13-Proliferation' biclusters had significantly lower DLCO\% (-7.95 to -13.9\%, all FDR\textless0.05) compared to non-cluster samples, though these samples were all significantly older with the exception of the `M13-Proliferation' samples which were younger (-2.18 years, FDR=9.17×10\textsuperscript{-3}) (Table \ref{tab:biclusterILD}).
 
 
 
@@ -699,16 +692,15 @@ We next used biclustering, an unsupervised learning method, to examine transcrip
 \caption[ILD pathways]{\textbf{Biclusters identified by unsupervised learning.} ComBat-corrected lung transcriptomics datasets containing Control, ILD, and COPD samples were analyzed using biclustering algorithms. (A) Heatmaps of genes found in select biclusters showing differences in gene expression between bicluster and non-bicluster samples. (B) Proportion of samples within each subtype identified in each bicluster (i.e.~32.6\% of IPF samples are in the M9-Fibrosis bicluster). (C) Comparison of reported predicted forced vital capacity (FVC\%) in IPF samples within and outside of the `M13-Proliferation' bicluster. Significance was determined through linear regression analysis of bicluster membership against FVC\% (*, FDR\textless0.10).}\label{fig:biclust}
 \end{figure}
 
-\hypertarget{discussion}{%
-\subsection{Discussion}\label{discussion}}
+\subsection{Discussion}\label{discussion}
 
 ILDs arise as a result of complex interactions between aging, genetics, and environmental factors, with these complex drivers of ILD reflected in their lung transcriptomics. We identified fibrotic ILD subtype-specific gene signatures in the largest meta-analysis of fibrotic ILD transcriptomics to date comprising 1,767 samples, and performed the first comprehensive transcriptomics analysis of fibrotic ILD subtypes against other ILD subtypes to identify candidate subtype-specific biomarkers and molecular endotypes of ILD. Our selected method of integration does not require batch correction of training sets with test sets or a particular normalization method prior to sample classification, thereby resulting in an inductive (not transductive) approach that is less prone to overfitting. The identified fibrotic ILD gene signatures (against all ILD subtypes and controls) were validated on three recently published datasets, suggesting that they may be applied to future ILD transcriptomics datasets.
 
-Our sex-stratified analysis suggests there are similarities between females and males in the pathogenesis of ILD, as the majority of our sex-specific models had comparable performance on sex-stratified test sets. Pathway overrepresentation analysis of genes uniquely found in our sex-specific models revealed immune-associated pathways in female classification models. In particular, both female-specific IPF and NSIP vs Control models contained \textit{CD79A}, a B cell marker, which is consistent with females generally having higher B cell numbers and associated gene expression when compared to males {[}\protect\hyperlink{ref-klein_sex_2016}{90}{]}. Previous studies have identified increases in B cells in patients with ILD {[}\protect\hyperlink{ref-herrera_uipipf_2022}{91}--\protect\hyperlink{ref-schiller_deep_2017}{93}{]}, thus warranting further investigations into the role of B cells in ILDs particularly with a focus on potential sex-specific differences.
+Our sex-stratified analysis suggests there are similarities between females and males in the pathogenesis of ILD, as the majority of our sex-specific models had comparable performance on sex-stratified test sets. Pathway overrepresentation analysis of genes uniquely found in our sex-specific models revealed immune-associated pathways in female classification models. In particular, both female-specific IPF and NSIP vs Control models contained \textit{CD79A}, a B cell marker, which is consistent with females generally having higher B cell numbers and associated gene expression when compared to males {[}\citeproc{ref-klein_sex_2016}{90}{]}. Previous studies have identified increases in B cells in patients with ILD {[}\citeproc{ref-herrera_uipipf_2022}{91}--\citeproc{ref-schiller_deep_2017}{93}{]}, thus warranting further investigations into the role of B cells in ILDs particularly with a focus on potential sex-specific differences.
 
-Genes used in our classification models are representative of ILD pathogenesis. Well-studied genes (e.g.~\textit{MMP7}) and disease processes were up-regulated across all ILD subtypes, which is consistent with the overlapping radiological and pathological morphology, disease progression, and treatment response {[}\protect\hyperlink{ref-flaherty_nintedanib_2019}{19}{]}. Unique genes expressed in IPF were associated with the ECM; in particular, \textit{VCAN}, \textit{SPON1}, and \textit{FBLN2} have been found to be increased in fibroblastic foci of UIP/IPF lungs {[}\protect\hyperlink{ref-herrera_uipipf_2022}{91}{]}. The presence of MHC and antigen presentation-associated genes (\textit{TAPBP}, \textit{PSMB8}, and \textit{PSMB9}) in both HP vs Control and HP vs non-HP models suggests that they may have diagnostic utility as biomarkers as they are overexpressed in HP and have HP-associated haplotypes {[}\protect\hyperlink{ref-camarena_psmb8_2010}{94}{]}. E-cadherin (\textit{CDH3}), which was uniquely identified in the SSc-ILD vs Control model but not in other ILDs, forms a key component of the adherens junction that stabilizes the airway epithelial barrier and its loss of expression has been reported as a hallmark of EMT {[}\protect\hyperlink{ref-bartis_epithelialmesenchymal_2014}{95}{]}. However, we were unable to identify a model for NSIP vs other ILD with good performance on test datasets, which was corroborated by three studies included in our systematic review {[}\protect\hyperlink{ref-cho_systems_2011}{62},\protect\hyperlink{ref-yang_gene_2007}{73},\protect\hyperlink{ref-horimasu_gene_2017}{83}{]}. Given that NSIP is observed in both idiopathic NSIP and many types of CTD-ILD, it is unsurprising that a consensus gene signature is difficult to identify in a heterogenous population.
+Genes used in our classification models are representative of ILD pathogenesis. Well-studied genes (e.g.~\textit{MMP7}) and disease processes were up-regulated across all ILD subtypes, which is consistent with the overlapping radiological and pathological morphology, disease progression, and treatment response {[}\citeproc{ref-flaherty_nintedanib_2019}{19}{]}. Unique genes expressed in IPF were associated with the ECM; in particular, \textit{VCAN}, \textit{SPON1}, and \textit{FBLN2} have been found to be increased in fibroblastic foci of UIP/IPF lungs {[}\citeproc{ref-herrera_uipipf_2022}{91}{]}. The presence of MHC and antigen presentation-associated genes (\textit{TAPBP}, \textit{PSMB8}, and \textit{PSMB9}) in both HP vs Control and HP vs non-HP models suggests that they may have diagnostic utility as biomarkers as they are overexpressed in HP and have HP-associated haplotypes {[}\citeproc{ref-camarena_psmb8_2010}{94}{]}. E-cadherin (\textit{CDH3}), which was uniquely identified in the SSc-ILD vs Control model but not in other ILDs, forms a key component of the adherens junction that stabilizes the airway epithelial barrier and its loss of expression has been reported as a hallmark of EMT {[}\citeproc{ref-bartis_epithelialmesenchymal_2014}{95}{]}. However, we were unable to identify a model for NSIP vs other ILD with good performance on test datasets, which was corroborated by three studies included in our systematic review {[}\citeproc{ref-cho_systems_2011}{62},\citeproc{ref-yang_gene_2007}{73},\citeproc{ref-horimasu_gene_2017}{83}{]}. Given that NSIP is observed in both idiopathic NSIP and many types of CTD-ILD, it is unsurprising that a consensus gene signature is difficult to identify in a heterogenous population.
 
-Through the use of two unsupervised biclustering algorithms, we identified 16 biclusters spanning various mechanisms of ILD including immune infiltration and fibrosis. The `M2-Cytoskeleton' bicluster contained microtubule and dynein (e.g.~\textit{DYNAH7}, \textit{DYNAH9}) genes associated with ciliated cells, which may be associated with microscopic honeycombing seen in IPF/UIP {[}\protect\hyperlink{ref-yang_expression_2013}{65}{]}. Two biclusters, `U4-AT1 cells' and `U0-Endothelium', were annotated due to downregulation of genes associated with AT1 cells (\textit{AGER}, \textit{CAV2}, \textit{EMP2}) and endothelial cells (\textit{EPAS1}, \textit{TEK}, \textit{STARD13}), and destruction of these tissues during the pathogenesis of ILD may explain the association with reduced DLCO\% in ILD samples. The 'M13-Proliferation' bicluster was associated with decreased FVC\% and DLCO\% in all ILD samples, and in IPF patients it was associated with a \textasciitilde6\% decline in FVC\%. Genes contained in this bicluster are involved in the cell cycle, and pathway analysis revealed associations with proliferating macrophages, basal cells, and NK/T cells {[}\protect\hyperlink{ref-travaglini_molecular_2020}{96}{]}; one of the genes, \textit{CCNA2}, has previously been reported as upregulated in acute exacerbations of IPF {[}\protect\hyperlink{ref-konishi_gene_2009}{75}{]}.
+Through the use of two unsupervised biclustering algorithms, we identified 16 biclusters spanning various mechanisms of ILD including immune infiltration and fibrosis. The `M2-Cytoskeleton' bicluster contained microtubule and dynein (e.g.~\textit{DYNAH7}, \textit{DYNAH9}) genes associated with ciliated cells, which may be associated with microscopic honeycombing seen in IPF/UIP {[}\citeproc{ref-yang_expression_2013}{65}{]}. Two biclusters, `U4-AT1 cells' and `U0-Endothelium', were annotated due to downregulation of genes associated with AT1 cells (\textit{AGER}, \textit{CAV2}, \textit{EMP2}) and endothelial cells (\textit{EPAS1}, \textit{TEK}, \textit{STARD13}), and destruction of these tissues during the pathogenesis of ILD may explain the association with reduced DLCO\% in ILD samples. The 'M13-Proliferation' bicluster was associated with decreased FVC\% and DLCO\% in all ILD samples, and in IPF patients it was associated with a \textasciitilde6\% decline in FVC\%. Genes contained in this bicluster are involved in the cell cycle, and pathway analysis revealed associations with proliferating macrophages, basal cells, and NK/T cells {[}\citeproc{ref-travaglini_molecular_2020}{96}{]}; one of the genes, \textit{CCNA2}, has previously been reported as upregulated in acute exacerbations of IPF {[}\citeproc{ref-konishi_gene_2009}{75}{]}.
 
 Taken together, our supervised and unsupervised analyses suggest that current diagnostic classifications do not fully capture molecular heterogeneity within subtypes. When comparing genes from our expanded IPF vs non-IPF ILD model to the UIP Envisia classifier, only 10/190 genes (\textit{PDLIM5}, \textit{GREM1}, \textit{TUBB2B}, \textit{CHRDL2}, \textit{KIF12}, \textit{SLC4A3}, \textit{PPIC}, \textit{ZNF454}, \textit{SELE}, \textit{MYO3B}) were shared (Figure \ref{fig:envisia}), which might be explained by UIP patterns being observed in other fibrotic ILDs such as RA-ILD as well as IPF diagnoses not being limited to UIP patterns. While our classification models perform well in separating IPF or HP from other ILDs, it is evident from the unsupervised analysis that there exists molecular heterogeneity within these subtypes, and these putative endotypes are associated with lung function. Considering the complex drivers and heterogenous presentations of ILD subtypes, future classification based on data-driven molecular endotypes may be clinically beneficial with respect to disease management as well as research and development into novel therapeutics.
 
@@ -718,8 +710,7 @@ In summary, by using both supervised and unsupervised approaches, our meta-analy
 
 \clearpage
 
-\hypertarget{diagnostic-potential-of-genomic-blood-biomarkers-of-pulmonary-fibrosis-a-pilot-study}{%
-\section{Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study}\label{diagnostic-potential-of-genomic-blood-biomarkers-of-pulmonary-fibrosis-a-pilot-study}}
+\section{Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study}\label{diagnostic-potential-of-genomic-blood-biomarkers-of-pulmonary-fibrosis-a-pilot-study}
 
 \renewcommand{\thefigure}{3.\arabic{figure}}
 \setcounter{figure}{0}
@@ -728,32 +719,27 @@ In summary, by using both supervised and unsupervised approaches, our meta-analy
 \renewcommand{\theequation}{3.\arabic{equation}}
 \setcounter{equation}{0}
 
-Given the scarcity of disease biomarkers in ILD, investigations into molecular biomarkers of ILD (particularly circulating biomarkers) are an ongoing area of interest {[}\protect\hyperlink{ref-clynick_biomarker_2022}{97}--\protect\hyperlink{ref-bowman_proteomic_2022}{99}{]}. A 52-gene signature derived from PBMC transcriptomic profiling has been shown to be predictive of transplant-free survival in patients with IPF {[}\protect\hyperlink{ref-herazo-maya_peripheral_2013}{59},\protect\hyperlink{ref-herazo-maya_validating_2017}{100}{]}, and transcriptomic profiling has also identified genes associated with decline in lung function in the ILD subtypes IPF and HP {[}\protect\hyperlink{ref-yang_peripheral_2012}{54},\protect\hyperlink{ref-huang_blood_2021}{101},\protect\hyperlink{ref-fernandez_perez_prognostic_2022}{102}{]}.
+Given the scarcity of disease biomarkers in ILD, investigations into molecular biomarkers of ILD (particularly circulating biomarkers) are an ongoing area of interest {[}\citeproc{ref-clynick_biomarker_2022}{97}--\citeproc{ref-bowman_proteomic_2022}{99}{]}. A 52-gene signature derived from PBMC transcriptomic profiling has been shown to be predictive of transplant-free survival in patients with IPF {[}\citeproc{ref-herazo-maya_peripheral_2013}{59},\citeproc{ref-herazo-maya_validating_2017}{100}{]}, and transcriptomic profiling has also identified genes associated with decline in lung function in the ILD subtypes IPF and HP {[}\citeproc{ref-yang_peripheral_2012}{54},\citeproc{ref-huang_blood_2021}{101},\citeproc{ref-fernandez_perez_prognostic_2022}{102}{]}.
 
-While it is evident that the peripheral transcriptome is associated with prognosis in ILD, no investigations have been performed regarding its diagnostic potential. The objective of this study was to evaluate the ability of the whole blood transcriptome in discriminating between ILD subtypes. In this pilot study, we profiled whole blood RNA obtained from patients with ILD (n=59) using a previously published NanoString assay designed to discriminate between the early- and late-phase asthmatic response {[}\protect\hyperlink{ref-singh_novel_2018}{103}{]}. Given that fibrosis is a TH2-driven process like asthma {[}\protect\hyperlink{ref-spagnolo_role_2022}{104}{]}, we reasoned that the transcripts profiled in the assay might also differentiate between other TH2-like disease subtypes.
+While it is evident that the peripheral transcriptome is associated with prognosis in ILD, no investigations have been performed regarding its diagnostic potential. The objective of this study was to evaluate the ability of the whole blood transcriptome in discriminating between ILD subtypes. In this pilot study, we profiled whole blood RNA obtained from patients with ILD (n=59) using a previously published NanoString assay designed to discriminate between the early- and late-phase asthmatic response {[}\citeproc{ref-singh_novel_2018}{103}{]}. Given that fibrosis is a TH2-driven process like asthma {[}\citeproc{ref-spagnolo_role_2022}{104}{]}, we reasoned that the transcripts profiled in the assay might also differentiate between other TH2-like disease subtypes.
 
-\hypertarget{methods-1}{%
-\subsection{Methods}\label{methods-1}}
+\subsection{Methods}\label{methods-1}
 
-\hypertarget{study-population-and-sample-processing}{%
-\subsubsection{Study population and sample processing}\label{study-population-and-sample-processing}}
+\subsubsection{Study population and sample processing}\label{study-population-and-sample-processing}
 
-Patients were diagnosed with fibrotic ILD (IPF, n=22; HP, n=14; SSc-ILD, n=20; IPAF, n=3) in accordance with diagnostic guidelines and prospectively recruited with written informed consent (ethics protocol H09-00748) between 2012 and 2018 at St.~Paul's Hospital (Vancouver, BC, Canada). At time of sampling, patients were either undergoing anti-fibrotic (pirfenidone, nintedanib), anti-inflammatory (prednisone, mycophenolate, N-acetylcysteine), or no pharmacotherapy. Whole blood samples were collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada) and extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland). RNA quality was confirmed by the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) via RNA integrity numbers obtained from Bioanalyzer analysis. Blood transcript expression was profiled using 100 ng of purified RNA with a custom NanoString nCounter Elements assay (NanoString Technologies, Seattle, WA, USA) that measured 166 transcripts {[}\protect\hyperlink{ref-singh_novel_2018}{103}{]}. Samples were randomized across six NanoString cartridges (12 samples per cartridge), with remaining assay slots used for sample replicates to assess data reproducibility.
+Patients were diagnosed with fibrotic ILD (IPF, n=22; HP, n=14; SSc-ILD, n=20; IPAF, n=3) in accordance with diagnostic guidelines and prospectively recruited with written informed consent (ethics protocol H09-00748) between 2012 and 2018 at St.~Paul's Hospital (Vancouver, BC, Canada). At time of sampling, patients were either undergoing anti-fibrotic (pirfenidone, nintedanib), anti-inflammatory (prednisone, mycophenolate, N-acetylcysteine), or no pharmacotherapy. Whole blood samples were collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada) and extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland). RNA quality was confirmed by the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) via RNA integrity numbers obtained from Bioanalyzer analysis. Blood transcript expression was profiled using 100 ng of purified RNA with a custom NanoString nCounter Elements assay (NanoString Technologies, Seattle, WA, USA) that measured 166 transcripts {[}\citeproc{ref-singh_novel_2018}{103}{]}. Samples were randomized across six NanoString cartridges (12 samples per cartridge), with remaining assay slots used for sample replicates to assess data reproducibility.
 
-\hypertarget{in-situ-hybridization}{%
-\subsubsection{In situ hybridization}\label{in-situ-hybridization}}
+\subsubsection{In situ hybridization}\label{in-situ-hybridization}
 
 Custom RNAscope™ probes for KLRF1 (276-375 of NM\_016523.1), LTK (2419-2518 of NM\_001135685.1), and VCAN (transcript variant 3; 1356-1455 of uc003kij.3) were developed by Advanced Cell Diagnostics (ACD, Newark, California). Tissue microarray (TMA) sections (4\(\mu\)m-thick) were obtained from a formalin-fixed and paraffin-embedded TMA block containing cores from donor lungs of patients with IPF, HP, and SSc-ILD collected at McMaster University. In situ hybridization (ISH) was performed using a Leica BOND RX autostainer with associated Leica reagent kits (Concord, Ontario, Canada) on TMA sections. Slides were scanned at 40X magnification with an Olympus VS120-L100 Virtual Slide System for image capture and a Leica Aperio ScanScope AT2 for quantification. Image analysis was performed using QuPath (v0.4.3), and probe quantification was determined using H-scores as indicated by manufacturer protocols.
 
-\hypertarget{data-analysis}{%
-\subsubsection{Data analysis}\label{data-analysis}}
+\subsubsection{Data analysis}\label{data-analysis}
 
 NanoString data underwent quality assessment by examining field of view (FOV) ratio (number of FOV images successfully captured), binding density (image saturation), linearity of positive controls, and limit of detection via negative controls. Data were filtered for lowly abundant features, then normalized using normalization factors derived from the geometric mean of 10 housekeeping transcripts. Differential expression analysis of transcripts was performed using the linear models for microarray (limma) R package (v3.54.2), while biomarker panels were developed using sparse partial least squares discriminant analysis (sPLSDA), elastic net, and random forest algorithms from the `mixOmics' (v6.22.0) and `tidymodels' (v1.0.0) R packages. Image analysis was performed using QuPath (v0.4.3) by automatically identifying individual cells and setting probe-specific thresholds based on signal strength. Cells without a visible nucleus were excluded from analysis. H-scores were determined by grouping cells into 5 bins based on the numbers of dots per cell (0, 1-3, 4-9, 10-15, \textgreater15) and multiplying the total percentage of cells in each bin by 0 to 4. To test for statistical significance of H-scores, a linear mixed-effects model (`lme4' v1.1-32) was fitted with the formula H-Score \textasciitilde{} Diagnosis + (1\textbar Patient) and pairwise comparisons between diagnoses to determine statistical significance with Tukey's post-hoc adjustment were performed using the `emmeans' (v1.8.5) R package. Fisher's exact test was used to test for differences in demographic count variables between diagnoses, while the F-test was used to test for differences in demographic continuous variables between diagnoses. All analysis was performed in the R (version 4.2.3) statistical computing environment.
 
-\hypertarget{results-1}{%
-\subsection{Results}\label{results-1}}
+\subsection{Results}\label{results-1}
 
-We profiled the expression of 166 RNA transcripts in a cohort of patients with IPF, systemic sclerosis-associated ILD (SSc-ILD), HP, or interstitial pneumonia with autoimmune features (IPAF) (Table \ref{tab:bloodpx}). No significant differences were identified between subtypes for race, percent predicted forced vital capacity (FVC\%) or diffusing capacity of the lung for carbon monoxide (DLCO\%), smoking status, or treatment status, but patients with SSc-ILD and IPAF were younger at time of sampling and patients with IPF were predominantly male which is in line with previously reported cohorts {[}\protect\hyperlink{ref-zaman_differences_2020}{105}{]}.
+We profiled the expression of 166 RNA transcripts in a cohort of patients with IPF, systemic sclerosis-associated ILD (SSc-ILD), HP, or interstitial pneumonia with autoimmune features (IPAF) (Table \ref{tab:bloodpx}). No significant differences were identified between subtypes for race, percent predicted forced vital capacity (FVC\%) or diffusing capacity of the lung for carbon monoxide (DLCO\%), smoking status, or treatment status, but patients with SSc-ILD and IPAF were younger at time of sampling and patients with IPF were predominantly male which is in line with previously reported cohorts {[}\citeproc{ref-zaman_differences_2020}{105}{]}.
 
 \captionsetup{width=6.5in}
 
@@ -876,21 +862,19 @@ Ever smoked, n (\%) & 2 (40) & 2 (67) & 1 (50) & \textit{p} = 0.7143\\
 \caption[Blood and Lung expression of LTK, KLRF1, VCAN]{\textbf{Expression of \textit{KLRF1}, \textit{LTK}, \textit{VCAN} in whole blood (log2 RNA expression) or lung tissue microarray sections (H-Score) containing samples from patients with ILD subtypes.} Tissue microarray sections of lung samples from patients with (A) idiopathic pulmonary fibrosis (IPF), (B) hypersensitivity pneumonitis (HP), and (C) systemic sclerosis-associated interstitial lung disease (SSc-ILD). (D) Whole blood (log2 RNA expression) and lung (H-Score) expression of \textit{KLRF1}, \textit{LTK}, and \textit{VCAN}. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.05 (***). Tukey's post-hoc adjustment was used to determine statistical significance of H-scores (* denotes \textit{p}\textless0.05).}\label{fig:pilotexpr}
 \end{figure}
 
-\hypertarget{discussion-1}{%
-\subsection{Discussion}\label{discussion-1}}
+\subsection{Discussion}\label{discussion-1}
 
-Although previous studies have investigated the peripheral transcriptome in relation to prognosis {[}\protect\hyperlink{ref-yang_peripheral_2012}{54},\protect\hyperlink{ref-herazo-maya_peripheral_2013}{59},\protect\hyperlink{ref-fernandez_perez_prognostic_2022}{102}{]}, no study has looked at its diagnostic potential. In this pilot study, we demonstrate that the peripheral blood RNA can differentiate between ILD subtypes, in particular IPF and SSc-ILD, through differential expression and learning algorithms utilizing gene expression data obtained from a custom NanoString assay. The blood gene expression data show association with DLCO\% predicted but not FVC\% predicted, which was previously noted when examining differential expression of the peripheral transcriptome in mild and severe IPF {[}\protect\hyperlink{ref-yang_peripheral_2012}{54}{]}. Furthermore, we identify \textit{KLRF1} expression as a significant in the differentiation of IPF and SSc-ILD in both whole blood and lung, and down-regulation of \textit{LTK} as being associated with IPF.
+Although previous studies have investigated the peripheral transcriptome in relation to prognosis {[}\citeproc{ref-yang_peripheral_2012}{54},\citeproc{ref-herazo-maya_peripheral_2013}{59},\citeproc{ref-fernandez_perez_prognostic_2022}{102}{]}, no study has looked at its diagnostic potential. In this pilot study, we demonstrate that the peripheral blood RNA can differentiate between ILD subtypes, in particular IPF and SSc-ILD, through differential expression and learning algorithms utilizing gene expression data obtained from a custom NanoString assay. The blood gene expression data show association with DLCO\% predicted but not FVC\% predicted, which was previously noted when examining differential expression of the peripheral transcriptome in mild and severe IPF {[}\citeproc{ref-yang_peripheral_2012}{54}{]}. Furthermore, we identify \textit{KLRF1} expression as a significant in the differentiation of IPF and SSc-ILD in both whole blood and lung, and down-regulation of \textit{LTK} as being associated with IPF.
 
-Killer cell lectin like receptor F1 (KLRF1, also known as NKp80) is expressed in T cells, monocytes, and CD56bright natural killer (NK cells), and is a marker of NK cell maturity {[}\protect\hyperlink{ref-roda-navarro_human_2000}{106}--\protect\hyperlink{ref-mukherjee_klrf1_2023}{108}{]}, inducing cytotoxic activity and calcium mobilization {[}\protect\hyperlink{ref-vitale_identification_2001}{109}{]}. The dysfunction of NK cells in systemic sclerosis and autoimmunity has been well-documented {[}\protect\hyperlink{ref-horikawa_abnormal_2005}{110}--\protect\hyperlink{ref-liu_nk_2021}{112}{]}, and differences in their abundance have been observed between ILD subtypes {[}\protect\hyperlink{ref-esposito_natural_2005}{113},\protect\hyperlink{ref-bergantini_prognostic_2021}{114}{]}. We found that \textit{KLRF1} expression was associated with lower DLCO\%, and its expression was lower in the peripheral blood of patients with SSc-ILD compared to IPF and HP yet the opposite effect was observed when probing lung expression. Previous reports have identified a reduction in abundance and function of NK cells in IPF lungs concurrent with an increase in abundance in blood compared to healthy controls {[}\protect\hyperlink{ref-cruz_reduced_2021}{115}{]}. Single-cell RNA-sequencing data available via the IPF Cell Atlas {[}\protect\hyperlink{ref-neumark_idiopathic_2020}{116}{]} suggests higher \textit{KLRF1} expression in SSc-ILD T/NK subsets compared to other ILDs. Given the disparity between single-cell and bulk RNA data, further investigations are required to delineate the mechanisms surrounding NK cell recruitment to the ILD lung and its role in ILD pathogenesis.
+Killer cell lectin like receptor F1 (KLRF1, also known as NKp80) is expressed in T cells, monocytes, and CD56bright natural killer (NK cells), and is a marker of NK cell maturity {[}\citeproc{ref-roda-navarro_human_2000}{106}--\citeproc{ref-mukherjee_klrf1_2023}{108}{]}, inducing cytotoxic activity and calcium mobilization {[}\citeproc{ref-vitale_identification_2001}{109}{]}. The dysfunction of NK cells in systemic sclerosis and autoimmunity has been well-documented {[}\citeproc{ref-horikawa_abnormal_2005}{110}--\citeproc{ref-liu_nk_2021}{112}{]}, and differences in their abundance have been observed between ILD subtypes {[}\citeproc{ref-esposito_natural_2005}{113},\citeproc{ref-bergantini_prognostic_2021}{114}{]}. We found that \textit{KLRF1} expression was associated with lower DLCO\%, and its expression was lower in the peripheral blood of patients with SSc-ILD compared to IPF and HP yet the opposite effect was observed when probing lung expression. Previous reports have identified a reduction in abundance and function of NK cells in IPF lungs concurrent with an increase in abundance in blood compared to healthy controls {[}\citeproc{ref-cruz_reduced_2021}{115}{]}. Single-cell RNA-sequencing data available via the IPF Cell Atlas {[}\citeproc{ref-neumark_idiopathic_2020}{116}{]} suggests higher \textit{KLRF1} expression in SSc-ILD T/NK subsets compared to other ILDs. Given the disparity between single-cell and bulk RNA data, further investigations are required to delineate the mechanisms surrounding NK cell recruitment to the ILD lung and its role in ILD pathogenesis.
 
-\textit{LTK} and \textit{VCAN} were differentially expressed at a nominal p-value of 0.05 between IPF and non-IPF ILDs (but not at FDR\textless0.05), and were two highly weighted coefficients in our elastic net and sPLSDA biomarker panels. \textit{LTK} is highly expressed in plasmacytoid dendritic cells (pDCs) (Human Protein Atlas, IPF Cell Atlas), and decreased circulating pDCs have been reported in IPF patients {[}\protect\hyperlink{ref-galati_circulating_2020}{117}{]}, which is consistent with the decreased \textit{LTK} expression observed in this study in blood and lung. \textit{VCAN} encodes for versican, an ECM proteoglycan that is localized to fibroblastic foci in the lung, myofibroblasts, and monocytes {[}\protect\hyperlink{ref-neumark_idiopathic_2020}{116},\protect\hyperlink{ref-bensadoun_proteoglycan_1996}{118}{]}. We were unable to identify a statistically significant increase in \textit{VCAN} expression in IPF compared to HP or SSc-ILD lung and blood samples; however, given its detectable expression in both lung and peripheral blood, and prior studies showing circulating levels of versican degradation products are associated with increased mortality in idiopathic ILDs {[}\protect\hyperlink{ref-sand_serological_2018}{119}{]}, further studies into its gene expression as a prognostic biomarker may be warranted.
+\textit{LTK} and \textit{VCAN} were differentially expressed at a nominal p-value of 0.05 between IPF and non-IPF ILDs (but not at FDR\textless0.05), and were two highly weighted coefficients in our elastic net and sPLSDA biomarker panels. \textit{LTK} is highly expressed in plasmacytoid dendritic cells (pDCs) (Human Protein Atlas, IPF Cell Atlas), and decreased circulating pDCs have been reported in IPF patients {[}\citeproc{ref-galati_circulating_2020}{117}{]}, which is consistent with the decreased \textit{LTK} expression observed in this study in blood and lung. \textit{VCAN} encodes for versican, an ECM proteoglycan that is localized to fibroblastic foci in the lung, myofibroblasts, and monocytes {[}\citeproc{ref-neumark_idiopathic_2020}{116},\citeproc{ref-bensadoun_proteoglycan_1996}{118}{]}. We were unable to identify a statistically significant increase in \textit{VCAN} expression in IPF compared to HP or SSc-ILD lung and blood samples; however, given its detectable expression in both lung and peripheral blood, and prior studies showing circulating levels of versican degradation products are associated with increased mortality in idiopathic ILDs {[}\citeproc{ref-sand_serological_2018}{119}{]}, further studies into its gene expression as a prognostic biomarker may be warranted.
 
-In this pilot study, we report the first between-subtype comparison of the peripheral ILD transcriptome using a discrete set of genes, which validates performing more extensive genome-wide analysis of peripheral ILD subtype-specific profiles and correlations of identified biomarkers in lung tissue. In particular, molecules detected in the blood that are associated with immunity and fibrosis are detectable in the lung, thereby suggesting a test based on peripheral transcriptomics is feasible for diagnostic biomarkers with biological relevance, similar to prognostic markers in Herazo-Maya et al. {[}\protect\hyperlink{ref-herazo-maya_validating_2017}{100}{]}. Using the data from this preliminary pilot study, we were able to secure funding for two grants (BC Lung, Genome BC) that created the basis for the following two chapters.
+In this pilot study, we report the first between-subtype comparison of the peripheral ILD transcriptome using a discrete set of genes, which validates performing more extensive genome-wide analysis of peripheral ILD subtype-specific profiles and correlations of identified biomarkers in lung tissue. In particular, molecules detected in the blood that are associated with immunity and fibrosis are detectable in the lung, thereby suggesting a test based on peripheral transcriptomics is feasible for diagnostic biomarkers with biological relevance, similar to prognostic markers in Herazo-Maya et al. {[}\citeproc{ref-herazo-maya_validating_2017}{100}{]}. Using the data from this preliminary pilot study, we were able to secure funding for two grants (BC Lung, Genome BC) that created the basis for the following two chapters.
 
 \clearpage
 
-\hypertarget{genomic-blood-biomarkers-in-ild}{%
-\section{Genomic blood biomarkers in ILD}\label{genomic-blood-biomarkers-in-ild}}
+\section{Genomic blood biomarkers in ILD}\label{genomic-blood-biomarkers-in-ild}
 
 \renewcommand{\thefigure}{4.\arabic{figure}}
 \setcounter{figure}{0}
@@ -899,10 +883,71 @@ In this pilot study, we report the first between-subtype comparison of the perip
 \renewcommand{\theequation}{4.\arabic{equation}}
 \setcounter{equation}{0}
 
+The results from the previous two chapters highlight the link between transcriptomic profiles, mechanisms of ILD, and clinical variables. Given the heterogeneity within ILD subtypes, analysis of the peripheral transcriptome should consider radiological pattern, progressive phenotype, and other related clinical factors {[}\citeproc{ref-ryerson_lumpers_2019}{120}{]}. In this chapter, we will explore the peripheral transcriptome using RNA-seq data from whole blood samples of patients with ILD.
+
+\subsection{Methods}\label{methods-2}
+
+\subsubsection{Study population, and sample processing}\label{study-population-and-sample-processing-1}
+
+As part of the Canadian Registry for Pulmonary Fibrosis (CARE-PF), patients with ILD were prospectively recruited with written informed consent between 2012 and 2019 at the Pacific Lung Health Centre located at St.~Paul's Hospital (Vancouver, BC, Canada). Demographic (age, race, sex) and clinical data (FVC\%, D\textsubscript{LCO}\% predicted) was collected at time of sampling. ILD diagnoses were determined by consensus agreement by a MDD panel consisting of at least one pulmonologist, radiologist, and pathologist, and independently re-evaluated to confirm diagnoses and other clinical features (including HRCT patterns) between January 2021 and March 2022 {[}marinescu2023{]}. Patients were defined as having PPF on the basis of the INBUILD criteria (see: \hyperref[ppf]{Introduction - Progressive pulmonary fibrosis}).
+
+
+
+\begin{landscape}
+
+\captionsetup{width=8.5in}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:bloodpxrnaseq}\textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses unless otherwise indicated).}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.5in}>{\centering\arraybackslash}p{1.05in}>{\centering\arraybackslash}p{1.05in}>{\centering\arraybackslash}p{0.97in}>{\centering\arraybackslash}p{0.97in}>{\centering\arraybackslash}p{0.95in}>{\centering\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{0.7in}}
+\toprule
+ & SSc-ILD (n=35) & IPF (n=27) & HP (n=7) & RA-ILD (n=6) & IPAF (n=4) & Unclassifiable (n=17) & \textit{p}-value\\
+\midrule
+\textbf{Patient Demographics} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+Male sex, n (\%) & 4 (11\%) & 18 (67\%) & 2 (29\%) & 0 (0\%) & 3 (75\%) & 12 (71\%) & \textit{p} < 0.0001\\
+Age, mean ± SD & 59.72 ± 14.88 & 71.72 ± 9.16 & 66.65 ± 7.87 & 65.04 ± 13.15 & 63.28 ± 13.55 & 64.93 ± 10.44 & \textit{p} = 0.0144\\
+\midrule
+\textbf{Race, n (\%)} &    &    &    &    &    &    & \textit{p} = 0.2458\\
+Asian & 8 (28\%) & 3 (11\%) & 1 (14\%) & 0 (0\%) & 0 (0\%) & 2 (12\%) & \\
+American Indian & 0 (0\%) & 2 (7\%) & 0 (0\%) & 1 (17\%) & 0 (0\%) & 0 (0\%) & \\
+Pacific Islander & 0 (0\%) & 2 (7\%) & 0 (0\%) & 1 (17\%) & 1 (25\%) & 1 (6\%) & \\
+White & 21 (72\%) & 20 (74\%) & 6 (86\%) & 4 (67\%) & 3 (75\%) & 14 (82\%) & \\
+\midrule
+\textbf{Pulmonary Function Tests, mean ± SD} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+FVC\% predicted & 34; 83.50 ± 18.42 & 76.22 ± 14.55 & 74.14 ± 25.18 & 97.17 ± 18.90 & 80.00 ± 25.86 & 85.94 ± 17.15 & \textit{p} = 0.1051\\
+DLCO\% predicted & 26; 56.81 ± 17.41 & 13; 50.77 ± 12.42 & 6; 56.33 ± 11.20 & 5; 59.00 ± 21.69 & 3; 59.33 ± 2.31 & 13; 63.15 ± 17.40 & \textit{p} = 0.5555\\
+\midrule
+\textbf{PPF, n (\%)} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+PPF & 9 (26\%) & 15 (56\%) & 3 (43\%) & 4 (67\%) & 3 (75\%) & 5 (29\%) & \textit{p} = 0.0581\\
+FVC Rel. Decl. >10\% & 5 (14\%) & 12 (44\%) & 1 (14\%) & 4 (67\%) & 2 (50\%) & 3 (19\%) & \textit{p} = 0.0148\\
+FVC Rel. Decl. >5\% & 11 (31\%) & 17 (63\%) & 2 (29\%) & 4 (67\%) & 3 (75\%) & 5 (31\%) & \textit{p} = 0.0527\\
+Radiological Progression & 4 (11\%) & 7 (26\%) & 4 (57\%) & 2 (33\%) & 0 (0\%) & 0 (0\%) & \textit{p} = 0.0081\\
+Clinical Progression & 7 (20\%) & 16 (59\%) & 3 (43\%) & 2 (33\%) & 0 (0\%) & 2 (12\%) & \textit{p} = 0.0034\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\end{landscape}
+
+Whole blood samples collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada) were extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland), then analyzed using the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) to confirm RNA quality via Bioanalyzer analysis. RNA was sequenced using the Illumina xxx.
+
+\subsubsection{Differential Expression Analysis}\label{differential-expression-analysis}
+
+\subsubsection{Survival Analysis}\label{survival-analysis}
+
+\subsection{Results}\label{results-2}
+
+\subsubsection{}\label{section}
+
+\subsection{Discussion}\label{discussion-2}
+
 \clearpage
 
-\hypertarget{insert-title-of-chapter-5-here}{%
-\section{Insert Title of Chapter 5 Here}\label{insert-title-of-chapter-5-here}}
+\section{Insert Title of Chapter 5 Here}\label{insert-title-of-chapter-5-here}
 
 \renewcommand{\thefigure}{5.\arabic{figure}}
 \setcounter{figure}{0}
@@ -913,8 +958,7 @@ In this pilot study, we report the first between-subtype comparison of the perip
 
 \clearpage
 
-\hypertarget{conclusion}{%
-\section{Conclusion}\label{conclusion}}
+\section{Conclusion}\label{conclusion}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id nulla malesuada, auctor arcu at, tempor nibh. Etiam ultricies dictum nisi eu vulputate. Suspendisse tempor aliquam efficitur. Curabitur eget orci ac purus hendrerit laoreet. Proin porta arcu nisl, a fermentum tellus suscipit et. Nulla mattis orci ac tortor facilisis venenatis. Phasellus a velit tristique, tincidunt purus id, aliquet tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed et turpis sed odio faucibus aliquam nec eget est.
 
@@ -933,514 +977,518 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \leftskip=2em
 \parindent=-2em
 
-\hypertarget{refs}{}
-\begin{CSLReferences}{0}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-raghu_diagnosis_2018}{}}%
+\phantomsection\label{refs}
+\begin{CSLReferences}{0}{1}
+\bibitem[\citeproctext]{ref-raghu_diagnosis_2018}
 \CSLLeftMargin{1. }%
 \CSLRightInline{Raghu G, Remy-Jardin M, Myers JL, Richeldi L, Ryerson CJ, Lederer DJ, et al. \href{https://doi.org/10.1164/rccm.201807-1255ST}{Diagnosis of {Idiopathic} {Pulmonary} {Fibrosis}. {An} {Official} {ATS}/{ERS}/{JRS}/{ALAT} {Clinical} {Practice} {Guideline}}. American Journal of Respiratory and Critical Care Medicine. 2018 Sep;198(5):e44--68. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-raghu_idiopathic_2022}{}}%
+\bibitem[\citeproctext]{ref-raghu_idiopathic_2022}
 \CSLLeftMargin{2. }%
 \CSLRightInline{Raghu G, Remy-Jardin M, Richeldi L, Thomson CC, Inoue Y, Johkoh T, et al. Idiopathic {Pulmonary} {Fibrosis} (an {Update}) and {Progressive} {Pulmonary} {Fibrosis} in {Adults}: {An} {Official} {ATS}/{ERS}/{JRS}/{ALAT} {Clinical} {Practice} {Guideline}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2022 May {[}cited 2023 Jan 5{]};205(9):e18--47. Available from: \url{https://www.atsjournals.org/doi/full/10.1164/rccm.202202-0399ST}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-hopkins_epidemiology_2016}{}}%
+\bibitem[\citeproctext]{ref-hopkins_epidemiology_2016}
 \CSLLeftMargin{3. }%
 \CSLRightInline{Hopkins RB, Burke N, Fell C, Dion G, Kolb M. \href{https://doi.org/10.1183/13993003.01504-2015}{Epidemiology and survival of idiopathic pulmonary fibrosis from national data in {Canada}}. The European Respiratory Journal. 2016 Jul;48(1):187--95. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-canadian_cancer_statistics_advisory_committee_in_collaboration_with_the_canadian_cancer_society_statistics_canada_and_the_public_health_agency_of_canada_canadian_2023}{}}%
+\bibitem[\citeproctext]{ref-canadian_cancer_statistics_advisory_committee_in_collaboration_with_the_canadian_cancer_society_statistics_canada_and_the_public_health_agency_of_canada_canadian_2023}
 \CSLLeftMargin{4. }%
 \CSLRightInline{Canadian Cancer Statistics Advisory Committee in collaboration with the Canadian Cancer Society, Statistics Canada and the Public Health Agency of Canada. Canadian {Cancer} {Statistics} 2023 {[}Internet{]}. Toronto, ON: Canadian Cancer Society; 2023 {[}cited 2024 May 18{]}. Available from: \url{https://cancer.ca/en/research/cancer-statistics/canadian-cancer-statistics}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-raghu_comorbidities_2015}{}}%
+\bibitem[\citeproctext]{ref-raghu_comorbidities_2015}
 \CSLLeftMargin{5. }%
 \CSLRightInline{Raghu G, Amatto VC, Behr J, Stowasser S. \href{https://doi.org/10.1183/13993003.02316-2014}{Comorbidities in idiopathic pulmonary fibrosis patients: A systematic literature review}. The European Respiratory Journal. 2015 Oct;46(4):1113--30. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-morell_treatment_2016}{}}%
+\bibitem[\citeproctext]{ref-morell_treatment_2016}
 \CSLLeftMargin{6. }%
 \CSLRightInline{Morell F, Esser D, Lim J, Stowasser S, Villacampa A, Nieves D, et al. \href{https://doi.org/10.1186/s12890-016-0168-6}{Treatment patterns, resource use and costs of idiopathic pulmonary fibrosis in {Spain}--results of a {Delphi} {Panel}}. BMC pulmonary medicine. 2016 Jan;16:7. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-hilberg_economic_2018}{}}%
+\bibitem[\citeproctext]{ref-hilberg_economic_2018}
 \CSLLeftMargin{7. }%
 \CSLRightInline{Hilberg O, Bendstrup E, Ibsen R, Løkke A, Hyldgaard C. \href{https://doi.org/10.1183/23120541.00045-2017}{Economic consequences of idiopathic pulmonary fibrosis in {Denmark}}. ERJ open research. 2018 Apr;4(2):00045--2017. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-ley_clinical_2011}{}}%
+\bibitem[\citeproctext]{ref-ley_clinical_2011}
 \CSLLeftMargin{8. }%
 \CSLRightInline{Ley B, Collard HR, King TE. Clinical {Course} and {Prediction} of {Survival} in {Idiopathic} {Pulmonary} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2011 Feb {[}cited 2023 May 2{]};183(4):431--40. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.201006-0894CI}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-bagnato_cellular_2015}{}}%
+\bibitem[\citeproctext]{ref-bagnato_cellular_2015}
 \CSLLeftMargin{9. }%
 \CSLRightInline{Bagnato G, Harari S. \href{https://doi.org/10.1183/09059180.00003214}{Cellular interactions in the pathogenesis of interstitial lung diseases}. European Respiratory Review: An Official Journal of the European Respiratory Society. 2015 Mar;24(135):102--14. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-marconi_epithelial-mesenchymal_2021}{}}%
+\bibitem[\citeproctext]{ref-marconi_epithelial-mesenchymal_2021}
 \CSLLeftMargin{10. }%
 \CSLRightInline{Marconi GD, Fonticoli L, Rajan TS, Pierdomenico SD, Trubiani O, Pizzicannella J, et al. Epithelial-{Mesenchymal} {Transition} ({EMT}): {The} {Type}-2 {EMT} in {Wound} {Healing}, {Tissue} {Regeneration} and {Organ} {Fibrosis}. Cells {[}Internet{]}. 2021 Jun {[}cited 2024 May 19{]};10(7):1587. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8307661/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-byrne_pulmonary_2015}{}}%
+\bibitem[\citeproctext]{ref-byrne_pulmonary_2015}
 \CSLLeftMargin{11. }%
 \CSLRightInline{Byrne AJ, Mathie SA, Gregory LG, Lloyd CM. \href{https://doi.org/10.1136/thoraxjnl-2015-207020}{Pulmonary macrophages: Key players in the innate defence of the airways}. Thorax. 2015 Dec;70(12):1189--96. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhu_m2_2017}{}}%
+\bibitem[\citeproctext]{ref-zhu_m2_2017}
 \CSLLeftMargin{12. }%
 \CSLRightInline{Zhu L, Fu X, Chen X, Han X, Dong P. \href{https://doi.org/10.1002/cbin.10788}{M2 macrophages induce {EMT} through the {TGF}-β/{Smad2} signaling pathway}. Cell Biology International. 2017 Sep;41(9):960--8. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-lederer_idiopathic_2018}{}}%
+\bibitem[\citeproctext]{ref-lederer_idiopathic_2018}
 \CSLLeftMargin{13. }%
 \CSLRightInline{Lederer DJ, Martinez FJ. Idiopathic {Pulmonary} {Fibrosis}. New England Journal of Medicine {[}Internet{]}. 2018 May {[}cited 2022 Apr 21{]};378(19):1811--23. Available from: \url{https://doi.org/10.1056/NEJMra1705751}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-idiopathic_pulmonary_fibrosis_clinical_research_network_prednisone_2012}{}}%
+\bibitem[\citeproctext]{ref-idiopathic_pulmonary_fibrosis_clinical_research_network_prednisone_2012}
 \CSLLeftMargin{14. }%
 \CSLRightInline{Idiopathic Pulmonary Fibrosis Clinical Research Network, Raghu G, Anstrom KJ, King TE, Lasky JA, Martinez FJ. \href{https://doi.org/10.1056/NEJMoa1113354}{Prednisone, azathioprine, and {N}-acetylcysteine for pulmonary fibrosis}. The New England Journal of Medicine. 2012 May;366(21):1968--77. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-lynch_diagnostic_2018}{}}%
+\bibitem[\citeproctext]{ref-lynch_diagnostic_2018}
 \CSLLeftMargin{15. }%
 \CSLRightInline{Lynch DA, Sverzellati N, Travis WD, Brown KK, Colby TV, Galvin JR, et al. \href{https://doi.org/10.1016/S2213-2600(17)30433-2}{Diagnostic criteria for idiopathic pulmonary fibrosis: A {Fleischner} {Society} {White} {Paper}}. The Lancet Respiratory Medicine. 2018 Feb;6(2):138--53. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-walsh_multicentre_2016}{}}%
+\bibitem[\citeproctext]{ref-walsh_multicentre_2016}
 \CSLLeftMargin{16. }%
 \CSLRightInline{Walsh SLF, Wells AU, Desai SR, Poletti V, Piciucchi S, Dubini A, et al. \href{https://doi.org/10.1016/S2213-2600(16)30033-9}{Multicentre evaluation of multidisciplinary team meeting agreement on diagnosis in diffuse parenchymal lung disease: A case-cohort study}. The Lancet Respiratory Medicine. 2016 Jul;4(7):557--65. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-graney_interstitial_2019}{}}%
+\bibitem[\citeproctext]{ref-graney_interstitial_2019}
 \CSLLeftMargin{17. }%
 \CSLRightInline{Graney BA, Fischer A. \href{https://doi.org/10.1513/AnnalsATS.201808-565CME}{Interstitial {Pneumonia} with {Autoimmune} {Features}}. Annals of the American Thoracic Society. 2019 May;16(5):525--33. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-skolnik_unclassifiable_2016}{}}%
+\bibitem[\citeproctext]{ref-skolnik_unclassifiable_2016}
 \CSLLeftMargin{18. }%
 \CSLRightInline{Skolnik K, Ryerson CJ. \href{https://doi.org/10.1111/resp.12568}{Unclassifiable interstitial lung disease: {A} review}. Respirology (Carlton, Vic). 2016 Jan;21(1):51--6. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-flaherty_nintedanib_2019}{}}%
+\bibitem[\citeproctext]{ref-flaherty_nintedanib_2019}
 \CSLLeftMargin{19. }%
 \CSLRightInline{Flaherty KR, Wells AU, Cottin V, Devaraj A, Walsh SLF, Inoue Y, et al. Nintedanib in {Progressive} {Fibrosing} {Interstitial} {Lung} {Diseases}. New England Journal of Medicine {[}Internet{]}. 2019 Oct {[}cited 2023 Aug 5{]};381(18):1718--27. Available from: \url{https://doi.org/10.1056/NEJMoa1908681}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-maher_pirfenidone_2020}{}}%
+\bibitem[\citeproctext]{ref-maher_pirfenidone_2020}
 \CSLLeftMargin{20. }%
 \CSLRightInline{Maher TM, Corte TJ, Fischer A, Kreuter M, Lederer DJ, Molina-Molina M, et al. \href{https://doi.org/10.1016/S2213-2600(19)30341-8}{Pirfenidone in patients with unclassifiable progressive fibrosing interstitial lung disease: A double-blind, randomised, placebo-controlled, phase 2 trial}. The Lancet Respiratory Medicine. 2020 Feb;8(2):147--57. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-behr_pirfenidone_2021}{}}%
+\bibitem[\citeproctext]{ref-behr_pirfenidone_2021}
 \CSLLeftMargin{21. }%
 \CSLRightInline{Behr J, Prasse A, Kreuter M, Johow J, Rabe KF, Bonella F, et al. Pirfenidone in patients with progressive fibrotic interstitial lung diseases other than idiopathic pulmonary fibrosis ({RELIEF}): A double-blind, randomised, placebo-controlled, phase 2b trial. The Lancet Respiratory Medicine {[}Internet{]}. 2021 May {[}cited 2024 May 20{]};9(5):476--86. Available from: \url{https://www.sciencedirect.com/science/article/pii/S2213260020305543}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-khor_patient_2023}{}}%
+\bibitem[\citeproctext]{ref-khor_patient_2023}
 \CSLLeftMargin{22. }%
 \CSLRightInline{Khor YH, Farooqi M, Hambly N, Kolb M, Ryerson CJ, Assayag D, et al. Patient {Characteristics} and {Survival} for {Progressive} {Pulmonary} {Fibrosis} {Using} {Different} {Definitions}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2023 Jan {[}cited 2024 May 20{]};207(1):102--5. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.202205-0910LE}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-nasser_progressive_2021}{}}%
+\bibitem[\citeproctext]{ref-nasser_progressive_2021}
 \CSLLeftMargin{23. }%
 \CSLRightInline{Nasser M, Larrieu S, Si-Mohamed S, Ahmad K, Boussel L, Brevet M, et al. \href{https://doi.org/10.1183/13993003.02718-2020}{Progressive fibrosing interstitial lung disease: A clinical cohort (the {PROGRESS} study)}. The European Respiratory Journal. 2021 Feb;57(2):2002718. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-takei_prevalence_2022}{}}%
+\bibitem[\citeproctext]{ref-takei_prevalence_2022}
 \CSLLeftMargin{24. }%
 \CSLRightInline{Takei R, Brown KK, Yamano Y, Kataoka K, Yokoyama T, Matsuda T, et al. \href{https://doi.org/10.1111/resp.14245}{Prevalence and prognosis of chronic fibrosing interstitial lung diseases with a progressive phenotype}. Respirology (Carlton, Vic). 2022 May;27(5):333--40. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-hambly_prevalence_2022}{}}%
+\bibitem[\citeproctext]{ref-hambly_prevalence_2022}
 \CSLLeftMargin{25. }%
 \CSLRightInline{Hambly N, Farooqi MM, Dvorkin-Gheva A, Donohoe K, Garlick K, Scallan C, et al. \href{https://doi.org/10.1183/13993003.02571-2021}{Prevalence and characteristics of progressive fibrosing interstitial lung disease in a prospective registry}. The European Respiratory Journal. 2022 Oct;60(4):2102571. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-oldham_lung_2022-1}{}}%
+\bibitem[\citeproctext]{ref-oldham_lung_2022-1}
 \CSLLeftMargin{26. }%
 \CSLRightInline{Oldham JM, Lee CT, Wu Z, Bowman WS, Pugashetti JV, Dao N, et al. \href{https://doi.org/10.1183/13993003.01396-2021}{Lung function trajectory in progressive fibrosing interstitial lung disease}. The European Respiratory Journal. 2022 Jun;59(6):2101396. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-rajan_progressive_2023}{}}%
+\bibitem[\citeproctext]{ref-rajan_progressive_2023}
 \CSLLeftMargin{27. }%
 \CSLRightInline{Rajan SK, Cottin V, Dhar R, Danoff S, Flaherty KR, Brown KK, et al. Progressive pulmonary fibrosis: An expert group consensus statement. European Respiratory Journal {[}Internet{]}. 2023 Mar {[}cited 2024 May 20{]};61(3). Available from: \url{https://erj.ersjournals.com/content/61/3/2103187}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-cosgrove_barriers_2018}{}}%
+\bibitem[\citeproctext]{ref-cosgrove_barriers_2018}
 \CSLLeftMargin{28. }%
 \CSLRightInline{Cosgrove GP, Bianchi P, Danese S, Lederer DJ. Barriers to timely diagnosis of interstitial lung disease in the real world: The {INTENSITY} survey. BMC Pulmonary Medicine {[}Internet{]}. 2018 Jan {[}cited 2022 Apr 22{]};18:9. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5773175/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-grewal_role_2019}{}}%
+\bibitem[\citeproctext]{ref-grewal_role_2019}
 \CSLLeftMargin{29. }%
 \CSLRightInline{Grewal JS, Morisset J, Fisher JH, Churg AM, Bilawich AM, Ellis J, et al. \href{https://doi.org/10.1513/AnnalsATS.201811-794OC}{Role of a {Regional} {Multidisciplinary} {Conference} in the {Diagnosis} of {Interstitial} {Lung} {Disease}}. Annals of the American Thoracic Society. 2019 Apr;16(4):455--62. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-lamas_delayed_2011}{}}%
+\bibitem[\citeproctext]{ref-lamas_delayed_2011}
 \CSLLeftMargin{30. }%
 \CSLRightInline{Lamas DJ, Kawut SM, Bagiella E, Philip N, Arcasoy SM, Lederer DJ. \href{https://doi.org/10.1164/rccm.201104-0668OC}{Delayed access and survival in idiopathic pulmonary fibrosis: A cohort study}. American Journal of Respiratory and Critical Care Medicine. 2011 Oct;184(7):842--7. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-drakopanagiotakis_biomarkers_2018}{}}%
+\bibitem[\citeproctext]{ref-drakopanagiotakis_biomarkers_2018}
 \CSLLeftMargin{31. }%
 \CSLRightInline{Drakopanagiotakis F, Wujak L, Wygrecka M, Markart P. \href{https://doi.org/10.1016/j.matbio.2018.01.023}{Biomarkers in idiopathic pulmonary fibrosis}. Matrix Biology: Journal of the International Society for Matrix Biology. 2018 Aug;68-69:404--21. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-morais_serum_2015}{}}%
+\bibitem[\citeproctext]{ref-morais_serum_2015}
 \CSLLeftMargin{32. }%
 \CSLRightInline{Morais A, Beltrão M, Sokhatska O, Costa D, Melo N, Mota P, et al. \href{https://doi.org/10.1016/j.rmed.2015.06.003}{Serum metalloproteinases 1 and 7 in the diagnosis of idiopathic pulmonary fibrosis and other interstitial pneumonias}. Respiratory Medicine. 2015 Aug;109(8):1063--8. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-vukmirovic_impact_2018}{}}%
+\bibitem[\citeproctext]{ref-vukmirovic_impact_2018}
 \CSLLeftMargin{33. }%
 \CSLRightInline{Vukmirovic M, Kaminski N. Impact of {Transcriptomics} on {Our} {Understanding} of {Pulmonary} {Fibrosis}. Frontiers in Medicine {[}Internet{]}. 2018 Apr {[}cited 2023 May 2{]};5:87. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5894436/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-khan_systematic_2022}{}}%
+\bibitem[\citeproctext]{ref-khan_systematic_2022}
 \CSLLeftMargin{34. }%
 \CSLRightInline{Khan FA, Stewart I, Saini G, Robinson KA, Jenkins RG. \href{https://doi.org/10.1183/13993003.01612-2021}{A systematic review of blood biomarkers with individual participant data meta-analysis of matrix metalloproteinase-7 in idiopathic pulmonary fibrosis}. The European Respiratory Journal. 2022 Apr;59(4):2101612. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-white_plasma_2016}{}}%
+\bibitem[\citeproctext]{ref-white_plasma_2016}
 \CSLLeftMargin{35. }%
 \CSLRightInline{White ES, Xia M, Murray S, Dyal R, Flaherty CM, Flaherty KR, et al. \href{https://doi.org/10.1164/rccm.201505-0862OC}{Plasma {Surfactant} {Protein}-{D}, {Matrix} {Metalloproteinase}-7, and {Osteopontin} {Index} {Distinguishes} {Idiopathic} {Pulmonary} {Fibrosis} from {Other} {Idiopathic} {Interstitial} {Pneumonias}}. American Journal of Respiratory and Critical Care Medicine. 2016 Nov;194(10):1242--51. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-spagnolo_early_2021}{}}%
+\bibitem[\citeproctext]{ref-spagnolo_early_2021}
 \CSLLeftMargin{36. }%
 \CSLRightInline{Spagnolo P, Ryerson CJ, Putman R, Oldham J, Salisbury M, Sverzellati N, et al. Early diagnosis of fibrotic interstitial lung disease: Challenges and opportunities. The Lancet Respiratory Medicine {[}Internet{]}. 2021 Sep {[}cited 2023 May 2{]};9(9):1065--76. Available from: \url{https://www.thelancet.com/journals/lanres/article/PIIS2213-2600(21)00017-5/fulltext}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-johannson_treatment_2021}{}}%
+\bibitem[\citeproctext]{ref-johannson_treatment_2021}
 \CSLLeftMargin{37. }%
 \CSLRightInline{Johannson KA, Chaudhuri N, Adegunsoye A, Wolters PJ. Treatment of fibrotic interstitial lung disease: Current approaches and future directions. The Lancet {[}Internet{]}. 2021 Oct {[}cited 2023 May 2{]};398(10309):1450--60. Available from: \url{https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)01826-2/fulltext}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-pankratz_usual_2017}{}}%
+\bibitem[\citeproctext]{ref-pankratz_usual_2017}
 \CSLLeftMargin{38. }%
 \CSLRightInline{Pankratz DG, Choi Y, Imtiaz U, Fedorowicz GM, Anderson JD, Colby TV, et al. \href{https://doi.org/10.1513/AnnalsATS.201612-947OC}{Usual {Interstitial} {Pneumonia} {Can} {Be} {Detected} in {Transbronchial} {Biopsies} {Using} {Machine} {Learning}}. Annals of the American Thoracic Society. 2017 Nov;14(11):1646--54. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-choi_analytical_2017}{}}%
+\bibitem[\citeproctext]{ref-choi_analytical_2017}
 \CSLLeftMargin{39. }%
 \CSLRightInline{Choi Y, Lu J, Hu Z, Pankratz DG, Jiang H, Cao M, et al. Analytical performance of {Envisia}: A genomic classifier for usual interstitial pneumonia. BMC Pulmonary Medicine {[}Internet{]}. 2017 Nov {[}cited 2023 May 2{]};17:141. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5693488/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-dupuy_critical_2007}{}}%
+\bibitem[\citeproctext]{ref-dupuy_critical_2007}
 \CSLLeftMargin{40. }%
 \CSLRightInline{Dupuy A, Simon RM. \href{https://doi.org/10.1093/jnci/djk018}{Critical review of published microarray studies for cancer outcome and guidelines on statistical analysis and reporting}. Journal of the National Cancer Institute. 2007 Jan;99(2):147--57. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-rohart_mint_2017}{}}%
+\bibitem[\citeproctext]{ref-rohart_mint_2017}
 \CSLLeftMargin{41. }%
 \CSLRightInline{Rohart F, Eslami A, Matigian N, Bougeard S, Lê Cao KA. {MINT}: A multivariate integrative method to identify reproducible molecular signatures across independent experiments and platforms. BMC Bioinformatics {[}Internet{]}. 2017 Feb {[}cited 2023 Jan 12{]};18(1):128. Available from: \url{https://doi.org/10.1186/s12859-017-1553-8}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-rohart_mixomics_2017}{}}%
+\bibitem[\citeproctext]{ref-rohart_mixomics_2017}
 \CSLLeftMargin{42. }%
 \CSLRightInline{Rohart F, Gautier B, Singh A, Cao KAL. {mixOmics}: {An} {R} package for `omics feature selection and multiple data integration. PLOS Computational Biology {[}Internet{]}. 2017 Nov {[}cited 2023 Dec 18{]};13(11):e1005752. Available from: \url{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005752}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-kolde_robust_2012}{}}%
+\bibitem[\citeproctext]{ref-kolde_robust_2012}
 \CSLLeftMargin{43. }%
 \CSLRightInline{Kolde R, Laur S, Adler P, Vilo J. Robust rank aggregation for gene list integration and meta-analysis. Bioinformatics {[}Internet{]}. 2012 Feb {[}cited 2023 May 3{]};28(4):573--80. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3278763/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-bauer_novel_2015}{}}%
+\bibitem[\citeproctext]{ref-bauer_novel_2015}
 \CSLLeftMargin{44. }%
 \CSLRightInline{Bauer Y, Tedrow J, Bernard S de, Birker-Robaczewska M, Gibson KF, Guardela BJ, et al. \href{https://doi.org/10.1165/rcmb.2013-0310OC}{A novel genomic signature with translational significance for human idiopathic pulmonary fibrosis}. American Journal of Respiratory Cell and Molecular Biology. 2015 Feb;52(2):217--31. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-depianto_heterogeneous_2015}{}}%
+\bibitem[\citeproctext]{ref-depianto_heterogeneous_2015}
 \CSLLeftMargin{45. }%
 \CSLRightInline{DePianto DJ, Chandriani S, Abbas AR, Jia G, N'Diaye EN, Caplazi P, et al. \href{https://doi.org/10.1136/thoraxjnl-2013-204596}{Heterogeneous gene expression signatures correspond to distinct lung pathologies and biomarkers of disease severity in idiopathic pulmonary fibrosis}. Thorax. 2015 Jan;70(1):48--56. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-schafer_cellular_2017}{}}%
+\bibitem[\citeproctext]{ref-schafer_cellular_2017}
 \CSLLeftMargin{46. }%
 \CSLRightInline{Schafer MJ, White TA, Iijima K, Haak AJ, Ligresti G, Atkinson EJ, et al. Cellular senescence mediates fibrotic pulmonary disease. Nature Communications {[}Internet{]}. 2017 Feb {[}cited 2023 May 2{]};8(1):14532. Available from: \url{https://www.nature.com/articles/ncomms14532}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-yu_reduced_2017}{}}%
+\bibitem[\citeproctext]{ref-yu_reduced_2017}
 \CSLLeftMargin{47. }%
 \CSLRightInline{Yu X, Gu P, Huang Z, Fang X, Jiang Y, Luo Q, et al. \href{https://doi.org/10.18632/oncotarget.20083}{Reduced expression of {BMP3} contributes to the development of pulmonary fibrosis and predicts the unfavorable prognosis in {IIP} patients}. Oncotarget. 2017 Oct;8(46):80531--44. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-cecchini_comprehensive_2018}{}}%
+\bibitem[\citeproctext]{ref-cecchini_comprehensive_2018}
 \CSLLeftMargin{48. }%
 \CSLRightInline{Cecchini MJ, Hosein K, Howlett CJ, Joseph M, Mura M. Comprehensive gene expression profiling identifies distinct and overlapping transcriptional profiles in non-specific interstitial pneumonia and idiopathic pulmonary fibrosis. Respiratory Research {[}Internet{]}. 2018 {[}cited 2023 Apr 10{]};19:153. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6094889/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-depianto_molecular_2021}{}}%
+\bibitem[\citeproctext]{ref-depianto_molecular_2021}
 \CSLLeftMargin{49. }%
 \CSLRightInline{DePianto DJ, Heiden JAV, Morshead KB, Sun KH, Modrusan Z, Teng G, et al. \href{https://doi.org/10.1172/jci.insight.143626}{Molecular mapping of interstitial lung disease reveals a phenotypically distinct senescent basal epithelial cell population}. JCI insight. 2021 Apr;6(8):e143626, 143626. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-de_sadeleer_lung_2022}{}}%
+\bibitem[\citeproctext]{ref-de_sadeleer_lung_2022}
 \CSLLeftMargin{50. }%
 \CSLRightInline{De Sadeleer LJ, McDonough JE, Schupp JC, Yan X, Vanstapel A, Van Herck A, et al. Lung {Microenvironments} and {Disease} {Progression} in {Fibrotic} {Hypersensitivity} {Pneumonitis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2022 Jan {[}cited 2023 Aug 24{]};205(1):60--74. Available from: \url{https://www.atsjournals.org/doi/full/10.1164/rccm.202103-0569OC}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-jaffar_matrix_2022}{}}%
+\bibitem[\citeproctext]{ref-jaffar_matrix_2022}
 \CSLLeftMargin{51. }%
 \CSLRightInline{Jaffar J, Wong M, Fishbein GA, Alhamdoosh M, McMillan L, Gamell-Fulla C, et al. \href{https://doi.org/10.1183/23120541.00191-2022}{Matrix metalloproteinase-7 is increased in lung bases but not apices in idiopathic pulmonary fibrosis}. ERJ open research. 2022 Oct;8(4):00191--2022. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-rose_mosbi_2022}{}}%
+\bibitem[\citeproctext]{ref-rose_mosbi_2022}
 \CSLLeftMargin{52. }%
 \CSLRightInline{Rose TD, Bechtler T, Ciora OA, Anh Lilian Le K, Molnar F, Köhler N, et al. {MoSBi}: {Automated} signature mining for molecular stratification and subtyping. Proceedings of the National Academy of Sciences {[}Internet{]}. 2022 Apr {[}cited 2024 Mar 7{]};119(16):e2118210119. Available from: \url{https://www.pnas.org/doi/10.1073/pnas.2118210119}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zolotareva_identification_2021}{}}%
+\bibitem[\citeproctext]{ref-zolotareva_identification_2021}
 \CSLLeftMargin{53. }%
 \CSLRightInline{Zolotareva O, Khakabimamaghani S, Isaeva OI, Chervontseva Z, Savchik A, Ester M. Identification of differentially expressed gene modules in heterogeneous diseases. Bioinformatics {[}Internet{]}. 2021 Jul {[}cited 2024 Mar 9{]};37(12):1691--8. Available from: \url{https://doi.org/10.1093/bioinformatics/btaa1038}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-yang_peripheral_2012}{}}%
+\bibitem[\citeproctext]{ref-yang_peripheral_2012}
 \CSLLeftMargin{54. }%
 \CSLRightInline{Yang IV, Luna LG, Cotter J, Talbert J, Leach SM, Kidd R, et al. \href{https://doi.org/10.1371/journal.pone.0037708}{The peripheral blood transcriptome identifies the presence and extent of disease in idiopathic pulmonary fibrosis}. PloS One. 2012;7(6):e37708. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-molyneaux_host-microbial_2017}{}}%
+\bibitem[\citeproctext]{ref-molyneaux_host-microbial_2017}
 \CSLLeftMargin{55. }%
 \CSLRightInline{Molyneaux PL, Willis-Owen SAG, Cox MJ, James P, Cowman S, Loebinger M, et al. \href{https://doi.org/10.1164/rccm.201607-1408OC}{Host-{Microbial} {Interactions} in {Idiopathic} {Pulmonary} {Fibrosis}}. American Journal of Respiratory and Critical Care Medicine. 2017 Jun;195(12):1640--50. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-koth_sarcoidosis_2011}{}}%
+\bibitem[\citeproctext]{ref-koth_sarcoidosis_2011}
 \CSLLeftMargin{56. }%
 \CSLRightInline{Koth LL, Solberg OD, Peng JC, Bhakta NR, Nguyen CP, Woodruff PG. \href{https://doi.org/10.1164/rccm.201106-1143OC}{Sarcoidosis blood transcriptome reflects lung inflammation and overlaps with tuberculosis}. American Journal of Respiratory and Critical Care Medicine. 2011 Nov;184(10):1153--63. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-jia_interleukin_2023}{}}%
+\bibitem[\citeproctext]{ref-jia_interleukin_2023}
 \CSLLeftMargin{57. }%
 \CSLRightInline{Jia G, Ramalingam TR, Heiden JV, Gao X, DePianto D, Morshead KB, et al. \href{https://doi.org/10.1016/j.isci.2023.108133}{An interleukin 6 responsive plasma cell signature is associated with disease progression in systemic sclerosis interstitial lung disease}. iScience. 2023 Nov;26(11):108133. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-huang_sphingosine-1-phosphate_2015}{}}%
+\bibitem[\citeproctext]{ref-huang_sphingosine-1-phosphate_2015}
 \CSLLeftMargin{58. }%
 \CSLRightInline{Huang LS, Berdyshev EV, Tran JT, Xie L, Chen J, Ebenezer DL, et al. Sphingosine-1-phosphate lyase is an endogenous suppressor of pulmonary fibrosis: Role of {S1P} signalling and autophagy. Thorax {[}Internet{]}. 2015 Dec {[}cited 2023 May 4{]};70(12):1138--48. Available from: \url{https://thorax.bmj.com/content/70/12/1138}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-herazo-maya_peripheral_2013}{}}%
+\bibitem[\citeproctext]{ref-herazo-maya_peripheral_2013}
 \CSLLeftMargin{59. }%
 \CSLRightInline{Herazo-Maya JD, Noth I, Duncan SR, Kim S, Ma SF, Tseng GC, et al. Peripheral {Blood} {Mononuclear} {Cell} {Gene} {Expression} {Profiles} {Predict} {Poor} {Outcome} in {Idiopathic} {Pulmonary} {Fibrosis}. Science translational medicine {[}Internet{]}. 2013 Oct {[}cited 2023 Dec 8{]};5(205):205ra136. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4175518/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-cheadle_erythroid-specific_2012}{}}%
+\bibitem[\citeproctext]{ref-cheadle_erythroid-specific_2012}
 \CSLLeftMargin{60. }%
 \CSLRightInline{Cheadle C, Berger AE, Mathai SC, Grigoryev DN, Watkins TN, Sugawara Y, et al. \href{https://doi.org/10.1371/journal.pone.0034951}{Erythroid-specific transcriptional changes in {PBMCs} from pulmonary hypertension patients}. PloS One. 2012;7(4):e34951. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-assassi_peripheral_2022}{}}%
+\bibitem[\citeproctext]{ref-assassi_peripheral_2022}
 \CSLLeftMargin{61. }%
 \CSLRightInline{Assassi S, Volkmann ER, Zheng WJ, Wang X, Wilhalme H, Lyons MA, et al. \href{https://doi.org/10.1136/annrheumdis-2021-221313}{Peripheral blood gene expression profiling shows predictive significance for response to mycophenolate in systemic sclerosis-related interstitial lung disease}. Annals of the Rheumatic Diseases. 2022 Jun;81(6):854--60. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-cho_systems_2011}{}}%
+\bibitem[\citeproctext]{ref-cho_systems_2011}
 \CSLLeftMargin{62. }%
 \CSLRightInline{Cho JH, Gelinas R, Wang K, Etheridge A, Piper MG, Batte K, et al. Systems biology of interstitial lung diseases: Integration of {mRNA} and {microRNA} expression changes. BMC Medical Genomics {[}Internet{]}. 2011 Jan {[}cited 2023 Apr 10{]};4:8. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3035594/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-sanders_altered_2012}{}}%
+\bibitem[\citeproctext]{ref-sanders_altered_2012}
 \CSLLeftMargin{63. }%
 \CSLRightInline{Sanders YY, Ambalavanan N, Halloran B, Zhang X, Liu H, Crossman DK, et al. \href{https://doi.org/10.1164/rccm.201201-0077OC}{Altered {DNA} methylation profile in idiopathic pulmonary fibrosis}. American Journal of Respiratory and Critical Care Medicine. 2012 Sep;186(6):525--35. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-deng_detecting_2013}{}}%
+\bibitem[\citeproctext]{ref-deng_detecting_2013}
 \CSLLeftMargin{64. }%
 \CSLRightInline{Deng N, Sanchez CG, Lasky JA, Zhu D. Detecting {Splicing} {Variants} in {Idiopathic} {Pulmonary} {Fibrosis} from {Non}-{Differentially} {Expressed} {Genes}. PLOS ONE {[}Internet{]}. 2013 Jul {[}cited 2023 May 2{]};8(7):e68352. Available from: \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0068352}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-yang_expression_2013}{}}%
+\bibitem[\citeproctext]{ref-yang_expression_2013}
 \CSLLeftMargin{65. }%
 \CSLRightInline{Yang IV, Coldren CD, Leach SM, Seibold MA, Murphy E, Lin J, et al. \href{https://doi.org/10.1136/thoraxjnl-2012-202943}{Expression of cilium-associated genes defines novel molecular subtypes of idiopathic pulmonary fibrosis}. Thorax. 2013 Dec;68(12):1114--21. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-vukmirovic_identification_2017}{}}%
+\bibitem[\citeproctext]{ref-vukmirovic_identification_2017}
 \CSLLeftMargin{66. }%
 \CSLRightInline{Vukmirovic M, Herazo-Maya JD, Blackmon J, Skodric-Trifunovic V, Jovanovic D, Pavlovic S, et al. Identification and validation of differentially expressed transcripts by {RNA}-sequencing of formalin-fixed, paraffin-embedded ({FFPE}) lung tissue from patients with {Idiopathic} {Pulmonary} {Fibrosis}. BMC Pulmonary Medicine {[}Internet{]}. 2017 Jan {[}cited 2023 May 2{]};17:15. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5228096/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-furusawa_chronic_2020}{}}%
+\bibitem[\citeproctext]{ref-furusawa_chronic_2020}
 \CSLLeftMargin{67. }%
 \CSLRightInline{Furusawa H, Cardwell JH, Okamoto T, Walts AD, Konigsberg IR, Kurche JS, et al. Chronic {Hypersensitivity} {Pneumonitis}, an {Interstitial} {Lung} {Disease} with {Distinct} {Molecular} {Signatures}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2020 Nov {[}cited 2023 May 2{]};202(10):1430--44. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.202001-0134OC}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-konigsberg_molecular_2021}{}}%
+\bibitem[\citeproctext]{ref-konigsberg_molecular_2021}
 \CSLLeftMargin{68. }%
 \CSLRightInline{Konigsberg IR, Borie R, Walts AD, Cardwell J, Rojas M, Metzger F, et al. \href{https://doi.org/10.1165/rcmb.2020-0546OC}{Molecular {Signatures} of {Idiopathic} {Pulmonary} {Fibrosis}}. American Journal of Respiratory Cell and Molecular Biology. 2021 Oct;65(4):430--41. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-borie_colocalization_2022}{}}%
+\bibitem[\citeproctext]{ref-borie_colocalization_2022}
 \CSLLeftMargin{69. }%
 \CSLRightInline{Borie R, Cardwell J, Konigsberg IR, Moore CM, Zhang W, Sasse SK, et al. \href{https://doi.org/10.1164/rccm.202110-2308OC}{Colocalization of {Gene} {Expression} and {DNA} {Methylation} with {Genetic} {Risk} {Variants} {Supports} {Functional} {Roles} of {MUC5B} and {DSP} in {Idiopathic} {Pulmonary} {Fibrosis}}. American Journal of Respiratory and Critical Care Medicine. 2022 Nov;206(10):1259--70. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-zuo_gene_2002}{}}%
+\bibitem[\citeproctext]{ref-zuo_gene_2002}
 \CSLLeftMargin{70. }%
 \CSLRightInline{Zuo F, Kaminski N, Eugui E, Allard J, Yakhini Z, Ben-Dor A, et al. \href{https://doi.org/10.1073/pnas.092134099}{Gene expression analysis reveals matrilysin as a key regulator of pulmonary fibrosis in mice and humans}. Proceedings of the National Academy of Sciences of the United States of America. 2002 Apr;99(9):6292--7. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-pardo_up-regulation_2005}{}}%
+\bibitem[\citeproctext]{ref-pardo_up-regulation_2005}
 \CSLLeftMargin{71. }%
 \CSLRightInline{Pardo A, Gibson K, Cisneros J, Richards TJ, Yang Y, Becerril C, et al. \href{https://doi.org/10.1371/journal.pmed.0020251}{Up-regulation and profibrotic role of osteopontin in human idiopathic pulmonary fibrosis}. PLoS medicine. 2005 Sep;2(9):e251. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-selman_gene_2006}{}}%
+\bibitem[\citeproctext]{ref-selman_gene_2006}
 \CSLLeftMargin{72. }%
 \CSLRightInline{Selman M, Pardo A, Barrera L, Estrada A, Watson SR, Wilson K, et al. \href{https://doi.org/10.1164/rccm.200504-644OC}{Gene expression profiles distinguish idiopathic pulmonary fibrosis from hypersensitivity pneumonitis}. American Journal of Respiratory and Critical Care Medicine. 2006 Jan;173(2):188--98. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-yang_gene_2007}{}}%
+\bibitem[\citeproctext]{ref-yang_gene_2007}
 \CSLLeftMargin{73. }%
 \CSLRightInline{Yang IV, Burch LH, Steele MP, Savov JD, Hollingsworth JW, McElvania-Tekippe E, et al. Gene {Expression} {Profiling} of {Familial} and {Sporadic} {Interstitial} {Pneumonia}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2007 Jan {[}cited 2023 Apr 10{]};175(1):45--54. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1899261/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-bridges_gene_2009}{}}%
+\bibitem[\citeproctext]{ref-bridges_gene_2009}
 \CSLLeftMargin{74. }%
 \CSLRightInline{Bridges RS, Kass D, Loh K, Glackin C, Borczuk AC, Greenberg S. Gene {Expression} {Profiling} of {Pulmonary} {Fibrosis} {Identifies} {Twist1} as an {Antiapoptotic} {Molecular} {``{Rectifier}''} of {Growth} {Factor} {Signaling}. The American Journal of Pathology {[}Internet{]}. 2009 Dec {[}cited 2023 Oct 12{]};175(6):2351--61. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2789617/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-konishi_gene_2009}{}}%
+\bibitem[\citeproctext]{ref-konishi_gene_2009}
 \CSLLeftMargin{75. }%
 \CSLRightInline{Konishi K, Gibson KF, Lindell KO, Richards TJ, Zhang Y, Dhir R, et al. \href{https://doi.org/10.1164/rccm.200810-1596OC}{Gene expression profiles of acute exacerbations of idiopathic pulmonary fibrosis}. American Journal of Respiratory and Critical Care Medicine. 2009 Jul;180(2):167--75. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-rajkumar_genomewide_2010}{}}%
+\bibitem[\citeproctext]{ref-rajkumar_genomewide_2010}
 \CSLLeftMargin{76. }%
 \CSLRightInline{Rajkumar R, Konishi K, Richards TJ, Ishizawar DC, Wiechert AC, Kaminski N, et al. \href{https://doi.org/10.1152/ajpheart.00254.2009}{Genomewide {RNA} expression profiling in lung identifies distinct signatures in idiopathic pulmonary arterial hypertension and secondary pulmonary hypertension}. American Journal of Physiology Heart and Circulatory Physiology. 2010 Apr;298(4):H1235--1248. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-hsu_lung_2011}{}}%
+\bibitem[\citeproctext]{ref-hsu_lung_2011}
 \CSLLeftMargin{77. }%
 \CSLRightInline{Hsu E, Shi H, Jordan RM, Lyons-Weiler J, Pilewski JM, Feghali-Bostwick CA. \href{https://doi.org/10.1002/art.30159}{Lung tissues in patients with systemic sclerosis have gene expression patterns unique to pulmonary fibrosis and pulmonary hypertension}. Arthritis and Rheumatism. 2011 Mar;63(3):783--94. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-meltzer_bayesian_2011}{}}%
+\bibitem[\citeproctext]{ref-meltzer_bayesian_2011}
 \CSLLeftMargin{78. }%
 \CSLRightInline{Meltzer EB, Barry WT, D'Amico TA, Davis RD, Lin SS, Onaitis MW, et al. \href{https://doi.org/10.1186/1755-8794-4-70}{Bayesian probit regression model for the diagnosis of pulmonary fibrosis: Proof-of-principle}. BMC medical genomics. 2011 Oct;4:70. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-nance_transcriptome_2014}{}}%
+\bibitem[\citeproctext]{ref-nance_transcriptome_2014}
 \CSLLeftMargin{79. }%
 \CSLRightInline{Nance T, Smith KS, Anaya V, Richardson R, Ho L, Pala M, et al. \href{https://doi.org/10.1371/journal.pone.0092111}{Transcriptome analysis reveals differential splicing events in {IPF} lung tissue}. PloS One. 2014;9(3):e92111. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-geng_down-regulation_2015}{}}%
+\bibitem[\citeproctext]{ref-geng_down-regulation_2015}
 \CSLLeftMargin{80. }%
 \CSLRightInline{Geng J, Huang X, Li Y, Xu X, Li S, Jiang D, et al. Down-regulation of {USP13} mediates phenotype transformation of fibroblasts in idiopathic pulmonary fibrosis. Respiratory Research {[}Internet{]}. 2015 Oct {[}cited 2023 Apr 10{]};16(1):124. Available from: \url{https://doi.org/10.1186/s12931-015-0286-3}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-christmann_mir-155_2016}{}}%
+\bibitem[\citeproctext]{ref-christmann_mir-155_2016}
 \CSLLeftMargin{81. }%
 \CSLRightInline{Christmann RB, Wooten A, Sampaio-Barros P, Borges CL, Carvalho CRR, Kairalla RA, et al. \href{https://doi.org/10.1186/s13075-016-1054-6}{{miR}-155 in the progression of lung fibrosis in systemic sclerosis}. Arthritis Research \& Therapy. 2016 Jul;18(1):155. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-horimasu_clinical_2017}{}}%
+\bibitem[\citeproctext]{ref-horimasu_clinical_2017}
 \CSLLeftMargin{82. }%
 \CSLRightInline{Horimasu Y, Ishikawa N, Iwamoto H, Ohshimo S, Hamada H, Hattori N, et al. Clinical and molecular features of rapidly progressive chronic hypersensitivity pneumonitis. Sarcoidosis, Vasculitis, and Diffuse Lung Diseases {[}Internet{]}. 2017 {[}cited 2023 Oct 13{]};34(1):48--57. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7170111/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-horimasu_gene_2017}{}}%
+\bibitem[\citeproctext]{ref-horimasu_gene_2017}
 \CSLLeftMargin{83. }%
 \CSLRightInline{Horimasu Y, Ishikawa N, Taniwaki M, Yamaguchi K, Hamai K, Iwamoto H, et al. Gene expression profiling of idiopathic interstitial pneumonias ({IIPs}): Identification of potential diagnostic markers and therapeutic targets. BMC Medical Genetics {[}Internet{]}. 2017 Aug {[}cited 2023 May 2{]};18:88. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5562997/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-luzina_transcriptomic_2018}{}}%
+\bibitem[\citeproctext]{ref-luzina_transcriptomic_2018}
 \CSLLeftMargin{84. }%
 \CSLRightInline{Luzina IG, Salcedo MV, Rojas-Peña ML, Wyman AE, Galvin JR, Sachdeva A, et al. \href{https://doi.org/10.1016/j.cellimm.2018.01.002}{Transcriptomic evidence of immune activation in macroscopically normal-appearing and scarred lung tissues in idiopathic pulmonary fibrosis}. Cellular Immunology. 2018 Mar;325:1--13. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-sivakumar_rna_2019}{}}%
+\bibitem[\citeproctext]{ref-sivakumar_rna_2019}
 \CSLLeftMargin{85. }%
 \CSLRightInline{Sivakumar P, Thompson JR, Ammar R, Porteous M, McCoubrey C, Cantu E, et al. {RNA} sequencing of transplant-stage idiopathic pulmonary fibrosis lung reveals unique pathway regulation. ERJ Open Research {[}Internet{]}. 2019 Aug {[}cited 2022 Oct 17{]};5(3):00117--2019. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6689672/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-mcdonough_transcriptional_2019}{}}%
+\bibitem[\citeproctext]{ref-mcdonough_transcriptional_2019}
 \CSLLeftMargin{86. }%
 \CSLRightInline{McDonough JE, Ahangari F, Li Q, Jain S, Verleden SE, Herazo-Maya J, et al. \href{https://doi.org/10.1172/jci.insight.131597}{Transcriptional regulatory model of fibrosis progression in the human lung}. JCI insight. 2019 Nov;4(22):e131597, 131597. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-wang_canonical_2022}{}}%
+\bibitem[\citeproctext]{ref-wang_canonical_2022}
 \CSLLeftMargin{87. }%
 \CSLRightInline{Wang S, Liu M, Li X, Zhang J, Wang F, Zhang C, et al. \href{https://doi.org/10.1096/fj.202101436R}{Canonical and noncanonical regulatory roles for {JAK2} in the pathogenesis of rheumatoid arthritis-associated interstitial lung disease and idiopathic pulmonary fibrosis}. FASEB journal: official publication of the Federation of American Societies for Experimental Biology. 2022 Jun;36(6):e22336. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-huang_central_2023}{}}%
+\bibitem[\citeproctext]{ref-huang_central_2023}
 \CSLLeftMargin{88. }%
 \CSLRightInline{Huang Y, Guzy R, Ma SF, Bonham CA, Jou J, Schulte JJ, et al. Central lung gene expression associates with myofibroblast features in idiopathic pulmonary fibrosis. BMJ Open Respiratory Research {[}Internet{]}. 2023 Feb {[}cited 2023 Apr 4{]};10(1):e001391. Available from: \url{https://bmjopenrespres.bmj.com/content/10/1/e001391}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-mohamed_respiratory_2014}{}}%
+\bibitem[\citeproctext]{ref-mohamed_respiratory_2014}
 \CSLLeftMargin{89. }%
 \CSLRightInline{Mohamed BA, Barakat AZ, Held T, Elkenani M, Mühlfeld C, Männer J, et al. Respiratory {Distress} and {Early} {Neonatal} {Lethality} in {Hspa4l}/{Hspa4} {Double}-{Mutant} {Mice}. American Journal of Respiratory Cell and Molecular Biology {[}Internet{]}. 2014 Apr {[}cited 2023 May 13{]};50(4):817--24. Available from: \url{https://www.atsjournals.org/doi/10.1165/rcmb.2013-0132OC}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-klein_sex_2016}{}}%
+\bibitem[\citeproctext]{ref-klein_sex_2016}
 \CSLLeftMargin{90. }%
 \CSLRightInline{Klein SL, Flanagan KL. Sex differences in immune responses. Nature Reviews Immunology {[}Internet{]}. 2016 Oct {[}cited 2024 Feb 29{]};16(10):626--38. Available from: \url{https://www.nature.com/articles/nri.2016.90}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-herrera_uipipf_2022}{}}%
+\bibitem[\citeproctext]{ref-herrera_uipipf_2022}
 \CSLLeftMargin{91. }%
 \CSLRightInline{Herrera JA, Dingle L, Montero MA, Venkateswaran RV, Blaikley JF, Lawless C, et al. \href{https://doi.org/10.1172/jci.insight.156115}{The {UIP}/{IPF} fibroblastic focus is a collagen biosynthesis factory embedded in a distinct extracellular matrix}. JCI insight. 2022 Aug;7(16):e156115. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-ali_antifibrotics_2021}{}}%
+\bibitem[\citeproctext]{ref-ali_antifibrotics_2021}
 \CSLLeftMargin{92. }%
 \CSLRightInline{Ali MF, Egan AM, Shaughnessy GF, Anderson DK, Kottom TJ, Dasari H, et al. Antifibrotics {Modify} {B}-{Cell}--induced {Fibroblast} {Migration} and {Activation} in {Patients} with {Idiopathic} {Pulmonary} {Fibrosis}. American Journal of Respiratory Cell and Molecular Biology {[}Internet{]}. 2021 Jun {[}cited 2024 Feb 29{]};64(6):722--33. Available from: \url{https://www.atsjournals.org/doi/10.1165/rcmb.2020-0387OC}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-schiller_deep_2017}{}}%
+\bibitem[\citeproctext]{ref-schiller_deep_2017}
 \CSLLeftMargin{93. }%
 \CSLRightInline{Schiller HB, Mayr CH, Leuschner G, Strunz M, Staab-Weijnitz C, Preisendörfer S, et al. Deep {Proteome} {Profiling} {Reveals} {Common} {Prevalence} of {MZB1}-{Positive} {Plasma} {B} {Cells} in {Human} {Lung} and {Skin} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2017 Nov {[}cited 2023 Apr 4{]};196(10):1298--310. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6913086/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-camarena_psmb8_2010}{}}%
+\bibitem[\citeproctext]{ref-camarena_psmb8_2010}
 \CSLLeftMargin{94. }%
 \CSLRightInline{Camarena A, Aquino-Galvez A, Falfán-Valencia R, Sánchez G, Montaño M, Ramos C, et al. \href{https://doi.org/10.1016/j.rmed.2010.01.014}{{PSMB8} ({LMP7}) but not {PSMB9} ({LMP2}) gene polymorphisms are associated to pigeon breeder's hypersensitivity pneumonitis}. Respiratory Medicine. 2010 Jun;104(6):889--94. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-bartis_epithelialmesenchymal_2014}{}}%
+\bibitem[\citeproctext]{ref-bartis_epithelialmesenchymal_2014}
 \CSLLeftMargin{95. }%
 \CSLRightInline{Bartis D, Mise N, Mahida RY, Eickelberg O, Thickett DR. Epithelial--mesenchymal transition in lung development and disease: Does it exist and is it important? Thorax {[}Internet{]}. 2014 Aug {[}cited 2023 Apr 10{]};69(8):760--5. Available from: \url{https://thorax.bmj.com/content/69/8/760}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-travaglini_molecular_2020}{}}%
+\bibitem[\citeproctext]{ref-travaglini_molecular_2020}
 \CSLLeftMargin{96. }%
 \CSLRightInline{Travaglini KJ, Nabhan AN, Penland L, Sinha R, Gillich A, Sit RV, et al. A molecular cell atlas of the human lung from single-cell {RNA} sequencing. Nature {[}Internet{]}. 2020 Nov {[}cited 2023 Mar 27{]};587(7835):619--25. Available from: \url{https://www.nature.com/articles/s41586-020-2922-4}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-clynick_biomarker_2022}{}}%
+\bibitem[\citeproctext]{ref-clynick_biomarker_2022}
 \CSLLeftMargin{97. }%
 \CSLRightInline{Clynick B, Corte TJ, Jo HE, Stewart I, Glaspole IN, Grainge C, et al. \href{https://doi.org/10.1183/13993003.01181-2021}{Biomarker signatures for progressive idiopathic pulmonary fibrosis}. The European Respiratory Journal. 2022 Mar;59(3):2101181. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-axelsson_proteomic_2022}{}}%
+\bibitem[\citeproctext]{ref-axelsson_proteomic_2022}
 \CSLLeftMargin{98. }%
 \CSLRightInline{Axelsson GT, Gudmundsson G, Pratte KA, Aspelund T, Putman RK, Sanders JL, et al. \href{https://doi.org/10.1164/rccm.202110-2296OC}{The {Proteomic} {Profile} of {Interstitial} {Lung} {Abnormalities}}. American Journal of Respiratory and Critical Care Medicine. 2022 Aug;206(3):337--46. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-bowman_proteomic_2022}{}}%
+\bibitem[\citeproctext]{ref-bowman_proteomic_2022}
 \CSLLeftMargin{99. }%
 \CSLRightInline{Bowman WS, Newton CA, Linderholm AL, Neely ML, Pugashetti JV, Kaul B, et al. \href{https://doi.org/10.1016/S2213-2600(21)00503-8}{Proteomic biomarkers of progressive fibrosing interstitial lung disease: A multicentre cohort analysis}. The Lancet Respiratory Medicine. 2022 Jun;10(6):593--602. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-herazo-maya_validating_2017}{}}%
+\bibitem[\citeproctext]{ref-herazo-maya_validating_2017}
 \CSLLeftMargin{100. }%
 \CSLRightInline{Herazo-Maya JD, Sun J, Molyneaux PL, Li Q, Villalba JA, Tzouvelekis A, et al. Validating a 52-gene risk profile for outcome prediction in {Idiopathic} {Pulmonary} {Fibrosis}: An international multicentre cohort study. The Lancet Respiratory medicine {[}Internet{]}. 2017 Nov {[}cited 2023 Dec 5{]};5(11):857--68. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5677538/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-huang_blood_2021}{}}%
+\bibitem[\citeproctext]{ref-huang_blood_2021}
 \CSLLeftMargin{101. }%
 \CSLRightInline{Huang Y, Oldham JM, Ma SF, Unterman A, Liao SY, Barros AJ, et al. \href{https://doi.org/10.1164/rccm.202008-3093OC}{Blood {Transcriptomics} {Predicts} {Progression} of {Pulmonary} {Fibrosis} and {Associated} {Natural} {Killer} {Cells}}. American Journal of Respiratory and Critical Care Medicine. 2021 Jul;204(2):197--208. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-fernandez_perez_prognostic_2022}{}}%
+\bibitem[\citeproctext]{ref-fernandez_perez_prognostic_2022}
 \CSLLeftMargin{102. }%
 \CSLRightInline{Fernández Pérez ER, Harmacek LD, O'Connor BP, Danhorn T, Vestal B, Maier LA, et al. \href{https://doi.org/10.1136/thoraxjnl-2020-214790}{Prognostic accuracy of a peripheral blood transcriptome signature in chronic hypersensitivity pneumonitis}. Thorax. 2022 Jan;77(1):86--90. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-singh_novel_2018}{}}%
+\bibitem[\citeproctext]{ref-singh_novel_2018}
 \CSLLeftMargin{103. }%
 \CSLRightInline{Singh A, Shannon CP, Kim YW, Yang CX, Balshaw R, Cohen Freue GV, et al. Novel {Blood}-based {Transcriptional} {Biomarker} {Panels} {Predict} the {Late}-{Phase} {Asthmatic} {Response}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2018 Feb {[}cited 2024 Jan 18{]};197(4):450--62. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.201701-0110OC}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-spagnolo_role_2022}{}}%
+\bibitem[\citeproctext]{ref-spagnolo_role_2022}
 \CSLLeftMargin{104. }%
 \CSLRightInline{Spagnolo P, Tonelli R, Samarelli AV, Castelli G, Cocconcelli E, Petrarulo S, et al. \href{https://doi.org/10.1080/14728222.2022.2114897}{The role of immune response in the pathogenesis of idiopathic pulmonary fibrosis: Far beyond the {Th1}/{Th2} imbalance}. Expert Opinion on Therapeutic Targets. 2022 Jul;26(7):617--31. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-zaman_differences_2020}{}}%
+\bibitem[\citeproctext]{ref-zaman_differences_2020}
 \CSLLeftMargin{105. }%
 \CSLRightInline{Zaman T, Moua T, Vittinghoff E, Ryu JH, Collard HR, Lee JS. \href{https://doi.org/10.1016/j.chest.2020.02.009}{Differences in {Clinical} {Characteristics} and {Outcomes} {Between} {Men} and {Women} {With} {Idiopathic} {Pulmonary} {Fibrosis}: {A} {Multicenter} {Retrospective} {Cohort} {Study}}. Chest. 2020 Jul;158(1):245--51. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-roda-navarro_human_2000}{}}%
+\bibitem[\citeproctext]{ref-roda-navarro_human_2000}
 \CSLLeftMargin{106. }%
 \CSLRightInline{Roda-Navarro P, Arce I, Renedo M, Montgomery K, Kucherlapati R, Fernández-Ruiz E. \href{https://doi.org/10.1002/1521-4141(200002)30:2\%3C568::AID-IMMU568\%3E3.0.CO;2-Y}{Human {KLRF1}, a novel member of the killer cell lectin-like receptor gene family: Molecular characterization, genomic structure, physical mapping to the {NK} gene complex and expression analysis}. European Journal of Immunology. 2000 Feb;30(2):568--76. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-freud_nkp80_2016}{}}%
+\bibitem[\citeproctext]{ref-freud_nkp80_2016}
 \CSLLeftMargin{107. }%
 \CSLRightInline{Freud AG, Keller KA, Scoville SD, Mundy-Bosse BL, Cheng S, Youssef Y, et al. \href{https://doi.org/10.1016/j.celrep.2016.05.095}{{NKp80} {Defines} a {Critical} {Step} during {Human} {Natural} {Killer} {Cell} {Development}}. Cell Reports. 2016 Jul;16(2):379--91. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-mukherjee_klrf1_2023}{}}%
+\bibitem[\citeproctext]{ref-mukherjee_klrf1_2023}
 \CSLLeftMargin{108. }%
 \CSLRightInline{Mukherjee N, Ji N, Tan X, Chen CL, Noel ODV, Rodriguez-Padron M, et al. {KLRF1}, a novel marker of {CD56bright} {NK} cells, predicts improved survival for patients with locally advanced bladder cancer. Cancer Medicine {[}Internet{]}. 2023 {[}cited 2024 Jan 18{]};12(7):8970--80. Available from: \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/cam4.5579}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-vitale_identification_2001}{}}%
+\bibitem[\citeproctext]{ref-vitale_identification_2001}
 \CSLLeftMargin{109. }%
 \CSLRightInline{Vitale M, Falco M, Castriconi R, Parolini S, Zambello R, Semenzato G, et al. \href{https://doi.org/10.1002/1521-4141(200101)31:1\%3C233::AID-IMMU233\%3E3.0.CO;2-4}{Identification of {NKp80}, a novel triggering molecule expressed by human {NK} cells}. European Journal of Immunology. 2001 Jan;31(1):233--42. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-horikawa_abnormal_2005}{}}%
+\bibitem[\citeproctext]{ref-horikawa_abnormal_2005}
 \CSLLeftMargin{110. }%
 \CSLRightInline{Horikawa M, Hasegawa M, Komura K, Hayakawa I, Yanaba K, Matsushita T, et al. \href{https://doi.org/10.1111/j.0022-202X.2005.23767.x}{Abnormal natural killer cell function in systemic sclerosis: Altered cytokine production and defective killing activity}. The Journal of Investigative Dermatology. 2005 Oct;125(4):731--7. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-benyamine_natural_2018}{}}%
+\bibitem[\citeproctext]{ref-benyamine_natural_2018}
 \CSLLeftMargin{111. }%
 \CSLRightInline{Benyamine A, Magalon J, Sabatier F, Lyonnet L, Robert S, Dumoulin C, et al. Natural {Killer} {Cells} {Exhibit} a {Peculiar} {Phenotypic} {Profile} in {Systemic} {Sclerosis} and {Are} {Potent} {Inducers} of {Endothelial} {Microparticles} {Release}. Frontiers in Immunology {[}Internet{]}. 2018 Jul {[}cited 2024 Jan 18{]};9:1665. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6058015/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-liu_nk_2021}{}}%
+\bibitem[\citeproctext]{ref-liu_nk_2021}
 \CSLLeftMargin{112. }%
 \CSLRightInline{Liu M, Liang S, Zhang C. {NK} {Cells} in {Autoimmune} {Diseases}: {Protective} or {Pathogenic}? Frontiers in Immunology {[}Internet{]}. 2021 {[}cited 2024 Jan 18{]};12. Available from: \url{https://www.frontiersin.org/articles/10.3389/fimmu.2021.624687}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-esposito_natural_2005}{}}%
+\bibitem[\citeproctext]{ref-esposito_natural_2005}
 \CSLLeftMargin{113. }%
 \CSLRightInline{Esposito I, Perna F, Ponticiello A, Perrella M, Gilli M, Sanduzzi A. \href{https://doi.org/10.1177/039463200501800314}{Natural killer cells in {Bal} and peripheral blood of patients with idiopathic pulmonary fibrosis ({IPF})}. International Journal of Immunopathology and Pharmacology. 2005;18(3):541--5. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-bergantini_prognostic_2021}{}}%
+\bibitem[\citeproctext]{ref-bergantini_prognostic_2021}
 \CSLLeftMargin{114. }%
 \CSLRightInline{Bergantini L, d'Alessandro M, Cameli P, Otranto A, Finco T, Curatola G, et al. Prognostic role of {NK} cell percentages in bronchoalveolar lavage from patients with different fibrotic interstitial lung diseases. Clinical Immunology {[}Internet{]}. 2021 Sep {[}cited 2023 Jan 6{]};230:108827. Available from: \url{https://www.sciencedirect.com/science/article/pii/S1521661621001649}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-cruz_reduced_2021}{}}%
+\bibitem[\citeproctext]{ref-cruz_reduced_2021}
 \CSLLeftMargin{115. }%
 \CSLRightInline{Cruz T, Jia M, Sembrat J, Tabib T, Agostino N, Bruno TC, et al. Reduced {Proportion} and {Activity} of {Natural} {Killer} {Cells} in the {Lung} of {Patients} with {Idiopathic} {Pulmonary} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2021 Sep {[}cited 2023 Jan 4{]};204(5):608--10. Available from: \url{https://www.atsjournals.org/doi/full/10.1164/rccm.202012-4418LE}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-neumark_idiopathic_2020}{}}%
+\bibitem[\citeproctext]{ref-neumark_idiopathic_2020}
 \CSLLeftMargin{116. }%
 \CSLRightInline{Neumark N, Cosme C, Rose KA, Kaminski N. The {Idiopathic} {Pulmonary} {Fibrosis} {Cell} {Atlas}. American Journal of Physiology - Lung Cellular and Molecular Physiology {[}Internet{]}. 2020 Dec {[}cited 2024 Apr 3{]};319(6):L887--92. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7792683/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-galati_circulating_2020}{}}%
+\bibitem[\citeproctext]{ref-galati_circulating_2020}
 \CSLLeftMargin{117. }%
 \CSLRightInline{Galati D, Zanotta S, Polistina GE, Coppola A, Capitelli L, Bocchino M. \href{https://doi.org/10.1016/j.clim.2020.108454}{Circulating dendritic cells are severely decreased in idiopathic pulmonary fibrosis with a potential value for prognosis prediction}. Clinical Immunology (Orlando, Fla). 2020 Jun;215:108454. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-bensadoun_proteoglycan_1996}{}}%
+\bibitem[\citeproctext]{ref-bensadoun_proteoglycan_1996}
 \CSLLeftMargin{118. }%
 \CSLRightInline{Bensadoun ES, Burke AK, Hogg JC, Roberts CR. \href{https://doi.org/10.1164/ajrccm.154.6.8970376}{Proteoglycan deposition in pulmonary fibrosis}. American Journal of Respiratory and Critical Care Medicine. 1996 Dec;154(6 Pt 1):1819--28. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-sand_serological_2018}{}}%
+\bibitem[\citeproctext]{ref-sand_serological_2018}
 \CSLLeftMargin{119. }%
 \CSLRightInline{Sand JMB, Tanino Y, Karsdal MA, Nikaido T, Misa K, Sato Y, et al. A {Serological} {Biomarker} of {Versican} {Degradation} is {Associated} with {Mortality} {Following} {Acute} {Exacerbations} of {Idiopathic} {Interstitial} {Pneumonia}. Respiratory Research {[}Internet{]}. 2018 May {[}cited 2024 Jan 18{]};19(1):82. Available from: \url{https://doi.org/10.1186/s12931-018-0779-y}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhao_metabolic_2017}{}}%
+\bibitem[\citeproctext]{ref-ryerson_lumpers_2019}
 \CSLLeftMargin{120. }%
+\CSLRightInline{Ryerson CJ. Lumpers versus splitters: {What} to do with suspected idiopathic pulmonary fibrosis? Respirology {[}Internet{]}. 2019 {[}cited 2024 Feb 9{]};24(4):300--1. Available from: \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/resp.13442}}
+
+\bibitem[\citeproctext]{ref-zhao_metabolic_2017}
+\CSLLeftMargin{121. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhu_integration_2018}{}}%
-\CSLLeftMargin{121. }%
+\bibitem[\citeproctext]{ref-zhu_integration_2018}
+\CSLLeftMargin{122. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-christmann_association_2014}{}}%
-\CSLLeftMargin{122. }%
+\bibitem[\citeproctext]{ref-christmann_association_2014}
+\CSLLeftMargin{123. }%
 \CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-ghosh_lung_2022}{}}%
-\CSLLeftMargin{123. }%
+\bibitem[\citeproctext]{ref-ghosh_lung_2022}
+\CSLLeftMargin{124. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-el-chemaly_immunome_2018}{}}%
-\CSLLeftMargin{124. }%
+\bibitem[\citeproctext]{ref-el-chemaly_immunome_2018}
+\CSLLeftMargin{125. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhou_integrated_2019}{}}%
-\CSLLeftMargin{125. }%
+\bibitem[\citeproctext]{ref-zhou_integrated_2019}
+\CSLLeftMargin{126. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-vosa_comprehensive_2014}{}}%
-\CSLLeftMargin{126. }%
+\bibitem[\citeproctext]{ref-vosa_comprehensive_2014}
+\CSLLeftMargin{127. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
-\leavevmode\vadjust pre{\hypertarget{ref-wold_nonlinear_1973}{}}%
-\CSLLeftMargin{127. }%
+\bibitem[\citeproctext]{ref-wold_nonlinear_1973}
+\CSLLeftMargin{128. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1456,8 +1504,7 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 
 \setcounter{secnumdepth}{0}
 
-\hypertarget{appendix-a---supplementary-information-for-ild-systematic-review-and-meta-analysis}{%
-\subsection{Appendix A - Supplementary information for ILD Systematic Review and Meta-Analysis}\label{appendix-a---supplementary-information-for-ild-systematic-review-and-meta-analysis}}
+\subsection{Appendix A - Supplementary information for ILD Systematic Review and Meta-Analysis}\label{appendix-a---supplementary-information-for-ild-systematic-review-and-meta-analysis}
 
 \renewcommand{\thefigure}{A2.\arabic{figure}}
 \setcounter{figure}{0}
@@ -1466,8 +1513,7 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \renewcommand{\theequation}{A2.\arabic{equation}}
 \setcounter{equation}{0}
 
-\hypertarget{search-terms}{%
-\subsection{Search terms}\label{search-terms}}
+\subsection{Search terms}\label{search-terms}
 
 Results from EMBASE and Medline were retrieved on January 18th, 2018 using keywords and MeSH terms for idiopathic interstitial pneumonias (1-9), connective tissue disease-associated ILDs (10-17), hypersensitivity pneumonitis (18), and gene expression (20-21). We limited our results to human and English language studies (24-25), and restricted results to those published after the year 2000 (26) given the recency of transcriptomics as a technology. On November 23rd 2023, the search was updated with the addition of terms to omit publications relating to COVID19. Below are the search terms used for EMBASE; a similar strategy was adopted for MEDLINE.
 
@@ -1529,20 +1575,17 @@ limit 25 to yr="2000-Current"
 \end{verbatim}
 \end{enumerate}
 
-\hypertarget{eligibility-criteria}{%
-\subsection{Eligibility criteria}\label{eligibility-criteria}}
+\subsection{Eligibility criteria}\label{eligibility-criteria}
 
 We included studies that performed gene expression profiling of adult patients with fibrotic ILDs such as idiopathic pulmonary fibrosis, chronic hypersensitivity pneumonitis, interstitial pneumonia with autoimmune features, idiopathic nonspecific interstitial pneumonia, and connective tissue disease-associated ILDs. We excluded studies investigating non-fibrotic ILDs and inflammatory ILDs such as vasculitis or sarcoidosis, and restricted our investigations to English-language studies performed with samples from human patients. Studies containing transcriptomics data were included if they performed whole genome expression profiling of whole lung or blood samples, did not examine isolated cell populations (i.e.~fibroblasts), and contained profiling of healthy control samples. Targeted gene expression assays (e.g.~qPCR, NanoString) were excluded.
 
-\hypertarget{study-screening-and-data-extraction}{%
-\subsection{Study screening and data extraction}\label{study-screening-and-data-extraction}}
+\subsection{Study screening and data extraction}\label{study-screening-and-data-extraction}
 
 Two reviewers (Daniel He and Sabina A Guler) independently screened study titles and abstracts using Covidence, and determined eligibility for final inclusion after full-text review. Disagreements on eligibility were resolved by a third reviewer (Scott J Tebbutt or Christopher J Ryerson). Lists of differentially expressed genes between ILD subtype and control samples were extracted from each study, along with raw or processed transcriptomics data (if available) and relevant information regarding its generation (sample/RNA extraction method, gene expression profiling technology). For each transcriptomics sample, corresponding patient-level clinical data was extracted where available (age, sex, ethnicity, diagnosis, exposure history, serology, pulmonary function tests, radiological pattern, histological pattern, treatment status).
 
-\hypertarget{qc}{%
-\subsection{Quality control of identified datasets}\label{qc}}
+\subsection{Quality control of identified datasets}\label{qc}
 
-To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\protect\hyperlink{ref-dupuy_critical_2007}{40}{]}:
+To assess the risk of bias in the included studies, we used a modified checklist based on the criteria outlined by Dupuy and Simon {[}\citeproc{ref-dupuy_critical_2007}{40}{]}:
 
 \underline{Objective}
 
@@ -1603,17 +1646,15 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\protect\hyperlink{ref-zhu_integration_2018}{121}{]}, one {[}\protect\hyperlink{ref-christmann_association_2014}{122}{]} was a duplicate of {[}\protect\hyperlink{ref-christmann_mir-155_2016}{81}{]}, one {[}\protect\hyperlink{ref-ghosh_lung_2022}{123}{]} was a suspected duplicate of another study {[}\protect\hyperlink{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\protect\hyperlink{ref-el-chemaly_immunome_2018}{124}{]}, and two studies were omitted due to poor data quality {[}\protect\hyperlink{ref-jia_interleukin_2023}{57}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{121},\citeproc{ref-zhu_integration_2018}{122}{]}, one {[}\citeproc{ref-christmann_association_2014}{123}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{124}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{125}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{126}{]}.
 
-\hypertarget{robust-rank-aggregation}{%
-\subsection{Robust rank aggregation}\label{robust-rank-aggregation}}
+\subsection{Robust rank aggregation}\label{robust-rank-aggregation}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\protect\hyperlink{ref-vosa_comprehensive_2014}{126}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{127}{]}.
 
-\hypertarget{microarray-and-rna-seq-processing}{%
-\subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}}
+\subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}
 
-Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) or Sequence Read Archive (SRA). When available, author-provided normalized gene expression matrices were used for data integration. If author-provided normalized were unavailable, microarrays were normalized using `limma' (v.3.55.3) under recommended manufacturer-specific protocol, and RNA-seq data were TMM (trimmed mean of M values)-normalized. For GSE52463, GSE99621, GSE199152, counts were TMM-normalized; fastq files from SRA048904 were mapped to a reference genome (GENCODE Human GRCh38.p13 Release 38) to obtain gene-level count information and then TMM-normalized. Ensembl gene IDs appearing in \textgreater80\% of the total extracted datasets were used to concatenate the extracted datasets (total: 15034 genes). For datasets containing replicates of samples, the mean log2-normalized expression across replicates was used. If noted, apical and non-fibrotic lung samples were omitted from the analysis as we expected the majority of lung biopsy or explant samples to be from fibrotic regions {[}\protect\hyperlink{ref-luzina_transcriptomic_2018}{84}{]}. Control samples consisted of histologically normal tissue from lung cancer samples {[}\protect\hyperlink{ref-furusawa_chronic_2020}{67}{]}, chronic obstructive pulmonary disease (COPD) {[}\protect\hyperlink{ref-deng_detecting_2013}{64}{]}, pneumothorax {[}\protect\hyperlink{ref-geng_down-regulation_2015}{80}{]}, or healthy lung specimens. After data processing, each dataset was examined for sample outliers (Figure \ref{fig:outlierPCA}).
+Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) or Sequence Read Archive (SRA). When available, author-provided normalized gene expression matrices were used for data integration. If author-provided normalized were unavailable, microarrays were normalized using `limma' (v.3.55.3) under recommended manufacturer-specific protocol, and RNA-seq data were TMM (trimmed mean of M values)-normalized. For GSE52463, GSE99621, GSE199152, counts were TMM-normalized; fastq files from SRA048904 were mapped to a reference genome (GENCODE Human GRCh38.p13 Release 38) to obtain gene-level count information and then TMM-normalized. Ensembl gene IDs appearing in \textgreater80\% of the total extracted datasets were used to concatenate the extracted datasets (total: 15034 genes). For datasets containing replicates of samples, the mean log2-normalized expression across replicates was used. If noted, apical and non-fibrotic lung samples were omitted from the analysis as we expected the majority of lung biopsy or explant samples to be from fibrotic regions {[}\citeproc{ref-jaffar_matrix_2022}{51},\citeproc{ref-luzina_transcriptomic_2018}{84}{]}. Control samples consisted of histologically normal tissue from lung cancer samples {[}\citeproc{ref-yu_reduced_2017}{47},\citeproc{ref-cho_systems_2011}{62},\citeproc{ref-furusawa_chronic_2020}{67},\citeproc{ref-pardo_up-regulation_2005}{71},\citeproc{ref-konishi_gene_2009}{75},\citeproc{ref-christmann_mir-155_2016}{81}{]}, chronic obstructive pulmonary disease (COPD) {[}\citeproc{ref-deng_detecting_2013}{64}{]}, pneumothorax {[}\citeproc{ref-geng_down-regulation_2015}{80}{]}, or healthy lung specimens. After data processing, each dataset was examined for sample outliers (Figure \ref{fig:outlierPCA}).
 
 
 
@@ -1626,10 +1667,9 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 \caption[Outlier detection]{\textbf{Sample outlier detection.} Principal component analysis (PCA) of author-normalized expression matrices to identify data outliers (defined as being 3 standard deviations away from the mean of principal component 1 or 2).}\label{fig:outlierPCA}
 \end{figure}
 
-\hypertarget{data}{%
-\subsection{Data integration and analysis}\label{data}}
+\subsection{Data integration and analysis}\label{data}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\protect\hyperlink{ref-wold_nonlinear_1973}{127}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{128}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 
@@ -4762,10 +4802,9 @@ SSc-ILD Down & VE Capillary A & 8.26e-27\\*
 
 \end{singlespace}
 
-\hypertarget{biclustering-1}{%
-\subsection{Biclustering}\label{biclustering-1}}
+\subsection{Biclustering}\label{biclustering-1}
 
-In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) {[}\protect\hyperlink{ref-rose_mosbi_2022}{52}{]}. UnPaSt is an \href{https://github.com/ozolotareva/UnPaSt}{unconstrained version} of the method published in {[}\protect\hyperlink{ref-zolotareva_identification_2021}{53}{]}. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt.
+In MoSBi (v1.4.0), biclusters are identified via biclustering algorithms (bimax, fabia, isa2, plaid, QUBIC) {[}\citeproc{ref-rose_mosbi_2022}{52}{]}. UnPaSt is an \href{https://github.com/ozolotareva/UnPaSt}{unconstrained version} of the method published in {[}\citeproc{ref-zolotareva_identification_2021}{53}{]}. Ensemble biclusters from the identified biclusters are determined through Louvain community aggregation, while a similar procedure was performed for UnPaSt biclusters using weighted gene co-expression network analysis. Biclusters were filtered to select for those enriched in specific lung disease groups (control, IPF, HP, NSIP, COPD). We also included CTD-ILD (including unspecified CTD-ILD subtypes, RA-ILD, SSc-ILD) and other ILD (acute interstitial pneumonia, COP, CPFE, DIP, IPF-acute exacerbation, RB-ILD, unknown fibrosis) samples in our biclustering analysis to increase the number of ILD samples; however, these were not used in filtering for biclusters enriched in specific disease groups. Final biclusters were named sequentially with an M- prefix if identified from MoSBi or a U- prefix if identified by UnPaSt.
 
 
 
@@ -5389,8 +5428,7 @@ M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
 
 \clearpage
 
-\hypertarget{appendix-b---supplementary-information-for-blood-biomarkers-pilot-study}{%
-\subsection{Appendix B - Supplementary information for Blood Biomarkers Pilot Study}\label{appendix-b---supplementary-information-for-blood-biomarkers-pilot-study}}
+\subsection{Appendix B - Supplementary information for Blood Biomarkers Pilot Study}\label{appendix-b---supplementary-information-for-blood-biomarkers-pilot-study}
 
 \renewcommand{\thefigure}{A3.\arabic{figure}}
 \setcounter{figure}{0}
@@ -5401,8 +5439,7 @@ M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
 
 \captionsetup{width=6.5in}
 
-\hypertarget{differential-expression}{%
-\subsection{Differential expression}\label{differential-expression}}
+\subsection{Differential expression}\label{differential-expression}
 
 
 
@@ -5458,8 +5495,7 @@ DCAF6 & -0.008 & 0.032 & 0.195 & CD59 & -0.008 & 0.016 & 0.098\\
 
 \newpage
 
-\hypertarget{biomarker-panels}{%
-\subsection{Biomarker panels}\label{biomarker-panels}}
+\subsection{Biomarker panels}\label{biomarker-panels}
 
 \captionsetup{width=6.5in}
 
@@ -5521,8 +5557,7 @@ GNLY & -0.040 & NAPA & -0.051 & HLA-A & 0.280 & GNAS & 0.405\\
 
 \clearpage
 
-\hypertarget{appendix-c---supplementary-information-for-chapter-four}{%
-\subsection{Appendix C - Supplementary information for Chapter Four}\label{appendix-c---supplementary-information-for-chapter-four}}
+\subsection{Appendix C - Supplementary information for Chapter Four}\label{appendix-c---supplementary-information-for-chapter-four}
 
 \renewcommand{\thefigure}{A4.\arabic{figure}}
 \setcounter{figure}{0}

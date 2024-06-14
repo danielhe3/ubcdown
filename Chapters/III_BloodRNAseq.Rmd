@@ -12,7 +12,57 @@ The results from the previous two chapters highlight the link between transcript
 
 ## Methods
 
+### Study population and sample processing
+
+As part of the Canadian Registry for Pulmonary Fibrosis (CARE-PF), patients with ILD were prospectively recruited with written informed consent between 2012 and 2019 at the Pacific Lung Health Centre located at St. Paul's Hospital (Vancouver, BC, Canada). Demographic (age, race, sex) and clinical data (FVC%, D\textsubscript{LCO}% predicted) was collected at time of sampling. ILD diagnoses were determined by consensus agreement by a MDD panel consisting of at least one pulmonologist, radiologist, and pathologist, and independently re-evaluated to confirm diagnoses and other clinical features (including HRCT patterns) between January 2021 and March 2022 [marinescu2023]. Patients were defined as having PPF on the basis of the INBUILD criteria (see: [Introduction - Progressive pulmonary fibrosis](#ppf)). 
+
+At time of recruitment, patient whole blood samples were collected in PAXgene Blood RNA Tubes (BD Biosciences, Mississauga, ON, Canada). We selected samples to examine differences between patients with ILD that experience PPF (n=39) and those that did not (n=57) with a balanced representation of ILD subtypes, and included samples if patients were not undergoing active pharmalogical treatment at time of blood sampling. PAXgene-preserved whole blood samples were extracted for RNA using the PAXgene Blood miRNA Kit (PreAnalytiX, Hombrechtikon, Switzerland), then analyzed using the RNA 6000 Nano Kit (Agilent, Santa Clara, California, USA) to confirm RNA quality via Bioanalyzer analysis. RNA was sequenced using the Illumina xxx at a depth of xxx with xxbp reads. 
+
+\begin{landscape}
+
+\captionsetup{width=8.5in}
+
+(ref:race) \textbf{Race, n (\%)}
+
+(ref:bloodpxrnaseq-cap) \textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses unless otherwise indicated). \textit{P}-values were determined using one-way analysis of variance (ANOVA) for continuous variables and Fisher's exact text for categorical variables. Variables relating to progression were determined within a 2-year period. 
+
+```{r bloodpxrnaseq, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD blood RNA-seq study cohort', fig.align='center'}
+bloodpxrnaseq <- readr::read_csv(here::here('Tables', 'BloodRNAseq', 'px_summary.csv'))
+colnames(bloodpxrnaseq)[1] <- ""
+kableExtra::kbl(
+  bloodpxrnaseq,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lccccccl",
+  caption="(ref:bloodpxrnaseq-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(1, width="1.5in") %>%
+  column_spec(2, width="1.05in") %>% #SSc
+  column_spec(3, width="1.05in") %>% #IPF
+  column_spec(4, width="0.97in") %>% #HP
+  column_spec(5, width="0.97in") %>% #RA
+  column_spec(6, width="0.95in") %>% # IPAF
+  column_spec(7, width="1.3in") %>% # Unc
+  column_spec(8, width="0.7in") %>% # p
+  row_spec(c(3,8,11),hline_after=TRUE) %>%
+  row_spec(c(1,9,12), bold=T) %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+\end{landscape}
+
+
+
+### Differential Expression Analysis
+
+### Survival Analysis
+
 ## Results
+
+### 
 
 ## Discussion
 

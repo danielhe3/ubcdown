@@ -211,7 +211,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{4.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_four, child = './Chapters/III_BloodRNAseq.Rmd', eval = F}
+```{r chapter_four, child = './Chapters/III_BloodRNAseq.Rmd', eval = T}
 ```
 
 \clearpage

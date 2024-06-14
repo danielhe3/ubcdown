@@ -30,7 +30,7 @@ A major diagnostic challenge within the ILD field is the identification of IPF. 
 
 The most challenging differential diagnosis involves distinguishing between IPF, HP, and IPAF. HP is the result of an immune response within the lung due to extended exposure to bacterial, fungal, animal, or insect proteins, which can eventually lead to fibrosis. A recent multi-centre study showed that inter-multidisciplinary teams disagreed the most when it came to diagnosing HP compared to other types of ILD, highlighting the difficulties associated with its nonspecific clinical presentation and resultant lack of established diagnostic criteria [@walsh_multicentre_2016]. IPAF is a newly proposed clinical designation that presents with features suggestive of an autoimmune condition, yet do not fulfill diagnostic criteria for any particular connective tissue disease [@graney_interstitial_2019]. When all diagnostic tools have been exhausted with no definitive diagnosis, patients are considered to have unclassifiable ILD, which occurs in approximately 15% of ILD patients [@skolnik_unclassifiable_2016]. Treatment of unclassifiable ILD patients is particularly challenging with no clearly preferred option in the majority of these patients.
 
-## Progressive pulmonary fibrosis
+## Progressive pulmonary fibrosis {#ppf}
 
 Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that display a similar disease progression to IPF, which is defined over time by a decline in lung function, worsening respiratory symptoms, and increased fibrosis as seen on HRCT. Numerous criteria have been proposed to define PPF: 
 
