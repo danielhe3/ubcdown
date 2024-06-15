@@ -923,7 +923,12 @@ White & 21 (72\%) & 20 (74\%) & 6 (86\%) & 4 (67\%) & 3 (75\%) & 14 (82\%) & \\
 FVC\% predicted & 34; 83.50 ± 18.42 & 76.22 ± 14.55 & 74.14 ± 25.18 & 97.17 ± 18.90 & 80.00 ± 25.86 & 85.94 ± 17.15 & \textit{p} = 0.1051\\
 DLCO\% predicted & 26; 56.81 ± 17.41 & 13; 50.77 ± 12.42 & 6; 56.33 ± 11.20 & 5; 59.00 ± 21.69 & 3; 59.33 ± 2.31 & 13; 63.15 ± 17.40 & \textit{p} = 0.5555\\
 \midrule
-\textbf{Progression, n (\%)} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+\textbf{Radiological Pattern} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
+UIP & 2 (29\%) & 1 (20\%) & 17 (63\%) & 4 (67\%) & 0 (0\%) & 3 (19\%) & \textit{p} < 0.0001\\
+fHP & 3 (43\%) & 0 (0\%) & 3 (11\%) & 1 (17\%) & 2 (6\%) & 6 (38\%) & \textit{p} = 0.0172\\
+NSIP & 2 (29\%) & 3 (60\%) & 3 (11\%) & 1 (17\%) & 31 (89\%) & 4 (25\%) & \textit{p} < 0.0001\\
+Unclassifiable & 0 (0\%) & 1 (20\%) & 4 (15\%) & 0 (0\%) & 2 (6\%) & 3 (19\%) & \textit{p} = 0.4498\\
+Progression, n (\%) &    &    &    &    &    &    & \\
 PPF & 9 (26\%) & 15 (56\%) & 3 (43\%) & 4 (67\%) & 3 (75\%) & 5 (29\%) & \textit{p} = 0.0581\\
 FVC Rel. Decl. >10\% & 5 (14\%) & 12 (44\%) & 1 (14\%) & 4 (67\%) & 2 (50\%) & 3 (19\%) & \textit{p} = 0.0148\\
 FVC Rel. Decl. >5\% & 11 (31\%) & 17 (63\%) & 2 (29\%) & 4 (67\%) & 3 (75\%) & 5 (31\%) & \textit{p} = 0.0527\\
@@ -937,13 +942,15 @@ Clinical Progression & 7 (20\%) & 16 (59\%) & 3 (43\%) & 2 (33\%) & 0 (0\%) & 2 
 
 \subsubsection{Data analysis}\label{data-analysis-1}
 
-Differential expression analysis was performed using the `edgeR' (v4.0.16) and `limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (\ref{fig:rnaseqPCA}).
+Differential expression analysis was performed using the `edgeR' (v4.0.16) and `limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (Figure \ref{fig:rnaseqPCA}).
 
 Survival analysis was performed using the elastic net implementation of Cox proportional hazards (Cox-PH) models in the `glmnet' package (v4.1-8). Repeated 10-fold cross-validation was performed on all (100x repeat) or stratifications (50x repeat) of the centred and scaled TMM-normalized RNA-seq data. Using the C-index as a performance metric, the repeat with the C-index closest to the mean C-index of all repeats was selected as the final model. Validation datasets GSE28042 {[}\citeproc{ref-herazo-maya_peripheral_2013}{59}{]} and GSE93606 {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]} were downloaded from GEO. As there were genes from the whole blood RNA-seq matrix missing from the validation datasets and vice versa, sparse matrices of each validation dataset were created for compatibility with the glmnet `predict' function to account for missing variables.
 
 \subsection{Results}\label{results-2}
 
-\subsubsection{The SSc-ILD peripheral transcriptome is distinct from other ILD subtypes}\label{the-ssc-ild-peripheral-transcriptome-is-distinct-from-other-ild-subtypes}
+\subsubsection{The peripheral transcriptome is distinct between ILD subtypes}\label{the-peripheral-transcriptome-is-distinct-between-ild-subtypes}
+
+We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \ref{fig:rnaseqPCA}), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR\textless0.05, a majority of which were associated with interferon signaling (Figure \ref{fig:degild}A,C-D, Table \ref{tab:}, Table \ref{tab:}). No DEGs were identified between IPF and HP (Figure \ref{fig:degild}B), but two DEGs at FDR\textless0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4).
 
 
 
@@ -955,6 +962,8 @@ Survival analysis was performed using the elastic net implementation of Cox prop
 
 \caption[SSc-ILD transcriptome]{\textbf{SSc-ILD is transcriptionally distinct.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***) and FDR\textless0.05 (**). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF.}\label{fig:degild}
 \end{figure}
+
+\subsubsection{}\label{section}
 
 \subsubsection{Peripheral gene signatures are associated with transplant-free survival}\label{peripheral-gene-signatures-are-associated-with-transplant-free-survival}
 
@@ -5489,7 +5498,7 @@ M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
 
 \begin{table}[!h]
 \centering\centering
-\caption{\label{tab:pilotpftdeg}\textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for using treatment status and race.}
+\caption{\label{tab:pilotpftdeg}\textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for treatment status and race.}
 \centering
 \begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
 \toprule
@@ -5598,5 +5607,202 @@ GNLY & -0.040 & NAPA & -0.051 & HLA-A & 0.280 & GNAS & 0.405\\
 \setcounter{table}{0}
 \renewcommand{\theequation}{A4.\arabic{equation}}
 \setcounter{equation}{0}
+
+\captionsetup{width=6.5in}
+
+\subsection{Differential expression}\label{differential-expression-1}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth,]{./Figures/BloodRNAseq/bloodRNAseq_pca_v2} 
+
+}
+
+\caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Principal component analysis (PCA) of blood RNA-seq cohort.} (A) PCA plot of blood RNA-seq samples. (B) Correlation of PCA components (PCs) with demographic and clinical metadata. Values shown are Pearson correlation coefficients.}\label{fig:rnaseqPCA}
+\end{figure}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ipfvsssc}\textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\toprule
+Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+ENSG00000141664 & ZCCHC2 & -0.989 & 2.62e-07 & 0.003\\
+ENSG00000184368 & MAP7D2 & -2.588 & 2.90e-07 & 0.003\\
+ENSG00000100427 & MLC1 & 0.652 & 1.48e-06 & 0.008\\
+ENSG00000185745 & IFIT1 & -1.825 & 1.59e-06 & 0.008\\
+ENSG00000180644 & PRF1 & 0.885 & 1.61e-06 & 0.008\\
+ENSG00000140807 & NKD1 & -0.734 & 1.98e-06 & 0.008\\
+ENSG00000152558 & TMEM123 & -0.706 & 2.76e-06 & 0.009\\
+ENSG00000152778 & IFIT5 & -0.958 & 3.12e-06 & 0.009\\
+ENSG00000147050 & KDM6A & -0.476 & 4.90e-06 & 0.013\\
+ENSG00000205413 & SAMD9 & -0.720 & 6.54e-06 & 0.013\\
+ENSG00000119922 & IFIT2 & -1.104 & 7.46e-06 & 0.013\\
+ENSG00000134321 & RSAD2 & -2.215 & 7.68e-06 & 0.013\\
+ENSG00000069424 & KCNAB2 & 0.284 & 7.99e-06 & 0.013\\
+ENSG00000119917 & IFIT3 & -1.342 & 8.37e-06 & 0.013\\
+ENSG00000160190 & SLC37A1 & -0.278 & 1.20e-05 & 0.015\\
+ENSG00000115523 & GNLY & 1.066 & 1.29e-05 & 0.015\\
+ENSG00000006757 & PNPLA4 & -0.468 & 1.38e-05 & 0.015\\
+ENSG00000147113 & DIPK2B & -2.220 & 1.41e-05 & 0.015\\
+ENSG00000214402 & LCNL1 & 1.436 & 1.44e-05 & 0.015\\
+ENSG00000173674 & EIF1AX & -0.483 & 1.53e-05 & 0.015\\
+ENSG00000138646 & HERC5 & -1.409 & 1.55e-05 & 0.015\\
+ENSG00000141736 & ERBB2 & 0.664 & 2.01e-05 & 0.017\\
+ENSG00000134326 & CMPK2 & -1.682 & 2.02e-05 & 0.017\\
+ENSG00000115267 & IFIH1 & -0.809 & 2.08e-05 & 0.017\\
+ENSG00000160191 & PDE9A & -1.083 & 2.24e-05 & 0.017\\
+ENSG00000189409 & MMP23B & 0.901 & 2.35e-05 & 0.018\\
+ENSG00000111331 & OAS3 & -1.544 & 2.49e-05 & 0.018\\
+ENSG00000133106 & EPSTI1 & -1.332 & 2.59e-05 & 0.018\\
+ENSG00000100453 & GZMB & 0.793 & 2.90e-05 & 0.018\\
+ENSG00000137959 & IFI44L & -2.152 & 2.95e-05 & 0.018\\
+ENSG00000107201 & RIGI & -0.768 & 2.97e-05 & 0.018\\
+ENSG00000089472 & HEPH & -2.276 & 3.22e-05 & 0.019\\
+ENSG00000086712 & TXLNG & -0.415 & 3.43e-05 & 0.019\\
+ENSG00000260828 & HMGB3P32 & 0.989 & 3.69e-05 & 0.020\\
+ENSG00000167508 & MVD & 0.383 & 3.71e-05 & 0.020\\
+ENSG00000067840 & PDZD4 & 0.712 & 3.90e-05 & 0.020\\
+ENSG00000159674 & SPON2 & 0.745 & 3.95e-05 & 0.020\\
+ENSG00000174600 & CMKLR1 & 0.655 & 4.11e-05 & 0.020\\
+ENSG00000270641 & TSIX & -1.875 & 4.28e-05 & 0.020\\
+ENSG00000173068 & BNC2 & 1.091 & 4.29e-05 & 0.020\\
+ENSG00000157601 & MX1 & -1.363 & 4.32e-05 & 0.020\\
+ENSG00000188290 & HES4 & -1.230 & 4.34e-05 & 0.020\\
+ENSG00000136816 & TOR1B & -0.482 & 4.37e-05 & 0.020\\
+ENSG00000075234 & TTC38 & 0.480 & 4.67e-05 & 0.020\\
+ENSG00000177409 & SAMD9L & -0.828 & 4.79e-05 & 0.020\\
+ENSG00000149557 & FEZ1 & 0.888 & 4.81e-05 & 0.020\\
+ENSG00000078081 & LAMP3 & -1.485 & 5.16e-05 & 0.021\\
+ENSG00000205336 & ADGRG1 & 0.889 & 5.18e-05 & 0.021\\
+ENSG00000130741 & EIF2S3 & -0.189 & 5.30e-05 & 0.021\\
+ENSG00000137965 & IFI44 & -1.652 & 5.46e-05 & 0.021\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ipfsscpathway}\textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.}}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}>{\centering}X}
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+SSc-ILD Up & HALLMARK INTERFERON GAMMA RESPONSE & 7.41e-87\\
+SSc-ILD Up & HALLMARK INTERFERON ALPHA RESPONSE & 3.16e-82\\
+SSc-ILD Up & GOBP RESPONSE TO VIRUS & 1.64e-49\\
+SSc-ILD Up & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 1.33e-47\\
+SSc-ILD Up & GOBP DEFENSE RESPONSE TO SYMBIONT & 2.66e-46\\
+SSc-ILD Up & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 9.41e-45\\
+SSc-ILD Up & GOBP DEFENSE RESPONSE & 5.97e-44\\
+SSc-ILD Up & REACTOME INTERFERON SIGNALING & 1.43e-43\\
+SSc-ILD Up & GOBP INNATE IMMUNE RESPONSE & 1.65e-41\\
+SSc-ILD Up & GOBP IMMUNE RESPONSE & 3.59e-41\\
+SSc-ILD Up & GOBP REGULATION OF VIRAL PROCESS & 5.03e-36\\
+SSc-ILD Up & REACTOME INTERFERON ALPHA BETA SIGNALING & 1.15e-29\\
+SSc-ILD Up & REACTOME CYTOKINE SIGNALING IN IMMUNE SYSTEM & 4.22e-29\\
+SSc-ILD Up & GOBP NEGATIVE REGULATION OF VIRAL PROCESS & 5.15e-29\\
+SSc-ILD Up & GOBP REGULATION OF VIRAL GENOME REPLICATION & 8.29e-28\\
+SSc-ILD Up & GOBP VIRAL PROCESS & 4.25e-27\\
+SSc-ILD Up & DC LPS 6h & 8.71e-27\\
+SSc-ILD Up & Macrophage LPS 4h & 1.16e-25\\
+SSc-ILD Up & GOBP NEGATIVE REGULATION OF VIRAL GENOME REPLICATION & 4.44e-25\\
+SSc-ILD Up & GOBP VIRAL GENOME REPLICATION & 4.44e-25\\
+SSc-ILD Down & NK CD56+ & 2.43e-39\\
+SSc-ILD Down & T cells gammadelta & 1.16e-19\\
+SSc-ILD Down & Peripheral CD8+ T cells & 6.09e-12\\
+SSc-ILD Down & T cells effector memory & 1.12e-09\\
+SSc-ILD Down & T cells BAFF+ & 1.81e-06\\
+SSc-ILD Down & KEGG NATURAL KILLER CELL MEDIATED CYTOTOXICITY & 9.71e-06\\
+SSc-ILD Down & Th1 & 1.57e-05\\
+SSc-ILD Down & Th2 & 1.24e-04\\
+SSc-ILD Down & KEGG GRAFT VERSUS HOST DISEASE & 2.29e-04\\
+SSc-ILD Down & GOBP APOPTOTIC PROCESS & 3.18e-04\\
+SSc-ILD Down & GOBP CYTOLYSIS & 4.63e-04\\
+SSc-ILD Down & HALLMARK ALLOGRAFT REJECTION & 5.97e-04\\
+SSc-ILD Down & HALLMARK APOPTOSIS & 6.20e-04\\
+SSc-ILD Down & Blood & 7.14e-04\\
+SSc-ILD Down & Thymic SP CD8+ T cells & 7.14e-04\\
+SSc-ILD Down & Treg & 7.14e-04\\
+SSc-ILD Down & GOBP LYMPHOCYTE ACTIVATION & 2.05e-03\\
+SSc-ILD Down & GOBP PROTEOLYSIS & 2.05e-03\\
+SSc-ILD Down & GOBP COLLAGEN METABOLIC PROCESS & 2.78e-03\\
+SSc-ILD Down & GOBP COLLAGEN CATABOLIC PROCESS & 4.78e-03\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ILDdeg}\textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedleft\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.6in}}
+\toprule
+Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+IPF vs HP & ENSG00000266900 &  & -2.144 & 4.53e-05 & 1.000\\
+IPF vs HP & ENSG00000175445 & LPL & -1.598 & 4.74e-04 & 1.000\\
+IPF vs HP & ENSG00000217130 &  & 1.646 & 5.58e-04 & 1.000\\
+IPF vs HP & ENSG00000230587 & LINC02580 & -0.723 & 1.05e-03 & 1.000\\
+IPF vs HP & ENSG00000230387 &  & -2.120 & 1.49e-03 & 1.000\\
+\addlinespace
+HP vs SSc-ILD & ENSG00000196747 & H2AC13 & 1.601 & 9.54e-05 & 0.862\\
+HP vs SSc-ILD & ENSG00000185745 & IFIT1 & -2.336 & 9.88e-05 & 0.862\\
+HP vs SSc-ILD & ENSG00000288025 &  & 1.672 & 1.95e-04 & 0.862\\
+HP vs SSc-ILD & ENSG00000223754 &  & 1.654 & 1.97e-04 & 0.862\\
+HP vs SSc-ILD & ENSG00000142949 & PTPRF & 1.459 & 2.46e-04 & 0.862\\
+\addlinespace
+IPF vs IPAF & ENSG00000231908 & IDH1-AS1 & -3.177 & 2.25e-06 & 0.049\\
+IPF vs IPAF & ENSG00000132688 & NES & -3.077 & 4.09e-06 & 0.049\\
+IPF vs IPAF & ENSG00000116863 & ADPRS & -0.569 & 1.35e-05 & 0.065\\
+IPF vs IPAF & ENSG00000099860 & GADD45B & -0.915 & 1.36e-05 & 0.065\\
+IPF vs IPAF & ENSG00000131188 & PRR7 & -0.749 & 1.55e-05 & 0.065\\
+\addlinespace
+SSc-ILD vs IPAF & ENSG00000130741 & EIF2S3 & 0.416 & 2.13e-06 & 0.024\\
+SSc-ILD vs IPAF & ENSG00000126461 & SCAF1 & -0.665 & 2.56e-06 & 0.024\\
+SSc-ILD vs IPAF & ENSG00000278847 &  & -3.426 & 4.02e-06 & 0.024\\
+SSc-ILD vs IPAF & ENSG00000231535 & LINC00278 & -5.901 & 5.07e-06 & 0.024\\
+SSc-ILD vs IPAF & ENSG00000286009 &  & -4.624 & 6.03e-06 & 0.024\\
+\addlinespace
+IPF vs RA-ILD & ENSG00000204866 & IGFL2 & -2.722 & 9.11e-06 & 0.218\\
+IPF vs RA-ILD & ENSG00000147113 & DIPK2B & -2.864 & 7.95e-05 & 0.906\\
+IPF vs RA-ILD & ENSG00000184368 & MAP7D2 & -2.722 & 1.13e-04 & 0.906\\
+IPF vs RA-ILD & ENSG00000285018 &  & -1.957 & 2.19e-04 & 0.929\\
+IPF vs RA-ILD & ENSG00000221957 & KIR2DS4 & -2.179 & 2.70e-04 & 0.929\\
+\addlinespace
+HP vs RA-ILD & ENSG00000165548 & TMEM63C & -2.106 & 1.01e-04 & 1.000\\
+HP vs RA-ILD & ENSG00000124006 & OBSL1 & -1.946 & 3.04e-04 & 1.000\\
+HP vs RA-ILD & ENSG00000248636 &  & -1.039 & 3.89e-04 & 1.000\\
+HP vs RA-ILD & ENSG00000258551 &  & -1.885 & 6.25e-04 & 1.000\\
+HP vs RA-ILD & ENSG00000124490 & CRISP2 & 3.431 & 6.99e-04 & 1.000\\
+\addlinespace
+SSc-ILD vs RA-ILD & ENSG00000221957 & KIR2DS4 & -2.923 & 1.51e-06 & 0.036\\
+SSc-ILD vs RA-ILD & ENSG00000165548 & TMEM63C & -1.608 & 1.13e-05 & 0.136\\
+SSc-ILD vs RA-ILD & ENSG00000178458 & H3P16 & -1.392 & 4.80e-05 & 0.341\\
+SSc-ILD vs RA-ILD & ENSG00000273111 & LYPD4 & -2.075 & 8.40e-05 & 0.341\\
+SSc-ILD vs RA-ILD & ENSG00000064489 & BORCS8-MEF2B & -1.498 & 8.53e-05 & 0.341\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\begin{itemize}
+\tightlist
+\item
+  deg table IPF vs HP, HP vs SSc-ILD, IPF vs IPAF, SSc-ILD vs IPAF, IPF vs RA, HP vs RA, SSc-ILD vs RA
+\item
+  deg table UIP vs NSIP, fHP vs NSIP, fHP vs UIP
+\item
+\end{itemize}
 
 \end{document}

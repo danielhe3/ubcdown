@@ -305,7 +305,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{A4.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r appendix_c, child = '~/GitHub/OC_Transboundary/Ecol/Supplements.Rmd', eval = F}
+```{r appendix_c, child = './Chapters/AppendixC.Rmd', eval = T}
 ```
 
 <!-- END OF SCRIPT -->

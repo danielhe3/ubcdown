@@ -17,7 +17,7 @@ output:
 knitr::include_graphics("./Figures/BloodPilot/Figure E1 PCA metadata.pdf")
 ```
 
-(ref:pilotpftdeg-cap) \textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for using treatment status and race. 
+(ref:pilotpftdeg-cap) \textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for treatment status and race. 
 
 ```{r pilotpftdeg, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot PFT DEGs', fig.align='center'}
 deg_pft_table <- readr::read_csv(here::here('Tables', 'BloodPilot', 'diffexppft.csv'))

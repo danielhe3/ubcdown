@@ -56,20 +56,35 @@ kableExtra::kbl(
 
 ### Data analysis
 
-Differential expression analysis was performed using the 'edgeR' (v4.0.16) and 'limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (\@ref(fig:rnaseqPCA)). 
+Differential expression analysis was performed using the 'edgeR' (v4.0.16) and 'limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (Figure \@ref(fig:rnaseqPCA)). 
 
 Survival analysis was performed using the elastic net implementation of Cox proportional hazards (Cox-PH) models in the 'glmnet' package (v4.1-8). Repeated 10-fold cross-validation was performed on all (100x repeat) or stratifications (50x repeat) of the centred and scaled TMM-normalized RNA-seq data. Using the C-index as a performance metric, the repeat with the C-index closest to the mean C-index of all repeats was selected as the final model. Validation datasets GSE28042 [@herazo-maya_peripheral_2013] and GSE93606 [@molyneaux_host-microbial_2017] were downloaded from GEO. As there were genes from the whole blood RNA-seq matrix missing from the validation datasets and vice versa, sparse matrices of each validation dataset were created for compatibility with the glmnet 'predict' function to account for missing variables. 
 
 ## Results
 
-### The SSc-ILD peripheral transcriptome is distinct from other ILD subtypes
+### The peripheral transcriptome is distinct between ILD subtypes and radiological patterns
 
+We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \@ref(fig:rnaseqPCA)), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR<0.05, a majority of which were associated with interferon signaling (Figure \@ref(fig:degild)A,C-D, Table \@ref(tab:ipfvsssc), Table \@ref(tab:ipfsscpathway)). No DEGs were identified between IPF and HP (Figure \@ref(fig:degild)B), but two DEGs at FDR<0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \@ref(tab:ILDdeg)). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR<0.05 (Figure \@ref(fig:raddeg)); similar genes were upregulated when compared to UIP, though these were not significant (Table \@ref(tab:degrad)).
 
 (ref:degild-cap) \textbf{SSc-ILD is transcriptionally distinct.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.01 (\*\*\*) and FDR<0.05 (\*\*). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF. 
 
-```{r degild, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:degild-cap)", fig.scap = "SSc-ILD transcriptome", out.extra='', fig.align='center'}
+```{r degild, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:degild-cap)", fig.scap = "SSc-ILD transcriptome", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/Fig1_Differential_Expression_v1.pdf")
 ```
+
+(ref:raddeg-cap) \textbf{Radiological patterns have distinct peripheral transcriptomes.} Volcano plots of differentially expressed genes between (A) fHP and NSIP and (B) fHP and UIP. (C) Expression of top DEGs in fHP. Satistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.01 (\*\*\*), FDR<0.05 (\*\*), and FDR<0.10(\*).
+
+```{r raddeg, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:raddeg-cap)", fig.scap = "Radiological transcriptome", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/BloodRNAseq/radiology_deg_v1.pdf")
+```
+
+### Genes are associated with PPF at baseline in SSc-ILD and NSIP patients
+
+To investigate the association of the peripheral transcriptome at baseline with future development of PPF, we used the INBUILD criteria to classify whether or not patients had a PPF phenotype after 2 years. We did not identify any DEGs associated with PPF status in all ILD subtypes, although we identified a small number of genes significantly associated with INBUILD criteria such as relative decline in FVC of >5%, >10%, and radiological progression (Figure \@ref(fig:ppfdeg)). When the analysis was stratified for SSc-ILD and NSIP, we identified 
+
+- ssc nsip
+- ipf: only one deg
+- nothing found for any other stratified analysis 
 
 ### Peripheral gene signatures are associated with transplant-free survival
 
@@ -79,7 +94,7 @@ Cox-PH models associate covariates with time that passes before a pre-defined ev
 
 - limitations regarding survival: 15/27 IPF patients censored, which is 15/25 of the total censored 
 - ssc-ild vs other ild is not difficult diagnostically
-
+- fHP shows neutrophil signatures (LCN2, MMP8, CEACAM8); KREMEN1 blocks Wnt signaling
 
 
 
