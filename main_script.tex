@@ -944,39 +944,87 @@ Clinical Progression & 7 (20\%) & 16 (59\%) & 3 (43\%) & 2 (33\%) & 0 (0\%) & 2 
 
 Differential expression analysis was performed using the `edgeR' (v4.0.16) and `limma' (v3.58.1) R packages. Lowly expressed genes (less than 10 counts and based on CPM as per recommended limma protocols) were filtered out if they were not expressed in at least four samples (chosen based on the sample size of the smallest ILD subtype, IPAF). The total number of genes in the final count matrix was 24,990. Genes were TMM-normalized and examined for outliers using multidimensional scaling (MDS) and PCA plots. Design matrices containing variables of interest were used to test for differential expression, with a term added into the formula to control for race as a confounding variable (Figure \ref{fig:rnaseqPCA}).
 
-Survival analysis was performed using the elastic net implementation of Cox proportional hazards (Cox-PH) models in the `glmnet' package (v4.1-8). Repeated 10-fold cross-validation was performed on all (100x repeat) or stratifications (50x repeat) of the centred and scaled TMM-normalized RNA-seq data. Using the C-index as a performance metric, the repeat with the C-index closest to the mean C-index of all repeats was selected as the final model. Validation datasets GSE28042 {[}\citeproc{ref-herazo-maya_peripheral_2013}{59}{]} and GSE93606 {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]} were downloaded from GEO. As there were genes from the whole blood RNA-seq matrix missing from the validation datasets and vice versa, sparse matrices of each validation dataset were created for compatibility with the glmnet `predict' function to account for missing variables.
+Survival analysis was performed using the elastic net implementation of Cox proportional hazards models in the `glmnet' package (v4.1-8). Repeated 10-fold cross-validation was performed on all (100x repeat) or stratifications (50x repeat) of the centred and scaled TMM-normalized RNA-seq data. Using the C-index as a performance metric, the repeat with the C-index closest to the mean C-index of all repeats was selected as the final model. Validation datasets GSE28042 {[}\citeproc{ref-herazo-maya_peripheral_2013}{59}{]} and GSE93606 {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]} were downloaded from GEO. As there were genes from the whole blood RNA-seq matrix missing from the validation datasets and vice versa, sparse matrices of each validation dataset were created for compatibility with the glmnet `predict' function to account for missing variables.
 
 \subsection{Results}\label{results-2}
 
-\subsubsection{The peripheral transcriptome is distinct between ILD subtypes}\label{the-peripheral-transcriptome-is-distinct-between-ild-subtypes}
+\subsubsection{The peripheral transcriptome is distinct between ILD subtypes and radiological patterns}\label{the-peripheral-transcriptome-is-distinct-between-ild-subtypes-and-radiological-patterns}
 
-We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \ref{fig:rnaseqPCA}), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR\textless0.05, a majority of which were associated with interferon signaling (Figure \ref{fig:degild}A,C-D, Table \ref{tab:}, Table \ref{tab:}). No DEGs were identified between IPF and HP (Figure \ref{fig:degild}B), but two DEGs at FDR\textless0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4).
+We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \ref{fig:rnaseqPCA}), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR\textless0.05, a majority of which were associated with interferon signaling (Figure \ref{fig:degild}A,C-D, Table \ref{tab:ipfvsssc}, Table \ref{tab:ipfsscpathway}). No DEGs were identified between IPF and HP (Figure \ref{fig:degild}B), but two DEGs at FDR\textless0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \ref{tab:ILDdeg}). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR\textless0.05 (Figure \ref{fig:raddeg}); similar genes were upregulated when compared to UIP, though these were not significant (Table \ref{tab:degrad}).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodRNAseq/Fig1_Differential_Expression_v1} 
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/Fig1_Differential_Expression_v1} 
 
 }
 
-\caption[SSc-ILD transcriptome]{\textbf{SSc-ILD is transcriptionally distinct.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***) and FDR\textless0.05 (**). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF.}\label{fig:degild}
+\caption[SSc-ILD transcriptome]{\textbf{SSc-ILD is transcriptionally distinct from other ILD subtypes.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***) and FDR\textless0.05 (**). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF.}\label{fig:degild}
 \end{figure}
 
-\subsubsection{}\label{section}
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/radiology_deg_v1} 
+
+}
+
+\caption[Radiological transcriptome]{\textbf{Radiological patterns have distinct peripheral transcriptomes.} Volcano plots of differentially expressed genes between (A) fHP and NSIP and (B) fHP and UIP. (C) Expression of top DEGs in fHP. Satistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***), FDR\textless0.05 (**), and FDR\textless0.10(*).}\label{fig:raddeg}
+\end{figure}
+
+\subsubsection{Genes are associated with PPF at baseline in SSc-ILD and NSIP patients}\label{genes-are-associated-with-ppf-at-baseline-in-ssc-ild-and-nsip-patients}
+
+To investigate the association of the peripheral transcriptome at baseline with future development of PPF, we used the INBUILD criteria to classify whether or not patients had a PPF phenotype within 2 years. We did not identify any DEGs associated with PPF status in all ILD subtypes, although we identified a small number of genes significantly associated with INBUILD criteria such as relative decline in FVC of \textgreater5\%, \textgreater10\%, and radiological progression within 2 years (Figure \ref{fig:ppfdeg}, Table \ref{tab:ppfdegtab}). We also did not identify any genes associated with PPF status when the analysis was stratified for patients with IPF, HP, UIP, or fHP, although we identified \textit{THBS3-AS1} expression associated with relative decline in FVC\% predicted of \textgreater10\% within 2 years in IPF patients (Figure \ref{fig:ppfdegipf}). When the analysis was stratified within patients with SSc-ILD or NSIP, we identified increased \textit{LINC02490} expression as significantly associated with PPF status in both groups (FDR=0.003 for SSc-ILD, FDR=3.75\times 10\textsuperscript{-6}; Figure \ref{fig:sscnsipppf}A-E, Table \ref{tab:ppfdegtab}). Analysis of individual PPF criteria further identified \textit{LINC02470} and \textit{CLEC2A} as being significantly associated with radiological progression within 2 years in SSc-ILD but not NSIP patients, and similarly \textit{AOX1} and \textit{PAQR9} in NSIP patients (Figure \ref{fig:sscnsipppf}F,G, Table \ref{tab:ppfradtab}).
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/ppf_ssc_deg_v1} 
+
+}
+
+\caption[PPF transcriptome in SSc-ILD and NSIP]{\textbf{PPF is associated with LINC02490 expression in patients with SSc-ILD and NSIP.} Volcano plots of differentially expressed genes between (A) PPF and non-PPF in SSc-ILD and (B) NSIP, and (C) radiological progression within 2 years in SSc-ILD and (D) NSIP. Boxplots showing expression of (E) \textit{LINC02490} in NSIP and SSc-ILD, and genes associated with radiological progression within 2 years in (F) SSc-ILD) and (G) NSIP. Satistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR\textless0.01 (***) and FDR\textless0.05 (**).}\label{fig:sscnsipppf}
+\end{figure}
 
 \subsubsection{Peripheral gene signatures are associated with transplant-free survival}\label{peripheral-gene-signatures-are-associated-with-transplant-free-survival}
 
-Cox-PH models associate covariates with time that passes before a pre-defined event; in this analysis, we wanted to identify multivariate gene signatures associated with transplant-free survival.
+We next used the elastic net implementation of Cox proportional hazards models to examine whether multivariate gene signatures were associated with transplant-free survival. By using repeated 10-fold cross validation, we generated predictive survival models using different stratifications of our dataset (all ILD, IPF, and ILD excluding SSc-ILD due to its interferon-associated DEGs). The worst performing model was the IPF stratified model (C-index = 0.45 {[}0.42-0.49{]}), though the all ILD (C-index = 0.67 {[}0.66-0.68{]}; Figure \ref{fig:ildsurvival}A, Table \ref{tab:ildsurvivalgenes}) and ILD excluding SSc-ILD (C-index = 0.76 {[}0.74-0.78{]}; Figure \ref{fig:notsscsurvival}A, Table \ref{tab:notsscsurvivalgenes}) models showed good performance. To validate these models, we used IPF samples from two external datasets with available transplant-free survival metadata: GSE28042 (PBMC) and GSE93606 (whole blood). Predicted hazard ratios from the ILD survival model were able to significantly separate high- and low-risk groups as defined by tertiles or optimized cutpoints (Figure \ref{fig:ildsurvival}B,C). Similar results were obtained with the survival model trained on ILD samples excluding SSc-ILD (Figure \ref{fig:notsscsurvival}).
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_v2} 
+
+}
+
+\caption[ILD survival model]{\textbf{ILD survival model derived from the peripheral transcriptome.} An ILD survival model derived using repeated 10-fold cross-validation was trained on our ILD cohort, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high- and low- risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D).}\label{fig:ildsurvival}
+\end{figure}
 
 \subsection{Discussion}\label{discussion-2}
 
+In this chapter, we provide a comprehensive examination of the peripheral transcriptome in ILD patients, and provide the first between-subtype comparison of blood gene expression between various ILD subtypes. We identified a distinct interferon-associated gene signature in patients with SSc-ILD, genes associated with ILD progression in SSc-ILD and NSIP patients, and a gene signature separating high- and low- risk patients with ILD with respect to transplanet-free survival.
+
 \begin{itemize}
-\tightlist
-\item
-  limitations regarding survival: 15/27 IPF patients censored, which is 15/25 of the total censored
 \item
   ssc-ild vs other ild is not difficult diagnostically
+\item
+  ssc-ild interferon relationship
+\item
+  ssc-ild nk cell relationship
+\item
+  fHP shows neutrophil signatures (LCN2, MMP8, CEACAM8); KREMEN1 blocks Wnt signaling
+\item
+  ppf linc02470, commentary repeating what ryerson said about ppf in that different ppf criteria don't necessarily agree and suggest that the true relationship is radiological progression
+\item
+  limitations regarding survival: 15/27 IPF patients censored, which is 15/25 of the total censored; need more peripheral transcriptional profiling done on other ILD subtypes
+\item
+  herazo-maya commentary: it doesn't work on our cohort, works well on the other two cohorts\ldots{}
+\item
+  COX15?
 \end{itemize}
 
 \clearpage
@@ -5796,13 +5844,230 @@ SSc-ILD vs RA-ILD & ENSG00000064489 & BORCS8-MEF2B & -1.498 & 8.53e-05 & 0.341\\
 \end{tabu}
 \end{table}
 
-\begin{itemize}
-\tightlist
-\item
-  deg table IPF vs HP, HP vs SSc-ILD, IPF vs IPAF, SSc-ILD vs IPAF, IPF vs RA, HP vs RA, SSc-ILD vs RA
-\item
-  deg table UIP vs NSIP, fHP vs NSIP, fHP vs UIP
-\item
-\end{itemize}
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:degrad}\textbf{List of top 10 differentially expressed genes between radiological patterns.} Results shown are adjusted for race.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\toprule
+Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+UIP vs fHP & ENSG00000118113 & MMP8 & -2.172 & 1.75e-05 & 0.342\\
+UIP vs fHP & ENSG00000148346 & LCN2 & -1.844 & 3.16e-05 & 0.342\\
+UIP vs fHP & ENSG00000012223 & LTF & -2.269 & 4.32e-05 & 0.342\\
+UIP vs fHP & ENSG00000283646 & LINC02009 & -2.040 & 6.22e-05 & 0.342\\
+UIP vs fHP & ENSG00000173391 & OLR1 & -1.740 & 7.14e-05 & 0.342\\
+UIP vs fHP & ENSG00000096006 & CRISP3 & -1.617 & 1.12e-04 & 0.449\\
+UIP vs fHP & ENSG00000179869 & ABCA13 & -1.592 & 1.53e-04 & 0.451\\
+UIP vs fHP & ENSG00000124469 & CEACAM8 & -1.763 & 1.62e-04 & 0.451\\
+UIP vs fHP & ENSG00000156966 & B3GNT7 & 0.713 & 1.73e-04 & 0.451\\
+UIP vs fHP & ENSG00000157554 & ERG & -1.358 & 1.88e-04 & 0.451\\
+UIP vs NSIP & ENSG00000152558 & TMEM123 & -0.672 & 5.16e-06 & 0.124\\
+UIP vs NSIP & ENSG00000125498 & KIR2DL1 & 1.140 & 9.40e-05 & 0.430\\
+UIP vs NSIP & ENSG00000100427 & MLC1 & 0.521 & 1.05e-04 & 0.430\\
+UIP vs NSIP & ENSG00000134758 & RNF138 & -0.302 & 1.12e-04 & 0.430\\
+UIP vs NSIP & ENSG00000205413 & SAMD9 & -0.619 & 1.32e-04 & 0.430\\
+UIP vs NSIP & ENSG00000115267 & IFIH1 & -0.719 & 1.96e-04 & 0.430\\
+UIP vs NSIP & ENSG00000138035 & PNPT1 & -0.558 & 2.37e-04 & 0.430\\
+UIP vs NSIP & ENSG00000100453 & GZMB & 0.698 & 2.55e-04 & 0.430\\
+UIP vs NSIP & ENSG00000141664 & ZCCHC2 & -0.728 & 2.57e-04 & 0.430\\
+UIP vs NSIP & ENSG00000110435 & PDHX & -0.287 & 2.57e-04 & 0.430\\
+fHP vs NSIP & ENSG00000254946 & LINC02751 & 1.906 & 1.01e-07 & 0.002\\
+fHP vs NSIP & ENSG00000148346 & LCN2 & 1.874 & 2.93e-06 & 0.035\\
+fHP vs NSIP & ENSG00000118113 & MMP8 & 1.970 & 5.81e-06 & 0.045\\
+fHP vs NSIP & ENSG00000124469 & CEACAM8 & 1.848 & 8.10e-06 & 0.045\\
+fHP vs NSIP & ENSG00000196747 & H2AC13 & 1.374 & 9.52e-06 & 0.045\\
+fHP vs NSIP & ENSG00000166188 & ZNF319 & 0.398 & 1.36e-05 & 0.045\\
+fHP vs NSIP & ENSG00000173391 & OLR1 & 1.617 & 1.76e-05 & 0.045\\
+fHP vs NSIP & ENSG00000012223 & LTF & 2.154 & 1.94e-05 & 0.045\\
+fHP vs NSIP & ENSG00000170801 & HTRA3 & 2.059 & 1.97e-05 & 0.045\\
+fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth,]{./Figures/BloodRNAseq/ppf_deg_v1} 
+
+}
+
+\caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC\% predicted of \textgreater10\%, (C) radiological progression, and (D) relative decline in FVC\% predicted of \textgreater5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria.}\label{fig:ppfdeg}
+\end{figure}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth,]{./Figures/BloodRNAseq/ppf_ipf_deg_v1} 
+
+}
+
+\caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \textgreater10\% within 2 years.}\label{fig:ppfdegipf}
+\end{figure}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ppfdegtab}\textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\toprule
+Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+All ILD & ENSG00000242199 & RPS26P22 & 1.052 & 6.46e-05 & 0.852\\
+All ILD & ENSG00000225231 & LINC02470 & 2.228 & 7.11e-05 & 0.852\\
+All ILD & ENSG00000218682 &  & 1.097 & 3.63e-04 & 1.000\\
+All ILD & ENSG00000204933 & CD177P1 & 1.037 & 6.31e-04 & 1.000\\
+All ILD & ENSG00000137491 & SLCO2B1 & -1.140 & 7.23e-04 & 1.000\\
+IPF & ENSG00000243679 &  & -0.608 & 5.93e-06 & 0.078\\
+IPF & ENSG00000230715 &  & -0.715 & 6.54e-06 & 0.078\\
+IPF & ENSG00000243302 &  & -0.601 & 6.21e-05 & 0.496\\
+IPF & ENSG00000144619 & CNTN4 & 2.317 & 1.74e-04 & 0.779\\
+IPF & ENSG00000171729 & TMEM51 & 1.777 & 1.93e-04 & 0.779\\
+SSc-ILD & ENSG00000225231 & LINC02470 & 3.410 & 1.18e-07 & 0.003\\
+SSc-ILD & ENSG00000223350 & IGLV9-49 & 1.552 & 2.33e-04 & 1.000\\
+SSc-ILD & ENSG00000214725 & CDIPTOSP & 1.379 & 5.32e-04 & 1.000\\
+SSc-ILD & ENSG00000129538 & RNASE1 & 1.515 & 5.81e-04 & 1.000\\
+SSc-ILD & ENSG00000173262 & SLC2A14 & 2.407 & 6.21e-04 & 1.000\\
+NSIP & ENSG00000225231 & LINC02470 & 3.759 & 1.56e-10 & 0.000\\
+NSIP & ENSG00000188393 & CLEC2A & 2.666 & 2.88e-06 & 0.025\\
+NSIP & ENSG00000223350 & IGLV9-49 & 1.628 & 3.11e-06 & 0.025\\
+NSIP & ENSG00000248318 &  & 1.882 & 1.04e-04 & 0.578\\
+NSIP & ENSG00000165568 & AKR1E2 & -0.946 & 1.21e-04 & 0.578\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ppfradtab}\textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\toprule
+Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+All ILD & ENSG00000280411 & IGHV1-69D & 1.736 & 5.87e-06 & 0.141\\
+All ILD & ENSG00000261215 &  & -1.420 & 4.33e-05 & 0.519\\
+All ILD & ENSG00000172404 & DNAJB7 & -1.381 & 7.02e-05 & 0.561\\
+All ILD & ENSG00000138395 & CDK15 & -1.200 & 1.21e-04 & 0.723\\
+All ILD & ENSG00000229391 & HLA-DRB6 & 2.196 & 1.81e-04 & 0.866\\
+IPF & ENSG00000231119 &  & -2.111 & 7.67e-05 & 0.941\\
+IPF & ENSG00000272871 &  & 1.069 & 1.35e-04 & 0.941\\
+IPF & ENSG00000273473 &  & -2.572 & 1.51e-04 & 0.941\\
+IPF & ENSG00000278847 &  & -2.234 & 1.90e-04 & 0.941\\
+IPF & ENSG00000204936 & CD177 & -2.288 & 2.14e-04 & 0.941\\
+SSc-ILD & ENSG00000188393 & CLEC2A & 4.252 & 1.60e-07 & 0.004\\
+SSc-ILD & ENSG00000225231 & LINC02470 & 4.016 & 1.18e-06 & 0.014\\
+SSc-ILD & ENSG00000188582 & PAQR9 & 2.939 & 2.03e-06 & 0.016\\
+SSc-ILD & ENSG00000237927 &  & 1.580 & 1.76e-05 & 0.098\\
+SSc-ILD & ENSG00000138356 & AOX1 & 3.145 & 2.05e-05 & 0.098\\
+NSIP & ENSG00000138356 & AOX1 & 3.480 & 7.40e-08 & 0.001\\
+NSIP & ENSG00000188582 & PAQR9 & 2.748 & 9.08e-08 & 0.001\\
+NSIP & ENSG00000278196 & IGLV2-8 & 1.738 & 1.76e-05 & 0.112\\
+NSIP & ENSG00000186310 & NAP1L3 & -1.533 & 1.87e-05 & 0.112\\
+NSIP & ENSG00000143545 & RAB13 & 1.443 & 3.11e-05 & 0.126\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+\subsection{Survival}\label{survival}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:ildsurvivalgenes}\textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedleft\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{0.6in}}
+\toprule
+Ensembl ID & Gene & Weight\\
+\midrule
+ENSG00000270207 &  & 0.500\\
+ENSG00000187715 & KBTBD12 & 0.369\\
+ENSG00000014919 & COX15 & 0.196\\
+ENSG00000223177 & RNA5SP39 & 0.181\\
+ENSG00000270281 &  & 0.177\\
+ENSG00000235546 &  & 0.165\\
+ENSG00000165300 & SLITRK5 & 0.161\\
+ENSG00000249532 & MIR302CHG & 0.148\\
+ENSG00000260588 &  & 0.140\\
+ENSG00000132207 & SLX1A & 0.133\\
+ENSG00000104365 & IKBKB & 0.124\\
+ENSG00000286981 &  & 0.119\\
+ENSG00000164976 & MYORG & 0.117\\
+ENSG00000226314 & ZKSCAN8P1 & 0.101\\
+ENSG00000166863 & TAC3 & 0.089\\
+ENSG00000250361 & GYPB & 0.084\\
+ENSG00000146918 & NCAPG2 & 0.082\\
+ENSG00000273133 &  & 0.073\\
+ENSG00000230310 & LINC02926 & 0.065\\
+ENSG00000104147 & OIP5 & 0.063\\
+ENSG00000277715 &  & 0.053\\
+ENSG00000165533 & TTC8 & 0.052\\
+ENSG00000139044 & B4GALNT3 & 0.034\\
+ENSG00000214249 & CTAGE11P & 0.034\\
+ENSG00000101489 & CELF4 & 0.025\\
+ENSG00000102678 & FGF9 & 0.025\\
+ENSG00000224490 & TTC21B-AS1 & 0.021\\
+ENSG00000231881 &  & 0.020\\
+ENSG00000204576 & PRR3 & 0.011\\
+ENSG00000270885 & RASL10B & 0.005\\
+ENSG00000066926 & FECH & 0.004\\
+ENSG00000154309 & DISP1 & 0.003\\
+ENSG00000172995 & ARPP21 & 0.003\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{table}[!h]
+\centering\centering
+\caption{\label{tab:notsscsurvivalgenes}\textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown.}
+\centering
+\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedleft\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{0.6in}}
+\toprule
+Ensembl ID & Gene & Weight\\
+\midrule
+ENSG00000270207 &  & 0.336\\
+ENSG00000014919 & COX15 & 0.336\\
+ENSG00000223177 & RNA5SP39 & 0.311\\
+ENSG00000232879 & GLRX5P2 & 0.238\\
+ENSG00000235546 &  & 0.233\\
+ENSG00000260588 &  & 0.209\\
+ENSG00000107821 & KAZALD1 & 0.206\\
+ENSG00000166147 & FBN1 & 0.197\\
+ENSG00000187715 & KBTBD12 & 0.103\\
+ENSG00000101489 & CELF4 & 0.082\\
+ENSG00000189013 & KIR2DL4 & 0.063\\
+ENSG00000140107 & SLC25A47 & 0.047\\
+ENSG00000267655 &  & 0.040\\
+ENSG00000274818 &  & 0.027\\
+ENSG00000221916 & C19orf73 & 0.018\\
+ENSG00000267452 & LINC02073 & 0.017\\
+ENSG00000133477 & FAM83F & 0.006\\
+ENSG00000106462 & EZH2 & 0.006\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_notSSc_v1} 
+
+}
+
+\caption[ILD (excluding SSc-ILD) survival model]{\textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x epeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D).}\label{fig:notsscsurvival}
+\end{figure}
 
 \end{document}

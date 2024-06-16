@@ -208,13 +208,175 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of >10%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5% after 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
+(ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of >10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
 
-```{r rnaseqPCA, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
+```{r ppfdeg, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_deg_v1.pdf")
 ```
 
-- ppf, ild, ipf, sscild, nsip DEG table
-- rad progression, ild, ipf, sscild, nsip DEG table
-- ipf volcano plot
-- 
+(ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of >10\% within 2 years. 
+
+```{r ppfdegipf, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/BloodRNAseq/ppf_ipf_deg_v1.pdf")
+```
+
+(ref:ppfdegtab-cap) \textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race. 
+
+```{r ppfdegtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: PPF', fig.align='center'}
+ppf <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_INBUILD_240529.xlsx"))
+
+ppf_table <- rbind(
+   ppf[["PFILD_all"]] %>% 
+    mutate(Comparison = "All ILD") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),
+  ppf[["PFILD_IPF_race"]] %>% 
+    mutate(Comparison = "IPF") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
+  ppf[["PFILD_SScILD_race"]] %>% 
+    mutate(Comparison = "SSc-ILD") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5) ,
+  ppf[["PFILD_NSIP_race"]] %>% 
+    mutate(Comparison = "NSIP") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5) 
+)
+
+colnames(ppf_table) <- c("Stratification","Ensembl ID","Gene","(ref:logfc)", "(ref:p-it)-value", "FDR")
+
+kableExtra::kbl(
+  ppf_table,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lllrcc",
+  caption="(ref:ppfdegtab-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(c(1), width="1.0in") %>%
+  column_spec(c(2), width="1.2in") %>%
+  column_spec(c(3), width="0.8in") %>%
+  column_spec(c(4), width="0.6in") %>%
+  column_spec(c(5), width="0.6in") %>%
+  column_spec(c(6), width="0.6in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:ppfradtab-cap) \textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race. 
+
+```{r ppfradtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: Radiological Progression', fig.align='center'}
+rad_all <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_240529.xlsx"))
+rad_ipf <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_IPF_240529.xlsx"))
+rad_ssc <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_SScILD_240529.xlsx"))
+rad_nsip <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_NSIP_240529.xlsx"))
+  
+rad_prog_table <- rbind(
+   rad_all[["rad_progress_race"]] %>% 
+    mutate(Comparison = "All ILD") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),
+  rad_ipf[["rad_progression_race_IPF"]] %>% 
+    mutate(Comparison = "IPF") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
+  rad_ssc[["rad_progression_race_SScILD"]] %>%
+    mutate(Comparison = "SSc-ILD") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5) ,
+  rad_nsip[["rad_progression_race_NSIP"]] %>% 
+    mutate(Comparison = "NSIP") %>% 
+    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
+    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
+    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5) 
+)
+
+colnames(rad_prog_table) <- c("Stratification","Ensembl ID","Gene","(ref:logfc)", "(ref:p-it)-value", "FDR")
+
+kableExtra::kbl(
+  rad_prog_table,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lllrcc",
+  caption="(ref:ppfradtab-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(c(1), width="1.0in") %>%
+  column_spec(c(2), width="1.2in") %>%
+  column_spec(c(3), width="0.8in") %>%
+  column_spec(c(4), width="0.6in") %>%
+  column_spec(c(5), width="0.6in") %>%
+  column_spec(c(6), width="0.6in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+## Survival
+
+(ref:ildsurvivalgenes-cap) \textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown. 
+
+```{r ildsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
+ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ild_survival_genes.csv"), row.names=1)
+ild_genes <- ild_genes %>% mutate_at(c("Overall"), round_to_sigfigs, sigfigs = 3) %>%
+  dplyr::select(ensembl_gene_id, hgnc_symbol, Overall)
+colnames(ild_genes) <- c("Ensembl ID", "Gene" , "Weight")
+
+kableExtra::kbl(
+  ild_genes,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lrl",
+  caption="(ref:ildsurvivalgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(c(1), width="1.0in") %>%
+  column_spec(c(2), width="0.8in") %>%
+  column_spec(c(3), width="0.6in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:notsscsurvivalgenes-cap) \textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown. 
+
+```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
+ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ildnotssc_survival_genes.csv"), row.names=1)
+ild_genes <- ild_genes %>% mutate_at(c("Overall"), round_to_sigfigs, sigfigs = 3) %>%
+  dplyr::select(ensembl_gene_id, hgnc_symbol, Overall)
+colnames(ild_genes) <- c("Ensembl ID", "Gene" , "Weight")
+
+kableExtra::kbl(
+  ild_genes,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lrl",
+  caption="(ref:notsscsurvivalgenes-cap)") %>%
+  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
+  column_spec(c(1), width="1.0in") %>%
+  column_spec(c(2), width="0.8in") %>%
+  column_spec(c(3), width="0.6in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
+
+(ref:notsscsurvival-cap) \textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x epeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D). 
+
+```{r notsscsurvival, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/BloodRNAseq/PPF_survival_notSSc_v2.pdf")
+```
+
+
+
+
