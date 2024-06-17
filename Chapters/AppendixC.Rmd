@@ -210,19 +210,19 @@ kableExtra::kbl(
 
 (ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of >10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
 
-```{r ppfdeg, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
+```{r ppfdeg, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs: PPF", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_deg_v1.pdf")
 ```
 
 (ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of >10\% within 2 years. 
 
-```{r ppfdegipf, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
+```{r ppfdegipf, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs: radiological progression", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_ipf_deg_v1.pdf")
 ```
 
 (ref:ppfdegtab-cap) \textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race. 
 
-```{r ppfdegtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: PPF', fig.align='center'}
+```{r ppfdegtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEG Table: PPF', fig.align='center'}
 ppf <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_INBUILD_240529.xlsx"))
 
 ppf_table <- rbind(
@@ -271,7 +271,7 @@ kableExtra::kbl(
 
 (ref:ppfradtab-cap) \textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race. 
 
-```{r ppfradtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: Radiological Progression', fig.align='center'}
+```{r ppfradtab, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEG Table: Radiological Progression', fig.align='center'}
 rad_all <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_240529.xlsx"))
 rad_ipf <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_IPF_240529.xlsx"))
 rad_ssc <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_rad_progression_2yr_SScILD_240529.xlsx"))

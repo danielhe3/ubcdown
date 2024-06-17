@@ -924,10 +924,10 @@ FVC\% predicted & 34; 83.50 ± 18.42 & 76.22 ± 14.55 & 74.14 ± 25.18 & 97.17 �
 DLCO\% predicted & 26; 56.81 ± 17.41 & 13; 50.77 ± 12.42 & 6; 56.33 ± 11.20 & 5; 59.00 ± 21.69 & 3; 59.33 ± 2.31 & 13; 63.15 ± 17.40 & \textit{p} = 0.5555\\
 \midrule
 \textbf{Radiological Pattern} & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{  } & \textbf{}\\
-UIP & 2 (29\%) & 1 (20\%) & 17 (63\%) & 4 (67\%) & 0 (0\%) & 3 (19\%) & \textit{p} < 0.0001\\
-fHP & 3 (43\%) & 0 (0\%) & 3 (11\%) & 1 (17\%) & 2 (6\%) & 6 (38\%) & \textit{p} = 0.0172\\
-NSIP & 2 (29\%) & 3 (60\%) & 3 (11\%) & 1 (17\%) & 31 (89\%) & 4 (25\%) & \textit{p} < 0.0001\\
-Unclassifiable & 0 (0\%) & 1 (20\%) & 4 (15\%) & 0 (0\%) & 2 (6\%) & 3 (19\%) & \textit{p} = 0.4498\\
+UIP & 0 (0\%) & 17 (63\%) & 2 (29\%) & 4 (67\%) & 1 (20\%) & 3 (19\%) & \textit{p} < 0.0001\\
+fHP & 2 (6\%) & 3 (11\%) & 3 (43\%) & 1 (17\%) & 0 (0\%) & 6 (38\%) & \textit{p} = 0.0172\\
+NSIP & 31 (89\%) & 3 (11\%) & 2 (29\%) & 1 (17\%) & 3 (60\%) & 4 (25\%) & \textit{p} < 0.0001\\
+Unclassifiable & 2 (6\%) & 4 (15\%) & 0 (0\%) & 0 (0\%) & 1 (20\%) & 3 (19\%) & \textit{p} = 0.4498\\
 Progression, n (\%) &    &    &    &    &    &    & \\
 PPF & 9 (26\%) & 15 (56\%) & 3 (43\%) & 4 (67\%) & 3 (75\%) & 5 (29\%) & \textit{p} = 0.0581\\
 FVC Rel. Decl. >10\% & 5 (14\%) & 12 (44\%) & 1 (14\%) & 4 (67\%) & 2 (50\%) & 3 (19\%) & \textit{p} = 0.0148\\
@@ -950,7 +950,7 @@ Survival analysis was performed using the elastic net implementation of Cox prop
 
 \subsubsection{The peripheral transcriptome is distinct between ILD subtypes and radiological patterns}\label{the-peripheral-transcriptome-is-distinct-between-ild-subtypes-and-radiological-patterns}
 
-We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \ref{fig:rnaseqPCA}), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR\textless0.05, a majority of which were associated with interferon signaling (Figure \ref{fig:degild}A,C-D, Table \ref{tab:ipfvsssc}, Table \ref{tab:ipfsscpathway}). No DEGs were identified between IPF and HP (Figure \ref{fig:degild}B), but two DEGs at FDR\textless0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \ref{tab:ILDdeg}). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR\textless0.05 (Figure \ref{fig:raddeg}); similar genes were upregulated when compared to UIP, though these were not significant (Table \ref{tab:degrad}).
+We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \ref{fig:rnaseqPCA}), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR\textless0.05, a majority of which were associated with interferon (IFN) signaling (Figure \ref{fig:degild}A,C-D, Table \ref{tab:ipfvsssc}, Table \ref{tab:ipfsscpathway}). No DEGs were identified between IPF and HP (Figure \ref{fig:degild}B), but two DEGs at FDR\textless0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \ref{tab:ILDdeg}). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR\textless0.05 (Figure \ref{fig:raddeg}); similar genes were upregulated when compared to UIP, though these were not significant (Table \ref{tab:degrad}).
 
 
 
@@ -982,7 +982,7 @@ To investigate the association of the peripheral transcriptome at baseline with 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/ppf_ssc_deg_v1} 
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodRNAseq/ppf_ssc_deg_v1} 
 
 }
 
@@ -1006,7 +1006,15 @@ We next used the elastic net implementation of Cox proportional hazards models t
 
 \subsection{Discussion}\label{discussion-2}
 
-In this chapter, we provide a comprehensive examination of the peripheral transcriptome in ILD patients, and provide the first between-subtype comparison of blood gene expression between various ILD subtypes. We identified a distinct interferon-associated gene signature in patients with SSc-ILD, genes associated with ILD progression in SSc-ILD and NSIP patients, and a gene signature separating high- and low- risk patients with ILD with respect to transplanet-free survival.
+In this chapter, we provide a comprehensive examination of the peripheral transcriptome in ILD patients, and provide the first between-subtype comparison of blood gene expression between various ILD subtypes. We identified a distinct interferon-associated gene signature in patients with SSc-ILD, genes associated with ILD progression in SSc-ILD and NSIP patients, and a gene signature separating high- and low- risk patients with ILD with respect to transplant-free survival.
+
+Few molecular comparisons between ILD subtypes exist in lung samples, and, to our knowledge, none exist in blood samples. Furusawa \textit{et al.} identified similar up- and down-regulated genes in HP and IPF when compared to control lung samples, in addition to unique genes in HP related to immune processes {[}\citeproc{ref-furusawa_chronic_2020}{67}{]}. As discussed in the systematic review and three other studies {[}\citeproc{ref-cho_systems_2011}{62},\citeproc{ref-yang_gene_2007}{73},\citeproc{ref-horimasu_gene_2017}{83}{]}, unique lung molecular signatures are difficult to identify for the idiopathic NSIP diagnosis when compared to other ILDs, which is likely due to its heterogenous population given the presence of the radiological pattern NSIP in many types of CTD-ILD. Although we did not identify any DEGs associated with IPF or HP, we found that SSc-ILD whole blood showed up-regulation of IFN-associated genes such as \textit{MX1}, \textit{IFIT1}, \textit{IFIT2}, \textit{IFIT3}, \textit{MX1}, \textit{OAS1}, \textit{OAS2}, \textit{OAS3}, \textit{ISG15}, \textit{IFI44}, and \textit{IFI44L} when compared to IPF, the majority of which are associated with type I responses though cross-over exists with type II responses {[}\citeproc{ref-singhania}{\textbf{singhania?}}\ldots\ldots..{]}. Prior profiling of PBMCs from patients with SSc-ILD corroborate our findings, showing up-regulation of type I IFN genes when compared to healthy controls {[}\citeproc{ref-tan}{\textbf{tan?}}\ldots{]}. Previous scRNA-seq work comparing cell populations from explanted lung tissue specimens of patients with IPF and SSc-ILD revealed diverse IFN signaling, with IPF showing increased type II IFN (IFN-\gamma) signaling and SSc-ILD displaying increased type I IFN (IFN-\alpha, IFN-\beta) signaling in macrophages, cytotoxic T cells, and NK cells {[}\citeproc{ref-valenzi_disparate_2021}{123}{]}, which was also identified in bulk transcriptomics of ILD lung {[}\citeproc{ref-christmann_association_2014}{124}{]}. Taken together, this suggests that peripheral type I IFN signatures are unique in SSc-ILD and differentiate them from other ILDs.
+
+In our comparison of peripheral transcriptomes for radiological patterns, we identified a number of neutrophil-associated genes expressed in fHP when compared to NSIP and UIP, although the results in the latter comparison did not pass significance after correcting for FDR. While \textit{CEACAM8} is expressed on neutrophil membranes {[}\citeproc{ref-skubitz}{\textbf{skubitz?}}\ldots{]}, \textit{MMP8} and \textit{LCN2} are both associated with neutrophil migration and the latter forms a complex with \textit{MMP9} which was up-regulated in fHP as well when compared to NSIP at an FDR of 0.15 {[}\citeproc{ref-guardado}{\textbf{guardado?}}{]}. We also found up-regulation of \textit{LTF}, which is secreted by neutrophils to attenuate inflammation and promote tissue repair {[}\citeproc{ref-kruzel}{\textbf{kruzel?}}{]}. This is in line with the pathology of HP, as MMP-8- and MMP-9-positive neutrophils have been found to infiltrate lungs of patients with HP and were positively correlated with the extent of lung fibrosis {[}\citeproc{ref-pardo_increase_2000}{125}{]}. However, lung infiltration by neutrophils is not limited to HP, as similar results have been identified in patients with IPF and bleomycin-induced fibrosis in mice {[}\citeproc{ref-warheit-niemi}{\textbf{warheit-niemi?}}{]}. Hence, further work must be done to validate a peripheral neutrophil gene signature of fHP as a potential diagnostic biomarker.
+
+We could not identify any differentially expressed genes between patients that did or did not develop PPF using the INBUILD criteria. However, stratified analysis within SSc-ILD revealed increased \textit{LINC02470} expression as significantly associated with PPF, which was also found in stratified analysis of NSIP samples though unsurprising as 31 of the 35 SSc-ILD patients had a radiological NSIP pattern. When investigating individual INBUILD criteria, expression of \textit{LINC02470} and \textit{CLEC2A} were associated with radiological progression of fibrosis within 2 years. \textit{LINC02470} has been shown to enhance EMT in bladder cancer by neutralizing miR-143-3p in order to rescue SMAD3 expression, which in turn activates TGF-\beta signaling {[}\citeproc{ref-huang}{\textbf{huang?}}\ldots{]}, while \textit{CLEC2A} is a skin-associated transcript expressed by NK and myeloid cells {[}\citeproc{ref-spreu}{\textbf{spreu?}}\ldots{]}. Furthermore, decline in FVC\% predicted of \textgreater10\% within 2 years in IPF patients was associated with decreased \textit{tHBS3-AS1}, which overlaps with miR-92b, a regulator of the TGF-\beta pathway; knockout of miR-92b aggravates kidney fibrosis {[}\citeproc{ref-Yang}{\textbf{Yang?}}\ldots{]}.
+
+Our work has certain limitations. While type I interferons have been explored as a biomarker in SSc-ILD {[}\citeproc{ref-kakkar}{\textbf{kakkar?}}\ldots{]}, the
 
 \begin{itemize}
 \item
@@ -1549,36 +1557,44 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{122. }%
 \CSLRightInline{Shin H, Shannon CP, Fishbane N, Ruan J, Zhou M, Balshaw R, et al. Variation in {RNA}-{Seq} {Transcriptome} {Profiles} of {Peripheral} {Whole} {Blood} from {Healthy} {Individuals} with and without {Globin} {Depletion}. PLOS ONE {[}Internet{]}. 2014 Mar {[}cited 2024 Jun 14{]};9(3):e91041. Available from: \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091041}}
 
-\bibitem[\citeproctext]{ref-zhao_metabolic_2017}
+\bibitem[\citeproctext]{ref-valenzi_disparate_2021}
 \CSLLeftMargin{123. }%
+\CSLRightInline{Valenzi E, Tabib T, Papazoglou A, Sembrat J, Trejo Bittar HE, Rojas M, et al. Disparate {Interferon} {Signaling} and {Shared} {Aberrant} {Basaloid} {Cells} in {Single}-{Cell} {Profiling} of {Idiopathic} {Pulmonary} {Fibrosis} and {Systemic} {Sclerosis}-{Associated} {Interstitial} {Lung} {Disease}. Frontiers in Immunology {[}Internet{]}. 2021 Mar {[}cited 2022 Aug 26{]};12:595811. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8042271/}}
+
+\bibitem[\citeproctext]{ref-christmann_association_2014}
+\CSLLeftMargin{124. }%
+\CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
+
+\bibitem[\citeproctext]{ref-pardo_increase_2000}
+\CSLLeftMargin{125. }%
+\CSLRightInline{Pardo A, Barrios R, Gaxiola M, Segura-Valdez L, Carrillo G, Estrada A, et al. \href{https://doi.org/10.1164/ajrccm.161.5.9907065}{Increase of lung neutrophils in hypersensitivity pneumonitis is associated with lung fibrosis}. American Journal of Respiratory and Critical Care Medicine. 2000 May;161(5):1698--704. }
+
+\bibitem[\citeproctext]{ref-zhao_metabolic_2017}
+\CSLLeftMargin{126. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
 \bibitem[\citeproctext]{ref-zhu_integration_2018}
-\CSLLeftMargin{124. }%
+\CSLLeftMargin{127. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
-\bibitem[\citeproctext]{ref-christmann_association_2014}
-\CSLLeftMargin{125. }%
-\CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
-
 \bibitem[\citeproctext]{ref-ghosh_lung_2022}
-\CSLLeftMargin{126. }%
+\CSLLeftMargin{128. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
 \bibitem[\citeproctext]{ref-el-chemaly_immunome_2018}
-\CSLLeftMargin{127. }%
+\CSLLeftMargin{129. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
 \bibitem[\citeproctext]{ref-zhou_integrated_2019}
-\CSLLeftMargin{128. }%
+\CSLLeftMargin{130. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
 \bibitem[\citeproctext]{ref-vosa_comprehensive_2014}
-\CSLLeftMargin{129. }%
+\CSLLeftMargin{131. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
 \bibitem[\citeproctext]{ref-wold_nonlinear_1973}
-\CSLLeftMargin{130. }%
+\CSLLeftMargin{132. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1736,11 +1752,11 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{123},\citeproc{ref-zhu_integration_2018}{124}{]}, one {[}\citeproc{ref-christmann_association_2014}{125}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{126}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{127}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{128}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{126},\citeproc{ref-zhu_integration_2018}{127}{]}, one {[}\citeproc{ref-christmann_association_2014}{124}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{128}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{129}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{130}{]}.
 
 \subsection{Robust rank aggregation}\label{robust-rank-aggregation}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{129}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{131}{]}.
 
 \subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}
 
@@ -1759,7 +1775,7 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 \subsection{Data integration and analysis}\label{data}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{130}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{132}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 
@@ -5896,7 +5912,7 @@ fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\
 
 }
 
-\caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC\% predicted of \textgreater10\%, (C) radiological progression, and (D) relative decline in FVC\% predicted of \textgreater5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria.}\label{fig:ppfdeg}
+\caption[DEGs: PPF]{\textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC\% predicted of \textgreater10\%, (C) radiological progression, and (D) relative decline in FVC\% predicted of \textgreater5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria.}\label{fig:ppfdeg}
 \end{figure}
 
 
@@ -5907,7 +5923,7 @@ fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\
 
 }
 
-\caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \textgreater10\% within 2 years.}\label{fig:ppfdegipf}
+\caption[DEGs: radiological progression]{\textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \textgreater10\% within 2 years.}\label{fig:ppfdegipf}
 \end{figure}
 
 
@@ -6063,7 +6079,7 @@ ENSG00000106462 & EZH2 & 0.006\\
 
 \begin{figure}
 
-{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_notSSc_v1} 
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_notSSc_v2} 
 
 }
 
