@@ -24,17 +24,19 @@ round_to_sigfigs <- function(x, sigfigs) {
 ensembl <- readRDS(paste0(getwd(), "/Tables/ensembl_240412.RDS"))
 ```
 
-
 <!-- This section is mandatory! -->
 \captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
 
-## Differential expression
+### Differential expression
 
 (ref:rnaseqPCA-cap) \textbf{Principal component analysis (PCA) of blood RNA-seq cohort.} (A) PCA plot of blood RNA-seq samples. (B) Correlation of PCA components (PCs) with demographic and clinical metadata. Values shown are Pearson correlation coefficients. 
 
 ```{r rnaseqPCA, eval = T, out.width='0.7\\linewidth',echo=FALSE, fig.cap="(ref:rnaseqPCA-cap)", fig.scap = "Correlation of PCs with metadata (blood RNA-seq)", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/bloodRNAseq_pca_v2.pdf")
 ```
+
+\begin{singlespace}
+\pagebreak
 
 (ref:ipfvsssc-cap) \textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race. 
 
@@ -56,21 +58,23 @@ colnames(IPFSSc) <- c("Ensembl ID","Gene","(ref:logfc)", "(ref:p-it)-value", "FD
 
 kableExtra::kbl(
   IPFSSc %>% head(n=50),
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
-  linesep = "",
+  #linesep = "",
   align = "llrcc",
   caption="(ref:ipfvsssc-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.2in") %>%
   column_spec(c(2), width="0.7in") %>%
   column_spec(c(3), width="0.6in") %>%
   column_spec(c(4), width="0.6in") %>%
   column_spec(c(5), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
 ```
+
+\pagebreak
 
 (ref:ipfsscpathway-cap) \textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.} 
 
@@ -88,19 +92,20 @@ kableExtra::kbl(
     mutate(fdr=formatC(fdr, format = "e", digits=2)) %>%
     mutate(geneset = gsub("_", " ", geneset)) %>%
     rename(Pathway = geneset) %>% rename(FDR=fdr),
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
-  linesep = "",
+  #linesep = "",
   align = "llc",
   caption="(ref:ipfsscpathway-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(column=1, width="1.0in") %>%
   column_spec(column=2, width="4.5in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
 ```
 
+\pagebreak
 
 (ref:ILDdeg-cap) \textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race. 
 
@@ -147,22 +152,24 @@ colnames(ild_deg) <- c("Comparison","Ensembl ID","Gene","(ref:logfc)", "(ref:p-i
 
 kableExtra::kbl(
   ild_deg,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
   #linesep = "",
   align = "llrcc",
   caption="(ref:ILDdeg-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.3in") %>%
   column_spec(c(2), width="1.2in") %>%
-  column_spec(c(3), width="0.7in") %>%
+  column_spec(c(3), width="0.9in") %>%
   column_spec(c(4), width="0.6in") %>%
   column_spec(c(5), width="0.6in") %>%
   column_spec(c(6), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
+
+\pagebreak
 
 (ref:degrad-cap) \textbf{List of top 10 differentially expressed genes between radiological patterns.} Results shown are adjusted for race. 
 
@@ -191,34 +198,40 @@ colnames(rad_deg) <- c("Comparison","Ensembl ID","Gene","(ref:logfc)", "(ref:p-i
 
 kableExtra::kbl(
   rad_deg,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
-  linesep = "",
+  #linesep = "",
   align = "lllrcc",
   caption="(ref:degrad-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.3in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.7in") %>%
   column_spec(c(4), width="0.6in") %>%
   column_spec(c(5), width="0.6in") %>%
   column_spec(c(6), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
+\end{singlespace}
+
+\pagebreak
 
 (ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of >10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
 
-```{r ppfdeg, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs: PPF", out.extra='', fig.align='center'}
+```{r ppfdeg, eval = T, out.width='0.80\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs: PPF", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_deg_v1.pdf")
 ```
 
 (ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of >10\% within 2 years. 
 
-```{r ppfdegipf, eval = T, out.width='0.85\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs: radiological progression", out.extra='', fig.align='center'}
+```{r ppfdegipf, eval = T, out.width='0.75\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs: radiological progression", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_ipf_deg_v1.pdf")
 ```
+
+\begin{singlespace}
+\pagebreak
 
 (ref:ppfdegtab-cap) \textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race. 
 
@@ -252,21 +265,21 @@ colnames(ppf_table) <- c("Stratification","Ensembl ID","Gene","(ref:logfc)", "(r
 
 kableExtra::kbl(
   ppf_table,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
-  linesep = "",
+  #linesep = "",
   align = "lllrcc",
   caption="(ref:ppfdegtab-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.8in") %>%
   column_spec(c(4), width="0.6in") %>%
   column_spec(c(5), width="0.6in") %>%
   column_spec(c(6), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
 (ref:ppfradtab-cap) \textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race. 
@@ -304,26 +317,31 @@ colnames(rad_prog_table) <- c("Stratification","Ensembl ID","Gene","(ref:logfc)"
 
 kableExtra::kbl(
   rad_prog_table,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
-  linesep = "",
+  #linesep = "",
   align = "lllrcc",
   caption="(ref:ppfradtab-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.8in") %>%
   column_spec(c(4), width="0.6in") %>%
   column_spec(c(5), width="0.6in") %>%
   column_spec(c(6), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
-## Survival
+\end{singlespace}
+\pagebreak
 
-(ref:ildsurvivalgenes-cap) \textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown. 
+### Survival
+
+\begin{singlespace}
+
+(ref:ildsurvivalgenes-cap) \textbf{ILD survival model genes.} 
 
 ```{r ildsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ild_survival_genes.csv"), row.names=1)
@@ -333,23 +351,23 @@ colnames(ild_genes) <- c("Ensembl ID", "Gene" , "Weight")
 
 kableExtra::kbl(
   ild_genes,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
   linesep = "",
-  align = "lrl",
+  align = "llc",
   caption="(ref:ildsurvivalgenes-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
-  column_spec(c(1), width="1.0in") %>%
-  column_spec(c(2), width="0.8in") %>%
+  column_spec(c(1), width="1.2in") %>%
+  column_spec(c(2), width="1.0in") %>%
   column_spec(c(3), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:notsscsurvivalgenes-cap) \textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown. 
+(ref:notsscsurvivalgenes-cap) \textbf{ILD (excluding SSc-ILD) survival model genes.} 
 
-```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
+```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival (excluding SSc-ILD) model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ildnotssc_survival_genes.csv"), row.names=1)
 ild_genes <- ild_genes %>% mutate_at(c("Overall"), round_to_sigfigs, sigfigs = 3) %>%
   dplyr::select(ensembl_gene_id, hgnc_symbol, Overall)
@@ -357,26 +375,32 @@ colnames(ild_genes) <- c("Ensembl ID", "Gene" , "Weight")
 
 kableExtra::kbl(
   ild_genes,
-  longtable = F,
+  longtable = T,
   format = 'latex',
   booktabs = T, 
   linesep = "",
   align = "lrl",
   caption="(ref:notsscsurvivalgenes-cap)") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="0.8in") %>%
   column_spec(c(3), width="0.6in") %>%
+  kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:notsscsurvival-cap) \textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x epeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D). 
+\end{singlespace}
 
-```{r notsscsurvival, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
+(ref:notsscsurvival-cap) \textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x repeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D). 
+
+```{r notsscsurvival, eval = T, out.width='0.86\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/PPF_survival_notSSc_v2.pdf")
 ```
 
+(ref:herazomaya-cap) \textbf{Performance of the 52-gene risk profile published by Herazo-Maya \textit{et al.}} The 52-gene risk profile was calculated for the blood RNA-seq cohort (A) and validation cohorts (B), with the performance of proposed survival model on individual validation cohorts shown in (C). 
 
+```{r herazomaya, eval = T, out.width='0.86\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "Comparison with 52-gene risk model", out.extra='', fig.align='center'}
+knitr::include_graphics("./Figures/BloodRNAseq/herazomaya_comp_v1.pdf")
+```
 
 

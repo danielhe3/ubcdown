@@ -8,7 +8,7 @@ output:
 
 <!-- This section is mandatory! -->
 
-In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society [ATS], European Respiratory Society [ERS], Japanese Respiraotry Society [JRS], Asociación Latinoamericana del Tórax [ALAT]), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis [@raghu_diagnosis_2018]; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers [@raghu_idiopathic_2022]. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD. 
+In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society [ATS], European Respiratory Society [ERS], Japanese Respiratory Society [JRS], Asociación Latinoamericana del Tórax [ALAT]), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis [@raghu_diagnosis_2018]; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers [@raghu_idiopathic_2022]. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD. 
 
 ## Interstitial Lung Disease
 
@@ -37,7 +37,7 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 1. The 2022 ATS/ERS/JRS/ALAT IPF diagnostic guidelines [@raghu_idiopathic_2022] proposed a combination of two or more of the following over 1 year:
 * worsening respiratory symptoms;
 * physiological progression (defined by absolute decline in predicted forced vital capacity [FVC%] \underline{>}5% and/or predicted diffusing capacity for carbon monoxide [D~LCO~%] \underline{>}10%);
-* radiological progression (increased fibrosis on HRCT).
+* radiological progression (increased extent of bronchiectasis and bronchiolectasis, new ground-glass opacities, new fine reticulation, increased extent of reticular abnormality, new or increased honeycombing, increased lobar volume loss).
 
 2. The criteria for inclusion into the INBUILD trial [@flaherty_nintedanib_2019] was defined by meeting one of the following criteria for progressive disease within the past 24 months:
 * relative decline in FVC% predicted of \underline{>}10%;
@@ -48,7 +48,7 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 
 4. The RELIEF trial [@behr_pirfenidone_2021] included patients if they had an absolute annual decline in FVC% of \underline{>}5% with at least three measurements within 6-24 months.
 
-Retrospective analysis of various cohorts evaluating the above criteria have revealed that few patients meet all of the above definitions but each of them are associated with a poor prognosis [@khor_patient_2023]. Depending on the definition used for PPF, ~18-32% of non-IPF ILDs display this phenotype compared to ~60% of IPF patients [@nasser_progressive_2021,@takei_prevalence_2022,@hambly_prevalence_2022,@oldham_lung_2022-1, @rajan_progressive_2023]; nevertheless, identification is important as patients with PPF were shown to have a reduced annual rate of decline in FVC% predicted after receiving nintedanib compared to placebo [@flaherty_nintedanib_2019]. 
+Retrospective analysis of various cohorts evaluating the above criteria have revealed that few patients meet all of the above definitions but each of them are associated with a poor prognosis [@khor_patient_2023]. Depending on the definition used for PPF, ~18-32% of non-IPF ILDs display this phenotype compared to ~60% of IPF patients [@nasser_progressive_2021,@takei_prevalence_2022,@hambly_prevalence_2022,@oldham_lung_2022, @rajan_progressive_2023]; nevertheless, identification is important as patients with PPF were shown to have a reduced annual rate of decline in FVC% predicted after receiving nintedanib compared to placebo [@flaherty_nintedanib_2019]. 
 
 ## Objective
 

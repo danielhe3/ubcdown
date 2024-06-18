@@ -400,7 +400,7 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \renewcommand{\theequation}{1.\arabic{equation}}
 \setcounter{equation}{0}
 
-In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society {[}ATS{]}, European Respiratory Society {[}ERS{]}, Japanese Respiraotry Society {[}JRS{]}, Asociación Latinoamericana del Tórax {[}ALAT{]}), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis {[}\citeproc{ref-raghu_diagnosis_2018}{1}{]}; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]}. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD.
+In the 2018 diagnostic guidelines for idiopathic pulmonary fibrosis (IPF) released by a joint consortium of international respiratory societies (American Thoracic Society {[}ATS{]}, European Respiratory Society {[}ERS{]}, Japanese Respiratory Society {[}JRS{]}, Asociación Latinoamericana del Tórax {[}ALAT{]}), a recommendation was made to investigate novel molecular biomarkers that could be integrated into clinical diagnosis {[}\citeproc{ref-raghu_diagnosis_2018}{1}{]}; in the 2022 update, a recommendation was not made for or against a genomic classifier identifying a usual interstitial pneumonia pattern diagnostic of IPF in transbronchial biopsies, thus highlighting the continued need for research into molecular biomarkers {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]}. In this thesis, molecular biomarkers of interstitial lung diseases (ILDs) are investigated through a systematic review and meta-analysis of the literature, followed by gene expression profiling of blood samples taken from patients with ILD.
 
 \subsection{Interstitial Lung Disease}\label{interstitial-lung-disease}
 
@@ -440,7 +440,7 @@ Progressive pulmonary fibrosis (PPF) refers to a subset of non-IPF ILDs that dis
 \item
   physiological progression (defined by absolute decline in predicted forced vital capacity {[}FVC\%{]} \underline{>}5\% and/or predicted diffusing capacity for carbon monoxide {[}D\textsubscript{LCO}\%{]} \underline{>}10\%);
 \item
-  radiological progression (increased fibrosis on HRCT).
+  radiological progression (increased extent of bronchiectasis and bronchiolectasis, new ground-glass opacities, new fine reticulation, increased extent of reticular abnormality, new or increased honeycombing, increased lobar volume loss).
 \end{itemize}
 
 \begin{enumerate}
@@ -883,7 +883,7 @@ In this pilot study, we report the first between-subtype comparison of the perip
 \renewcommand{\theequation}{4.\arabic{equation}}
 \setcounter{equation}{0}
 
-The results from the previous two chapters highlight the link between transcriptomic profiles, mechanisms of ILD, and clinical variables. Given the heterogeneity within ILD subtypes, analysis of the peripheral transcriptome should consider radiological pattern, progressive phenotype, and other related clinical factors {[}\citeproc{ref-ryerson_lumpers_2019}{120}{]}. In this chapter, we will explore the peripheral transcriptome using RNA-seq data from whole blood samples of patients with ILD.
+The results from the previous two chapters highlight the link between transcriptomic profiles, mechanisms of ILD, and clinical variables. Given the heterogeneity within ILD subtypes, analysis of the peripheral transcriptome should consider radiological pattern, progressive phenotype, and other related clinical factors {[}\citeproc{ref-ryerson_lumpers_2019}{120}{]}. In this chapter, we will explore the peripheral transcriptome using RNA-seq data from whole blood samples of patients with ILD and examine its relationship with diagnosis, PPF, and survival.
 
 \subsection{Methods}\label{methods-2}
 
@@ -976,13 +976,13 @@ We first examined differences in the peripheral transcriptome of specific ILD su
 
 \subsubsection{Genes are associated with PPF at baseline in SSc-ILD and NSIP patients}\label{genes-are-associated-with-ppf-at-baseline-in-ssc-ild-and-nsip-patients}
 
-To investigate the association of the peripheral transcriptome at baseline with future development of PPF, we used the INBUILD criteria to classify whether or not patients had a PPF phenotype within 2 years. We did not identify any DEGs associated with PPF status in all ILD subtypes, although we identified a small number of genes significantly associated with INBUILD criteria such as relative decline in FVC of \textgreater5\%, \textgreater10\%, and radiological progression within 2 years (Figure \ref{fig:ppfdeg}, Table \ref{tab:ppfdegtab}). We also did not identify any genes associated with PPF status when the analysis was stratified for patients with IPF, HP, UIP, or fHP, although we identified \textit{THBS3-AS1} expression associated with relative decline in FVC\% predicted of \textgreater10\% within 2 years in IPF patients (Figure \ref{fig:ppfdegipf}). When the analysis was stratified within patients with SSc-ILD or NSIP, we identified increased \textit{LINC02490} expression as significantly associated with PPF status in both groups (FDR=0.003 for SSc-ILD, FDR=3.75\times 10\textsuperscript{-6}; Figure \ref{fig:sscnsipppf}A-E, Table \ref{tab:ppfdegtab}). Analysis of individual PPF criteria further identified \textit{LINC02470} and \textit{CLEC2A} as being significantly associated with radiological progression within 2 years in SSc-ILD but not NSIP patients, and similarly \textit{AOX1} and \textit{PAQR9} in NSIP patients (Figure \ref{fig:sscnsipppf}F,G, Table \ref{tab:ppfradtab}).
+To investigate the association of the peripheral transcriptome at baseline with future development of PPF, we used the INBUILD criteria to classify whether or not patients had a PPF phenotype within 2 years. We did not identify any DEGs associated with PPF status in all ILD subtypes, although we identified a small number of genes significantly associated with INBUILD criteria such as relative decline in FVC of \textgreater5\%, \textgreater10\%, and radiological progression within 2 years (Figure \ref{fig:ppfdeg}, Table \ref{tab:ppfdegtab}). We also did not identify any genes associated with PPF status when the analysis was stratified for patients with IPF, ILD excluding IPF, ILD excluding SSc-ILD, HP, UIP, or fHP, although we identified \textit{THBS3-AS1} expression associated with relative decline in FVC\% predicted of \textgreater10\% within 2 years in IPF patients (Figure \ref{fig:ppfdegipf}). When the analysis was stratified within patients with SSc-ILD or NSIP, we identified increased \textit{LINC02490} expression as significantly associated with PPF status in both groups (FDR=0.003 for SSc-ILD, FDR=3.75\times 10\textsuperscript{-6}; Figure \ref{fig:sscnsipppf}A-E, Table \ref{tab:ppfdegtab}). Analysis of individual PPF criteria further identified \textit{LINC02470} and \textit{CLEC2A} as being significantly associated with radiological progression within 2 years in SSc-ILD but not NSIP patients, and similarly \textit{AOX1} and \textit{PAQR9} in NSIP patients (Figure \ref{fig:sscnsipppf}F,G, Table \ref{tab:ppfradtab}).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodRNAseq/ppf_ssc_deg_v1} 
+{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/ppf_ssc_deg_v1} 
 
 }
 
@@ -991,49 +991,34 @@ To investigate the association of the peripheral transcriptome at baseline with 
 
 \subsubsection{Peripheral gene signatures are associated with transplant-free survival}\label{peripheral-gene-signatures-are-associated-with-transplant-free-survival}
 
-We next used the elastic net implementation of Cox proportional hazards models to examine whether multivariate gene signatures were associated with transplant-free survival. By using repeated 10-fold cross validation, we generated predictive survival models using different stratifications of our dataset (all ILD, IPF, and ILD excluding SSc-ILD due to its interferon-associated DEGs). The worst performing model was the IPF stratified model (C-index = 0.45 {[}0.42-0.49{]}), though the all ILD (C-index = 0.67 {[}0.66-0.68{]}; Figure \ref{fig:ildsurvival}A, Table \ref{tab:ildsurvivalgenes}) and ILD excluding SSc-ILD (C-index = 0.76 {[}0.74-0.78{]}; Figure \ref{fig:notsscsurvival}A, Table \ref{tab:notsscsurvivalgenes}) models showed good performance. To validate these models, we used IPF samples from two external datasets with available transplant-free survival metadata: GSE28042 (PBMC) and GSE93606 (whole blood). Predicted hazard ratios from the ILD survival model were able to significantly separate high- and low-risk groups as defined by tertiles or optimized cutpoints (Figure \ref{fig:ildsurvival}B,C). Similar results were obtained with the survival model trained on ILD samples excluding SSc-ILD (Figure \ref{fig:notsscsurvival}).
+Given the difficulties in finding gene signatures associated with progression in all ILD subtypes, we next used the elastic net implementation of Cox proportional hazards models to examine whether multivariate gene signatures were associated with transplant-free survival. By using repeated 10-fold cross validation, we generated predictive survival models using different stratifications of our dataset (all ILD, IPF, and ILD excluding SSc-ILD due to its interferon-associated DEGs). The worst performing model was the IPF stratified model (C-index = 0.45 {[}0.42-0.49{]}), though the all ILD (C-index = 0.67 {[}0.66-0.68{]}; Figure \ref{fig:ildsurvival}A, Table \ref{tab:ildsurvivalgenes}) and ILD excluding SSc-ILD (C-index = 0.76 {[}0.74-0.78{]}; Figure \ref{fig:notsscsurvival}A, Table \ref{tab:notsscsurvivalgenes}) models showed good performance. To validate these models, we used IPF samples from two external datasets with available transplant-free survival metadata: GSE28042 (PBMC) and GSE93606 (whole blood). Predicted hazard ratios from the ILD survival model were able to significantly separate high- and low-risk groups as defined by tertiles or optimized cutpoints (Figure \ref{fig:ildsurvival}B,C). Similar results were obtained with the survival model trained on ILD samples excluding SSc-ILD (Figure \ref{fig:notsscsurvival}).
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_v2} 
+{\centering \includegraphics[width=0.9\linewidth,]{./Figures/BloodRNAseq/PPF_survival_v2} 
 
 }
 
-\caption[ILD survival model]{\textbf{ILD survival model derived from the peripheral transcriptome.} An ILD survival model derived using repeated 10-fold cross-validation was trained on our ILD cohort, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high- and low- risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D).}\label{fig:ildsurvival}
+\caption[ILD survival model]{\textbf{ILD survival model derived from the peripheral transcriptome.} An ILD survival model derived using repeated 10-fold cross-validation was trained on our ILD cohort, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high- and low- risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression in validation data are shown in (D).}\label{fig:ildsurvival}
 \end{figure}
 
 \subsection{Discussion}\label{discussion-2}
 
-In this chapter, we provide a comprehensive examination of the peripheral transcriptome in ILD patients, and provide the first between-subtype comparison of blood gene expression between various ILD subtypes. We identified a distinct interferon-associated gene signature in patients with SSc-ILD, genes associated with ILD progression in SSc-ILD and NSIP patients, and a gene signature separating high- and low- risk patients with ILD with respect to transplant-free survival.
+Few molecular comparisons between ILD subtypes exist in lung samples, and, to our knowledge, none exist in blood samples. Furusawa \textit{et al.} identified similar up- and down-regulated genes in HP and IPF when compared to control lung samples, in addition to unique genes in HP related to immune processes {[}\citeproc{ref-furusawa_chronic_2020}{67}{]}. As discussed in the systematic review and three other studies {[}\citeproc{ref-cho_systems_2011}{62},\citeproc{ref-yang_gene_2007}{73},\citeproc{ref-horimasu_gene_2017}{83}{]}, unique lung molecular signatures are difficult to identify for the idiopathic NSIP diagnosis when compared to other ILDs, which is likely due to its heterogenous population given the presence of the radiological pattern NSIP in many types of CTD-ILD. Although we did not identify any DEGs associated with IPF or HP, we found that SSc-ILD whole blood showed up-regulation of IFN-associated genes such as \textit{MX1}, \textit{IFIT1}, \textit{IFIT2}, \textit{IFIT3}, \textit{MX1}, \textit{OAS1}, \textit{OAS2}, \textit{OAS3}, \textit{ISG15}, \textit{IFI44}, and \textit{IFI44L} when compared to IPF, the majority of which are associated with type I responses though cross-over exists with type II responses {[}\citeproc{ref-singhania_transcriptional_2019}{123}{]}. Prior profiling of PBMCs from patients with SSc-ILD corroborate our findings, showing up-regulation of type I IFN genes when compared to healthy controls {[}\citeproc{ref-tan_signatures_2006}{124}{]}. Previous scRNA-seq work comparing cell populations from explanted lung tissue specimens of patients with IPF and SSc-ILD revealed diverse IFN signaling, with IPF showing increased type II IFN (IFN-\gamma) signaling and SSc-ILD displaying increased type I IFN (IFN-\alpha, IFN-\beta) signaling in macrophages, cytotoxic T cells, and NK cells {[}\citeproc{ref-valenzi_disparate_2021}{125}{]}, which was also identified in bulk transcriptomics of ILD lung {[}\citeproc{ref-christmann_association_2014}{126}{]}. Taken together, this suggests that peripheral type I IFN signatures are unique in SSc-ILD and differentiate them from other ILDs.
 
-Few molecular comparisons between ILD subtypes exist in lung samples, and, to our knowledge, none exist in blood samples. Furusawa \textit{et al.} identified similar up- and down-regulated genes in HP and IPF when compared to control lung samples, in addition to unique genes in HP related to immune processes {[}\citeproc{ref-furusawa_chronic_2020}{67}{]}. As discussed in the systematic review and three other studies {[}\citeproc{ref-cho_systems_2011}{62},\citeproc{ref-yang_gene_2007}{73},\citeproc{ref-horimasu_gene_2017}{83}{]}, unique lung molecular signatures are difficult to identify for the idiopathic NSIP diagnosis when compared to other ILDs, which is likely due to its heterogenous population given the presence of the radiological pattern NSIP in many types of CTD-ILD. Although we did not identify any DEGs associated with IPF or HP, we found that SSc-ILD whole blood showed up-regulation of IFN-associated genes such as \textit{MX1}, \textit{IFIT1}, \textit{IFIT2}, \textit{IFIT3}, \textit{MX1}, \textit{OAS1}, \textit{OAS2}, \textit{OAS3}, \textit{ISG15}, \textit{IFI44}, and \textit{IFI44L} when compared to IPF, the majority of which are associated with type I responses though cross-over exists with type II responses {[}\citeproc{ref-singhania}{\textbf{singhania?}}\ldots\ldots..{]}. Prior profiling of PBMCs from patients with SSc-ILD corroborate our findings, showing up-regulation of type I IFN genes when compared to healthy controls {[}\citeproc{ref-tan}{\textbf{tan?}}\ldots{]}. Previous scRNA-seq work comparing cell populations from explanted lung tissue specimens of patients with IPF and SSc-ILD revealed diverse IFN signaling, with IPF showing increased type II IFN (IFN-\gamma) signaling and SSc-ILD displaying increased type I IFN (IFN-\alpha, IFN-\beta) signaling in macrophages, cytotoxic T cells, and NK cells {[}\citeproc{ref-valenzi_disparate_2021}{123}{]}, which was also identified in bulk transcriptomics of ILD lung {[}\citeproc{ref-christmann_association_2014}{124}{]}. Taken together, this suggests that peripheral type I IFN signatures are unique in SSc-ILD and differentiate them from other ILDs.
+In our comparison of peripheral transcriptomes for radiological patterns, we identified a number of neutrophil-associated genes expressed in fHP when compared to NSIP and UIP, although the results in the latter comparison did not pass significance after correcting for FDR. While \textit{CEACAM8} is expressed on neutrophil membranes {[}\citeproc{ref-skubitz_interdependency_2008}{127}{]}, \textit{MMP8} and \textit{LCN2} are both associated with neutrophil migration and the latter forms a complex with \textit{MMP9} which was up-regulated in fHP as well when compared to NSIP at an FDR of 0.15 {[}\citeproc{ref-guardado_comprehensive_2021}{129}{]}. We also found up-regulation of \textit{LTF}, which is secreted by neutrophils to attenuate inflammation and promote tissue repair {[}\citeproc{ref-kruzel_lactoferrin_2017}{130}{]}. This is in line with the pathology of HP, as MMP-8- and MMP-9-positive neutrophils have been found to infiltrate lungs of patients with HP and were positively correlated with the extent of lung fibrosis {[}\citeproc{ref-pardo_increase_2000}{131}{]}. However, lung infiltration by neutrophils is not limited to HP, as similar results have been identified in patients with IPF and bleomycin-induced fibrosis in mice {[}\citeproc{ref-warheit-niemi_fibrotic_2022}{133}{]}. Hence, further work must be done to validate a peripheral neutrophil gene signature of fHP as a potential diagnostic biomarker.
 
-In our comparison of peripheral transcriptomes for radiological patterns, we identified a number of neutrophil-associated genes expressed in fHP when compared to NSIP and UIP, although the results in the latter comparison did not pass significance after correcting for FDR. While \textit{CEACAM8} is expressed on neutrophil membranes {[}\citeproc{ref-skubitz}{\textbf{skubitz?}}\ldots{]}, \textit{MMP8} and \textit{LCN2} are both associated with neutrophil migration and the latter forms a complex with \textit{MMP9} which was up-regulated in fHP as well when compared to NSIP at an FDR of 0.15 {[}\citeproc{ref-guardado}{\textbf{guardado?}}{]}. We also found up-regulation of \textit{LTF}, which is secreted by neutrophils to attenuate inflammation and promote tissue repair {[}\citeproc{ref-kruzel}{\textbf{kruzel?}}{]}. This is in line with the pathology of HP, as MMP-8- and MMP-9-positive neutrophils have been found to infiltrate lungs of patients with HP and were positively correlated with the extent of lung fibrosis {[}\citeproc{ref-pardo_increase_2000}{125}{]}. However, lung infiltration by neutrophils is not limited to HP, as similar results have been identified in patients with IPF and bleomycin-induced fibrosis in mice {[}\citeproc{ref-warheit-niemi}{\textbf{warheit-niemi?}}{]}. Hence, further work must be done to validate a peripheral neutrophil gene signature of fHP as a potential diagnostic biomarker.
+We could not identify any differentially expressed genes between patients that did or did not develop PPF using the INBUILD criteria. However, stratified analysis within SSc-ILD revealed increased \textit{LINC02470} expression as significantly associated with PPF, which was also found in stratified analysis of NSIP samples though unsurprising as 31 of the 35 SSc-ILD patients had a radiological NSIP pattern. When investigating individual INBUILD criteria, expression of \textit{LINC02470} and \textit{CLEC2A} were associated with radiological progression of fibrosis within 2 years. \textit{LINC02470} has been shown to enhance EMT in bladder cancer by neutralizing miR-143-3p in order to rescue SMAD3 expression, which in turn activates TGF-\beta signaling {[}\citeproc{ref-huang_long_2022}{134}{]}, while \textit{CLEC2A} is a skin-associated transcript expressed by NK and myeloid cells {[}\citeproc{ref-spreu_clec2a_2007}{135}{]}. Both of these genes were not associated with radiological progression in patients with NSIP; instead, \textit{AOX1} and \textit{PAQR9} were significantly up-regulated, the former of which has been shown to activate Wnt/\beta-catenin through reactive oxygen spiecies and enhance EMT in gallbladder carcinoma {[}\citeproc{ref-yuan_aldehyde_2024}{136}{]}. Furthermore, decline in FVC\% predicted of \underline{>}10\% within 2 years in IPF patients was associated with decreased \textit{THBS3-AS1}, which overlaps with miR-92b, a regulator of the TGF-\beta pathway; knockout of miR-92b aggravates kidney fibrosis {[}\citeproc{ref-yang_mircrorna-92b_2023}{137}{]}.
 
-We could not identify any differentially expressed genes between patients that did or did not develop PPF using the INBUILD criteria. However, stratified analysis within SSc-ILD revealed increased \textit{LINC02470} expression as significantly associated with PPF, which was also found in stratified analysis of NSIP samples though unsurprising as 31 of the 35 SSc-ILD patients had a radiological NSIP pattern. When investigating individual INBUILD criteria, expression of \textit{LINC02470} and \textit{CLEC2A} were associated with radiological progression of fibrosis within 2 years. \textit{LINC02470} has been shown to enhance EMT in bladder cancer by neutralizing miR-143-3p in order to rescue SMAD3 expression, which in turn activates TGF-\beta signaling {[}\citeproc{ref-huang}{\textbf{huang?}}\ldots{]}, while \textit{CLEC2A} is a skin-associated transcript expressed by NK and myeloid cells {[}\citeproc{ref-spreu}{\textbf{spreu?}}\ldots{]}. Furthermore, decline in FVC\% predicted of \textgreater10\% within 2 years in IPF patients was associated with decreased \textit{tHBS3-AS1}, which overlaps with miR-92b, a regulator of the TGF-\beta pathway; knockout of miR-92b aggravates kidney fibrosis {[}\citeproc{ref-Yang}{\textbf{Yang?}}\ldots{]}.
+The definition of PPF is currently under debate. In the 2022 update of the ATS/ERS/JRS/ALAT diagnostic guidelines for IPF (herein referred to as the 2022 guidelines), a set of criteria were proposed to define PPF: worsening respiratory symptoms, decline in lung function defined by absolute FVC \underline{>}5\% or absolute D\textsubscript{LCO}\underline{>}10\%, and radiological progression; fulfilling two of the three criteria within one year (with no alternative explanation) would categorize a patient as having PPF {[}\citeproc{ref-raghu_idiopathic_2022}{2}{]}. Based on the results of the INBUILD trial, a conditional recommendation was made to treatment non-IPF patients with PPF with nintedanib, with no recommendation made for pirfenidone given limited evidence. This has been met with dissent given the limited body of evidence surrounding this phenotype, particularly in the absence of genetic and biological evidence {[}\citeproc{ref-johannson_progressive_2022}{138}{]}. Validation of proposed PPF criteria in Australian and Canadian cohorts, of which our RNA-seq blood cohort is a subset of, demonstrated poor agreement with respect to the definition of PPF - only 17\% of patients fulfilled all criteria for PPF from the 2022 guidelines, INBUILD, RELIEF, and uILD trials {[}\citeproc{ref-khor_patient_2023}{22}{]}, and greater sensitivity was obtained from single-domain criteria {[}\citeproc{ref-pugashetti_validation_2023}{140}{]}. From a molecular standpoint, our results agree with these findings. The PPF phenotype was not associated with any differentially expressed genes in all ILD samples, but \textit{LINC02470} expression was identified as a potential marker for PPF in SSc-ILD patients and patients with radiological NSIP, suggesting that there may be molecular biomarkers associated with progression within specific ILD subtypes.
 
-Our work has certain limitations. While type I interferons have been explored as a biomarker in SSc-ILD {[}\citeproc{ref-kakkar}{\textbf{kakkar?}}\ldots{]}, the
+While we were unable to identify genes associated with progression in ILD, we were able to develop a predictive model of transplant-free survival using peripheral transcriptomics of ILD. Prior work in this field has focused on IPF patient cohorts to predict transplant-free survival using RNA from PBMCs or whole blood {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]}, while others have investigated the association of the peripheral transcriptome of IPF PBMCs with predicting decline in FVC\% or D\textsubscript{LCO}\% in IPF {[}\citeproc{ref-huang_blood_2021}{101}{]} or progression in HP PBMCs {[}\citeproc{ref-fernandez_perez_prognostic_2022}{102}{]}. Our cohort is unique in its representation of different ILD subtypes. The previously published 52-gene risk profile for IPF patients {[}\citeproc{ref-herazo-maya_validating_2017}{100}{]} did not distinguish between high- and low-risk patients in our multi-subtype ILD cohort, but was able to distinguish high- and low-risk IPF patients in the validation sets GSE28042 {[}\citeproc{ref-herazo-maya_validating_2017}{100}{]} and GSE93606 {[}\citeproc{ref-molyneaux_host-microbial_2017}{55}{]}, and our model had comparable performance in these sets as well (Figure \ref{fig:herazomaya}). Genes in our model are related to mechanisms associated with fibrosis. \textit{COX15} is a subunit of cytochrome c oxidase (COX), which is the terminal component of the mitochondrial respiratory chain, and electron transfer from COX to Rac1 promotes H\textsubscript{2}O\textsubscript{2} production in macrophages. Silencing of Rac1 in macrophages protects has been shown to protect mice from developing pulmonary fibrosis after asbestos exposure {[}\citeproc{ref-osborn-heaford_mitochondrial_2012}{141}{]}. \textit{OIP5} is overexpressed in lung and esophageal cancers and is associated with a poor prognosis {[}\citeproc{ref-koinuma_characterization_2012}{142}{]}, and induces AKT activation and \beta-catenin signaling {[}\citeproc{ref-li_oip5_2017}{143}{]}. Interestingly, low \textit{FGF9} expression was associated with worse survival in our cohort despite its anti-apoptic and migratory effects on IPF fibroblasts {[}\citeproc{ref-joannes_fgf9_2016}{144}{]} and general overexpression in IPF {[}\citeproc{ref-coffey_expression_2013}{145}{]}. None of the genes in our survival model were shared with the 52-gene risk model {[}\citeproc{ref-herazo-maya_peripheral_2013}{59}{]} or HP progression genes {[}\citeproc{ref-fernandez_perez_prognostic_2022}{102}{]}, which is unsurprising given that both were derived from examining differential expression. However, the study by Huang \textit{et al.} used LASSO regression to investigate decline in FVC\% or D\textsubscript{LCO}\% in IPF {[}\citeproc{ref-huang_blood_2021}{101}{]}, which is similar to the elastic net approach (a combination of LASSO and ridge regression) we employed, and one of the genes associated with FVC\% decline was \textit{GYPA}. \textit{GYPA} encodes for glycophorin A, and the proposed ILD survival model contains \textit{GYPB}, glycophorin B, suggesting that there may be a relationship between these MNS blood group antigens and progression in ILD.
 
-\begin{itemize}
-\item
-  ssc-ild vs other ild is not difficult diagnostically
-\item
-  ssc-ild interferon relationship
-\item
-  ssc-ild nk cell relationship
-\item
-  fHP shows neutrophil signatures (LCN2, MMP8, CEACAM8); KREMEN1 blocks Wnt signaling
-\item
-  ppf linc02470, commentary repeating what ryerson said about ppf in that different ppf criteria don't necessarily agree and suggest that the true relationship is radiological progression
-\item
-  limitations regarding survival: 15/27 IPF patients censored, which is 15/25 of the total censored; need more peripheral transcriptional profiling done on other ILD subtypes
-\item
-  herazo-maya commentary: it doesn't work on our cohort, works well on the other two cohorts\ldots{}
-\item
-  COX15?
-\end{itemize}
+Our work has certain limitations. While type I interferons have been explored as a biomarker in SSc-ILD {[}\citeproc{ref-kakkar_type_2022}{146}{]}, IPF and SSc-ILD are not typically difficult to discern at the clinical level {[}\citeproc{ref-herzog_interstitial_2014}{147}{]}, and greater interest lies in the differences between IPF and HP {[}\citeproc{ref-raghu_diagnosis_2020}{150}{]}. While we were unable to identify a difference in diagnosed IPF and HP, we were able to identify biologically relevant neutrophil-associated genes in patients with a fHP radiological pattern when compared to NSIP. Our cohort was initially selected to balance PPF samples on the basis of the INBUILD criteria prior to the publication of the 2022 guidelines, and is therefore only sufficiently powered to examine the INBUILD definition of PPF. Associations identified with individual PPF criteria are therefore limited by small samples; likewise, we were unable to find DEGs associated with the PPF definition from the 2022 guidelines, of which only 7 patients fulfilled the criteria. Similarly, 25 of 96 patients in our cohort experienced transplant or death, and 15 of these 25 were IPF patients. Hence, these biases may affect the performance of our model predicting transplant-free survival in a larger cohort, which is unsurprising given the novel diversity of ILD subtypes in our cohort.
+
+In this chapter, we show a comprehensive examination of the peripheral transcriptome in ILD patients, and provide the first between-subtype comparison of blood gene expression between various ILD subtypes. We identified a distinct interferon-associated gene signature in patients with SSc-ILD, genes associated with progression in SSc-ILD and NSIP patients, and a gene signature separating high- and low- risk patients with ILD with respect to transplant-free survival. Future studies within this realm should aim to collect samples from all subtypes of ILD to identify specific or general ILD signatures with respect to progression and survival.
 
 \clearpage
 
@@ -1169,7 +1154,7 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{25. }%
 \CSLRightInline{Hambly N, Farooqi MM, Dvorkin-Gheva A, Donohoe K, Garlick K, Scallan C, et al. \href{https://doi.org/10.1183/13993003.02571-2021}{Prevalence and characteristics of progressive fibrosing interstitial lung disease in a prospective registry}. The European Respiratory Journal. 2022 Oct;60(4):2102571. }
 
-\bibitem[\citeproctext]{ref-oldham_lung_2022-1}
+\bibitem[\citeproctext]{ref-oldham_lung_2022}
 \CSLLeftMargin{26. }%
 \CSLRightInline{Oldham JM, Lee CT, Wu Z, Bowman WS, Pugashetti JV, Dao N, et al. \href{https://doi.org/10.1183/13993003.01396-2021}{Lung function trajectory in progressive fibrosing interstitial lung disease}. The European Respiratory Journal. 2022 Jun;59(6):2101396. }
 
@@ -1557,44 +1542,144 @@ Fusce feugiat consectetur erat, nec venenatis massa malesuada nec. Curabitur var
 \CSLLeftMargin{122. }%
 \CSLRightInline{Shin H, Shannon CP, Fishbane N, Ruan J, Zhou M, Balshaw R, et al. Variation in {RNA}-{Seq} {Transcriptome} {Profiles} of {Peripheral} {Whole} {Blood} from {Healthy} {Individuals} with and without {Globin} {Depletion}. PLOS ONE {[}Internet{]}. 2014 Mar {[}cited 2024 Jun 14{]};9(3):e91041. Available from: \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091041}}
 
-\bibitem[\citeproctext]{ref-valenzi_disparate_2021}
+\bibitem[\citeproctext]{ref-singhania_transcriptional_2019}
 \CSLLeftMargin{123. }%
+\CSLRightInline{Singhania A, Graham CM, Gabryšová L, Moreira-Teixeira L, Stavropoulos E, Pitt JM, et al. Transcriptional profiling unveils type {I} and {II} interferon networks in blood and tissues across diseases. Nature Communications {[}Internet{]}. 2019 Jun {[}cited 2024 Jun 17{]};10(1):2887. Available from: \url{https://www.nature.com/articles/s41467-019-10601-6}}
+
+\bibitem[\citeproctext]{ref-tan_signatures_2006}
+\CSLLeftMargin{124. }%
+\CSLRightInline{Tan FK, Zhou X, Mayes MD, Gourh P, Guo X, Marcum C, et al. Signatures of differentially regulated interferon gene expression and vasculotrophism in the peripheral blood cells of systemic sclerosis patients. Rheumatology {[}Internet{]}. 2006 Jun {[}cited 2024 Jun 17{]};45(6):694--702. Available from: \url{https://doi.org/10.1093/rheumatology/kei244}}
+
+\bibitem[\citeproctext]{ref-valenzi_disparate_2021}
+\CSLLeftMargin{125. }%
 \CSLRightInline{Valenzi E, Tabib T, Papazoglou A, Sembrat J, Trejo Bittar HE, Rojas M, et al. Disparate {Interferon} {Signaling} and {Shared} {Aberrant} {Basaloid} {Cells} in {Single}-{Cell} {Profiling} of {Idiopathic} {Pulmonary} {Fibrosis} and {Systemic} {Sclerosis}-{Associated} {Interstitial} {Lung} {Disease}. Frontiers in Immunology {[}Internet{]}. 2021 Mar {[}cited 2022 Aug 26{]};12:595811. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8042271/}}
 
 \bibitem[\citeproctext]{ref-christmann_association_2014}
-\CSLLeftMargin{124. }%
+\CSLLeftMargin{126. }%
 \CSLRightInline{Christmann RB, Sampaio-Barros P, Stifano G, Borges CL, Carvalho CR de, Kairalla R, et al. \href{https://doi.org/10.1002/art.38288}{Association of {Interferon}- and transforming growth factor β-regulated genes and macrophage activation with systemic sclerosis-related progressive lung fibrosis}. Arthritis \& Rheumatology (Hoboken, NJ). 2014 Mar;66(3):714--25. }
 
+\bibitem[\citeproctext]{ref-skubitz_interdependency_2008}
+\CSLLeftMargin{127. }%
+\CSLRightInline{Skubitz KM, Skubitz AP. Interdependency of {CEACAM}-1, -3, -6, and -8 induced human neutrophil adhesion to endothelial cells. Journal of Translational Medicine {[}Internet{]}. 2008 Dec {[}cited 2024 Jun 17{]};6(1):78. Available from: \url{https://doi.org/10.1186/1479-5876-6-78}}
+
+\bibitem[\citeproctext]{ref-lin_matrix_2008}
+\CSLLeftMargin{128. }%
+\CSLRightInline{Lin M, Jackson P, Tester AM, Diaconu E, Overall CM, Blalock JE, et al. Matrix {Metalloproteinase}-8 {Facilitates} {Neutrophil} {Migration} through the {Corneal} {Stromal} {Matrix} by {Collagen} {Degradation} and {Production} of the {Chemotactic} {Peptide} {Pro}-{Gly}-{Pro}. The American Journal of Pathology {[}Internet{]}. 2008 Jul {[}cited 2024 Jun 17{]};173(1):144--53. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2438292/}}
+
+\bibitem[\citeproctext]{ref-guardado_comprehensive_2021}
+\CSLLeftMargin{129. }%
+\CSLRightInline{Guardado S, Ojeda-Juárez D, Kaul M, Nordgren TM. Comprehensive review of lipocalin 2-mediated effects in lung inflammation. American Journal of Physiology-Lung Cellular and Molecular Physiology {[}Internet{]}. 2021 Oct {[}cited 2024 Jun 17{]};321(4):L726--33. Available from: \url{https://journals.physiology.org/doi/full/10.1152/ajplung.00080.2021}}
+
+\bibitem[\citeproctext]{ref-kruzel_lactoferrin_2017}
+\CSLLeftMargin{130. }%
+\CSLRightInline{Kruzel ML, Zimecki M, Actor JK. Lactoferrin in a {Context} of {Inflammation}-{Induced} {Pathology}. Frontiers in Immunology {[}Internet{]}. 2017 Nov {[}cited 2024 Jun 17{]};8. Available from: \url{https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2017.01438/full}}
+
 \bibitem[\citeproctext]{ref-pardo_increase_2000}
-\CSLLeftMargin{125. }%
+\CSLLeftMargin{131. }%
 \CSLRightInline{Pardo A, Barrios R, Gaxiola M, Segura-Valdez L, Carrillo G, Estrada A, et al. \href{https://doi.org/10.1164/ajrccm.161.5.9907065}{Increase of lung neutrophils in hypersensitivity pneumonitis is associated with lung fibrosis}. American Journal of Respiratory and Critical Care Medicine. 2000 May;161(5):1698--704. }
 
+\bibitem[\citeproctext]{ref-obayashi_role_1997}
+\CSLLeftMargin{132. }%
+\CSLRightInline{Obayashi Y, Yamadori I, Fujita J, Yoshinouchi T, Ueda N, Takahara J. The {Role} of {Neutrophils} in the {Pathogenesis} of {Idiopathic} {Pulmonary} {Fibrosis}. Chest {[}Internet{]}. 1997 Nov {[}cited 2024 Jun 17{]};112(5):1338--43. Available from: \url{https://www.sciencedirect.com/science/article/pii/S0012369215473210}}
+
+\bibitem[\citeproctext]{ref-warheit-niemi_fibrotic_2022}
+\CSLLeftMargin{133. }%
+\CSLRightInline{Warheit-Niemi HI, Huizinga GP, Edwards SJ, Wang Y, Murray SK, O'Dwyer DN, et al. Fibrotic {Lung} {Disease} {Alters} {Neutrophil} {Trafficking} and {Promotes} {Neutrophil} {Elastase} and {Extracellular} {Trap} {Release}. ImmunoHorizons {[}Internet{]}. 2022 Dec {[}cited 2024 Jun 17{]};6(12):817--34. Available from: \url{https://doi.org/10.4049/immunohorizons.2200083}}
+
+\bibitem[\citeproctext]{ref-huang_long_2022}
+\CSLLeftMargin{134. }%
+\CSLRightInline{Huang CS, Tsai CH, Yu CP, Wu YS, Yee MF, Ho JY, et al. Long {Noncoding} {RNA} {LINC02470} {Sponges} {MicroRNA}-143-3p and {Enhances} {SMAD3}-{Mediated} {Epithelial}-to-{Mesenchymal} {Transition} to {Promote} the {Aggressive} {Properties} of {Bladder} {Cancer}. Cancers {[}Internet{]}. 2022 Feb {[}cited 2024 Apr 14{]};14(4):968. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8870681/}}
+
+\bibitem[\citeproctext]{ref-spreu_clec2a_2007}
+\CSLLeftMargin{135. }%
+\CSLRightInline{Spreu J, Kienle EC, Schrage B, Steinle A. \href{https://doi.org/10.1007/s00251-007-0263-1}{{CLEC2A}: A novel, alternatively spliced and skin-associated member of the {NKC}-encoded {AICL}-{CD69}-{LLT1} family}. Immunogenetics. 2007 Dec;59(12):903--12. }
+
+\bibitem[\citeproctext]{ref-yuan_aldehyde_2024}
+\CSLLeftMargin{136. }%
+\CSLRightInline{Yuan Z, Yi G, Ma R, Wang Z, Hu J, Zhao W, et al. \href{https://doi.org/10.1016/j.cellsig.2024.111042}{Aldehyde oxidase 1 promotes gallbladder carcinogenesis through {ROS}-mediated activation of the {Wnt}/β-catenin pathway}. Cellular Signalling. 2024 Apr;116:111042. }
+
+\bibitem[\citeproctext]{ref-yang_mircrorna-92b_2023}
+\CSLLeftMargin{137. }%
+\CSLRightInline{Yang S, Jiang K, Li L, Xiang J, Li Y, Kang L, et al. {MircroRNA}-92b as a negative regulator of the {TGF}-β signaling by targeting the type {I} receptor. iScience {[}Internet{]}. 2023 Nov {[}cited 2024 Apr 17{]};26(11). Available from: \url{https://www.cell.com/iscience/abstract/S2589-0042(23)02208-3}}
+
+\bibitem[\citeproctext]{ref-johannson_progressive_2022}
+\CSLLeftMargin{138. }%
+\CSLRightInline{Johannson KA, Kolb M, Fisher JH, Walsh SLF. Progressive {Pulmonary} {Fibrosis}: {Putting} the {Cart} {Before} the {Horse}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2022 Nov {[}cited 2024 Jun 17{]};206(10):1294--5. Available from: \url{https://www.atsjournals.org/doi/full/10.1164/rccm.202206-1166LE}}
+
+\bibitem[\citeproctext]{ref-cottin_criteria_2023}
+\CSLLeftMargin{139. }%
+\CSLRightInline{Cottin V. \href{https://doi.org/10.1164/rccm.202208-1639ED}{Criteria for {Progressive} {Pulmonary} {Fibrosis}: {Getting} the {Horse} {Ready} for the {Cart}}. American Journal of Respiratory and Critical Care Medicine. 2023 Jan;207(1):11--3. }
+
+\bibitem[\citeproctext]{ref-pugashetti_validation_2023}
+\CSLLeftMargin{140. }%
+\CSLRightInline{Pugashetti JV, Adegunsoye A, Wu Z, Lee CT, Srikrishnan A, Ghodrati S, et al. Validation of {Proposed} {Criteria} for {Progressive} {Pulmonary} {Fibrosis}. American Journal of Respiratory and Critical Care Medicine {[}Internet{]}. 2023 Jan {[}cited 2024 Jun 17{]};207(1):69--76. Available from: \url{https://www.atsjournals.org/doi/10.1164/rccm.202201-0124OC}}
+
+\bibitem[\citeproctext]{ref-osborn-heaford_mitochondrial_2012}
+\CSLLeftMargin{141. }%
+\CSLRightInline{Osborn-Heaford HL, Ryan AJ, Murthy S, Racila AM, He C, Sieren JC, et al. \href{https://doi.org/10.1074/jbc.M111.308387}{Mitochondrial {Rac1} {GTPase} import and electron transfer from cytochrome c are required for pulmonary fibrosis}. The Journal of Biological Chemistry. 2012 Jan;287(5):3301--12. }
+
+\bibitem[\citeproctext]{ref-koinuma_characterization_2012}
+\CSLLeftMargin{142. }%
+\CSLRightInline{Koinuma J, Akiyama H, Fujita M, Hosokawa M, Tsuchiya E, Kondo S, et al. \href{https://doi.org/10.1111/j.1349-7006.2011.02167.x}{Characterization of an {Opa} interacting protein 5 involved in lung and esophageal carcinogenesis}. Cancer Science. 2012 Mar;103(3):577--86. }
+
+\bibitem[\citeproctext]{ref-li_oip5_2017}
+\CSLLeftMargin{143. }%
+\CSLRightInline{Li H, Zhang J, Lee MJ, Yu GR, Han X, Kim DG. \href{https://doi.org/10.18632/oncotarget.15185}{{OIP5}, a target of {miR}-15b-5p, regulates hepatocellular carcinoma growth and metastasis through the {AKT}/{mTORC1} and β-catenin signaling pathways}. Oncotarget. 2017 Mar;8(11):18129--44. }
+
+\bibitem[\citeproctext]{ref-joannes_fgf9_2016}
+\CSLLeftMargin{144. }%
+\CSLRightInline{Joannes A, Brayer S, Besnard V, Marchal-Sommé J, Jaillet M, Mordant P, et al. \href{https://doi.org/10.1152/ajplung.00185.2015}{{FGF9} and {FGF18} in idiopathic pulmonary fibrosis promote survival and migration and inhibit myofibroblast differentiation of human lung fibroblasts in vitro}. American Journal of Physiology Lung Cellular and Molecular Physiology. 2016 Apr;310(7):L615--629. }
+
+\bibitem[\citeproctext]{ref-coffey_expression_2013}
+\CSLLeftMargin{145. }%
+\CSLRightInline{Coffey E, Newman DR, Sannes PL. \href{https://doi.org/10.1369/0022155413497366}{Expression of fibroblast growth factor 9 in normal human lung and idiopathic pulmonary fibrosis}. The Journal of Histochemistry and Cytochemistry: Official Journal of the Histochemistry Society. 2013 Sep;61(9):671--9. }
+
+\bibitem[\citeproctext]{ref-kakkar_type_2022}
+\CSLLeftMargin{146. }%
+\CSLRightInline{Kakkar V, Assassi S, Allanore Y, Kuwana M, Denton CP, Khanna D, et al. Type 1 interferon activation in systemic sclerosis: A biomarker, a target or the culprit. Current Opinion in Rheumatology {[}Internet{]}. 2022 Nov {[}cited 2024 Jun 5{]};34(6):357--64. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9594133/}}
+
+\bibitem[\citeproctext]{ref-herzog_interstitial_2014}
+\CSLLeftMargin{147. }%
+\CSLRightInline{Herzog EL, Mathur A, Tager AM, Feghali-Bostwick C, Schneider F, Varga J. Interstitial {Lung} {Disease} {Associated} {With} {Systemic} {Sclerosis} and {Idiopathic} {Pulmonary} {Fibrosis}. Arthritis \& rheumatology (Hoboken, NJ) {[}Internet{]}. 2014 Aug {[}cited 2024 Jun 18{]};66(8):1967--78. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4340472/}}
+
+\bibitem[\citeproctext]{ref-guler_performance_2021}
+\CSLLeftMargin{148. }%
+\CSLRightInline{Guler SA, Wohlfarth E, Berezowska S, Geiser TK, Ebner L, Funke-Chambour M. Performance of a diagnostic algorithm for fibrotic hypersensitivity pneumonitis. {A} case--control study. Respiratory Research {[}Internet{]}. 2021 Apr {[}cited 2024 Jun 18{]};22(1):120. Available from: \url{https://doi.org/10.1186/s12931-021-01727-7}}
+
+\bibitem[\citeproctext]{ref-morell_chronic_2013}
+\CSLLeftMargin{149. }%
+\CSLRightInline{Morell F, Villar A, Montero MÁ, Muñoz X, Colby TV, Pipvath S, et al. \href{https://doi.org/10.1016/S2213-2600(13)70191-7}{Chronic hypersensitivity pneumonitis in patients diagnosed with idiopathic pulmonary fibrosis: A prospective case-cohort study}. The Lancet Respiratory Medicine. 2013 Nov;1(9):685--94. }
+
+\bibitem[\citeproctext]{ref-raghu_diagnosis_2020}
+\CSLLeftMargin{150. }%
+\CSLRightInline{Raghu G, Remy-Jardin M, Ryerson CJ, Myers JL, Kreuter M, Vasakova M, et al. \href{https://doi.org/10.1164/rccm.202005-2032ST}{Diagnosis of {Hypersensitivity} {Pneumonitis} in {Adults}. {An} {Official} {ATS}/{JRS}/{ALAT} {Clinical} {Practice} {Guideline}}. American Journal of Respiratory and Critical Care Medicine. 2020 Aug;202(3):e36--69. }
+
 \bibitem[\citeproctext]{ref-zhao_metabolic_2017}
-\CSLLeftMargin{126. }%
+\CSLLeftMargin{151. }%
 \CSLRightInline{Zhao YD, Yin L, Archer S, Lu C, Zhao G, Yao Y, et al. Metabolic heterogeneity of idiopathic pulmonary fibrosis: A metabolomic study. BMJ Open Respiratory Research {[}Internet{]}. 2017 Jun {[}cited 2024 May 22{]};4(1):e000183. Available from: \url{https://bmjopenrespres.bmj.com/content/4/1/e000183}}
 
 \bibitem[\citeproctext]{ref-zhu_integration_2018}
-\CSLLeftMargin{127. }%
+\CSLLeftMargin{152. }%
 \CSLRightInline{Zhu H, Zhu C, Mi W, Chen T, Zhao H, Zuo X, et al. \href{https://doi.org/10.1155/2018/7342472}{Integration of {Genome}-{Wide} {DNA} {Methylation} and {Transcription} {Uncovered} {Aberrant} {Methylation}-{Regulated} {Genes} and {Pathways} in the {Peripheral} {Blood} {Mononuclear} {Cells} of {Systemic} {Sclerosis}}. International Journal of Rheumatology. 2018;2018:7342472. }
 
 \bibitem[\citeproctext]{ref-ghosh_lung_2022}
-\CSLLeftMargin{128. }%
+\CSLLeftMargin{153. }%
 \CSLRightInline{Ghosh AJ, Hobbs BD, Yun JH, Saferali A, Moll M, Xu Z, et al. \href{https://doi.org/10.1186/s12931-022-02013-w}{Lung tissue shows divergent gene expression between chronic obstructive pulmonary disease and idiopathic pulmonary fibrosis}. Respiratory Research. 2022 Apr;23(1):97. }
 
 \bibitem[\citeproctext]{ref-el-chemaly_immunome_2018}
-\CSLLeftMargin{129. }%
+\CSLLeftMargin{154. }%
 \CSLRightInline{El-Chemaly S, Cheung F, Kotliarov Y, O'Brien KJ, Gahl WA, Chen J, et al. \href{https://doi.org/10.3389/fimmu.2018.00076}{The {Immunome} in {Two} {Inherited} {Forms} of {Pulmonary} {Fibrosis}}. Frontiers in Immunology. 2018;9:76. }
 
 \bibitem[\citeproctext]{ref-zhou_integrated_2019}
-\CSLLeftMargin{130. }%
+\CSLLeftMargin{155. }%
 \CSLRightInline{Zhou Y, He L, Liu XD, Guan H, Li Y, Huang RX, et al. Integrated {Analysis} of {lncRNA} and {mRNA} {Transcriptomes} {Reveals} {New} {Regulators} of {Ubiquitination} and the {Immune} {Response} in {Silica}-{Induced} {Pulmonary} {Fibrosis}. BioMed Research International {[}Internet{]}. 2019 Jan {[}cited 2024 May 22{]};2019:6305065. Available from: \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6348882/}}
 
 \bibitem[\citeproctext]{ref-vosa_comprehensive_2014}
-\CSLLeftMargin{131. }%
+\CSLLeftMargin{156. }%
 \CSLRightInline{Võsa U, Kolde R, Vilo J, Metspalu A, Annilo T. Comprehensive {Meta}-analysis of {MicroRNA} {Expression} {Using} a {Robust} {Rank} {Aggregation} {Approach}. In: Alvarez ML, Nourbakhsh M, editors. {RNA} {Mapping}: {Methods} and {Protocols} {[}Internet{]}. New York, NY: Springer; 2014 {[}cited 2023 May 3{]}. p. 361--73. (Methods in {Molecular} {Biology}). Available from: \url{https://doi.org/10.1007/978-1-4939-1062-5_28}}
 
 \bibitem[\citeproctext]{ref-wold_nonlinear_1973}
-\CSLLeftMargin{132. }%
+\CSLLeftMargin{157. }%
 \CSLRightInline{Wold H. Nonlinear {Iterative} {Partial} {Least} {Squares} ({NIPALS}) {Modelling}: {Some} {Current} {Developments}. In: Krishnaiah PR, editor. Multivariate {Analysis}--{III} {[}Internet{]}. Academic Press; 1973 {[}cited 2023 Dec 13{]}. p. 383--407. Available from: \url{https://www.sciencedirect.com/science/article/pii/B9780124266537500326}}
 
 \end{CSLReferences}
@@ -1752,11 +1837,11 @@ To assess the risk of bias in the included studies, we used a modified checklist
   Author-provided expression matrix is appropriately normalized, and DEGs can be replicated (if reported).
 \end{enumerate}
 
-Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{126},\citeproc{ref-zhu_integration_2018}{127}{]}, one {[}\citeproc{ref-christmann_association_2014}{124}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{128}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{129}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{130}{]}.
+Seven studies did not pass our quality control assessment. Two studies did not have adequate sample labels for diagnosis {[}\citeproc{ref-zhao_metabolic_2017}{151},\citeproc{ref-zhu_integration_2018}{152}{]}, one {[}\citeproc{ref-christmann_association_2014}{126}{]} was a duplicate of {[}\citeproc{ref-christmann_mir-155_2016}{81}{]}, one {[}\citeproc{ref-ghosh_lung_2022}{153}{]} was a suspected duplicate of another study {[}\citeproc{ref-borie_colocalization_2022}{69}{]} due to having similar sample numbers and both being from the LTRC, one focused only on familial pulmonary fibrosis {[}\citeproc{ref-el-chemaly_immunome_2018}{154}{]}, and two studies were omitted due to poor data quality {[}\citeproc{ref-jia_interleukin_2023}{57},\citeproc{ref-zhou_integrated_2019}{155}{]}.
 
 \subsection{Robust rank aggregation}\label{robust-rank-aggregation}
 
-Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{131}{]}.
+Lists of differentially expressed genes between ILD and healthy control samples were extracted from each study and ordered according to fold-change (decreasing for up-regulated, increasing for down-regulated). DEG lists for fibrotic ILD (IPF, HP, SSc-ILD) against controls were extracted from each study, along with fold change, p-value, and false discovery rate (FDR). Fold change-ordered lists were analyzed using the RRA package (v1.2.1) to generate a consensus list of DEGs, which was Bonferroni-corrected as described {[}\citeproc{ref-vosa_comprehensive_2014}{156}{]}.
 
 \subsection{Microarray and RNA-seq processing}\label{microarray-and-rna-seq-processing}
 
@@ -1775,13 +1860,11 @@ Gene expression datasets were downloaded from the Gene Expression Omnibus (GEO) 
 
 \subsection{Data integration and analysis}\label{data}
 
-The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{132}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
+The Multivariate INTegrative (MINT) method (`mixOmics' v6.22.0) is based on partial least squares (PLS) regression. In PLS discriminant analysis (PLS-DA), latent components are constructed from linear combinations of the data matrix X variables and Y outcome to maximize covariance, and each variable is assigned a weight coefficient to indicate its importance in defining the component. PLS can also be extended to integrate data across studies (multi-group PLS), by defining global components to project samples from different studies into a common space. The MINT algorithm combines these two approaches and applies a least absolute shrinkage and selection operator (lasso) penalization for variable selection resulting in simultaneous batch correction and classification. MINT classification models are also able to handle missing data via nonlinear iterative partial least squares (NIPALS) modelling {[}\citeproc{ref-wold_nonlinear_1973}{157}{]}, so they may be applied despite missing probes or reads in the sequencing method of choice.
 
 Datasets were integrated via shared genes and projected into a common latent space via lasso-penalized multi-group PLS (Figure \ref{fig:integration}), which identifies a small subset of variables that can discriminate classes across studies. Tuning of the lasso penalty parameter was performed via leave-one-group-out cross validation, where the optimal model was selected based on the lowest balanced error rate (BER; the average error rate in each class) with a minimum of 50 features to identify biologically important genes (Figure \ref{fig:tuningMINT}). Final model performance was then assessed using the mixOmics `perf' function against the 8 left-out test datasets, and 95\% confidence intervals obtained using the bootstrap method (Table \ref{tab:modelPerf}). Sex-specific models were also generated (Table \ref{tab:sexModel})
 
 Pathway analyses were limited for some of our models given their relatively small number of features (e.g.~55 genes for IPF vs Control). To address this, we used the R package `bcp' (version 4.0.3) to determine models with an ``expanded'' number of features. Briefly, data from the tuning grids was analyzed to identify changepoints (i.e.~points at which the BER was likely to change). We selected the most amount of features at which the BER remained stable before increasing, as this would provide us with a high number of features without sacrificing model performance (Figure \ref{fig:bayes}). To ensure that the expanded models recapitulated the performance of the original model, we applied them to the test sets to confirm their ability to discriminate between classes (data not shown).
-Gene lists from expanded models were then analyzed via overrepresentation analysis using the `cashoes/sear' package (\url{https://github.com/cashoes/sear}) (Table E8).
-Custom cell pathway annotations were used for Table E9 based upon single-cell RNA-seq data from (16--19).
 
 
 
@@ -5545,7 +5628,7 @@ M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
 
 \captionsetup{width=6.5in}
 
-\subsection{Differential expression}\label{differential-expression}
+\subsubsection{Differential expression}\label{differential-expression}
 
 
 
@@ -5558,13 +5641,15 @@ M9-Fibrosis & 198 & 111 & FVC & 0.08 & 9.73e-01\\*
 \caption[Correlation of PCs with metadata (pilot study)]{\textbf{Correlation of principal component analysis (PCA) components (PCs) with demographic and clinical metadata.} Values shown are Pearson correlation coefficients.}\label{fig:pilotPCA}
 \end{figure}
 
+\newpage
+\begin{singlespace}
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:pilotpftdeg}\textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for treatment status and race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+
+\begingroup\fontsize{9}{11}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:pilotpftdeg}\textbf{List of transcripts analyzed for differential expression with predicted forced vital capacity (FVC\%) and diffusing capacity of the lungs for carbon monoxide (DLCO\%).} Results shown are adjusted for treatment status and race. }\\
 \toprule
 \multicolumn{4}{c}{FVC\%} & \multicolumn{4}{c}{DLCO\%} \\
 \cmidrule(l{3pt}r{3pt}){1-4} \cmidrule(l{3pt}r{3pt}){5-8}
@@ -5596,20 +5681,23 @@ TEX261 & -0.006 & 0.027 & 0.180 & GTF2H2 & -0.015 & 0.014 & 0.096\\
 BCL6 & -0.009 & 0.028 & 0.180 & IRF2 & -0.007 & 0.016 & 0.098\\
 DCAF6 & -0.008 & 0.032 & 0.195 & CD59 & -0.008 & 0.016 & 0.098\\
 \bottomrule
-\end{tabu}
-\end{table}
+\end{longtabu}
+\endgroup{}
 
-\newpage
+\end{singlespace}
+\pagebreak
 
-\subsection{Biomarker panels}\label{biomarker-panels}
+\subsubsection{Biomarker panels}\label{biomarker-panels}
 
-\captionsetup{width=6.5in}
+\begin{singlespace}
+
+\captionsetup{width=6.5in} 
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:biomarkermodel}\textbf{Classification model performance on cross-validation for selected learning algorithms.} Data are reported as mean accuracy ± standard error.}
+\begin{table}[H]
+\centering\centering\centering
+\caption{\label{tab:biomarkermodel}\textbf{Classification model performance on cross-validation for selected learning algorithms.} Data are reported as mean accuracy ± standard error. }
 \centering
 \begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.7in}}
 \toprule
@@ -5623,15 +5711,12 @@ HP vs SSc-ILD & 0.60±0.01 & 0.68±0.02 & 0.64±0.02\\
 \end{tabu}
 \end{table}
 
-\newpage
 
 
+\begingroup\fontsize{8}{10}\selectfont
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:biomarkerweight}\textbf{Coefficient weights of top 20 features (transcripts) of elastic net biomarker panels developed for each between-subtype comparison.}}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}}
+\begin{longtabu} to \linewidth {>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}}
+\caption{\label{tab:biomarkerweight}\textbf{Coefficient weights of top 20 features (transcripts) of elastic net biomarker panels developed for each between-subtype comparison.} }\\
 \toprule
 \multicolumn{2}{c}{IPF vs non-IPF} & \multicolumn{2}{c}{IPF vs SSc-ILD} & \multicolumn{2}{c}{IPF vs HP} & \multicolumn{2}{c}{HP vs SSc-ILD} \\
 \cmidrule(l{3pt}r{3pt}){1-2} \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6} \cmidrule(l{3pt}r{3pt}){7-8}
@@ -5642,24 +5727,29 @@ VCAN & -0.412 & KLRF1 & -2.842 & HIP1 & -1.242 & RORC & 1.257\\
 KLRF1 & -0.395 & DAP & 1.996 & LTK & -1.041 & CNTNAP3 & 0.838\\
 CFD & -0.237 & LTK & 1.571 & CXCR6 & 0.963 & DAP & 0.764\\
 LMBRD1 & 0.236 & FAM65B & -1.131 & RORC & 0.792 & HIP1 & -0.689\\
+\addlinespace
 PLXNC1 & -0.235 & IL1R1 & -1.021 & VCAN & 0.703 & C9orf78 & 0.644\\
 KRT23 & 0.225 & SCARNA5 & -0.977 & HLA-G & -0.556 & FCGR3A & 0.596\\
 DAP & 0.163 & RORC & 0.863 & ITSN1 & 0.540 & KLRF1 & -0.592\\
 C3AR1 & -0.140 & LMBRD1 & 0.811 & PTPN18 & 0.499 & CECR1 & 0.578\\
 STAT6 & -0.137 & KRT23 & 0.810 & TNFRSF10C & 0.478 & SCARNA5 & -0.510\\
+\addlinespace
 MAF & -0.112 & CTSS & 0.687 & MAP2K2 & 0.434 & SLC35E2B & 0.488\\
 GATA3 & -0.107 & CECR1 & 0.656 & FCGR3A & 0.389 & VCAN & -0.459\\
 SCARNA5 & -0.106 & FAM8A1 & 0.536 & PIK3CG & 0.373 & FADD & 0.456\\
 TNFRSF10C & -0.104 & SEPT7 & -0.525 & GATA3 & 0.364 & MAF & 0.439\\
 MAP2K2 & -0.104 & GNLY & -0.508 & CTDSP2 & 0.356 & PIK3CG & 0.430\\
+\addlinespace
 CXCR6 & -0.088 & CISH & -0.439 & C3AR1 & 0.314 & ATP11A & 0.424\\
 FAM8A1 & 0.069 & IL17A & -0.414 & MSN & 0.302 & RALGPS2 & -0.419\\
 FAM65B & -0.060 & C3AR1 & -0.253 & STAT6 & 0.296 & LTK & -0.419\\
 FUT7 & -0.055 & LILRA1 & 0.071 & SPARC & -0.284 & GATA3 & 0.418\\
 GNLY & -0.040 & NAPA & -0.051 & HLA-A & 0.280 & GNAS & 0.405\\
 \bottomrule
-\end{tabu}
-\end{table}
+\end{longtabu}
+\endgroup{}
+
+\end{singlespace}
 
 \clearpage
 
@@ -5674,7 +5764,7 @@ GNLY & -0.040 & NAPA & -0.051 & HLA-A & 0.280 & GNAS & 0.405\\
 
 \captionsetup{width=6.5in}
 
-\subsection{Differential expression}\label{differential-expression-1}
+\subsubsection{Differential expression}\label{differential-expression-1}
 
 
 
@@ -5687,134 +5777,182 @@ GNLY & -0.040 & NAPA & -0.051 & HLA-A & 0.280 & GNAS & 0.405\\
 \caption[Correlation of PCs with metadata (blood RNA-seq)]{\textbf{Principal component analysis (PCA) of blood RNA-seq cohort.} (A) PCA plot of blood RNA-seq samples. (B) Correlation of PCA components (PCs) with demographic and clinical metadata. Values shown are Pearson correlation coefficients.}\label{fig:rnaseqPCA}
 \end{figure}
 
+\begin{singlespace}
+\pagebreak
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ipfvsssc}\textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:ipfvsssc}\textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race. }\\
 \toprule
 Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ipfvsssc}\textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race.  \textit{(continued)}}\\
+\toprule
+Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 ENSG00000141664 & ZCCHC2 & -0.989 & 2.62e-07 & 0.003\\
 ENSG00000184368 & MAP7D2 & -2.588 & 2.90e-07 & 0.003\\
 ENSG00000100427 & MLC1 & 0.652 & 1.48e-06 & 0.008\\
 ENSG00000185745 & IFIT1 & -1.825 & 1.59e-06 & 0.008\\
 ENSG00000180644 & PRF1 & 0.885 & 1.61e-06 & 0.008\\
+\addlinespace
 ENSG00000140807 & NKD1 & -0.734 & 1.98e-06 & 0.008\\
 ENSG00000152558 & TMEM123 & -0.706 & 2.76e-06 & 0.009\\
 ENSG00000152778 & IFIT5 & -0.958 & 3.12e-06 & 0.009\\
 ENSG00000147050 & KDM6A & -0.476 & 4.90e-06 & 0.013\\
 ENSG00000205413 & SAMD9 & -0.720 & 6.54e-06 & 0.013\\
+\addlinespace
 ENSG00000119922 & IFIT2 & -1.104 & 7.46e-06 & 0.013\\
 ENSG00000134321 & RSAD2 & -2.215 & 7.68e-06 & 0.013\\
 ENSG00000069424 & KCNAB2 & 0.284 & 7.99e-06 & 0.013\\
 ENSG00000119917 & IFIT3 & -1.342 & 8.37e-06 & 0.013\\
 ENSG00000160190 & SLC37A1 & -0.278 & 1.20e-05 & 0.015\\
+\addlinespace
 ENSG00000115523 & GNLY & 1.066 & 1.29e-05 & 0.015\\
 ENSG00000006757 & PNPLA4 & -0.468 & 1.38e-05 & 0.015\\
 ENSG00000147113 & DIPK2B & -2.220 & 1.41e-05 & 0.015\\
 ENSG00000214402 & LCNL1 & 1.436 & 1.44e-05 & 0.015\\
 ENSG00000173674 & EIF1AX & -0.483 & 1.53e-05 & 0.015\\
+\addlinespace
 ENSG00000138646 & HERC5 & -1.409 & 1.55e-05 & 0.015\\
 ENSG00000141736 & ERBB2 & 0.664 & 2.01e-05 & 0.017\\
 ENSG00000134326 & CMPK2 & -1.682 & 2.02e-05 & 0.017\\
 ENSG00000115267 & IFIH1 & -0.809 & 2.08e-05 & 0.017\\
 ENSG00000160191 & PDE9A & -1.083 & 2.24e-05 & 0.017\\
+\addlinespace
 ENSG00000189409 & MMP23B & 0.901 & 2.35e-05 & 0.018\\
 ENSG00000111331 & OAS3 & -1.544 & 2.49e-05 & 0.018\\
 ENSG00000133106 & EPSTI1 & -1.332 & 2.59e-05 & 0.018\\
 ENSG00000100453 & GZMB & 0.793 & 2.90e-05 & 0.018\\
 ENSG00000137959 & IFI44L & -2.152 & 2.95e-05 & 0.018\\
+\addlinespace
 ENSG00000107201 & RIGI & -0.768 & 2.97e-05 & 0.018\\
 ENSG00000089472 & HEPH & -2.276 & 3.22e-05 & 0.019\\
 ENSG00000086712 & TXLNG & -0.415 & 3.43e-05 & 0.019\\
 ENSG00000260828 & HMGB3P32 & 0.989 & 3.69e-05 & 0.020\\
 ENSG00000167508 & MVD & 0.383 & 3.71e-05 & 0.020\\
+\addlinespace
 ENSG00000067840 & PDZD4 & 0.712 & 3.90e-05 & 0.020\\
 ENSG00000159674 & SPON2 & 0.745 & 3.95e-05 & 0.020\\
 ENSG00000174600 & CMKLR1 & 0.655 & 4.11e-05 & 0.020\\
 ENSG00000270641 & TSIX & -1.875 & 4.28e-05 & 0.020\\
 ENSG00000173068 & BNC2 & 1.091 & 4.29e-05 & 0.020\\
+\addlinespace
 ENSG00000157601 & MX1 & -1.363 & 4.32e-05 & 0.020\\
 ENSG00000188290 & HES4 & -1.230 & 4.34e-05 & 0.020\\
 ENSG00000136816 & TOR1B & -0.482 & 4.37e-05 & 0.020\\
 ENSG00000075234 & TTC38 & 0.480 & 4.67e-05 & 0.020\\
 ENSG00000177409 & SAMD9L & -0.828 & 4.79e-05 & 0.020\\
+\addlinespace
 ENSG00000149557 & FEZ1 & 0.888 & 4.81e-05 & 0.020\\
 ENSG00000078081 & LAMP3 & -1.485 & 5.16e-05 & 0.021\\
 ENSG00000205336 & ADGRG1 & 0.889 & 5.18e-05 & 0.021\\
 ENSG00000130741 & EIF2S3 & -0.189 & 5.30e-05 & 0.021\\
-ENSG00000137965 & IFI44 & -1.652 & 5.46e-05 & 0.021\\
-\bottomrule
-\end{tabu}
-\end{table}
+ENSG00000137965 & IFI44 & -1.652 & 5.46e-05 & 0.021\\*
+\end{longtable}
+\endgroup{}
+
+\pagebreak
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ipfsscpathway}\textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.}}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}>{\centering}X}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{4.5in}c}
+\caption{\label{tab:ipfsscpathway}\textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.} }\\
 \toprule
 Direction & Pathway & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ipfsscpathway}\textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.}  \textit{(continued)}}\\
+\toprule
+Direction & Pathway & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 SSc-ILD Up & HALLMARK INTERFERON GAMMA RESPONSE & 7.41e-87\\
 SSc-ILD Up & HALLMARK INTERFERON ALPHA RESPONSE & 3.16e-82\\
 SSc-ILD Up & GOBP RESPONSE TO VIRUS & 1.64e-49\\
 SSc-ILD Up & GOBP BIOLOGICAL PROCESS INVOLVED IN INTERSPECIES INTERACTION BETWEEN ORGANISMS & 1.33e-47\\
 SSc-ILD Up & GOBP DEFENSE RESPONSE TO SYMBIONT & 2.66e-46\\
+\addlinespace
 SSc-ILD Up & GOBP DEFENSE RESPONSE TO OTHER ORGANISM & 9.41e-45\\
 SSc-ILD Up & GOBP DEFENSE RESPONSE & 5.97e-44\\
 SSc-ILD Up & REACTOME INTERFERON SIGNALING & 1.43e-43\\
 SSc-ILD Up & GOBP INNATE IMMUNE RESPONSE & 1.65e-41\\
 SSc-ILD Up & GOBP IMMUNE RESPONSE & 3.59e-41\\
+\addlinespace
 SSc-ILD Up & GOBP REGULATION OF VIRAL PROCESS & 5.03e-36\\
 SSc-ILD Up & REACTOME INTERFERON ALPHA BETA SIGNALING & 1.15e-29\\
 SSc-ILD Up & REACTOME CYTOKINE SIGNALING IN IMMUNE SYSTEM & 4.22e-29\\
 SSc-ILD Up & GOBP NEGATIVE REGULATION OF VIRAL PROCESS & 5.15e-29\\
 SSc-ILD Up & GOBP REGULATION OF VIRAL GENOME REPLICATION & 8.29e-28\\
+\addlinespace
 SSc-ILD Up & GOBP VIRAL PROCESS & 4.25e-27\\
 SSc-ILD Up & DC LPS 6h & 8.71e-27\\
 SSc-ILD Up & Macrophage LPS 4h & 1.16e-25\\
 SSc-ILD Up & GOBP NEGATIVE REGULATION OF VIRAL GENOME REPLICATION & 4.44e-25\\
 SSc-ILD Up & GOBP VIRAL GENOME REPLICATION & 4.44e-25\\
+\addlinespace
 SSc-ILD Down & NK CD56+ & 2.43e-39\\
 SSc-ILD Down & T cells gammadelta & 1.16e-19\\
 SSc-ILD Down & Peripheral CD8+ T cells & 6.09e-12\\
 SSc-ILD Down & T cells effector memory & 1.12e-09\\
 SSc-ILD Down & T cells BAFF+ & 1.81e-06\\
+\addlinespace
 SSc-ILD Down & KEGG NATURAL KILLER CELL MEDIATED CYTOTOXICITY & 9.71e-06\\
 SSc-ILD Down & Th1 & 1.57e-05\\
 SSc-ILD Down & Th2 & 1.24e-04\\
 SSc-ILD Down & KEGG GRAFT VERSUS HOST DISEASE & 2.29e-04\\
 SSc-ILD Down & GOBP APOPTOTIC PROCESS & 3.18e-04\\
+\addlinespace
 SSc-ILD Down & GOBP CYTOLYSIS & 4.63e-04\\
 SSc-ILD Down & HALLMARK ALLOGRAFT REJECTION & 5.97e-04\\
 SSc-ILD Down & HALLMARK APOPTOSIS & 6.20e-04\\
 SSc-ILD Down & Blood & 7.14e-04\\
 SSc-ILD Down & Thymic SP CD8+ T cells & 7.14e-04\\
+\addlinespace
 SSc-ILD Down & Treg & 7.14e-04\\
 SSc-ILD Down & GOBP LYMPHOCYTE ACTIVATION & 2.05e-03\\
 SSc-ILD Down & GOBP PROTEOLYSIS & 2.05e-03\\
 SSc-ILD Down & GOBP COLLAGEN METABOLIC PROCESS & 2.78e-03\\
-SSc-ILD Down & GOBP COLLAGEN CATABOLIC PROCESS & 4.78e-03\\
-\bottomrule
-\end{tabu}
-\end{table}
+SSc-ILD Down & GOBP COLLAGEN CATABOLIC PROCESS & 4.78e-03\\*
+\end{longtable}
+\endgroup{}
+
+\pagebreak
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ILDdeg}\textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedleft\arraybackslash}p{0.7in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.6in}}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedleft\arraybackslash}p{0.9in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\raggedright\arraybackslash}p{0.6in}}
+\caption{\label{tab:ILDdeg}\textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race. }\\
 \toprule
 Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ILDdeg}\textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race.  \textit{(continued)}}\\
+\toprule
+Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 IPF vs HP & ENSG00000266900 &  & -2.144 & 4.53e-05 & 1.000\\
 IPF vs HP & ENSG00000175445 & LPL & -1.598 & 4.74e-04 & 1.000\\
 IPF vs HP & ENSG00000217130 &  & 1.646 & 5.58e-04 & 1.000\\
@@ -5855,60 +5993,77 @@ SSc-ILD vs RA-ILD & ENSG00000221957 & KIR2DS4 & -2.923 & 1.51e-06 & 0.036\\
 SSc-ILD vs RA-ILD & ENSG00000165548 & TMEM63C & -1.608 & 1.13e-05 & 0.136\\
 SSc-ILD vs RA-ILD & ENSG00000178458 & H3P16 & -1.392 & 4.80e-05 & 0.341\\
 SSc-ILD vs RA-ILD & ENSG00000273111 & LYPD4 & -2.075 & 8.40e-05 & 0.341\\
-SSc-ILD vs RA-ILD & ENSG00000064489 & BORCS8-MEF2B & -1.498 & 8.53e-05 & 0.341\\
-\bottomrule
-\end{tabu}
-\end{table}
+SSc-ILD vs RA-ILD & ENSG00000064489 & BORCS8-MEF2B & -1.498 & 8.53e-05 & 0.341\\*
+\end{longtable}
+\endgroup{}
+
+\pagebreak
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:degrad}\textbf{List of top 10 differentially expressed genes between radiological patterns.} Results shown are adjusted for race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.3in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.7in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:degrad}\textbf{List of top 10 differentially expressed genes between radiological patterns.} Results shown are adjusted for race. }\\
 \toprule
 Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:degrad}\textbf{List of top 10 differentially expressed genes between radiological patterns.} Results shown are adjusted for race.  \textit{(continued)}}\\
+\toprule
+Comparison & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 UIP vs fHP & ENSG00000118113 & MMP8 & -2.172 & 1.75e-05 & 0.342\\
 UIP vs fHP & ENSG00000148346 & LCN2 & -1.844 & 3.16e-05 & 0.342\\
 UIP vs fHP & ENSG00000012223 & LTF & -2.269 & 4.32e-05 & 0.342\\
 UIP vs fHP & ENSG00000283646 & LINC02009 & -2.040 & 6.22e-05 & 0.342\\
 UIP vs fHP & ENSG00000173391 & OLR1 & -1.740 & 7.14e-05 & 0.342\\
+\addlinespace
 UIP vs fHP & ENSG00000096006 & CRISP3 & -1.617 & 1.12e-04 & 0.449\\
 UIP vs fHP & ENSG00000179869 & ABCA13 & -1.592 & 1.53e-04 & 0.451\\
 UIP vs fHP & ENSG00000124469 & CEACAM8 & -1.763 & 1.62e-04 & 0.451\\
 UIP vs fHP & ENSG00000156966 & B3GNT7 & 0.713 & 1.73e-04 & 0.451\\
 UIP vs fHP & ENSG00000157554 & ERG & -1.358 & 1.88e-04 & 0.451\\
+\addlinespace
 UIP vs NSIP & ENSG00000152558 & TMEM123 & -0.672 & 5.16e-06 & 0.124\\
 UIP vs NSIP & ENSG00000125498 & KIR2DL1 & 1.140 & 9.40e-05 & 0.430\\
 UIP vs NSIP & ENSG00000100427 & MLC1 & 0.521 & 1.05e-04 & 0.430\\
 UIP vs NSIP & ENSG00000134758 & RNF138 & -0.302 & 1.12e-04 & 0.430\\
 UIP vs NSIP & ENSG00000205413 & SAMD9 & -0.619 & 1.32e-04 & 0.430\\
+\addlinespace
 UIP vs NSIP & ENSG00000115267 & IFIH1 & -0.719 & 1.96e-04 & 0.430\\
 UIP vs NSIP & ENSG00000138035 & PNPT1 & -0.558 & 2.37e-04 & 0.430\\
 UIP vs NSIP & ENSG00000100453 & GZMB & 0.698 & 2.55e-04 & 0.430\\
 UIP vs NSIP & ENSG00000141664 & ZCCHC2 & -0.728 & 2.57e-04 & 0.430\\
 UIP vs NSIP & ENSG00000110435 & PDHX & -0.287 & 2.57e-04 & 0.430\\
+\addlinespace
 fHP vs NSIP & ENSG00000254946 & LINC02751 & 1.906 & 1.01e-07 & 0.002\\
 fHP vs NSIP & ENSG00000148346 & LCN2 & 1.874 & 2.93e-06 & 0.035\\
 fHP vs NSIP & ENSG00000118113 & MMP8 & 1.970 & 5.81e-06 & 0.045\\
 fHP vs NSIP & ENSG00000124469 & CEACAM8 & 1.848 & 8.10e-06 & 0.045\\
 fHP vs NSIP & ENSG00000196747 & H2AC13 & 1.374 & 9.52e-06 & 0.045\\
+\addlinespace
 fHP vs NSIP & ENSG00000166188 & ZNF319 & 0.398 & 1.36e-05 & 0.045\\
 fHP vs NSIP & ENSG00000173391 & OLR1 & 1.617 & 1.76e-05 & 0.045\\
 fHP vs NSIP & ENSG00000012223 & LTF & 2.154 & 1.94e-05 & 0.045\\
 fHP vs NSIP & ENSG00000170801 & HTRA3 & 2.059 & 1.97e-05 & 0.045\\
-fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\
-\bottomrule
-\end{tabu}
-\end{table}
+fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\*
+\end{longtable}
+\endgroup{}
+\end{singlespace}
+
+\pagebreak
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.85\linewidth,]{./Figures/BloodRNAseq/ppf_deg_v1} 
+{\centering \includegraphics[width=0.80\linewidth,]{./Figures/BloodRNAseq/ppf_deg_v1} 
 
 }
 
@@ -5919,93 +6074,132 @@ fHP vs NSIP & ENSG00000163554 & SPTA1 & 1.226 & 2.00e-05 & 0.045\\
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.85\linewidth,]{./Figures/BloodRNAseq/ppf_ipf_deg_v1} 
+{\centering \includegraphics[width=0.75\linewidth,]{./Figures/BloodRNAseq/ppf_ipf_deg_v1} 
 
 }
 
 \caption[DEGs: radiological progression]{\textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \textgreater10\% within 2 years.}\label{fig:ppfdegipf}
 \end{figure}
 
+\begin{singlespace}
+\pagebreak
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ppfdegtab}\textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:ppfdegtab}\textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race. }\\
 \toprule
 Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ppfdegtab}\textbf{List of top 5 differentially expressed genes between patients classified as having PPF or not using INBUILD criteria.} Results shown are adjusted for race.  \textit{(continued)}}\\
+\toprule
+Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 All ILD & ENSG00000242199 & RPS26P22 & 1.052 & 6.46e-05 & 0.852\\
 All ILD & ENSG00000225231 & LINC02470 & 2.228 & 7.11e-05 & 0.852\\
 All ILD & ENSG00000218682 &  & 1.097 & 3.63e-04 & 1.000\\
 All ILD & ENSG00000204933 & CD177P1 & 1.037 & 6.31e-04 & 1.000\\
 All ILD & ENSG00000137491 & SLCO2B1 & -1.140 & 7.23e-04 & 1.000\\
+\addlinespace
 IPF & ENSG00000243679 &  & -0.608 & 5.93e-06 & 0.078\\
 IPF & ENSG00000230715 &  & -0.715 & 6.54e-06 & 0.078\\
 IPF & ENSG00000243302 &  & -0.601 & 6.21e-05 & 0.496\\
 IPF & ENSG00000144619 & CNTN4 & 2.317 & 1.74e-04 & 0.779\\
 IPF & ENSG00000171729 & TMEM51 & 1.777 & 1.93e-04 & 0.779\\
+\addlinespace
 SSc-ILD & ENSG00000225231 & LINC02470 & 3.410 & 1.18e-07 & 0.003\\
 SSc-ILD & ENSG00000223350 & IGLV9-49 & 1.552 & 2.33e-04 & 1.000\\
 SSc-ILD & ENSG00000214725 & CDIPTOSP & 1.379 & 5.32e-04 & 1.000\\
 SSc-ILD & ENSG00000129538 & RNASE1 & 1.515 & 5.81e-04 & 1.000\\
 SSc-ILD & ENSG00000173262 & SLC2A14 & 2.407 & 6.21e-04 & 1.000\\
+\addlinespace
 NSIP & ENSG00000225231 & LINC02470 & 3.759 & 1.56e-10 & 0.000\\
 NSIP & ENSG00000188393 & CLEC2A & 2.666 & 2.88e-06 & 0.025\\
 NSIP & ENSG00000223350 & IGLV9-49 & 1.628 & 3.11e-06 & 0.025\\
 NSIP & ENSG00000248318 &  & 1.882 & 1.04e-04 & 0.578\\
-NSIP & ENSG00000165568 & AKR1E2 & -0.946 & 1.21e-04 & 0.578\\
-\bottomrule
-\end{tabu}
-\end{table}
+NSIP & ENSG00000165568 & AKR1E2 & -0.946 & 1.21e-04 & 0.578\\*
+\end{longtable}
+\endgroup{}
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ppfradtab}\textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{0.8in}>{\raggedleft\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:ppfradtab}\textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race. }\\
 \toprule
 Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ppfradtab}\textbf{List of top 5 differentially expressed genes between patients that do and do not experience radiological progression within 2 years.} Results shown are adjusted for race.  \textit{(continued)}}\\
+\toprule
+Stratification & Ensembl ID & Gene & log\textsubscript{2}FC & \textit{p}-value & FDR\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 All ILD & ENSG00000280411 & IGHV1-69D & 1.736 & 5.87e-06 & 0.141\\
 All ILD & ENSG00000261215 &  & -1.420 & 4.33e-05 & 0.519\\
 All ILD & ENSG00000172404 & DNAJB7 & -1.381 & 7.02e-05 & 0.561\\
 All ILD & ENSG00000138395 & CDK15 & -1.200 & 1.21e-04 & 0.723\\
 All ILD & ENSG00000229391 & HLA-DRB6 & 2.196 & 1.81e-04 & 0.866\\
+\addlinespace
 IPF & ENSG00000231119 &  & -2.111 & 7.67e-05 & 0.941\\
 IPF & ENSG00000272871 &  & 1.069 & 1.35e-04 & 0.941\\
 IPF & ENSG00000273473 &  & -2.572 & 1.51e-04 & 0.941\\
 IPF & ENSG00000278847 &  & -2.234 & 1.90e-04 & 0.941\\
 IPF & ENSG00000204936 & CD177 & -2.288 & 2.14e-04 & 0.941\\
+\addlinespace
 SSc-ILD & ENSG00000188393 & CLEC2A & 4.252 & 1.60e-07 & 0.004\\
 SSc-ILD & ENSG00000225231 & LINC02470 & 4.016 & 1.18e-06 & 0.014\\
 SSc-ILD & ENSG00000188582 & PAQR9 & 2.939 & 2.03e-06 & 0.016\\
 SSc-ILD & ENSG00000237927 &  & 1.580 & 1.76e-05 & 0.098\\
 SSc-ILD & ENSG00000138356 & AOX1 & 3.145 & 2.05e-05 & 0.098\\
+\addlinespace
 NSIP & ENSG00000138356 & AOX1 & 3.480 & 7.40e-08 & 0.001\\
 NSIP & ENSG00000188582 & PAQR9 & 2.748 & 9.08e-08 & 0.001\\
 NSIP & ENSG00000278196 & IGLV2-8 & 1.738 & 1.76e-05 & 0.112\\
 NSIP & ENSG00000186310 & NAP1L3 & -1.533 & 1.87e-05 & 0.112\\
-NSIP & ENSG00000143545 & RAB13 & 1.443 & 3.11e-05 & 0.126\\
-\bottomrule
-\end{tabu}
-\end{table}
+NSIP & ENSG00000143545 & RAB13 & 1.443 & 3.11e-05 & 0.126\\*
+\end{longtable}
+\endgroup{}
 
-\subsection{Survival}\label{survival}
+\end{singlespace}
+\pagebreak
+
+\subsubsection{Survival}\label{survival}
+
+\begin{singlespace}
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:ildsurvivalgenes}\textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedleft\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{0.6in}}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.2in}>{\raggedright\arraybackslash}p{1.0in}>{\centering\arraybackslash}p{0.6in}}
+\caption{\label{tab:ildsurvivalgenes}\textbf{ILD survival model genes.} }\\
 \toprule
 Ensembl ID & Gene & Weight\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:ildsurvivalgenes}\textbf{ILD survival model genes.}  \textit{(continued)}}\\
+\toprule
+Ensembl ID & Gene & Weight\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 ENSG00000270207 &  & 0.500\\
 ENSG00000187715 & KBTBD12 & 0.369\\
 ENSG00000014919 & COX15 & 0.196\\
@@ -6038,21 +6232,29 @@ ENSG00000204576 & PRR3 & 0.011\\
 ENSG00000270885 & RASL10B & 0.005\\
 ENSG00000066926 & FECH & 0.004\\
 ENSG00000154309 & DISP1 & 0.003\\
-ENSG00000172995 & ARPP21 & 0.003\\
-\bottomrule
-\end{tabu}
-\end{table}
+ENSG00000172995 & ARPP21 & 0.003\\*
+\end{longtable}
+\endgroup{}
 
 
 
-\begin{table}[!h]
-\centering\centering
-\caption{\label{tab:notsscsurvivalgenes}\textbf{ILD survival model genes.} Ensembl IDs, gene symbols (if available), and model weights are shown.}
-\centering
-\begin{tabu} to \linewidth {>{\raggedright\arraybackslash}p{1.0in}>{\raggedleft\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{0.6in}}
+\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{1.0in}>{\raggedleft\arraybackslash}p{0.8in}>{\raggedright\arraybackslash}p{0.6in}}
+\caption{\label{tab:notsscsurvivalgenes}\textbf{ILD (excluding SSc-ILD) survival model genes.} }\\
 \toprule
 Ensembl ID & Gene & Weight\\
 \midrule
+\endfirsthead
+\caption[]{\label{tab:notsscsurvivalgenes}\textbf{ILD (excluding SSc-ILD) survival model genes.}  \textit{(continued)}}\\
+\toprule
+Ensembl ID & Gene & Weight\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
 ENSG00000270207 &  & 0.336\\
 ENSG00000014919 & COX15 & 0.336\\
 ENSG00000223177 & RNA5SP39 & 0.311\\
@@ -6070,20 +6272,32 @@ ENSG00000274818 &  & 0.027\\
 ENSG00000221916 & C19orf73 & 0.018\\
 ENSG00000267452 & LINC02073 & 0.017\\
 ENSG00000133477 & FAM83F & 0.006\\
-ENSG00000106462 & EZH2 & 0.006\\
-\bottomrule
-\end{tabu}
-\end{table}
+ENSG00000106462 & EZH2 & 0.006\\*
+\end{longtable}
+\endgroup{}
+
+\end{singlespace}
 
 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1.0\linewidth,]{./Figures/BloodRNAseq/PPF_survival_notSSc_v2} 
+{\centering \includegraphics[width=0.86\linewidth,]{./Figures/BloodRNAseq/PPF_survival_notSSc_v2} 
 
 }
 
-\caption[ILD (excluding SSc-ILD) survival model]{\textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x epeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D).}\label{fig:notsscsurvival}
+\caption[ILD (excluding SSc-ILD) survival model]{\textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x repeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D).}\label{fig:notsscsurvival}
+\end{figure}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.86\linewidth,]{./Figures/BloodRNAseq/herazomaya_comp_v1} 
+
+}
+
+\caption[Comparison with 52-gene risk model]{\textbf{Performance of the 52-gene risk profile published by Herazo-Maya \textit{et al.}} The 52-gene risk profile was calculated for the blood RNA-seq cohort (A) and validation cohorts (B), with the performance of proposed survival model on individual validation cohorts shown in (C).}\label{fig:herazomaya}
 \end{figure}
 
 \end{document}
