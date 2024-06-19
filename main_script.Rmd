@@ -98,7 +98,6 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \phantomsection <!-- This will correct the bookmarks paging (See issue #4)  -->
 \addcontentsline{toc}{section}{Table of Contents}
 \renewcommand*\contentsname{Table of Contents}
-
 \thispagestyle{empty}
 \begin{singlespace}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
@@ -107,6 +106,8 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 \phantomsection
 \addcontentsline{toc}{section}{List of Tables}
+\setlength\cftfignumwidth{3em}
+\setlength\cfttabnumwidth{3em}
 \listoftables
 \clearpage
 \phantomsection
@@ -295,7 +296,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 
 \clearpage
 
-## Appendix C - Supplementary information for Chapter Four
+## Appendix C - Supplementary information for Blood RNA-seq Study
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A4.\arabic{figure}}

@@ -1,0 +1,46 @@
+---
+output:
+  bookdown::pdf_book:
+    toc : no
+    keep_tex: no
+    number_sections: yes
+---
+
+<!-- This section is mandatory! -->
+
+It is evident that the peripheral transcriptome contains diagnostic and prognostic markers of ILD. With the advent of single-cell RNA-sequencing, increased resolution of transcriptomic profiling will allow for the discovery of cell-specific biomarkers. This chapter covers a preliminary cohort of scRNA-seq samples derived from patients with IPF, HP, and IPAF.
+
+<insert some of the genome BC text>
+
+## Methods
+
+### Study population and sample processing
+
+Patients with ILD were prospectively recruited at the Pacific Lung Health Centre (St. Paul's Hospital, Vancouver, BC, Canada) from 2021-2023. 
+
+- study population table
+- sample processing
+
+### Data analysis
+
+- seurat
+- cell clustering labeling
+
+
+## Results
+
+- complete umap with cell annotations
+- supp: table featuring top 5-10 cell markers per population?
+- forest plot with cell types
+- TMEM176B section, MYOM2 section
+- relate these two back to RNA-seq data
+- 
+
+## Discussion
+
+- tmem176b
+- myom2
+- comment about historical scRNAseq work, plus the blood scRNAseq, plus what's unique about ours
+- comment about progression for our cohort
+- comment on what this means in the larger realm of diagnostics, and what's needed for this to work. 
+

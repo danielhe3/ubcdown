@@ -393,13 +393,13 @@ kableExtra::kbl(
 
 (ref:notsscsurvival-cap) \textbf{ILD (excluding SSc-ILD) survival model derived from the peripheral transcriptome.} A survival model derived using 50x repeated 10-fold cross-validation was trained on our ILD cohort excluding SSc-ILD samples, with risk groups stratified by optimized cutpoints (A). The model was validated on two external IPF datasets, GSE28042 and GSE93606, which are shown with different risk group stratification based on splitting the hazard ratios into tertiles (B) or using optimized cutpoints (C). Log-rank \textit{P}-values shown in black are calculated between high and low risk groups, while the \textit{P}-value shown in grey is calculated between all three risk groups in (B). Selected genes in the model stratified by high and low expression are shown in (D). 
 
-```{r notsscsurvival, eval = T, out.width='0.86\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
+```{r notsscsurvival, eval = T, out.width='0.84\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/PPF_survival_notSSc_v2.pdf")
 ```
 
 (ref:herazomaya-cap) \textbf{Performance of the 52-gene risk profile published by Herazo-Maya \textit{et al.}} The 52-gene risk profile was calculated for the blood RNA-seq cohort (A) and validation cohorts (B), with the performance of proposed survival model on individual validation cohorts shown in (C). 
 
-```{r herazomaya, eval = T, out.width='0.86\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "Comparison with 52-gene risk model", out.extra='', fig.align='center'}
+```{r herazomaya, eval = T, out.width='0.82\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "Comparison with 52-gene risk model", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/herazomaya_comp_v1.pdf")
 ```
 
