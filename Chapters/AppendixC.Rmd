@@ -218,13 +218,13 @@ kableExtra::kbl(
 
 \pagebreak
 
-(ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of >10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
+(ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of \underline{>}10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
 
 ```{r ppfdeg, eval = T, out.width='0.80\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs: PPF", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_deg_v1.pdf")
 ```
 
-(ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of >10\% within 2 years. 
+(ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \underline{>}10\% within 2 years. 
 
 ```{r ppfdegipf, eval = T, out.width='0.75\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs: radiological progression", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_ipf_deg_v1.pdf")

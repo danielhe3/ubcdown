@@ -16,30 +16,32 @@ It is evident that the peripheral transcriptome contains diagnostic and prognost
 
 ### Study population and sample processing
 
-Patients with ILD were prospectively recruited at the Pacific Lung Health Centre (St. Paul's Hospital, Vancouver, BC, Canada) from 2021-2023. 
+Patients with suspected ILD were prospectively recruited (UBC ethics H21-00291) at the Pacific Lung Health Centre (St. Paul's Hospital, Vancouver, BC, Canada) from 2021-2023 in conjunction with the ILD Biomarkers Registry (UBC ethics H23-01364). Reviews of existing patient data (HRCT scan, history, referral notes) were conducted prior to scheduled appointments and assessed for likelihood of an ILD diagnosis. If pre-appointment data was not sufficient to assess a likely diagnosis, consultation with physician notes or physicians after the appointment was performed to determine whether a sample would be processed or not. Patients with IPF, HP, IPAF, and unclassifiable ILD were prioritized for sample collection, while those with sarcoidosis, radiation-induced ILD, or occupational lung exposures (e.g. asbestosis) were not collected given their differences in disease progression compared to other fibrotic ILDs [@cottin_presentation_2018...]. Patients on anti-inflammatory or anti-fibrotic treatment were omitted due to possible confounding effects on transcriptional profiling, and samples were only taken from patients who were not yet diagnosed and likely to be early in their disease course. 
 
-- study population table
-- sample processing
+Blood samples were collected in EDTA tubes and PBMCs were isolated with density gradient centrifugation using SepMate\texttrademark-15 tubes and Lymphoprep\texttrademark according to recommended protocols (STEMCELL Technologies, Vancouver, BC, Canada). Isolated PBMCs were immediately transported to the sequencing facility at the UBC School of Biomedical Engineering, and processed using the 10X Genomics Chromium Single Cell 3' Kit (10X Genomics, Pleasanton, California, USA) according to manufacturer-recommended protocols. Briefly, the 10X Chromium Controller captures cells in GEMs (gel beads in emulsion), which contain a single cell and sufficient reagents for library construction via reverse transcription. Sequencing was performed using an Illumina NextSeq 2000 for 100 cycles with a targeted depth of ~30,000 reads per cell, and sequencing results were processed, assessed for data quality, and exported using Cell Ranger v6 (10X Genomics). 
 
 ### Data analysis
 
-- seurat
-- cell clustering labeling
+Single-cell samples were individually processed to filter out ambient RNA using 'SoupX' (v1.6.2), cells with >15\% mitochondrial reads, cells undergoing proliferation using G2M and S phase scores, and doublets or multiplets using 'DoubletFinder' (v2.0.4). Data was integrated and clustered at 1.5 resolution using the R package 'Seurat' (v4.0). Annotations for clusters were determined using the Monaco PBMC reference dataset with the 'celldex' R package (v1.12.0) [Monaco, Aran]. Differential expression analysis of normalized RNA data was performed using the Seurat implementation of the MAST (Model-based Analysis of Single-cell Transcriptomics) framework [Finak]. Given the difference in sample size between IPF and HP patients, comparisons were down sampled to the lower number of cells within each cluster. 
 
+To test for cell abundances, a binomial generalized linear model was fit with the formula:
+\begin{math}(N\textsubscript{cells in cluster}, N\textsubscript{cells not in cluster}) ~ Cluster \cdot Diagnosis + Cluster \cdot Processing Date + (1|Subject)\end{math}
+Comparisons were made using the 'emmeans' package (v1.10.1) and corrected using the Bonferroni method. 
 
 ## Results
 
-- complete umap with cell annotations
-- supp: table featuring top 5-10 cell markers per population?
-- forest plot with cell types
-- TMEM176B section, MYOM2 section
-- relate these two back to RNA-seq data
-- 
+### IPF and HP differ by cellular subsets
+
+need to test for differences using CBC
+
+### NK cell cohorts differ between IPF and HP
+
+### IPF monocytes are characterized by elevated TMEM176 expression
 
 ## Discussion
 
-- tmem176b
-- myom2
+- tmem176b: not diff expressed between mdc or pdc
+- myom2: nk cell subset+KLRC1 contrast with KLRC2 expression
 - comment about historical scRNAseq work, plus the blood scRNAseq, plus what's unique about ours
 - comment about progression for our cohort
 - comment on what this means in the larger realm of diagnostics, and what's needed for this to work. 
