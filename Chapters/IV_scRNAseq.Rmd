@@ -18,31 +18,99 @@ It is evident that the peripheral transcriptome contains diagnostic and prognost
 
 Patients with suspected ILD were prospectively recruited (UBC ethics H21-00291) at the Pacific Lung Health Centre (St. Paul's Hospital, Vancouver, BC, Canada) from 2021-2023 in conjunction with the ILD Biomarkers Registry (UBC ethics H23-01364). Reviews of existing patient data (HRCT scan, history, referral notes) were conducted prior to scheduled appointments and assessed for likelihood of an ILD diagnosis. If pre-appointment data was not sufficient to assess a likely diagnosis, consultation with physician notes or physicians after the appointment was performed to determine whether a sample would be processed or not. Patients with IPF, HP, IPAF, and unclassifiable ILD were prioritized for sample collection, while those with sarcoidosis, radiation-induced ILD, or occupational lung exposures (e.g. asbestosis) were not collected given their differences in disease progression compared to other fibrotic ILDs [@cottin_presentation_2018...]. Patients on anti-inflammatory or anti-fibrotic treatment were omitted due to possible confounding effects on transcriptional profiling, and samples were only taken from patients who were not yet diagnosed and likely to be early in their disease course. 
 
-Blood samples were collected in EDTA tubes and PBMCs were isolated with density gradient centrifugation using SepMate\texttrademark-15 tubes and Lymphoprep\texttrademark according to recommended protocols (STEMCELL Technologies, Vancouver, BC, Canada). Isolated PBMCs were immediately transported to the sequencing facility at the UBC School of Biomedical Engineering, and processed using the 10X Genomics Chromium Single Cell 3' Kit (10X Genomics, Pleasanton, California, USA) according to manufacturer-recommended protocols. Briefly, the 10X Chromium Controller captures cells in GEMs (gel beads in emulsion), which contain a single cell and sufficient reagents for library construction via reverse transcription. Sequencing was performed using an Illumina NextSeq 2000 for 100 cycles with a targeted depth of ~30,000 reads per cell, and sequencing results were processed, assessed for data quality, and exported using Cell Ranger v6 (10X Genomics). 
+Blood samples were collected in EDTA tubes and PBMCs were isolated with density gradient centrifugation using SepMate\texttrademark-15 tubes and Lymphoprep\texttrademark according to recommended protocols (STEMCELL Technologies, Vancouver, BC, Canada). At time of blood sampling, a complete blood count (CBC) was also collected using the Siemens Advia\textregistered 2120i (Siemens Canada, Oakville, Ontario, Canada). Isolated PBMCs were immediately transported to the sequencing facility at the UBC School of Biomedical Engineering, confirmed to be >90% viable with trypan blue staining, and processed using the 10X Genomics Chromium Single Cell 3' Kit (10X Genomics, Pleasanton, California, USA) according to manufacturer-recommended protocols. Briefly, the 10X Chromium Controller captures cells in GEMs (gel beads in emulsion), which contain a single cell and sufficient reagents for library construction via reverse transcription. Sequencing was performed using an Illumina NextSeq 2000 for 100 cycles with a targeted depth of ~30,000 reads per cell, and sequencing results were processed, assessed for data quality, and exported using Cell Ranger v6 (10X Genomics). 
+
+(ref:scrnaseqpx-cap) \textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses). \textit{P}-values were determined using one-way analysis of variance (ANOVA) for age and FVC, and Fisher's exact text for sex.
+
+```{r scrnaseqpx, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD PBMC scRNA-seq study cohort', fig.align='center'}
+bloodpxrnaseq <- readr::read_csv(here::here('Tables', 'scRNAseq', 'px_summary.csv'))
+colnames(bloodpxrnaseq)[1] <- ""
+kableExtra::kbl(
+  bloodpxrnaseq,
+  longtable = F,
+  format = 'latex',
+  booktabs = T, 
+  linesep = "",
+  align = "lcccc",
+  caption="(ref:scrnaseqpx-cap)") %>%
+  kableExtra::kable_styling(full_width = FALSE) %>%  # table spans across left to right margins
+  column_spec(1, width="1.75in") %>%
+  column_spec(2, width="1.05in") %>% 
+  column_spec(3, width="1.05in") %>% 
+  column_spec(3, width="1.0in") %>%
+  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
+  kableExtra::kable_styling(latex_options = c("hold_position"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
+```
 
 ### Data analysis
 
 Single-cell samples were individually processed to filter out ambient RNA using 'SoupX' (v1.6.2), cells with >15\% mitochondrial reads, cells undergoing proliferation using G2M and S phase scores, and doublets or multiplets using 'DoubletFinder' (v2.0.4). Data was integrated and clustered at 1.5 resolution using the R package 'Seurat' (v4.0). Annotations for clusters were determined using the Monaco PBMC reference dataset with the 'celldex' R package (v1.12.0) [Monaco, Aran]. Differential expression analysis of normalized RNA data was performed using the Seurat implementation of the MAST (Model-based Analysis of Single-cell Transcriptomics) framework [Finak]. Given the difference in sample size between IPF and HP patients, comparisons were down sampled to the lower number of cells within each cluster. 
 
 To test for cell abundances, a binomial generalized linear model was fit with the formula:
-\begin{math}(N\textsubscript{cells in cluster}, N\textsubscript{cells not in cluster}) ~ Cluster \cdot Diagnosis + Cluster \cdot Processing Date + (1|Subject)\end{math}
-Comparisons were made using the 'emmeans' package (v1.10.1) and corrected using the Bonferroni method. 
+
+\begin{math}(N\textsubscript{cells in cluster}, N\textsubscript{cells not in cluster}) $\sim$ (Cluster \cdot Diagnosis) + (Cluster \cdot Capture Date) + (1|Subject)\end{math}
+
+Comparisons were made using the 'emmeans' package (v1.10.1) and corrected using the Bonferroni method. A similar procedure was performed for CBC data without the term for capture date. 
 
 ## Results
 
-### IPF and HP differ by cellular subsets
+### IPF and HP differ in cellular populations
 
-need to test for differences using CBC
+We used scRNA-seq to profile PBMCs from blood samples of 7 IPF and 4 HP patients (Table \@ref(tab:scrnaseqpx)). After scRNA-seq sample processing and integration, we identified 27 cell clusters from 28,614 cells, all of which were previously identified in the reference dataset from Monaco \textit{et al.} (Figure \@ref(fig:clustermarkers)). We identified two subsets of classical monocytes, two subsets of effector CD8+ memory T cells, three subsets of naive CD4+ cells, and two subsets of T helper cells (Table \@ref(tab:clustermarkertab). The classical monocyte subset C6 was characterized by expression of S100A8, S100A12, and PLBD1, which is a profile matching that of a typical classical monocyte [Sampath], while the classical monocyte C12 subset was characterized by the expression of AHNAK, AHR, ITGA4, HLA-DPB1, HLA-DPA1, LGALS2, and F13A1, which likely represent a CD14\textsuperscript{+}HLA-DR\textsuperscript{hi} subset of monocytes [Evren]. CD8+ memory T cells were separated into clusters C0 and C10, which expressed ACTB, ACTG1, CLIC1, CORO1A, WDR1 (C10) and IL7R, CXCR4 (C0). Naive CD4+ T cell subset C7 was characterized by increased CISH expression, previously identified as a marker of proinflammatory CD4+ T cells from older adults [Jin 2023], while C9 had increased expression of TTN, which is involved in lymphocyte adhesion under flow [Toffali]. The C3 Naive CD4+ T cell subset had increased ACTB and VASP expression but decreased ITGA4, ITGA6, and CDC14A expression, suggesting a possible motile phenotype [Waldman 2022]. Expression of polarized T helper cell markers (GATA3, TBX21, RORC) was low and did not differentiate between both clusters, which expressed high levels of LTB, and differed by increased expression of the HLA subunits HLA-DRB1, HLA-DPA1, and HLA-DPB1 in C4. 
 
-### NK cell cohorts differ between IPF and HP
+(ref:clustermarkers-cap) \textbf{scRNAseq cell clusters.} (A) Uniform manifold approximation and projection (UMAP) of scRNA-seq PBMC data with labelled clusters for each cell type as determined by mapping to a reference dataset. (B) Gene markers (columns) for each identified cluster (rows) indicated by numbers in A. Genes were selected using the 'top_markers' feature from the 'presto' R package, with a minimum AUC set to 0.5 and minimum percentage expression within the cluster of 20\%. 
 
-### IPF monocytes are characterized by elevated TMEM176 expression
+```{r clustermarkers, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:clustermarkers-cap)", fig.scap = "scRNA-seq clusters", out.extra=''}
+knitr::include_graphics("./Figures/scRNAseq/uamp_cluster_v1.pdf")
+```
+
+Of the identified cell clusters, 'Classical monocytes C6', 'Intermediate monocytes', 'Low-density granulocytes', 'NK CD56 bright', and 'NK CD56 dim' were enriched in patients with HP, while patients with IPF were enriched in 'Central memory CD8 T cells', 'Naive CD8+ cells', 'Peripheral memory CD8 T cells', 'T helper cells C1', and 'T helper cells C4' (Figure \@ref(fig:forestplot)). The differences in scRNA-seq cluster representation were not observed in monocytes when examining CBCs taken at time of sampling, but IPF patients had significantly more lymphocytes and significantly fewer eosinophils when compared to HP patients, which corroborates the observed differences in T cell subset and low-density granulocytes from scRNA-seq clustering (Figure \@ref(fig:forestplotcbc)). 
+
+(ref:forestplot-cap) Forest plot comparing abundance of cell clusters identified by scRNA-seq. Significantly different cell clusters (shown in italics) were determined by a binomial generalized linear model and corrected using the Bonferroni method. Dot sizes are scaled to indicate standard error (SE), with smaller SE corresponding to larger dots.
+
+```{r forestplot, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:forestplot-cap)", fig.scap = "scRNA-seq cell abundance", out.extra=''}
+knitr::include_graphics("./Figures/scRNAseq/SCAILD_forestplot.pdf")
+```
+
+### IPF and HP cell types have differing transcriptional profiles
+
+To investigate differentially expressed genes between IPF and HP within cell clusters, we used the MAST algorithm which avoids pseudoreplication bias in single-cell studies as outlined in [Zimmerman] (Table \@ref(tab:degscrnaseq)). Across multiple cell types, JUN was highly expressed in samples from patients with HP (Figure \@ref(fig:junumap)). In addition to being differentially abundant, NK cell subsets (NK CD56 bright, NK CD56 dim, NKT) expressed increased MYOM2 in HP patients compared to IPF patients (Figure \@ref(fig:scrnaseqnk)). Moreover, in NK CD56 dim and NKT cells, we observed a downregulation of KLRC1 in IPF compared to HP samples, which was in contrast to an increase in KLRC2 expression. 
+
+(ref:scrnaseqnk-cap) Differentially expressed genes between NK cell subsets of IPF and HP as shown by violin plots (A) and UMAP plots (B). Significance, as determined by the MAST algorithm, is indicated by FDR<0.01 (\*\*\*) and FDR<0.05 (\*\*). 
+
+```{r scrnaseqnk, eval = T, out.width='0.9\\linewidth', echo=FALSE, fig.cap="(ref:scrnaseqnk-cap)", fig.scap = "scRNA-seq NK DEGs", out.extra=''}
+knitr::include_graphics("./Figures/scRNAseq/nk_ipfhp_v1.pdf")
+```
+
+We also identified a number of differentially expressed genes in monocytes. TMEM176B and its paralog TMEM176A were upregulated in IPF samples across classical, intermediate, and non-classical monocyte subsets (Figure \@ref(fig:scrnaseqmono)). A similar upregulation in expression of HLA-DRB5 and HLA-DQA2 was observed in IPF monocytes, while classical and intermediate monocytes in HP were upregulated in CLEC4E and FOLR3. 
+
+(ref:scrnaseqmono-cap) Differentially expressed genes between monocytes subsets as shown by violin plots (A) and UMAP plots (B). Significance, as determined by the MAST algorithm, is indicated by FDR<0.01 (\*\*\*).
+
+```{r scrnaseqmono, eval = T, out.width='0.9\\linewidth', echo=FALSE, fig.cap="(ref:scrnaseqmono-cap)", fig.scap = "scRNA-seq NK DEGs", out.extra=''}
+knitr::include_graphics("./Figures/scRNAseq/monocyte_ipfhp_v1.pdf")
+```
 
 ## Discussion
 
+In this chapter, we report blood single-cell transcriptional profiles of 11 patients with IPF or HP. Though the sample size is limited, increased resolution at the single-cell level highlight differences in both cellular abundance and gene expression between peripheral cell populations of ILD subtypes.
+
+
+
+- s100a12 biomarker of disease severity and prognosis in px with ipf? (li 2022) corroborate with biclusters M5, M11
 - tmem176b: not diff expressed between mdc or pdc
 - myom2: nk cell subset+KLRC1 contrast with KLRC2 expression
 - comment about historical scRNAseq work, plus the blood scRNAseq, plus what's unique about ours
 - comment about progression for our cohort
 - comment on what this means in the larger realm of diagnostics, and what's needed for this to work. 
+- in relation to the other work in the thesis: ltk shows up as a marker of MAIT cells! 
 
+- f13a1 - inflammatory monocytes (porrello)
+- s100a12 decreases during monocyte differentiation but is increased in inflammation (Lira-Junior)
+- ahnak increased in differentiated monocytes along with dysferlin, which results in more adhesion (de moree)
+- classical monocytes characterized by expression of pro-inflammatory mediators, particularly, S100A12, S100A9, and S100A8 is a hallmark of this subset (Sampath)
+- actin involved in t cell receptor reorganization (Dupre)
+- clic1 regulates DC
+- IL-7R hi memory T cells are cyotoxic and have antitumour properties in melanoma (micevic)
+- dok2 negative regulator of TCR signaling
+- cish, socs1, socs2 high in C7 - socs associated subset
+- t helper expression of HLA... CD4 cells can expand into HLA-DR+ cells after Ag encounter (Tippalagama) and sepsis [Xu 2019]

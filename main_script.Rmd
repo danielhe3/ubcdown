@@ -202,7 +202,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 
 <!-- Modify me! -->
-# Genomic blood biomarkers in ILD
+# Genomic blood biomarkers in ILD {#bloodrnaseq}
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{4.\arabic{figure}}
@@ -218,7 +218,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 
 <!-- Modify me! -->
-# Insert Title of Chapter 5 Here
+# Single-cell peripheral transcriptomics of ILD
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{5.\arabic{figure}}
@@ -228,7 +228,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{5.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r chapter_five, child = 'insert_project_path_here/chapter_manuscript.Rmd', eval = F}
+```{r chapter_five, child = './Chapters/IV_scRNAseq.Rmd', eval = T}
 ```
 
 \clearpage
@@ -307,6 +307,21 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \setcounter{equation}{0}
 
 ```{r appendix_c, child = './Chapters/AppendixC.Rmd', eval = T}
+```
+
+\clearpage
+
+## Appendix D - Supplementary information for single cell RNA-seq Study
+
+<!-- Set Figure, table and equations numbering according to the chapter -->
+\renewcommand{\thefigure}{A5.\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A5.\arabic{table}}
+\setcounter{table}{0}
+\renewcommand{\theequation}{A5.\arabic{equation}}
+\setcounter{equation}{0}
+
+```{r appendix_c, child = './Chapters/AppendixD.Rmd', eval = T}
 ```
 
 <!-- END OF SCRIPT -->
