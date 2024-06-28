@@ -186,7 +186,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \clearpage
 
 <!-- Modify me! -->
-# Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study
+# Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study {#bloodpilot}
 
 <!-- Set figure and table numbering according to the chapter -->
 \renewcommand{\thefigure}{3.\arabic{figure}}

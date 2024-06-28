@@ -63,7 +63,7 @@ kable(
   kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location 
 ```
 
-(ref:clusterdiff-cap) \textbf{List of top 20 differentially expressed genes between clusters of similar cell types.} Comparisons were made using the 'MAST' algorithm implemented in Seurat and results were filtered to include genes with greater than 0.75 or less than -0.75 log\textsubscript{2} fold change between cell clusters, as well as genes expressed at a minimum of 20% in either cell cluster (pct.1, pct.2). 
+(ref:clusterdiff-cap) \textbf{List of top 20 differentially expressed genes between clusters of similar cell types.} Comparisons were made using the 'MAST' algorithm implemented in Seurat and results were filtered to include genes with greater than 0.75 or less than -0.75 log\textsubscript{2} fold change between cell clusters, as well as genes expressed at a minimum of 20\% in either cell cluster (pct.1, pct.2). 
 
 ```{r biclusterGenes, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 cluster_diff <- read_excel_allsheets(here::here('Tables', 'scRNAseq', "cluster_marker_diff.xlsx"))
@@ -117,7 +117,7 @@ knitr::include_graphics("./Figures/scRNAseq/SCAILD_forestplot_cbc.pdf")
 
 \begin{singlespace}
 
-(ref:degscrnaseq-cap) \textbf{List of top 10 markers for each identified cell cluster.} Marker genes were identified using the "FindAllMarkers" function in Seurat with the 'MAST' algorithm. 'pct' indicates percentage of cells expressing the marker within the cluster, while 'pct.all' indicates percentage of cells outside of the cluster expressing the marker.
+(ref:degscrnaseq-cap) \textbf{List of top differentially expressed genes between IPF and HP for each identified cell cluster.} Marker genes were identified using the 'MAST' algorithm. "pct.IPF" indicates percentage of IPF cells expressing the marker within the cluster, while 'pct.HP' indicates percentage of HP cells expressing the marker within the cluster.
 
 ```{r degscrnaseq, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 deg_scrnaseq <- read.csv(paste0(getwd(),"/Tables/scRNAseq/deg_celltypes.csv"), row.names=1)
@@ -164,7 +164,7 @@ knitr::include_graphics("./Figures/scRNAseq/jun_umap_v1.pdf")
 knitr::include_graphics("./Figures/scRNAseq/mt_correlation_v1.pdf")
 ```
 
-(ref:bulkscrnaseq-cap) \textbf{Expression of DEGs (identified in scRNA-seq analysis) in blood RNA-seq data from  [Genomic blood biomarkers in ILD](#bloodrnaseq).} No genes were differentially expressed at an FDR of 0.05. 
+(ref:bulkscrnaseq-cap) \textbf{Expression of DEGs (identified in scRNA-seq analysis) in blood bulk RNA-seq data from Chapter 4.} No genes were differentially expressed at an FDR of 0.05. 
 
 ```{r bulkscrnaseq, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:bulkscrnaseq-cap)", fig.scap = "scRNAseq DEG expression in bulk RNA-seq", out.extra=''}
 knitr::include_graphics("./Figures/scRNAseq/bulk_comparison_v1.pdf")
