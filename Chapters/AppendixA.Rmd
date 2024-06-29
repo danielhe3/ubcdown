@@ -130,7 +130,7 @@ knitr::include_graphics("./Figures/SysReview/FigE4_blood.pdf")
 
 \captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
 
-(ref:modelperf-cap) \textbf{Summary of ILD classification model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95% confidence intervals (95% C.I.) were determined via bootstrapping.
+(ref:modelperf-cap) \textbf{Summary of ILD classification model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95\% confidence intervals (95\% C.I.) were determined via bootstrapping.
 
 ```{r modelPerf, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
 kableExtra::kbl(
@@ -156,7 +156,7 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:sexmodels-cap) \textbf{Summary of ILD sex-specific model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95% confidence intervals (95% C.I.) were determined via bootstrapping.
+(ref:sexmodels-cap) \textbf{Summary of ILD sex-specific model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95\% confidence intervals (95\% C.I.) were determined via bootstrapping.
 
 ```{r sexModel, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
 kableExtra::kbl(

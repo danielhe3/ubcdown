@@ -68,6 +68,6 @@
 \contentsline {subsection}{Appendix C - Supplementary information for blood RNA-seq study}{152}{section*.61}%
 \contentsline {subsubsection}{RNA-seq differential expression}{152}{section*.62}%
 \contentsline {subsubsection}{Survival}{159}{section*.66}%
-\contentsline {subsection}{Appendix D - Supplementary information for single cell RNA-seq study}{162}{section*.69}%
-\contentsline {subsubsection}{Cluster markers}{162}{section*.70}%
-\contentsline {subsubsection}{scRNA-seq differential expression}{171}{section*.72}%
+\contentsline {subsection}{Appendix D - Supplementary information for single cell RNA-seq study}{161}{section*.69}%
+\contentsline {subsubsection}{Cluster markers}{161}{section*.70}%
+\contentsline {subsubsection}{scRNA-seq differential expression}{170}{section*.72}%

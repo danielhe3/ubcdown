@@ -347,7 +347,7 @@ kableExtra::kbl(
 
 \begin{singlespace}
 
-(ref:ildsurvivalgenes-cap) \textbf{Genes included in the Cox proportional hazards ILD survival model.} 
+(ref:ildsurvivalgenes-cap) \textbf{Genes in the Cox proportional hazards ILD survival model.} 
 
 ```{r ildsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ild_survival_genes.csv"), row.names=1)
@@ -364,7 +364,7 @@ kableExtra::kbl(
   align = "llc",
   caption="(ref:ildsurvivalgenes-cap)",
   caption.short = "ILD survival model genes") %>%
-  column_spec(c(1), width="1.2in") %>%
+  column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="1.0in") %>%
   column_spec(c(3), width="0.6in") %>%
   kableExtra::kable_styling(full_width = F) %>%
@@ -372,7 +372,7 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:notsscsurvivalgenes-cap) \textbf{Genes included in the Cox proportional hazards ILD survival model (excluding SSc-ILD).} 
+(ref:notsscsurvivalgenes-cap) \textbf{Genes in the Cox proportional hazards ILD survival model (excluding SSc-ILD).} 
 
 ```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival (excluding SSc-ILD) model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ildnotssc_survival_genes.csv"), row.names=1)
@@ -386,11 +386,11 @@ kableExtra::kbl(
   format = 'latex',
   booktabs = T, 
   linesep = "",
-  align = "lrl",
+  align = "llc",
   caption="(ref:notsscsurvivalgenes-cap)",
   caption.short = "ILD (excluding SSc-ILD) survival model genes") %>%
   column_spec(c(1), width="1.0in") %>%
-  column_spec(c(2), width="0.8in") %>%
+  column_spec(c(2), width="1.0in") %>%
   column_spec(c(3), width="0.6in") %>%
   kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
