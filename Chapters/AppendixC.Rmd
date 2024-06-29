@@ -27,7 +27,7 @@ ensembl <- readRDS(paste0(getwd(), "/Tables/ensembl_240412.RDS"))
 <!-- This section is mandatory! -->
 \captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
 
-### Differential expression
+### RNA-seq differential expression
 
 (ref:rnaseqPCA-cap) \textbf{Principal component analysis (PCA) of blood RNA-seq cohort.} (A) PCA plot of blood RNA-seq samples. (B) Correlation of PCA components (PCs) with demographic and clinical metadata. Values shown are Pearson correlation coefficients. 
 
@@ -63,7 +63,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "llrcc",
-  caption="(ref:ipfvsssc-cap)") %>%
+  caption="(ref:ipfvsssc-cap)",
+  caption.short = "List of IPF vs SSc-ILD DEGs (blood RNA-seq)") %>%
   column_spec(c(1), width="1.2in") %>%
   column_spec(c(2), width="0.7in") %>%
   column_spec(c(3), width="0.6in") %>%
@@ -97,7 +98,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "llc",
-  caption="(ref:ipfsscpathway-cap)") %>%
+  caption="(ref:ipfsscpathway-cap)",
+  caption.short = "Up- and down-regulated SSc-ILD pathways compared to IPF") %>%
   column_spec(column=1, width="1.0in") %>%
   column_spec(column=2, width="4.5in") %>%
   kableExtra::kable_styling(full_width = F) %>%
@@ -157,7 +159,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "llrcc",
-  caption="(ref:ILDdeg-cap)") %>%
+  caption="(ref:ILDdeg-cap)",
+  caption.short = "List of DEGs between ILD subtypes (blood RNA-seq)") %>%
   column_spec(c(1), width="1.3in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.9in") %>%
@@ -203,7 +206,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "lllrcc",
-  caption="(ref:degrad-cap)") %>%
+  caption="(ref:degrad-cap)",
+  caption.short = "List of DEGs between radiological patterns (blood RNA-seq)") %>%
   column_spec(c(1), width="1.3in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.7in") %>%
@@ -220,13 +224,13 @@ kableExtra::kbl(
 
 (ref:ppfdeg-cap) \textbf{Differentially expressed genes in PPF.} Volcano plots of (A) PPF, (B) relative decline in FVC% predicted of \underline{>}10\%, (C) radiological progression, and (D) relative decline in FVC% predicted of >5\% within 2 years. (E-G) Boxplots of significant DEGs associated with various PPF criteria. 
 
-```{r ppfdeg, eval = T, out.width='0.80\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs: PPF", out.extra='', fig.align='center'}
+```{r ppfdeg, eval = T, out.width='0.80\\linewidth',echo=FALSE, fig.cap="(ref:ppfdeg-cap)", fig.scap = "DEGs associated with PPF", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_deg_v1.pdf")
 ```
 
 (ref:ppfdegipf-cap) \textbf{Differentially expressed genes in IPF patients that experience PPF.} (A) Volcano plot of DEGs between PPF and non-PPF patients in IPF, and (B) boxplots of THBS3-AS1 expression in ILD patients grouped by whether or not they experienced a relative decline in FVC\% predicted of \underline{>}10\% within 2 years. 
 
-```{r ppfdegipf, eval = T, out.width='0.75\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs: radiological progression", out.extra='', fig.align='center'}
+```{r ppfdegipf, eval = T, out.width='0.75\\linewidth',echo=FALSE, fig.cap="(ref:ppfdegipf-cap)", fig.scap = "DEGs associated with radiological progression", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/ppf_ipf_deg_v1.pdf")
 ```
 
@@ -270,7 +274,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "lllrcc",
-  caption="(ref:ppfdegtab-cap)") %>%
+  caption="(ref:ppfdegtab-cap)",
+  caption.short = "List of DEGs between PPF and non-PPF (blood RNA-seq)") %>%
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.8in") %>%
@@ -322,7 +327,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "lllrcc",
-  caption="(ref:ppfradtab-cap)") %>%
+  caption="(ref:ppfradtab-cap)",
+  caption.short = "List of DEGs associated with radiological progression (blood RNA-seq)") %>%
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="1.2in") %>%
   column_spec(c(3), width="0.8in") %>%
@@ -341,7 +347,7 @@ kableExtra::kbl(
 
 \begin{singlespace}
 
-(ref:ildsurvivalgenes-cap) \textbf{ILD survival model genes.} 
+(ref:ildsurvivalgenes-cap) \textbf{Genes included in the Cox proportional hazards ILD survival model.} 
 
 ```{r ildsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ild_survival_genes.csv"), row.names=1)
@@ -356,7 +362,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "llc",
-  caption="(ref:ildsurvivalgenes-cap)") %>%
+  caption="(ref:ildsurvivalgenes-cap)",
+  caption.short = "ILD survival model genes") %>%
   column_spec(c(1), width="1.2in") %>%
   column_spec(c(2), width="1.0in") %>%
   column_spec(c(3), width="0.6in") %>%
@@ -365,7 +372,7 @@ kableExtra::kbl(
   kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
-(ref:notsscsurvivalgenes-cap) \textbf{ILD (excluding SSc-ILD) survival model genes.} 
+(ref:notsscsurvivalgenes-cap) \textbf{Genes included in the Cox proportional hazards ILD survival model (excluding SSc-ILD).} 
 
 ```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival (excluding SSc-ILD) model genes', fig.align='center'}
 ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ildnotssc_survival_genes.csv"), row.names=1)
@@ -380,7 +387,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lrl",
-  caption="(ref:notsscsurvivalgenes-cap)") %>%
+  caption="(ref:notsscsurvivalgenes-cap)",
+  caption.short = "ILD (excluding SSc-ILD) survival model genes") %>%
   column_spec(c(1), width="1.0in") %>%
   column_spec(c(2), width="0.8in") %>%
   column_spec(c(3), width="0.6in") %>%
@@ -399,7 +407,7 @@ knitr::include_graphics("./Figures/BloodRNAseq/PPF_survival_notSSc_v2.pdf")
 
 (ref:herazomaya-cap) \textbf{Performance of the 52-gene risk profile published by Herazo-Maya \textit{et al.}} The 52-gene risk profile was calculated for the blood RNA-seq cohort (A) and validation cohorts (B), with the performance of proposed survival model on individual validation cohorts shown in (C). 
 
-```{r herazomaya, eval = T, out.width='0.82\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "Comparison with 52-gene risk model", out.extra='', fig.align='center'}
+```{r herazomaya, eval = T, out.width='0.82\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "ILD survival model comparison with 52-gene risk model", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/herazomaya_comp_v1.pdf")
 ```
 

@@ -1,8 +1,8 @@
 ---
 output:
-  bookdown::pdf_book: # comment when rendering to word document
-  # bookdown::word_document2: # uncomment if rendering to word document
-    toc: no # change me to yes if rendering to Word
+  #bookdown::pdf_book: # comment when rendering to word document
+   bookdown::word_document2: # uncomment if rendering to word document
+    toc: yes # change me to yes if rendering to Word
     keep_tex: yes
     number_sections: yes
     fig_width: 6
@@ -16,12 +16,14 @@ header-includes:
    - \floatplacement{figure}{H} 
    - \usepackage{wrapfig}
    - \usepackage{pdfpages}
+   - \usepackage{amsmath}
    #- \usepackage{longtable}
    - \usepackage{caption} # allows setting caption width for tables
 bibliography: ./References/My Library.bib
 csl: ./References/vancouver-brackets.csl
-link-citations: yes
+link-citations: no
 linkcolor: black
+always_allow_html: true
 ---
 
 
@@ -266,7 +268,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \addcontentsline{toc}{section}{Appendices} 
 \setcounter{secnumdepth}{0} <!-- remove numbering for appendices -->
 
-## Appendix A - Supplementary information for ILD Systematic Review and Meta-Analysis
+## Appendix A - Supplementary information for ILD systematic review and meta-Analysis
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A2.\arabic{figure}}
@@ -281,7 +283,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 
 \clearpage
 
-## Appendix B - Supplementary information for Blood Biomarkers Pilot Study
+## Appendix B - Supplementary information for blood biomarkers pilot study
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A3.\arabic{figure}}
@@ -296,7 +298,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 
 \clearpage
 
-## Appendix C - Supplementary information for Blood RNA-seq Study
+## Appendix C - Supplementary information for blood RNA-seq study
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A4.\arabic{figure}}
@@ -311,7 +313,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 
 \clearpage
 
-## Appendix D - Supplementary information for single cell RNA-seq Study
+## Appendix D - Supplementary information for single cell RNA-seq study
 
 <!-- Set Figure, table and equations numbering according to the chapter -->
 \renewcommand{\thefigure}{A5.\arabic{figure}}

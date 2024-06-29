@@ -51,9 +51,11 @@ kable(
   cluster10,
   booktab = TRUE,
   longtable = TRUE,
-  caption = "(ref:clustermarkertab-cap)") %>% 
-  column_spec(column=1, width="1.7in") %>%
-  column_spec(column=2, width="1in") %>%
+  align = "llcccc",
+  caption = "(ref:clustermarkertab-cap)",
+  caption.short = "scRNA-seq cluster markers") %>% 
+  column_spec(column=1, width="1.9in") %>%
+  column_spec(column=2, width="0.9in") %>%
   column_spec(column=3, width="0.5in") %>%
   column_spec(column=4, width="0.5in") %>%
   column_spec(column=5, width="0.5in") %>%
@@ -65,7 +67,7 @@ kable(
 
 (ref:clusterdiff-cap) \textbf{List of top 20 differentially expressed genes between clusters of similar cell types.} Comparisons were made using the 'MAST' algorithm implemented in Seurat and results were filtered to include genes with greater than 0.75 or less than -0.75 log\textsubscript{2} fold change between cell clusters, as well as genes expressed at a minimum of 20\% in either cell cluster (pct.1, pct.2). 
 
-```{r biclusterGenes, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
+```{r clusterdiff, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 cluster_diff <- read_excel_allsheets(here::here('Tables', 'scRNAseq', "cluster_marker_diff.xlsx"))
 cluster_diff <- lapply(cluster_diff, function(x) 
   x %>%
@@ -93,9 +95,11 @@ kable(
   cluster_diff_long %>% dplyr::select(Comparison, everything()),
   booktab = TRUE,
   longtable = TRUE,
-  caption = "(ref:clusterdiff-cap)") %>% 
-  column_spec(column=1, width="1.7in") %>%
-  column_spec(column=2, width="1in") %>%
+  align = "llcccc",
+  caption = "(ref:clusterdiff-cap)",
+  caption.short = "List of DEGs between select scRNA-seq cell clusters") %>% 
+  column_spec(column=1, width="1.9in") %>%
+  column_spec(column=2, width="0.9in") %>%
   column_spec(column=3, width="0.5in") %>%
   column_spec(column=4, width="0.5in") %>%
   column_spec(column=5, width="0.5in") %>%
@@ -138,7 +142,9 @@ kable(
   deg_scrnaseq,
   booktab = TRUE,
   longtable = TRUE,
-  caption = "(ref:degscrnaseq-cap)") %>% 
+  align = "llcccc",
+  caption = "(ref:degscrnaseq-cap)",
+  caption.short = "List of scRNA-seq DEGs between IPF and HP cell clusters") %>% 
   column_spec(column=1, width="1.7in") %>%
   column_spec(column=2, width="1in") %>%
   column_spec(column=3, width="0.5in") %>%
@@ -166,7 +172,7 @@ knitr::include_graphics("./Figures/scRNAseq/mt_correlation_v1.pdf")
 
 (ref:bulkscrnaseq-cap) \textbf{Expression of DEGs (identified in scRNA-seq analysis) in blood bulk RNA-seq data from Chapter 4.} No genes were differentially expressed at an FDR of 0.05. 
 
-```{r bulkscrnaseq, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:bulkscrnaseq-cap)", fig.scap = "scRNAseq DEG expression in bulk RNA-seq", out.extra=''}
+```{r bulkscrnaseq, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:bulkscrnaseq-cap)", fig.scap = "scRNAseq DEG expression in bulk RNA-seq", out.extra=''}
 knitr::include_graphics("./Figures/scRNAseq/bulk_comparison_v1.pdf")
 ```
 

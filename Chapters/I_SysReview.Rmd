@@ -40,7 +40,7 @@ From our initial search of medical literature databases (3,844 from MEDLINE and 
 
 (ref:prisma-cap) \textbf{Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) flowchart of study identification and screening.} MEDLINE, EMBASE, and the Gene Expression Omnibus (GEO) were examined for studies using transcriptomics to investigate samples from patients with interstitial lung disease (ILD). 
 
-```{r prisma, eval = T, echo = F, out.width='0.9\\linewidth', fig.cap="(ref:prisma-cap)", fig.scap = "PRISMA screening", out.extra='', fig.align='center'}
+```{r prisma, eval = T, echo = F, out.width='0.9\\linewidth', fig.cap="(ref:prisma-cap)", fig.scap = "PRISMA diagram", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/Figure1_Prisma.pdf")
 ```
 
@@ -102,7 +102,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccccccc",
-  caption="(ref:datasets-cap)") %>%
+  caption="(ref:datasets-cap)",
+  caption.short = "List of lung transcriptomics studies") %>%
   add_header_above(c(" " = 3, "Number of Samples" = 5)) %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   kableExtra::footnote(
@@ -129,7 +130,7 @@ We applied similar strategies for the discrimination between controls, HP, SSc-I
 
 (ref:mintmodel-cap) \textbf{Classification models for ILD subtypes against controls.} Training set datasets were integrated and tuned to develop classification models, which were then validated on test set datasets. Projection of MINT-integrated training set samples into the space of the first two PLS components for IPF (A), HP (B), SSc-ILD (C), and NSIP (D) classification models.  Inset: AUC performance of each ILD classification model on held-out test datasets. Detailed performance metrics for each dataset can be found in Table \@ref(tab:modelPerf). 
 
-```{r mintmodel, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:mintmodel-cap)", fig.scap = "MINT models", out.extra='', fig.align='center'}
+```{r mintmodel, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:mintmodel-cap)", fig.scap = "ILD classification models", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/Figure3_MINT.pdf")
 ```
 
@@ -139,7 +140,7 @@ To examine unique features of fibrotic ILD subtypes at the transcriptional level
 
 (ref:ILDvILD-cap) \textbf{ILD subtype-specific classification models.} IPF-specific and HP-specific classification models were developed through MINT integration of lung transcriptomics datasets. MINT-PLS projection of samples for classification models of IPF vs non-IPF ILD (A) and HP vs non-HP ILD (C), with corresponding performance on held-out test datasets (B, D). Upregulated pathways using gene signatures identified in classification models for IPF against non-IPF ILD and HP against non-HP ILD are shown in (E).
 
-```{r ILDvILD, eval = T, out.width='0.95\\linewidth',echo=FALSE, fig.cap="(ref:ILDvILD-cap)", fig.scap = "ILD vs ILD", out.extra='', fig.align='center'}
+```{r ILDvILD, eval = T, out.width='0.95\\linewidth',echo=FALSE, fig.cap="(ref:ILDvILD-cap)", fig.scap = "ILD vs ILD models", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/Figure4_ILDvsILD.pdf")
 ```
 
@@ -149,7 +150,7 @@ As the ILD classification models had few genes for pathway analysis, we generate
 
 (ref:ILDpathways-cap) \textbf{Pathway analysis of gene signatures from classification models of ILD subtypes against control.} Using up- (A) and down-regulated (B) gene signatures from each ILD classification model, overrepresentation analysis of gene ontology (GO) terms was performed and visualized as a gene-concept network plot. (C) A heatmap of model weights for selected gene markers associated with single-cell marker annotations identified in ILD scRNA-seq analysis (see Data Supplement).
 
-```{r ILDpathways, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:ILDpathways-cap)", fig.scap = "ILD pathways", out.extra='', fig.align='center'}
+```{r ILDpathways, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:ILDpathways-cap)", fig.scap = "Pathways of ILD", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/Figure5_pathways.pdf")
 ```
 
@@ -161,7 +162,7 @@ We next used biclustering, an unsupervised learning method, to examine transcrip
 
 (ref:biclust-cap) \textbf{Biclusters identified by unsupervised learning.} ComBat-corrected lung transcriptomics datasets containing Control, ILD, and COPD samples were analyzed using biclustering algorithms. (A) Heatmaps of genes found in select biclusters showing differences in gene expression between bicluster and non-bicluster samples. (B) Proportion of samples within each subtype identified in each bicluster (i.e. 32.6% of IPF samples are in the M9-Fibrosis bicluster). (C) Comparison of reported predicted forced vital capacity (FVC%) in IPF samples within and outside of the ‘M13-Proliferation’ bicluster. Significance was determined through linear regression analysis of bicluster membership against FVC% (*, FDR<0.10). 
 
-```{r biclust, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:biclust-cap)", fig.scap = "ILD pathways", out.extra='', fig.align='center'}
+```{r biclust, eval = T, out.width='1\\linewidth',echo=FALSE, fig.cap="(ref:biclust-cap)", fig.scap = "ILD biclusters", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/SysReview/Figure6_biclusters.pdf")
 ```
 

@@ -36,7 +36,7 @@ We profiled the expression of 166 RNA transcripts in a cohort of patients with I
 
 (ref:bloodpx-cap) \textbf{Summary table of clinical demographics of patients probed for whole blood RNA expression.} 
 
-```{r bloodpx, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD pilot study cohort', fig.align='center'}
+```{r bloodpx, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.align='center'}
 bloodpx <- readr::read_csv(here::here('Tables', 'BloodPilot', 'Table 1 Blood Px.csv'))
 colnames(bloodpx)[1] <- ""
 kableExtra::kbl(
@@ -46,7 +46,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccccc",
-  caption="(ref:bloodpx-cap)") %>%
+  caption="(ref:bloodpx-cap)",
+  caption.short = "ILD blood pilot study cohort") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
   column_spec(2, width="0.9in") %>%
@@ -84,7 +85,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccc",
-  caption="(ref:pilotdiffexp-cap)") %>%
+  caption="(ref:pilotdiffexp-cap)",
+  caption.short = "Blood pilot study DEGs") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
   column_spec(2, width="0.7in") %>%
@@ -115,7 +117,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccc",
-  caption="(ref:lungpx-cap)") %>%
+  caption="(ref:lungpx-cap)",
+  caption.short = "ILD lung pilot study cohort") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
   column_spec(2, width="1.0in") %>%
@@ -129,7 +132,7 @@ kableExtra::kbl(
 
 (ref:pilotexpr-cap) \textbf{Expression of \textit{KLRF1}, \textit{LTK}, \textit{VCAN} in whole blood (log2 RNA expression) or lung tissue microarray sections (H-Score) containing samples from patients with ILD subtypes.} Tissue microarray sections of lung samples from patients with (A) idiopathic pulmonary fibrosis (IPF), (B) hypersensitivity pneumonitis (HP), and (C) systemic sclerosis-associated interstitial lung disease (SSc-ILD). (D) Whole blood (log2 RNA expression) and lung (H-Score) expression of \textit{KLRF1}, \textit{LTK}, and \textit{VCAN}. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.05 (\*\*\*). Tukey’s post-hoc adjustment was used to determine statistical significance of H-scores (\* denotes \textit{p}<0.05). 
 
-```{r pilotexpr, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:pilotexpr-cap)", fig.scap = "Blood and Lung expression of LTK, KLRF1, VCAN", out.extra='', fig.align='center'}
+```{r pilotexpr, eval = T, out.width='0.9\\linewidth',echo=FALSE, fig.cap="(ref:pilotexpr-cap)", fig.scap = "Blood and lung expression of LTK, KLRF1, VCAN", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodPilot/ILD_biomarkers_combined_thesis_v1.png")
 ```
 

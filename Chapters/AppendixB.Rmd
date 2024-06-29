@@ -42,7 +42,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lrcclrcc",
-  caption="(ref:pilotpftdeg-cap)") %>%
+  caption="(ref:pilotpftdeg-cap)",
+  caption.short = "Blood pilot study DEGs associated with PFT") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1,5), width="0.8in") %>%
   column_spec(c(2,6), width="0.6in") %>%
@@ -78,7 +79,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccc",
-  caption="(ref:biomarkermodel-cap)") %>%
+  caption="(ref:biomarkermodel-cap)",
+  caption.short = "Blood pilot study ILD classification model performance") %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.3in") %>%
   column_spec(2, width="0.7in") %>%
@@ -122,7 +124,8 @@ kableExtra::kbl(
   booktabs = T, 
   #linesep = "",
   align = "lrlrlrlr",
-  caption="(ref:biomarkerweight-cap)") %>%
+  caption="(ref:biomarkerweight-cap)",
+  caption.short = "Blood pilot study ILD classification model weights") %>%
   add_header_above(header = c("IPF vs non-IPF" = 2, "IPF vs SSc-ILD" = 2, "IPF vs HP" = 2, "HP vs SSc-ILD" = 2)) %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(c(1,3,5,7), width="0.7in") %>%

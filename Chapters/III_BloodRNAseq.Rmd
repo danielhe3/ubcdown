@@ -26,7 +26,7 @@ At time of recruitment, patient whole blood samples were collected in PAXgene Bl
 
 (ref:bloodpxrnaseq-cap) \textbf{Summary table of demographics of patients with ILD examined for whole blood RNA expression.} Data are shown as either n(\%) or mean ± SD (calculated for all patients within diagnoses unless otherwise indicated). \textit{P}-values were determined using one-way analysis of variance (ANOVA) for continuous variables and Fisher's exact text for categorical variables. Variables relating to progression were determined within a 2-year period. 
 
-```{r bloodpxrnaseq, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD blood RNA-seq study cohort', fig.align='center'}
+```{r bloodpxrnaseq, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.align='center'}
 bloodpxrnaseq <- readr::read_csv(here::here('Tables', 'BloodRNAseq', 'px_summary.csv'))
 colnames(bloodpxrnaseq)[1] <- ""
 kableExtra::kbl(
@@ -36,7 +36,8 @@ kableExtra::kbl(
   booktabs = T, 
   linesep = "",
   align = "lccccccl",
-  caption="(ref:bloodpxrnaseq-cap)") %>%
+  caption="(ref:bloodpxrnaseq-cap)",
+  caption.short='ILD blood RNA-seq study cohort') %>%
   kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
   column_spec(1, width="1.5in") %>%
   column_spec(2, width="1.05in") %>% #SSc
@@ -64,11 +65,11 @@ Survival analysis was performed using the elastic net implementation of Cox prop
 
 ### The peripheral transcriptome is distinct between ILD subtypes and radiological patterns
 
-We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \@ref(fig:rnaseqPCA)), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR<0.05, a majority of which were associated with interferon (IFN) signaling (Figure \@ref(fig:degild)A,C-D, Table \@ref(tab:ipfvsssc), Table \@ref(tab:ipfsscpathway)). No DEGs were identified between IPF and HP (Figure \@ref(fig:degild)B), but two DEGs at FDR<0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \@ref(tab:ILDdeg)). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR<0.05 (Figure \@ref(fig:raddeg)); similar genes were upregulated when compared to UIP, though these were not significant (Table \@ref(tab:degrad)).
+We first examined differences in the peripheral transcriptome of specific ILD subtypes against each other. After controlling for race as a confounding variable (Figure \@ref(fig:rnaseqPCA)), IPF and SSc-ILD were the most transcriptionally distinct subtypes with 165 DEGs at an FDR<0.05, a majority of which were associated with interferon (IFN) signaling (Figure \@ref(fig:degild)A,C-D, Table \@ref(tab:ipfvsssc), Table \@ref(tab:ipfsscpathway)). No DEGs were identified between IPF and HP (Figure \@ref(fig:degild)B), but two DEGs at FDR<0.05 were identified between IPF and IPAF and 710 between SSc-ILD and IPAF, though these comparisons were limited by the small number of IPAF samples (n=4) (Table \@ref(tab:ILDdeg)). We further investigated DEGs between radiological subtypes, and found that fibrotic HP patterns were distinct from NSIP patterns with 16 DEGs as FDR<0.05 (Figure \@ref(fig:raddeg)); similar genes were up-regulated when compared to UIP, though these were not significant (Table \@ref(tab:degrad)).
 
 (ref:degild-cap) \textbf{SSc-ILD is transcriptionally distinct from other ILD subtypes.} Volcano plots of differentially expressed genes between (A) IPF and SSc-ILD and (B) IPF and HP. (C) Expression of interferon- and cytotoxic-associated genes in ILD subtypes. Statistical significance of blood RNA expression was corrected using false discovery rate (FDR), with significance indicated by FDR<0.01 (\*\*\*) and FDR<0.05 (\*\*). (D) Gene-concept plot of selected KEGG and Reactome pathways associated with up- and down-regulated SSc-ILD genes when compared to IPF. 
 
-```{r degild, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:degild-cap)", fig.scap = "SSc-ILD transcriptome", out.extra='', fig.align='center'}
+```{r degild, eval = T, out.width='1.0\\linewidth',echo=FALSE, fig.cap="(ref:degild-cap)", fig.scap = "ILD blood transcriptome", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/Fig1_Differential_Expression_v1.pdf")
 ```
 
