@@ -1,8 +1,8 @@
 ---
 output:
-  #bookdown::pdf_book: # comment when rendering to word document
-   bookdown::word_document2: # uncomment if rendering to word document
-    toc: yes # change me to yes if rendering to Word
+  bookdown::pdf_book: # comment when rendering to word document
+  # bookdown::word_document2: # uncomment if rendering to word document
+    toc: no # change me to yes if rendering to Word
     keep_tex: yes
     number_sections: yes
     fig_width: 6
@@ -21,11 +21,10 @@ header-includes:
    - \usepackage{caption} # allows setting caption width for tables
 bibliography: ./References/My Library.bib
 csl: ./References/vancouver-brackets.csl
-link-citations: no
+link-citations: yes
 linkcolor: black
-always_allow_html: true
+#always_allow_html: true # uncomment if rendering to word document
 ---
-
 
 ```{r setup, include=FALSE, eval = T}
 knitr::opts_chunk$set(echo = TRUE)
@@ -323,7 +322,7 @@ NOTE: Remove normal markdown chapters before rendering to PDF  -->
 \renewcommand{\theequation}{A5.\arabic{equation}}
 \setcounter{equation}{0}
 
-```{r appendix_c, child = './Chapters/AppendixD.Rmd', eval = T}
+```{r appendix_d, child = './Chapters/AppendixD.Rmd', eval = T}
 ```
 
 <!-- END OF SCRIPT -->

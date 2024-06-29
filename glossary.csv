@@ -39,3 +39,27 @@ COP,cryptogenic organizing pneumonia
 PRISMA,Preferred Reporting Items for Systematic Reviews and Meta-Analyses
 AUC,area under receiver operating curve
 GO,Gene Ontology
+TMA,tissue microarray
+ISH,in situ hybridization
+FOV,field of view
+limma,linear models for microarray
+sPLSDA,sparse partial least squares discriminant analysis
+TH2,T helper 2
+RNA,ribonucleic acid
+ANOVA,analysis of variance
+MDS,multidimensional scaling
+PCA,principal component analysis
+PCA,principal component
+IFN,interferon
+FDR,false discovery rate
+NK,natural killer
+NKT,natural killer T cell
+fHP,fibrotic hypersensitivity pneumonitis
+CBC,complete blood count
+GEM,gel bead in emulsion
+MAST,model-based analysis of single-cell transcriptomics
+qPCR,quantitative polymerase chain reaction
+PLS,partial least squares
+NIPALS,nonlinear iterative partial least squares
+SE,standard error
+UMAP,uniform manifold approximation and projection

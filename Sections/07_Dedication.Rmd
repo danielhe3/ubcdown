@@ -9,7 +9,7 @@ output:
 
 \begin{center}
     \vspace*{\fill}
-    Insert here your dedication
+    TBD
     \vspace*{\fill}
 \end{center}
 

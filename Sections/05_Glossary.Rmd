@@ -10,6 +10,8 @@ output:
 
 <!-- Edit glossary.csv -- this file does not need to be edited  -->
 
+\begin{singlespace}
+
 ```{r glossary, eval = T, echo = F, message = FALSE}
 readr::read_csv(here::here('glossary.csv')) %>% 
 dplyr::arrange(Abr) %>%
@@ -25,3 +27,5 @@ dplyr::arrange(Abr) %>%
   sub("\\\\bottomrule", "", .) # removes bottom border
 
 ```
+
+\end{singlespace}

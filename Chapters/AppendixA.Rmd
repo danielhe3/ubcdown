@@ -10,7 +10,7 @@ output:
 
 ### Search terms {#search-terms}
 
-Results from EMBASE and Medline were retrieved on January 18th, 2018 using keywords and MeSH terms for idiopathic interstitial pneumonias (1-9), connective tissue disease-associated ILDs (10-17), hypersensitivity pneumonitis (18), and gene expression (20-21). We limited our results to human and English language studies (24-25), and restricted results to those published after the year 2000 (26) given the recency of transcriptomics as a technology. On November 23rd 2023, the search was updated with the addition of terms to omit publications relating to COVID19. Below are the search terms used for EMBASE; a similar strategy was adopted for MEDLINE.
+Results from EMBASE and Medline were retrieved on January 18th, 2018 using keywords and MeSH terms for idiopathic interstitial pneumonias (1-9), connective tissue disease-associated ILDs (10-17), hypersensitivity pneumonitis (18), and gene expression (20-21). We limited our results to human and English language studies (24-25), and restricted results to those published after the year 2000 (26) given the recency of transcriptomics as a technology. On November 23rd 2023, the search was updated with the addition of terms to omit publications relating to COVID-19. Below are the search terms used for EMBASE; a similar strategy was adopted for MEDLINE.
 
 1.	interstitial lung disease/ or interstitial pneumonia/ or fibrosing alveolitis/ or lung fibrosis/
 2.	((idiopathic or interstitial) adj3 pulmonary fibrosis).mp. [mp=title, abstract, heading word, drug trade name, original title, device manufacturer, drug manufacturer, device trade name, keyword, floating subheading word, candidate term word]
@@ -701,7 +701,7 @@ kableExtra::kbl(
 bicluster_associations <- read_excel_allsheets(here::here('Tables', 'SysReview', "Table E11 Bicluster Associations.xlsx"))
 ```
 
-(ref:biclusterIPF-cap) \textbf{Association of bicluster IPF sample membership with predicted FVC\%, DLCO\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
+(ref:biclusterIPF-cap) \textbf{Association of bicluster IPF sample membership with predicted FVC\%, D\textsubscript{LCO}\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
 
 ```{r biclusterIPF, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 kable(
@@ -728,7 +728,7 @@ kable(
 
 \newpage
 
-(ref:biclusterILD-cap) \textbf{Association of bicluster ILD sample membership with predicted FVC\%, DLCO\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
+(ref:biclusterILD-cap) \textbf{Association of bicluster ILD sample membership with predicted FVC\%, D\textsubscript{LCO}\%, and age.} Columns ‘Non-Cluster’ and ‘Bicluster’ indicate number of samples in each comparison.
 
 ```{r biclusterILD, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
 kable(

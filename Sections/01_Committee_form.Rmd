@@ -16,24 +16,30 @@ and Postdoctoral Studies for acceptance, the dissertation entitled:
 \vspace{5mm}
 
 
-\noindent\underline{\makebox[6in][l]{Insert your dissertation title here}}  
+\noindent\underline{\makebox[6in][l]{A comprehensive analysis of the genomic landscape of interstitial lung diseases}}  
 \vspace{2mm}
 
-submitted by \underline{Insert Your Name Here} in partial fulfillment of the requirements for
+submitted by \underline{Daniel He} in partial fulfillment of the requirements for
 
-the degree of \noindent\underline{\makebox[5in][l]{Name of your Degree}}  
+the degree of \noindent\underline{\makebox[5in][l]{Doctor of Philosophy}}  
 
-in \noindent\underline{\makebox[5.8in][l]{Insert Program}}
+in \noindent\underline{\makebox[5.8in][l]{Experimental Medicine}}
 
 \vspace{5mm}
 
 **Examining Committee:**
 
-\noindent\underline{\makebox[6in][l]{Name of your Supervisor}}  
+\noindent\underline{\makebox[6in][l]{Scott J Tebbutt}}  
 Supervisor
 
-\noindent\underline{\makebox[6in][l]{Name of your Committee Member}}  
-Supervisory Committee Member 
+\noindent\underline{\makebox[6in][l]{Christopher J Ryerson}}  
+Supervisory Committee Member / Co-Supervisor
+
+\noindent\underline{\makebox[6in][l]{Gabriela V Cohen Freue}}  
+Supervisory Committee Member
+
+\noindent\underline{\makebox[6in][l]{Kelly M McNagny}}  
+Supervisory Committee Member
 
 \noindent\underline{\makebox[6in][l]{Name of University Examiner}}  
 University Examiner

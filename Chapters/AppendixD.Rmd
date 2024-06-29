@@ -54,7 +54,7 @@ kable(
   align = "llcccc",
   caption = "(ref:clustermarkertab-cap)",
   caption.short = "scRNA-seq cluster markers") %>% 
-  column_spec(column=1, width="1.9in") %>%
+  column_spec(column=1, width="2.0in") %>%
   column_spec(column=2, width="0.9in") %>%
   column_spec(column=3, width="0.5in") %>%
   column_spec(column=4, width="0.5in") %>%
@@ -98,7 +98,7 @@ kable(
   align = "llcccc",
   caption = "(ref:clusterdiff-cap)",
   caption.short = "List of DEGs between select scRNA-seq cell clusters") %>% 
-  column_spec(column=1, width="1.9in") %>%
+  column_spec(column=1, width="2.1in") %>%
   column_spec(column=2, width="0.9in") %>%
   column_spec(column=3, width="0.5in") %>%
   column_spec(column=4, width="0.5in") %>%
@@ -113,9 +113,11 @@ kable(
 
 (ref:forestplotcbc-cap) \textbf{Forest plot comparing abundance of cell types measured by CBC.} Significantly different cell types (shown in italics) were determined by a binomial generalized linear model and corrected using the Bonferroni method. Dot sizes are scaled to indicate standard error (SE), with smaller SE corresponding to larger dots.
 
-```{r forestplot, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:forestplotcbc-cap)", fig.scap = "scRNA-seq CBC cell abundance", out.extra=''}
+```{r forestplotcbc, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:forestplotcbc-cap)", fig.scap = "scRNA-seq CBC cell abundance", out.extra=''}
 knitr::include_graphics("./Figures/scRNAseq/SCAILD_forestplot_cbc.pdf")
 ```
+
+\newpage
 
 ### scRNA-seq differential expression
 
@@ -145,8 +147,8 @@ kable(
   align = "llcccc",
   caption = "(ref:degscrnaseq-cap)",
   caption.short = "List of scRNA-seq DEGs between IPF and HP cell clusters") %>% 
-  column_spec(column=1, width="1.7in") %>%
-  column_spec(column=2, width="1in") %>%
+  column_spec(column=1, width="2.0in") %>%
+  column_spec(column=2, width="0.9in") %>%
   column_spec(column=3, width="0.5in") %>%
   column_spec(column=4, width="0.5in") %>%
   column_spec(column=5, width="0.5in") %>%
@@ -166,13 +168,13 @@ knitr::include_graphics("./Figures/scRNAseq/jun_umap_v1.pdf")
 
 (ref:mtcorr-cap) \textbf{Correlation of expression of DEGs identified in scRNA-seq analysis with percentage of genes expressed within each cell that are mitochondrial.} \textit{R} values shown are Pearson coefficients. \textit{MTRNR2L8} and \textit{RPS26} are included as a positive control to illustrate expected \textit{R} values for genes associated with apoptotic cells. 
 
-```{r mtcorr, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:mtcorr-cap)", fig.scap = "scRNAseq DEG correlation with MT%", out.extra=''}
+```{r mtcorr, eval = T, out.width='0.9\\linewidth', echo=FALSE, fig.cap="(ref:mtcorr-cap)", fig.scap = "scRNAseq DEG correlation with MT%", out.extra='', fig.align = 'center'}
 knitr::include_graphics("./Figures/scRNAseq/mt_correlation_v1.pdf")
 ```
 
 (ref:bulkscrnaseq-cap) \textbf{Expression of DEGs (identified in scRNA-seq analysis) in blood bulk RNA-seq data from Chapter 4.} No genes were differentially expressed at an FDR of 0.05. 
 
-```{r bulkscrnaseq, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:bulkscrnaseq-cap)", fig.scap = "scRNAseq DEG expression in bulk RNA-seq", out.extra=''}
+```{r bulkscrnaseq, eval = T, out.width='0.8\\linewidth', echo=FALSE, fig.cap="(ref:bulkscrnaseq-cap)", fig.scap = "scRNAseq DEG expression in bulk RNA-seq", out.extra='', fig.align = 'center'}
 knitr::include_graphics("./Figures/scRNAseq/bulk_comparison_v1.pdf")
 ```
 

@@ -1,0 +1,73 @@
+\contentsline {section}{Abstract}{iii}{section*.1}%
+\contentsline {section}{Lay Summary}{iv}{section*.2}%
+\contentsline {section}{Preface}{v}{section*.3}%
+\contentsline {section}{Table of Contents}{vi}{section*.4}%
+\contentsline {section}{List of Tables}{viii}{section*.5}%
+\contentsline {section}{List of Figures}{ix}{section*.6}%
+\contentsline {section}{Glossary}{x}{section*.7}%
+\contentsline {section}{Acknowledgements}{xii}{section*.8}%
+\contentsline {section}{Dedication}{xiii}{section*.9}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Interstitial lung disease}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Mechanisms of ILD}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Diagnosis of ILD}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Progressive pulmonary fibrosis}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Objective}{4}{subsection.1.5}%
+\contentsline {section}{\numberline {2}A systematic review and meta-analysis of ILD transcriptomics}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Methods}{6}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Search strategy}{6}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Data extraction, integration, and analysis}{7}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Biclustering}{8}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Results}{8}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Search results}{8}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Lung gene expression signatures of fibrotic ILD subtypes}{9}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Fibrotic ILD subtypes are differentiated at the transcriptional level}{12}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}ILD subtypes have both common and unique disease pathways}{13}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Unsupervised analysis identifies putative molecular endotypes of ILD}{14}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Discussion}{15}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Diagnostic potential of genomic blood biomarkers of pulmonary fibrosis: a pilot study}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Methods}{18}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Study population and sample processing}{18}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}In situ hybridization}{19}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Data analysis}{19}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Results}{20}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Discussion}{23}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Genomic blood biomarkers in ILD}{25}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Methods}{25}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Study population and sample processing}{25}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Data analysis}{27}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Results}{27}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}The peripheral transcriptome is distinct between ILD subtypes and radiological patterns}{27}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Genes are associated with PPF at baseline in SSc-ILD and NSIP patients}{29}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Peripheral gene signatures are associated with transplant-free survival}{30}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Discussion}{32}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Single-cell peripheral transcriptomics of ILD}{36}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Methods}{36}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Study population and sample processing}{36}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Data analysis}{37}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Results}{38}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}IPF and HP differ in cellular populations}{38}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}ILD subtypes have unique single cell transcriptomic signatures}{40}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Discussion}{43}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusion}{45}{section.6}%
+\contentsline {section}{Bibliography}{47}{section*.30}%
+\contentsline {section}{Appendices}{74}{section*.32}%
+\contentsline {subsection}{Appendix A - Supplementary information for ILD systematic review and meta-Analysis}{74}{section*.33}%
+\contentsline {subsubsection}{Search terms}{74}{section*.34}%
+\contentsline {subsubsection}{Eligibility criteria}{76}{section*.35}%
+\contentsline {subsubsection}{Study screening and data extraction}{76}{section*.36}%
+\contentsline {subsubsection}{Quality control of identified datasets}{77}{section*.37}%
+\contentsline {subsubsection}{Robust rank aggregation}{77}{section*.38}%
+\contentsline {subsubsection}{Microarray and RNA-seq processing}{78}{section*.39}%
+\contentsline {subsubsection}{Data integration, analysis, and ILD classification models}{79}{section*.41}%
+\contentsline {subsubsection}{Biclustering}{129}{section*.51}%
+\contentsline {subsubsection}{Envisia}{148}{section*.54}%
+\contentsline {subsection}{Appendix B - Supplementary information for blood biomarkers pilot study}{149}{section*.56}%
+\contentsline {subsubsection}{Differential expression}{149}{section*.57}%
+\contentsline {subsubsection}{Biomarker panels}{151}{section*.59}%
+\contentsline {subsection}{Appendix C - Supplementary information for blood RNA-seq study}{152}{section*.61}%
+\contentsline {subsubsection}{RNA-seq differential expression}{152}{section*.62}%
+\contentsline {subsubsection}{Survival}{159}{section*.66}%
+\contentsline {subsection}{Appendix D - Supplementary information for single cell RNA-seq study}{162}{section*.69}%
+\contentsline {subsubsection}{Cluster markers}{162}{section*.70}%
+\contentsline {subsubsection}{scRNA-seq differential expression}{171}{section*.72}%

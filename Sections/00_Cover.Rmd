@@ -14,7 +14,7 @@ output:
 
 \Huge
 
-\textbf{HERE GOES YOUR TITLE}
+\textbf{A comprehensive analysis of the genomic landscape of interstitial lung diseases}
 
 \Large
 
@@ -26,15 +26,15 @@ by
 
 \huge
 
-Here Goes Your Name
+Daniel He
 
 \Large
 
 \vspace{8mm}
 
-Undergraduate degree
+BMLSc, The University of British Columbia, 2011
 
-Master degree
+MSc, The University of British Columbia, 2014
 
 \vspace{10mm}
 
@@ -42,7 +42,7 @@ A DISSERTATION SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR THE DEGR
 
 \vspace{5mm}
 
-HERE GOES YOUR DEGREEE
+DOCTOR OF PHILOSOPHY
 
 \vspace{5mm}
 in
@@ -53,7 +53,7 @@ THE FACULTY OF GRADUATE AND POSTDOCTORAL STUDIES
 
 \vspace{5mm}
 
-(Program)
+(Experimental Medicine)
 
 \vspace{5mm}
 
@@ -65,9 +65,9 @@ THE UNIVERSITY OF BRITISH COLUMBIA
 
 \vspace{6mm}
 
-Month YYYY
+July 2024
 
-© Here Goes Your Name, YYYY
+© Daniel He, 2024
 
 \end{center}
 \end{singlespace}
