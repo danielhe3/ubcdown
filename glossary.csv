@@ -1,65 +1,73 @@
 Abr,Meaning
-IPF,idiopathic pulmonary fibrosis
-ILD,interstitial lung disease
-ECM,extracellular matrix
-COPD,chronic obstructive pulmonary disease
+ANOVA,analysis of variance
 AT1,type I alveolar epithelial cell
 AT2,type II alveolar epithelial cell
-EMT,epithelial-mesenchymal transition
-UIP,usual interstitial pneumonia
-MDD,multidisciplinary discussion
-HRCT,high-resolution computed tomography
-HP,hypersensitivity pneumonitis
-IPAF,interstitial pneumonia with autoimmune features
-SSc-ILD,systemic sclerosis-associated interstitial lung disease
-PPF,progressive pulmonary fibrosis
-DLCO,diffusing capacity for carbon monoxide
-FVC,forced vital capacity
-RNA-seq,RNA sequencing
-scRNA-seq,single cell RNA-sequencing
-CTD-ILD,connective tissue disease-associated interstitial lung disease
-IPD,individual participant data
-NSIP,non-specific interstitial pneumonia
-RA-ILD,rheumatoid arthritis-associated interstitial lung disease
-CPFE,combined pulmonary fibrosis and emphysema
-BER,balanced error rate
-DEG,differentially expressed gene
-GEO,Gene Expression Omnibus
-SRA,Sequence Read Archive
-TMM,trimmed mean of M values
-MINT,Multivariate INTegrative 
-RRA,robust rank aggregation
-LTRC,Lung Tissue Research Consortium
-UnPaSt,unsupervised patient stratification
-DESMOND,Differentially ExpresSsed gene Modules iN Diseases
-PBMC,peripheral blood mononuclear cells
-DIP,desquamative interstitial pneumonia
-RB-ILD,respiratory bronchiolitis-interstitial lung disease
-COP,cryptogenic organizing pneumonia
-PRISMA,Preferred Reporting Items for Systematic Reviews and Meta-Analyses
 AUC,area under receiver operating curve
-GO,Gene Ontology
-TMA,tissue microarray
-ISH,in situ hybridization
-FOV,field of view
-limma,linear models for microarray
-sPLSDA,sparse partial least squares discriminant analysis
-TH2,T helper 2
-RNA,ribonucleic acid
-ANOVA,analysis of variance
-MDS,multidimensional scaling
-PCA,principal component analysis
-PCA,principal component
-IFN,interferon
+BER,balanced error rate
+CBC,complete blood count
+COP,cryptogenic organizing pneumonia
+COPD,chronic obstructive pulmonary disease
+CPFE,combined pulmonary fibrosis and emphysema
+CTD-ILD,connective tissue disease-associated interstitial lung disease
+DEG,differentially expressed gene
+DESMOND,Differentially ExpresSsed gene Modules iN Diseases
+DIP,desquamative interstitial pneumonia
+DLCO%,"diffusing capacity for carbon monoxide, percent predicted"
+ECM,extracellular matrix
+EMT,epithelial-mesenchymal transition
 FDR,false discovery rate
+fHP,fibrotic hypersensitivity pneumonitis
+FOV,field of view
+FVC%,"forced vital capacity, percent predicted"
+GEM,gel bead in emulsion
+GEO,Gene Expression Omnibus
+GO,Gene Ontology
+HP,hypersensitivity pneumonitis
+HRCT,high-resolution computed tomography
+IFN,interferon
+ILD,interstitial lung disease
+IPAF,interstitial pneumonia with autoimmune features
+IPD,individual participant data
+IPF,idiopathic pulmonary fibrosis
+ISH,in situ hybridization
+limma,linear models for microarray
+LTRC,Lung Tissue Research Consortium
+MAST,model-based analysis of single-cell transcriptomics
+MDD,multidisciplinary discussion
+MDS,multidimensional scaling
+MINT,Multivariate INTegrative 
+NIPALS,nonlinear iterative partial least squares
 NK,natural killer
 NKT,natural killer T cell
-fHP,fibrotic hypersensitivity pneumonitis
-CBC,complete blood count
-GEM,gel bead in emulsion
-MAST,model-based analysis of single-cell transcriptomics
-qPCR,quantitative polymerase chain reaction
+NSIP,non-specific interstitial pneumonia
+PBMC,peripheral blood mononuclear cells
+PC,principal component
+PCA,principal component analysis
 PLS,partial least squares
-NIPALS,nonlinear iterative partial least squares
+PPF,progressive pulmonary fibrosis
+PRISMA,Preferred Reporting Items for Systematic Reviews and Meta-Analyses
+qPCR,quantitative polymerase chain reaction
+RA-ILD,rheumatoid arthritis-associated interstitial lung disease
+RB-ILD,respiratory bronchiolitis-interstitial lung disease
+RNA,ribonucleic acid
+RNA-seq,RNA sequencing
+RRA,robust rank aggregation
+scRNA-seq,single cell RNA-sequencing
 SE,standard error
+sPLSDA,sparse partial least squares discriminant analysis
+SRA,Sequence Read Archive
+SSc-ILD,systemic sclerosis-associated interstitial lung disease
+TH2,T helper 2
+TMA,tissue microarray
+TMM,trimmed mean of M values
+UIP,usual interstitial pneumonia
 UMAP,uniform manifold approximation and projection
+UnPaSt,unsupervised patient stratification
+PDGF,platelet-derived growth factor
+SLB,surgical lung biopsy
+BALF,bronchoalveolar lavage fluid
+MHC,major histocombatibility complex
+mRNA,messenger RNA
+CPM,counts per million
+LASSO,least absolute shrinkage and selection operator
+EDTA,ethylenediaminetetraacetic acid

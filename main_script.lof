@@ -1,35 +1,37 @@
-\contentsline {figure}{\numberline {2.1}{\ignorespaces PRISMA diagram}}{9}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces ILD classification models}}{11}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces ILD vs ILD models}}{12}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Pathways of ILD}}{13}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces ILD biclusters}}{14}{figure.caption.15}%
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Blood and lung expression of LTK, KLRF1, VCAN}}{22}{figure.caption.19}%
-\contentsline {figure}{\numberline {4.1}{\ignorespaces ILD blood transcriptome}}{28}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Radiological transcriptome}}{29}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces PPF transcriptome in SSc-ILD and NSIP}}{30}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces ILD survival model}}{31}{figure.caption.24}%
-\contentsline {figure}{\numberline {5.1}{\ignorespaces scRNA-seq clusters}}{39}{figure.caption.26}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces scRNA-seq cell abundance}}{40}{figure.caption.27}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces scRNA-seq NK DEGs}}{41}{figure.caption.28}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces scRNA-seq monocyte DEGs}}{42}{figure.caption.29}%
-\contentsline {figure}{\numberline {A2.1}{\ignorespaces Outlier detection}}{79}{figure.caption.40}%
-\contentsline {figure}{\numberline {A2.2}{\ignorespaces Data integration via MINT}}{80}{figure.caption.42}%
-\contentsline {figure}{\numberline {A2.3}{\ignorespaces Model tuning}}{81}{figure.caption.43}%
-\contentsline {figure}{\numberline {A2.4}{\ignorespaces Upset plot of models}}{82}{figure.caption.44}%
-\contentsline {figure}{\numberline {A2.5}{\ignorespaces Peripheral ILD classification models}}{83}{figure.caption.45}%
-\contentsline {figure}{\numberline {A2.6}{\ignorespaces NSIP-specific classification model}}{121}{figure.caption.48}%
-\contentsline {figure}{\numberline {A2.7}{\ignorespaces ILD subtype vs. subtype classification models}}{122}{figure.caption.49}%
-\contentsline {figure}{\numberline {A2.8}{\ignorespaces Bayesian changepoint analysis}}{123}{figure.caption.50}%
-\contentsline {figure}{\numberline {A2.9}{\ignorespaces Biclusters}}{130}{figure.caption.52}%
-\contentsline {figure}{\numberline {A2.10}{\ignorespaces Bicluster similarity matrix}}{131}{figure.caption.53}%
-\contentsline {figure}{\numberline {A2.11}{\ignorespaces Comparison with Envisia classifier}}{148}{figure.caption.55}%
-\contentsline {figure}{\numberline {A3.1}{\ignorespaces Correlation of PCs with metadata (pilot study)}}{149}{figure.caption.58}%
-\contentsline {figure}{\numberline {A4.1}{\ignorespaces Correlation of PCs with metadata (blood RNA-seq)}}{152}{figure.caption.63}%
-\contentsline {figure}{\numberline {A4.2}{\ignorespaces DEGs associated with PPF}}{157}{figure.caption.64}%
-\contentsline {figure}{\numberline {A4.3}{\ignorespaces DEGs associated with radiological progression}}{157}{figure.caption.65}%
-\contentsline {figure}{\numberline {A4.4}{\ignorespaces ILD (excluding SSc-ILD) survival model}}{160}{figure.caption.67}%
-\contentsline {figure}{\numberline {A4.5}{\ignorespaces ILD survival model comparison with 52-gene risk model}}{160}{figure.caption.68}%
-\contentsline {figure}{\numberline {A5.1}{\ignorespaces scRNA-seq CBC cell abundance}}{169}{figure.caption.71}%
-\contentsline {figure}{\numberline {A5.2}{\ignorespaces JUN expression}}{172}{figure.caption.73}%
-\contentsline {figure}{\numberline {A5.3}{\ignorespaces scRNAseq DEG correlation with MT\%}}{173}{figure.caption.74}%
-\contentsline {figure}{\numberline {A5.4}{\ignorespaces scRNAseq DEG expression in bulk RNA-seq}}{173}{figure.caption.75}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Summary of ILD biomarkers (before)}}{5}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces PRISMA diagram}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces ILD classification models}}{11}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces ILD vs ILD models}}{12}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Pathways of ILD}}{14}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces ILD biclusters}}{15}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Blood and lung expression of LTK, KLRF1, VCAN}}{23}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces ILD blood transcriptome}}{29}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Radiological transcriptome}}{32}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces PPF transcriptome in SSc-ILD and NSIP}}{33}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces ILD survival model}}{34}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces ILD survival model comparison with 52-gene risk model}}{38}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces scRNA-seq clusters}}{43}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces scRNA-seq cell abundance}}{49}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces scRNA-seq NK DEGs}}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces scRNA-seq monocyte DEGs}}{51}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Summary of ILD biomarkers (after thesis work)}}{58}{figure.caption.33}%
+\contentsline {figure}{\numberline {A2.1}{\ignorespaces Outlier detection}}{91}{figure.caption.44}%
+\contentsline {figure}{\numberline {A2.2}{\ignorespaces Data integration via MINT}}{92}{figure.caption.46}%
+\contentsline {figure}{\numberline {A2.3}{\ignorespaces Model tuning}}{93}{figure.caption.47}%
+\contentsline {figure}{\numberline {A2.4}{\ignorespaces Upset plot of models}}{94}{figure.caption.48}%
+\contentsline {figure}{\numberline {A2.5}{\ignorespaces Peripheral ILD classification models}}{95}{figure.caption.49}%
+\contentsline {figure}{\numberline {A2.6}{\ignorespaces NSIP-specific classification model}}{133}{figure.caption.51}%
+\contentsline {figure}{\numberline {A2.7}{\ignorespaces ILD subtype vs. subtype classification models}}{134}{figure.caption.52}%
+\contentsline {figure}{\numberline {A2.8}{\ignorespaces Bayesian changepoint analysis}}{135}{figure.caption.53}%
+\contentsline {figure}{\numberline {A2.9}{\ignorespaces Biclusters}}{142}{figure.caption.55}%
+\contentsline {figure}{\numberline {A2.10}{\ignorespaces Bicluster similarity matrix}}{143}{figure.caption.56}%
+\contentsline {figure}{\numberline {A2.11}{\ignorespaces Comparison with Envisia classifier}}{160}{figure.caption.58}%
+\contentsline {figure}{\numberline {A3.1}{\ignorespaces Correlation of PCs with metadata (pilot study)}}{161}{figure.caption.61}%
+\contentsline {figure}{\numberline {A4.1}{\ignorespaces Correlation of PCs with metadata (blood RNA-seq)}}{164}{figure.caption.66}%
+\contentsline {figure}{\numberline {A4.2}{\ignorespaces DEGs associated with PPF}}{167}{figure.caption.67}%
+\contentsline {figure}{\numberline {A4.3}{\ignorespaces DEGs associated with radiological progression}}{167}{figure.caption.68}%
+\contentsline {figure}{\numberline {A4.4}{\ignorespaces ILD (excluding SSc-ILD) survival model}}{170}{figure.caption.70}%
+\contentsline {figure}{\numberline {A5.1}{\ignorespaces scRNA-seq CBC cell abundance}}{173}{figure.caption.73}%
+\contentsline {figure}{\numberline {A5.2}{\ignorespaces JUN expression}}{174}{figure.caption.75}%
+\contentsline {figure}{\numberline {A5.3}{\ignorespaces scRNAseq DEG correlation with MT\%}}{175}{figure.caption.76}%
+\contentsline {figure}{\numberline {A5.4}{\ignorespaces scRNAseq DEG expression in bulk RNA-seq}}{175}{figure.caption.77}%

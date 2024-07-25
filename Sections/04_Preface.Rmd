@@ -8,4 +8,13 @@ output:
 
 <!-- This is mandatory! -->
 
-tbd
+The systematic review and meta-analysis (Chapter 2), pilot blood RNA study (Chapter 3), blood RNA-seq study (Chapter 4), and single cell RNA-sequencing study (Chapter 5) were conceptualized by Dr. Scott J. Tebbutt, Dr. Christopher J. Ryerson, and myself, with additional help from Dr. Sabina A. Guler for Chapter 2 and Dr. Boyang Zheng for Chapter 4.
+
+In Chapter 2, title and abstract screening was performed by Dr. Guler and myself. For Chapters 3 and 4, blood samples from patients with ILD were collected by clinical staff at the Pacific Lung Health Centre (PLHC) at St. Paul's Hospital (Vancouver, BC) as part of the ILD Biomarkers Biobank (UBC certificate H23-01364), and patient data was collected as part of the ILD Biomarkers Registry (UBC certificate H09-00748). \textit{In situ} hybridization of RNA probes on lung histology tissue sections was performed in collaboration with Dr. Jeremy A. Hirota and Dr. Kjetil Ask at McMaster University. All data collection and analysis in Chapter 3 was performed by myself.
+
+Dr. Boyang Zheng and I were responsible for data collection in Chapter 4. Dr. Zheng performed power calculations to select the patient cohort, while I performed data analysis with assistance from Casey P. Shannon. 
+
+I was responsible for obtaining ethics (UBC certificate H21-00291), patient selection, and data extraction and analysis in Chapter 5. Patient recruitment was performed by clinical staff at the Pacific Lung Health Centre. 
+
+Chapters 2 and 3 have been submitted for publication, while manuscripts for Chapters 4 and 5 are currently in preparation for publication. 
+

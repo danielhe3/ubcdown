@@ -16,7 +16,7 @@ and Postdoctoral Studies for acceptance, the dissertation entitled:
 \vspace{5mm}
 
 
-\noindent\underline{\makebox[6in][l]{A comprehensive analysis of the genomic landscape of interstitial lung diseases}}  
+\noindent\underline{\makebox[6in][l]{A comprehensive analysis of the transcriptomic landscape of interstitial lung diseases}}  
 \vspace{2mm}
 
 submitted by \underline{Daniel He} in partial fulfillment of the requirements for

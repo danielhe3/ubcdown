@@ -38,45 +38,6 @@ knitr::include_graphics("./Figures/BloodRNAseq/bloodRNAseq_pca_v2.pdf")
 \begin{singlespace}
 \pagebreak
 
-(ref:ipfvsssc-cap) \textbf{List of top 50 differentially expressed genes between IPF and SSc-ILD.} Results shown are adjusted for race. 
-
-```{r ipfvsssc, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: IPF vs SSc-ILD', fig.align='center'}
-deg_table <- read_excel_allsheets(here::here('Tables', 'BloodRNAseq', "DEG_diagnosis_race_240529.xlsx"))
-IPFSSc <- deg_table[["IPFvsSSc"]]
-gene_key <- biomaRt::getBM(attributes=c('ensembl_gene_id', 'chromosome_name'), 
-      filters = 'ensembl_gene_id', 
-      values = IPFSSc$`ensembl_gene_id`,
-      mart = ensembl)
-
-IPFSSc <- IPFSSc %>%
-  filter(!ensembl_gene_id %in% (gene_key %>% filter(chromosome_name =="Y") %>% pull(ensembl_gene_id))) %>%
-  mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-  mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-  dplyr::select(ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val)
-
-colnames(IPFSSc) <- c("Ensembl ID","Gene","(ref:logfc)", "(ref:p-it)-value", "FDR")
-
-kableExtra::kbl(
-  IPFSSc %>% head(n=50),
-  longtable = T,
-  format = 'latex',
-  booktabs = T, 
-  #linesep = "",
-  align = "llrcc",
-  caption="(ref:ipfvsssc-cap)",
-  caption.short = "List of IPF vs SSc-ILD DEGs (blood RNA-seq)") %>%
-  column_spec(c(1), width="1.2in") %>%
-  column_spec(c(2), width="0.7in") %>%
-  column_spec(c(3), width="0.6in") %>%
-  column_spec(c(4), width="0.6in") %>%
-  column_spec(c(5), width="0.6in") %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
-```
-
-\pagebreak
-
 (ref:ipfsscpathway-cap) \textbf{Top 20 pathways associated with up- and down-regulated SSc-ILD vs IPF differentially expressed genes.} 
 
 ```{r ipfsscpathway, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: IPF vs SSc-ILD', fig.align='center'}
@@ -105,71 +66,6 @@ kableExtra::kbl(
   kableExtra::kable_styling(full_width = F) %>%
   #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
   kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location
-```
-
-\pagebreak
-
-(ref:ILDdeg-cap) \textbf{List of top 5 differentially expressed genes between various ILD subtypes.} Results shown are adjusted for race. 
-
-```{r ILDdeg, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='DEGs: IPF vs SSc-ILD', fig.align='center'}
-ild_deg <- rbind(
-  deg_table[["IPFvsHP"]] %>% 
-    mutate(Comparison = "IPF vs HP") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),
-  deg_table[["HPvsSScILD"]] %>% 
-    mutate(Comparison = "HP vs SSc-ILD") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
-  deg_table[["IPFvsIPAF"]] %>% 
-    mutate(Comparison = "IPF vs IPAF") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
-  deg_table[["SScILDvsIPAF"]] %>% 
-    mutate(Comparison = "SSc-ILD vs IPAF") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
-  deg_table[["IPFvsRA"]] %>% 
-    mutate(Comparison = "IPF vs RA-ILD") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
-  deg_table[["HPvsRA"]] %>% 
-    mutate(Comparison = "HP vs RA-ILD") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5),  
-  deg_table[["SScILDvsRA"]] %>% 
-    mutate(Comparison = "SSc-ILD vs RA-ILD") %>% 
-    mutate_at(c("logFC","adj.P.Val"), round_to_sigfigs, sigfigs = 3) %>%
-    mutate(P.Value=formatC(P.Value, format = "e", digits=2)) %>%
-    dplyr::select(Comparison, ensembl_gene_id, hgnc_symbol, logFC, P.Value, adj.P.Val) %>% head(n=5)
-)
-
-colnames(ild_deg) <- c("Comparison","Ensembl ID","Gene","(ref:logfc)", "(ref:p-it)-value", "FDR")
-
-kableExtra::kbl(
-  ild_deg,
-  longtable = T,
-  format = 'latex',
-  booktabs = T, 
-  #linesep = "",
-  align = "llrcc",
-  caption="(ref:ILDdeg-cap)",
-  caption.short = "List of DEGs between ILD subtypes (blood RNA-seq)") %>%
-  column_spec(c(1), width="1.3in") %>%
-  column_spec(c(2), width="1.2in") %>%
-  column_spec(c(3), width="0.9in") %>%
-  column_spec(c(4), width="0.6in") %>%
-  column_spec(c(5), width="0.6in") %>%
-  column_spec(c(6), width="0.6in") %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
 ```
 
 \pagebreak
@@ -347,31 +243,6 @@ kableExtra::kbl(
 
 \begin{singlespace}
 
-(ref:ildsurvivalgenes-cap) \textbf{Genes in the Cox proportional hazards ILD survival model.} 
-
-```{r ildsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival model genes', fig.align='center'}
-ild_genes <- read.csv(here::here('Tables', 'BloodRNAseq', "ild_survival_genes.csv"), row.names=1)
-ild_genes <- ild_genes %>% mutate_at(c("Overall"), round_to_sigfigs, sigfigs = 3) %>%
-  dplyr::select(ensembl_gene_id, hgnc_symbol, Overall)
-colnames(ild_genes) <- c("Ensembl ID", "Gene" , "Weight")
-
-kableExtra::kbl(
-  ild_genes,
-  longtable = T,
-  format = 'latex',
-  booktabs = T, 
-  linesep = "",
-  align = "llc",
-  caption="(ref:ildsurvivalgenes-cap)",
-  caption.short = "ILD survival model genes") %>%
-  column_spec(c(1), width="1.0in") %>%
-  column_spec(c(2), width="1.0in") %>%
-  column_spec(c(3), width="0.6in") %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8)  # ensures the table isn't "floated" and pins it to the current location
-```
-
 (ref:notsscsurvivalgenes-cap) \textbf{Genes in the Cox proportional hazards ILD survival model (excluding SSc-ILD).} 
 
 ```{r notsscsurvivalgenes, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra='', fig.scap='ILD survival (excluding SSc-ILD) model genes', fig.align='center'}
@@ -403,12 +274,6 @@ kableExtra::kbl(
 
 ```{r notsscsurvival, eval = T, out.width='0.84\\linewidth',echo=FALSE, fig.cap="(ref:notsscsurvival-cap)", fig.scap = "ILD (excluding SSc-ILD) survival model", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/BloodRNAseq/PPF_survival_notSSc_v2.pdf")
-```
-
-(ref:herazomaya-cap) \textbf{Performance of the 52-gene risk profile published by Herazo-Maya \textit{et al.}} The 52-gene risk profile was calculated for the blood RNA-seq cohort (A) and validation cohorts (B), with the performance of proposed survival model on individual validation cohorts shown in (C). 
-
-```{r herazomaya, eval = T, out.width='0.82\\linewidth',echo=FALSE, fig.cap="(ref:herazomaya-cap)", fig.scap = "ILD survival model comparison with 52-gene risk model", out.extra='', fig.align='center'}
-knitr::include_graphics("./Figures/BloodRNAseq/herazomaya_comp_v1.pdf")
 ```
 
 

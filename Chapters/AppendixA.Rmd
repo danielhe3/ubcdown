@@ -128,33 +128,6 @@ knitr::include_graphics("./Figures/SysReview/FigE4_blood.pdf")
 
 \newpage
 
-\captionsetup{width=6.5in} <!-- makes table caption stays in margins -->
-
-(ref:modelperf-cap) \textbf{Summary of ILD classification model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95\% confidence intervals (95\% C.I.) were determined via bootstrapping.
-
-```{r modelPerf, eval = T, echo = F, warning = FALSE, message=FALSE, out.extra=''}
-kableExtra::kbl(
-  readr::read_csv(here::here('Tables', 'SysReview', 'MINT_performance.csv')),
-  longtable = FALSE,
-  format = 'latex',
-  booktabs = TRUE, 
-  linesep = "",
-  align = "lcccc",
-  caption="(ref:modelperf-cap)",
-  caption.short = "ILD classification model performance") %>%
-  kableExtra::kable_styling(full_width = TRUE) %>%  # table spans across left to right margins
-  kableExtra::footnote(
-    general=c("* Performance on PBMC datasets", "** Performance on whole blood datasets"),
-    general_title = ""
-    ) %>%
-  column_spec(column = 1, width = "1.75in") %>%
-  column_spec(column = 2, width = "0.5in") %>%
-  column_spec(column = 3, width = "0.7in") %>%
-  column_spec(column = 4, width = "1.25in") %>%
-  column_spec(column = 5, width = "1.25in") %>%
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("hold_position")) # ensures the table isn't "floated" and pins it to the current location
-```
 
 (ref:sexmodels-cap) \textbf{Summary of ILD sex-specific model performance on indicated test sets.} Area under receiver operating curve (AUC), balanced error rate (BER), sensitivity, and specificity were calculated using the ‘auroc.mint.splsda’ function from mixOmics. 95\% confidence intervals (95\% C.I.) were determined via bootstrapping.
 

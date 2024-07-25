@@ -1,44 +1,44 @@
-\contentsline {table}{\numberline {2.1}{\ignorespaces List of lung transcriptomics studies}}{10}{table.caption.11}%
-\contentsline {table}{\numberline {3.1}{\ignorespaces ILD blood pilot study cohort}}{20}{table.caption.16}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Blood pilot study DEGs}}{21}{table.caption.17}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces ILD lung pilot study cohort}}{21}{table.caption.18}%
-\contentsline {table}{\numberline {4.1}{\ignorespaces ILD blood RNA-seq study cohort}}{26}{table.caption.20}%
-\contentsline {table}{\numberline {5.1}{\ignorespaces ILD blood scRNA-seq study cohort}}{37}{table.caption.25}%
-\contentsline {table}{\numberline {A2.1}{\ignorespaces ILD classification model performance}}{84}{table.caption.46}%
-\contentsline {table}{\numberline {A2.2}{\ignorespaces Sex-specific ILD classification model performance}}{84}{table.caption.47}%
-\contentsline {table}{\numberline {A2.3}{\ignorespaces IPF vs Control (lung) model weights}}{85}{table.3}%
-\contentsline {table}{\numberline {A2.4}{\ignorespaces IPF vs Control (blood) model weights}}{86}{table.4}%
-\contentsline {table}{\numberline {A2.5}{\ignorespaces IPF vs Control (PBMC) model weights}}{95}{table.5}%
-\contentsline {table}{\numberline {A2.6}{\ignorespaces HP vs Control (lung) model weights}}{98}{table.6}%
-\contentsline {table}{\numberline {A2.7}{\ignorespaces SSc-ILD vs Control (lung) model weights}}{103}{table.7}%
-\contentsline {table}{\numberline {A2.8}{\ignorespaces NSIP vs Control (lung) model weights}}{104}{table.8}%
-\contentsline {table}{\numberline {A2.9}{\ignorespaces IPF vs non-IPF (lung) model weights}}{110}{table.9}%
-\contentsline {table}{\numberline {A2.10}{\ignorespaces HP vs non-HP (lung) model weights}}{112}{table.10}%
-\contentsline {table}{\numberline {A2.11}{\ignorespaces IPF vs HP (lung) model weights}}{114}{table.11}%
-\contentsline {table}{\numberline {A2.12}{\ignorespaces IPF vs NSIP (lung) model weights}}{116}{table.12}%
-\contentsline {table}{\numberline {A2.13}{\ignorespaces HP vs NSIP (lung) model weights}}{117}{table.13}%
-\contentsline {table}{\numberline {A2.14}{\ignorespaces Up-regulated ILD lung pathways}}{124}{table.14}%
-\contentsline {table}{\numberline {A2.15}{\ignorespaces Down-regulated ILD lung pathways}}{124}{table.15}%
-\contentsline {table}{\numberline {A2.16}{\ignorespaces Up- and down-regulated IPF blood and PBMC pathways}}{125}{table.16}%
-\contentsline {table}{\numberline {A2.17}{\ignorespaces Up-regulated IPF vs non-IPF pathways}}{126}{table.17}%
-\contentsline {table}{\numberline {A2.18}{\ignorespaces Up-regulated HP vs non-HP pathways}}{127}{table.18}%
-\contentsline {table}{\numberline {A2.19}{\ignorespaces Up-regulated ILD cell annotations}}{128}{table.19}%
-\contentsline {table}{\numberline {A2.20}{\ignorespaces Down-regulated ILD cell annotations}}{128}{table.20}%
-\contentsline {table}{\numberline {A2.21}{\ignorespaces ILD bicluster genes}}{131}{table.21}%
-\contentsline {table}{\numberline {A2.22}{\ignorespaces Bicluster pathway analysis}}{140}{table.22}%
-\contentsline {table}{\numberline {A2.23}{\ignorespaces IPF bicluster association with demographic variables}}{146}{table.23}%
-\contentsline {table}{\numberline {A2.24}{\ignorespaces ILD bicluster association with demographic variables}}{147}{table.24}%
-\contentsline {table}{\numberline {A3.1}{\ignorespaces Blood pilot study DEGs associated with PFT}}{150}{table.1}%
-\contentsline {table}{\numberline {A3.2}{\ignorespaces Blood pilot study ILD classification model performance}}{151}{table.caption.60}%
-\contentsline {table}{\numberline {A3.3}{\ignorespaces Blood pilot study ILD classification model weights}}{151}{table.3}%
-\contentsline {table}{\numberline {A4.1}{\ignorespaces List of IPF vs SSc-ILD DEGs (blood RNA-seq)}}{153}{table.1}%
-\contentsline {table}{\numberline {A4.2}{\ignorespaces Up- and down-regulated SSc-ILD pathways compared to IPF}}{154}{table.2}%
-\contentsline {table}{\numberline {A4.3}{\ignorespaces List of DEGs between ILD subtypes (blood RNA-seq)}}{155}{table.3}%
-\contentsline {table}{\numberline {A4.4}{\ignorespaces List of DEGs between radiological patterns (blood RNA-seq)}}{156}{table.4}%
-\contentsline {table}{\numberline {A4.5}{\ignorespaces List of DEGs between PPF and non-PPF (blood RNA-seq)}}{158}{table.5}%
-\contentsline {table}{\numberline {A4.6}{\ignorespaces List of DEGs associated with radiological progression (blood RNA-seq)}}{158}{table.6}%
-\contentsline {table}{\numberline {A4.7}{\ignorespaces ILD survival model genes}}{159}{table.7}%
-\contentsline {table}{\numberline {A4.8}{\ignorespaces ILD (excluding SSc-ILD) survival model genes}}{159}{table.8}%
-\contentsline {table}{\numberline {A5.1}{\ignorespaces scRNA-seq cluster markers}}{161}{table.1}%
-\contentsline {table}{\numberline {A5.2}{\ignorespaces List of DEGs between select scRNA-seq cell clusters}}{166}{table.2}%
-\contentsline {table}{\numberline {A5.3}{\ignorespaces List of scRNA-seq DEGs between IPF and HP cell clusters}}{170}{table.3}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces List of lung transcriptomics studies}}{10}{table.caption.12}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces ILD classification model performance}}{13}{table.caption.15}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces ILD blood pilot study cohort}}{21}{table.caption.18}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Blood pilot study DEGs}}{22}{table.caption.19}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces ILD lung pilot study cohort}}{22}{table.caption.20}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces ILD blood RNA-seq study cohort}}{27}{table.caption.22}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces List of IPF vs SSc-ILD DEGs (blood RNA-seq)}}{30}{table.2}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces List of DEGs between ILD subtypes (blood RNA-seq)}}{31}{table.3}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces ILD survival model genes}}{35}{table.4}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces ILD blood scRNA-seq study cohort}}{41}{table.caption.28}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces scRNA-seq cluster markers}}{43}{table.2}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces List of scRNA-seq DEGs between IPF and HP cell clusters}}{52}{table.3}%
+\contentsline {table}{\numberline {A2.1}{\ignorespaces Sex-specific ILD classification model performance}}{96}{table.caption.50}%
+\contentsline {table}{\numberline {A2.2}{\ignorespaces IPF vs Control (lung) model weights}}{97}{table.2}%
+\contentsline {table}{\numberline {A2.3}{\ignorespaces IPF vs Control (blood) model weights}}{98}{table.3}%
+\contentsline {table}{\numberline {A2.4}{\ignorespaces IPF vs Control (PBMC) model weights}}{107}{table.4}%
+\contentsline {table}{\numberline {A2.5}{\ignorespaces HP vs Control (lung) model weights}}{110}{table.5}%
+\contentsline {table}{\numberline {A2.6}{\ignorespaces SSc-ILD vs Control (lung) model weights}}{115}{table.6}%
+\contentsline {table}{\numberline {A2.7}{\ignorespaces NSIP vs Control (lung) model weights}}{116}{table.7}%
+\contentsline {table}{\numberline {A2.8}{\ignorespaces IPF vs non-IPF (lung) model weights}}{122}{table.8}%
+\contentsline {table}{\numberline {A2.9}{\ignorespaces HP vs non-HP (lung) model weights}}{124}{table.9}%
+\contentsline {table}{\numberline {A2.10}{\ignorespaces IPF vs HP (lung) model weights}}{126}{table.10}%
+\contentsline {table}{\numberline {A2.11}{\ignorespaces IPF vs NSIP (lung) model weights}}{128}{table.11}%
+\contentsline {table}{\numberline {A2.12}{\ignorespaces HP vs NSIP (lung) model weights}}{129}{table.12}%
+\contentsline {table}{\numberline {A2.13}{\ignorespaces Up-regulated ILD lung pathways}}{136}{table.13}%
+\contentsline {table}{\numberline {A2.14}{\ignorespaces Down-regulated ILD lung pathways}}{136}{table.14}%
+\contentsline {table}{\numberline {A2.15}{\ignorespaces Up- and down-regulated IPF blood and PBMC pathways}}{137}{table.15}%
+\contentsline {table}{\numberline {A2.16}{\ignorespaces Up-regulated IPF vs non-IPF pathways}}{138}{table.16}%
+\contentsline {table}{\numberline {A2.17}{\ignorespaces Up-regulated HP vs non-HP pathways}}{139}{table.17}%
+\contentsline {table}{\numberline {A2.18}{\ignorespaces Up-regulated ILD cell annotations}}{140}{table.18}%
+\contentsline {table}{\numberline {A2.19}{\ignorespaces Down-regulated ILD cell annotations}}{140}{table.19}%
+\contentsline {table}{\numberline {A2.20}{\ignorespaces ILD bicluster genes}}{143}{table.20}%
+\contentsline {table}{\numberline {A2.21}{\ignorespaces Bicluster pathway analysis}}{152}{table.21}%
+\contentsline {table}{\numberline {A2.22}{\ignorespaces IPF bicluster association with demographic variables}}{158}{table.22}%
+\contentsline {table}{\numberline {A2.23}{\ignorespaces ILD bicluster association with demographic variables}}{159}{table.23}%
+\contentsline {table}{\numberline {A3.1}{\ignorespaces Blood pilot study DEGs associated with PFT}}{162}{table.1}%
+\contentsline {table}{\numberline {A3.2}{\ignorespaces Blood pilot study ILD classification model performance}}{163}{table.caption.63}%
+\contentsline {table}{\numberline {A3.3}{\ignorespaces Blood pilot study ILD classification model weights}}{163}{table.3}%
+\contentsline {table}{\numberline {A4.1}{\ignorespaces Up- and down-regulated SSc-ILD pathways compared to IPF}}{165}{table.1}%
+\contentsline {table}{\numberline {A4.2}{\ignorespaces List of DEGs between radiological patterns (blood RNA-seq)}}{166}{table.2}%
+\contentsline {table}{\numberline {A4.3}{\ignorespaces List of DEGs between PPF and non-PPF (blood RNA-seq)}}{168}{table.3}%
+\contentsline {table}{\numberline {A4.4}{\ignorespaces List of DEGs associated with radiological progression (blood RNA-seq)}}{168}{table.4}%
+\contentsline {table}{\numberline {A4.5}{\ignorespaces ILD (excluding SSc-ILD) survival model genes}}{169}{table.5}%
+\contentsline {table}{\numberline {A5.1}{\ignorespaces List of DEGs between select scRNA-seq cell clusters}}{171}{table.1}%

@@ -9,7 +9,7 @@ output:
 
 \begin{center}
     \vspace*{\fill}
-    TBD
+    This thesis is dedicated to my parents, who moved to Canada to pursue graduate studies and have, for some reason, supported me in doing the same.
     \vspace*{\fill}
 \end{center}
 

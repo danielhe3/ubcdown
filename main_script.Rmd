@@ -23,6 +23,7 @@ bibliography: ./References/My Library.bib
 csl: ./References/vancouver-brackets.csl
 link-citations: yes
 linkcolor: black
+colorlinks: false
 #always_allow_html: true # uncomment if rendering to word document
 ---
 

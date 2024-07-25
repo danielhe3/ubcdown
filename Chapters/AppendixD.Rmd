@@ -31,43 +31,9 @@ ensembl <- readRDS(paste0(getwd(), "/Tables/ensembl_240412.RDS"))
 
 \begin{singlespace}
 
-(ref:clustermarkertab-cap) \textbf{List of top 10 markers for each identified cell cluster.} Marker genes were identified using the "FindAllMarkers" function in Seurat with the 'MAST' algorithm. 'pct' indicates percentage of cells expressing the marker within the cluster, while 'pct.all' indicates percentage of cells outside of the cluster expressing the marker.
-
-```{r clustermarkertab, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
-cluster10 <- read.csv(paste0(getwd(),"/Tables/scRNAseq/cluster_markers_10_mast.csv"), row.names=1)
-cluster10 <- cluster10 %>% 
-  mutate(cluster = case_when(cluster=="Naive CD8+" ~ "Naive CD8+ cells",
-                             .default = cluster)) %>%
-  mutate(avg_log2FC = round_to_sigfigs(avg_log2FC, sigfigs = 2)) %>%
-  dplyr::select(
-    cluster, gene, avg_log2FC, pct.1, pct.2, p_val_adj
-    ) %>% 
-  rename(
-    Cluster = cluster, Gene = gene, `(ref:logfc)` = avg_log2FC, FDR = p_val_adj, pct = pct.1, pct.all = pct.2
-    ) %>%
-  mutate(FDR=formatC(FDR, format = "e", digits=2))
-
-kable(
-  cluster10,
-  booktab = TRUE,
-  longtable = TRUE,
-  align = "llcccc",
-  caption = "(ref:clustermarkertab-cap)",
-  caption.short = "scRNA-seq cluster markers") %>% 
-  column_spec(column=1, width="2.0in") %>%
-  column_spec(column=2, width="0.9in") %>%
-  column_spec(column=3, width="0.5in") %>%
-  column_spec(column=4, width="0.5in") %>%
-  column_spec(column=5, width="0.5in") %>%
-  column_spec(column=6, width="0.6in") %>%
-  kableExtra::kable_styling(full_width = F) %>%  # table spans across left to right margins
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location 
-```
-
 (ref:clusterdiff-cap) \textbf{List of top 20 differentially expressed genes between clusters of similar cell types.} Comparisons were made using the 'MAST' algorithm implemented in Seurat and results were filtered to include genes with greater than 0.75 or less than -0.75 log\textsubscript{2} fold change between cell clusters, as well as genes expressed at a minimum of 20\% in either cell cluster (pct.1, pct.2). 
 
-```{r clusterdiff, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
+```{r clusterdiff, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra='', fig.align='center'}
 cluster_diff <- read_excel_allsheets(here::here('Tables', 'scRNAseq', "cluster_marker_diff.xlsx"))
 cluster_diff <- lapply(cluster_diff, function(x) 
   x %>%
@@ -113,7 +79,7 @@ kable(
 
 (ref:forestplotcbc-cap) \textbf{Forest plot comparing abundance of cell types measured by CBC.} Significantly different cell types (shown in italics) were determined by a binomial generalized linear model and corrected using the Bonferroni method. Dot sizes are scaled to indicate standard error (SE), with smaller SE corresponding to larger dots.
 
-```{r forestplotcbc, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:forestplotcbc-cap)", fig.scap = "scRNA-seq CBC cell abundance", out.extra=''}
+```{r forestplotcbc, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:forestplotcbc-cap)", fig.scap = "scRNA-seq CBC cell abundance", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/scRNAseq/SCAILD_forestplot_cbc.pdf")
 ```
 
@@ -121,48 +87,9 @@ knitr::include_graphics("./Figures/scRNAseq/SCAILD_forestplot_cbc.pdf")
 
 ### scRNA-seq differential expression
 
-\begin{singlespace}
-
-(ref:degscrnaseq-cap) \textbf{List of top differentially expressed genes between IPF and HP for each identified cell cluster.} Marker genes were identified using the 'MAST' algorithm. "pct.IPF" indicates percentage of IPF cells expressing the marker within the cluster, while 'pct.HP' indicates percentage of HP cells expressing the marker within the cluster.
-
-```{r degscrnaseq, eval = T, echo = F, warning = FALSE, message=FALSE,  out.extra=''}
-deg_scrnaseq <- read.csv(paste0(getwd(),"/Tables/scRNAseq/deg_celltypes.csv"), row.names=1)
-deg_scrnaseq <- deg_scrnaseq %>% 
-  rename(Cluster = dataframe_name) %>%
-  mutate(Cluster = case_when(Cluster=="Naive CD8+" ~ "Naive CD8+ cells",
-                             .default = Cluster)) %>%
-  mutate(avg_log2FC = round_to_sigfigs(avg_log2FC, sigfigs = 2)) %>%
-  dplyr::select(
-    Cluster, Gene, avg_log2FC, pct.1, pct.2, p_val_adj
-    ) %>% 
-  rename(
-    `(ref:logfc)` = avg_log2FC, FDR = p_val_adj, pct.IPF = pct.1, pct.HP = pct.2
-    ) %>%
-  mutate(FDR=formatC(FDR, format = "e", digits=2))
-
-kable(
-  deg_scrnaseq,
-  booktab = TRUE,
-  longtable = TRUE,
-  align = "llcccc",
-  caption = "(ref:degscrnaseq-cap)",
-  caption.short = "List of scRNA-seq DEGs between IPF and HP cell clusters") %>% 
-  column_spec(column=1, width="2.0in") %>%
-  column_spec(column=2, width="0.9in") %>%
-  column_spec(column=3, width="0.5in") %>%
-  column_spec(column=4, width="0.5in") %>%
-  column_spec(column=5, width="0.5in") %>%
-  column_spec(column=6, width="0.6in") %>%
-  kableExtra::kable_styling(full_width = F) %>%  # table spans across left to right margins
-  #kableExtra::kable_styling(latex_options = "scale_down") #%>% 
-  kableExtra::kable_styling(latex_options = c("HOLD_position", "repeat_header"), font_size = 8) # ensures the table isn't "floated" and pins it to the current location 
-```
-
-\end{singlespace}
-
 (ref:junumap-cap) \textbf{Expression of JUN in scRNAseq.} UMAP plots cellular subsets coloured by JUN expression.
 
-```{r junumap, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:junumap-cap)", fig.scap = "JUN expression", out.extra=''}
+```{r junumap, eval = T, out.width='1\\linewidth', echo=FALSE, fig.cap="(ref:junumap-cap)", fig.scap = "JUN expression", out.extra='', fig.align='center'}
 knitr::include_graphics("./Figures/scRNAseq/jun_umap_v1.pdf")
 ```
 

@@ -14,7 +14,7 @@ output:
 
 \Huge
 
-\textbf{A comprehensive analysis of the genomic landscape of interstitial lung diseases}
+\textbf{A comprehensive analysis of the transcriptomic landscape of interstitial lung diseases}
 
 \Large
 
